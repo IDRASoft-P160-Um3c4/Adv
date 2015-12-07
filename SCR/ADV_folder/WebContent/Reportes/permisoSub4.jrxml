@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="552"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT 
+PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
+case (REP.CNOMRAZONSOCIAL) 
+when '' THEN '' 
+ELSE ' REPRESENTADO LEGALMENTE POR '||REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO  
+END as cRepL, 
+TRACATTRAMITE.CDSCBREVE as cTramite, 
+TRACATTRAMITE.CCVEINTERNA as cClaveT, 
+ADV.CKMSENTIDO, 
+ADV.CHECHOS as cHechos,   
+CARR.CDSCARRETERA as cCARRETERA,  
+CARR.CCONSECIONARIO as CCONSECIONARIO,  
+ENTOF.CNOMBRE as cNomEnt, 
+CASE MONTH(DTVISITA)
+	      WHEN 1 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Enero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 2 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Febrero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 3 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Marzo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 4 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Abril de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 5 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Mayo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 6 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Junio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 7 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Julio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 8 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Agosto de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 9 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Septiembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 10 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Octubre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 11 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Noviembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 12 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Diciembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+      END AS cDTSOL, 
+CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS cDTREP, 
+TRADATOSPERM.CFOLPERMISO AS CFOLPERM, 
+TRADATOSPERM.CFOLVOLANTE, 
+TRADATOSPERM.CFOLPERMISO, 
+TRADATOSPERM.CDGDC, 
+TRADATOSPERM.CNUMERAL, 
+TRADATOSPERM.CPARRAF_1, 
+TRADATOSPERM.CPARRAF_2, 
+TRADATOSPERM.CPARRAF_3, 
+TRADATOSPERM.CPARRAF_4, 
+TRADATOSPERM.CPARRAF_5, 
+TRADATOSPERM.CPARRAF_6, 
+TRADATOSPERM.CARTICULOS, 
+TRADATOSPERM.CREVDGDC, 
+TRADATOSPERM.CPLAZO, 
+TRADATOSPERM.CCALMAT, 
+GRLDOMICILIO.CCALLE || ' Int. ' || GRLDOMICILIO.CNUMINTERIOR || ', Ext. ' || GRLDOMICILIO.CNUMEXTERIOR || ', Col. ' || GRLDOMICILIO.CCOLONIA || ', C.P. ' || GRLDOMICILIO.CCODPOSTAL || ', ' || GRLMUNICIPIO.CNOMBRE || ', ' ||  GRLENTIDADFED.CNOMBRE || ', ' || GRLPAIS.CNOMBRE as cDomicilio 
+FROM TRAREGSOLICITUD  
+JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE 
+AND GRLDOMICILIO.ICVEDOMICILIO = TRAREGSOLICITUD.ICVEDOMICILIOSOLICITANTE 
+JOIN GRLMUNICIPIO ON GRLMUNICIPIO.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+AND GRLMUNICIPIO.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED 
+AND GRLMUNICIPIO.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO 
+JOIN GRLENTIDADFED ON GRLENTIDADFED.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+AND GRLENTIDADFED.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED 
+JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE   
+JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE  
+LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL  
+JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD   
+JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA  
+JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA   
+JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS  
+JOIN TRADATOSNOAFEC ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSNOAFEC.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSNOAFEC.INUMSOL  
+JOIN TRAFOLENVIOS ON TRAREGSOLICITUD.IEJERCICIO = TRAFOLENVIOS.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRAFOLENVIOS.INUMSOLICITUD 
+JOIN TRADATOSPERM ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSPERM.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSPERM.INUMSOLICITUD 
+where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio} and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="CREPL" class="java.lang.String"/>
+	<field name="CTRAMITE" class="java.lang.String"/>
+	<field name="CCLAVET" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CCARRETERA" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="CNOMENT" class="java.lang.String"/>
+	<field name="CDTSOL" class="java.lang.String"/>
+	<field name="CDTREP" class="java.lang.String"/>
+	<field name="CFOLPERM" class="java.lang.String"/>
+	<field name="CFOLVOLANTE" class="java.lang.String"/>
+	<field name="CFOLPERMISO" class="java.lang.String"/>
+	<field name="CDGDC" class="java.lang.String"/>
+	<field name="CNUMERAL" class="java.lang.String"/>
+	<field name="CPARRAF_1" class="java.lang.String"/>
+	<field name="CPARRAF_2" class="java.lang.String"/>
+	<field name="CPARRAF_3" class="java.lang.String"/>
+	<field name="CPARRAF_4" class="java.lang.String"/>
+	<field name="CPARRAF_5" class="java.lang.String"/>
+	<field name="CPARRAF_6" class="java.lang.String"/>
+	<field name="CARTICULOS" class="java.lang.String"/>
+	<field name="CREVDGDC" class="java.lang.String"/>
+	<field name="CPLAZO" class="java.lang.String"/>
+	<field name="CCALMAT" class="java.lang.String"/>
+	<field name="CDOMICILIO" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="570"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="11"
+						y="0"
+						width="529"
+						height="490"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["4. Ejecutar los trabajos necesarios para conservar y mantener en buen estado el "+$F{CTRAMITE}+".\n\n5.	Responder por cualquier daño que se ocasione a la autopista "+$F{CCARRETERA}+"  o a terceros, con motivo de las actividades que desarrolle por la construcción de "+$F{CTRAMITE}+" o por defectos o vicios ocultos en su construcción, reparación y conservación, así como derivados de cualquier daño que pudiera generarse por el uso de "+$F{CTRAMITE}+".\n\n6.	Llevar a cabo las actividades a que se refiere el presente permiso, sujetándose a las disposiciones legales, reglamentarias y administrativas vigentes.\n\n7.	Coordinar con el concesionario de la autopista "+$F{CCARRETERA}+", cualquier asunto relativo a la conservación y operación del derecho de vía que ocupará el "+$F{CTRAMITE}+" materia del presente permiso.\n\nNOVENA.- La terminación de este permiso procederá por cualquiera de las causas previstas en los artículos 16 fracciones II, III y VI a VIII de la Ley de Caminos, Puentes y Autotransporte Federal y 38 del Reglamento o por mutuo acuerdo entre EL PERMISIONARIO y LA SECRETARÍA.\n\nDÉCIMA.- La revocación de este permiso procederá por cualquiera de las causas señaladas en los artículos 17 de la Ley de Caminos, Puentes y Autotransporte Federal y 39 del Reglamento, o cuando se falte al cumplimiento de cualquiera de las obligaciones establecidas en este permiso.\n\nLa declaración de revocación de este permiso, se ajustará al procedimiento establecido en el artículo 79 de la Ley de Caminos, Puentes y Autotransporte Federal y demás disposiciones legales y administrativas aplicables en la materia.\n\nDÉCIMA PRIMERA.- EL PERMISIONARIO señala como domicilio para oír y recibir toda clase de notificaciones relacionadas con el presente permiso el ubicado en "+$F{CDOMICILIO}+".\n\nDÉCIMA SEGUNDA.- Para las cuestiones relacionadas con el presente permiso, sólo en lo que no corresponda resolver administrativamente al Gobierno Federal, EL PERMISIONARIO se somete a la jurisdicción de los Tribunales Federales competentes del Distrito Federal, renunciando al fuero que pudiere corresponderle por razón de su domicilio presente o futuro.\n\nDÉCIMA TERCERA.- Cualquier acto que lleve a cabo EL PERMISIONARIO relacionado con este permiso, implica la aceptación incondicional a todos y cada uno de sus términos.\n\nEl presente permiso se expide el "+$F{CDTREP}+"."]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="50"
+						y="490"
+						width="430"
+						height="80"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["POR LA SECRETARÍA\n\n\n"+$F{CDGDC}+"\nDIRECTOR GENERAL DE DESARROLLO CARRETERO"]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

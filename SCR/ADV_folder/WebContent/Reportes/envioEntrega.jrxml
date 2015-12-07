@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT   DISTINCT(PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO) as cSolicitante,
+      GRLDOMICILIO.CCALLE || ' Int. ' || GRLDOMICILIO.CNUMINTERIOR || ', Ext. ' || GRLDOMICILIO.CNUMEXTERIOR || ', Col. ' || GRLDOMICILIO.CCOLONIA || ', C.P. ' || GRLDOMICILIO.CCODPOSTAL || ', ' || GRLMUNICIPIO.CNOMBRE || ', ' ||  GRLENTIDADFED.CNOMBRE || ', ' || GRLPAIS.CNOMBRE as cdomicilio,
+      TRACATTRAMITE.CDSCBREVE as cTram,
+      TRAMODALIDAD.CDSCMODALIDAD as cModal,
+      TRACATTRAMITE.CCVEINTERNA || ' PARA ' || TRACATTRAMITE.CDSCBREVE AS HOMOCLAVE,
+      CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS DTREP,
+      ADV.CCADENAMIENTO,
+      ADV.CTRAMO,
+      CARR.CDSCARRETERA,
+      'Carretera ' || CARR.CDSCARRETERA || ', K.m. ' || ADV.CCADENAMIENTO || ', tramo ' || ADV.CTRAMO as UBICA,
+      CASE VT.LPOSITIVA WHEN 1 THEN 'ES FACTIBLE'
+      ELSE 'NO ES FACTIBLE' END AS LRESOL,
+      CASE MONTH(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 1 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Enero de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 2 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Febrero de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 3 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Marzo de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 4 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Abril de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 5 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Mayo de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 6 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Junio de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 7 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Julio de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 8 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Agosto de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 9 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Septiembre de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 10 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Octubre de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 11 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Noviembre de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+	      WHEN 12 THEN DAY(DATE(TRAREGSOLICITUD.TSREGISTRO)) || ' de Diciembre de ' || YEAR(DATE(TRAREGSOLICITUD.TSREGISTRO))
+      END AS DTSOL,
+      ENTOF.CNOMBRE AS NOMENT,
+      GRLOFICINA.CTITULAR,
+      TRAFOLIOSADVXSOL.INUMENVENT,
+      TRAFOLIOSADVXSOL.CNUMPERMISO
+      FROM TRAREGSOLICITUD
+      JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE
+       AND GRLDOMICILIO.ICVEDOMICILIO = TRAREGSOLICITUD.ICVEDOMICILIOSOLICITANTE
+      JOIN GRLMUNICIPIO ON GRLMUNICIPIO.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+       AND GRLMUNICIPIO.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED
+       AND GRLMUNICIPIO.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO
+      JOIN GRLENTIDADFED ON GRLENTIDADFED.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+       AND GRLENTIDADFED.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED
+      JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+      JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE
+      JOIN TRAMODALIDAD ON TRAMODALIDAD.ICVEMODALIDAD= TRAREGSOLICITUD.ICVEMODALIDAD
+      JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE
+      LEFT JOIN GRLREPLEGAL ON GRLREPLEGAL.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL
+	 LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL
+	 JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD
+	 JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA
+	 JOIN TRAREGRESOLVTECXSOL VT ON TRAREGSOLICITUD.IEJERCICIO = VT.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = VT.INUMSOLICITUD
+	 JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA
+	 JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+	 JOIN TRAFOLIOSADVXSOL ON TRAREGSOLICITUD.IEJERCICIO = TRAFOLIOSADVXSOL.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRAFOLIOSADVXSOL.INUMSOLICITUD
+	 where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio}
+	 and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="CDOMICILIO" class="java.lang.String"/>
+	<field name="CTRAM" class="java.lang.String"/>
+	<field name="CMODAL" class="java.lang.String"/>
+	<field name="HOMOCLAVE" class="java.lang.String"/>
+	<field name="DTREP" class="java.lang.String"/>
+	<field name="CCADENAMIENTO" class="java.lang.String"/>
+	<field name="CTRAMO" class="java.lang.String"/>
+	<field name="CDSCARRETERA" class="java.lang.String"/>
+	<field name="UBICA" class="java.lang.String"/>
+	<field name="LRESOL" class="java.lang.String"/>
+	<field name="DTSOL" class="java.lang.String"/>
+	<field name="NOMENT" class="java.lang.String"/>
+	<field name="CTITULAR" class="java.lang.String"/>
+	<field name="INUMENVENT" class="java.lang.Long"/>
+	<field name="CNUMPERMISO" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="110"  isSplitAllowed="true" >
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="12"
+						y="18"
+						width="197"
+						height="92"
+						key="image-1"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{URLEstaticos} + "img/logoSCT_2012_12.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="239"
+						y="26"
+						width="311"
+						height="13"
+						key="staticText-14"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" isStyledText="true">
+						<font pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA[DIRECCIÓN GENERAL DE DESARROLLO CARRETERO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="290"
+						y="38"
+						width="261"
+						height="32"
+						key="staticText-16"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" isStyledText="true">
+						<font pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA[DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="239"
+						y="76"
+						width="311"
+						height="13"
+						key="staticText-18"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" isStyledText="true">
+						<font pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Oficio núm. 3.4.3.- _________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="117"
+						y="0"
+						width="360"
+						height="13"
+						key="staticText-24"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" isStyledText="true">
+						<font pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<text><![CDATA["2013, Año de la Lealtad Institucional y Centenario del Ejército Mexicano"]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						style="CABEZERA"
+						x="494"
+						y="76"
+						width="58"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{INUMENVENT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="69"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="30"
+						y="30"
+						width="311"
+						height="13"
+						key="staticText-15"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DIRECTOR GENERAL CENTRO SCT ______________________ _______________________]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="122"
+						y="9"
+						width="0"
+						height="2"
+						key="staticText-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[Static Text]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="410"
+						y="0"
+						width="140"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTREP}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="350"
+						y="0"
+						width="75"
+						height="13"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[México, D.F., a]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="204"
+						y="29"
+						width="123"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="10" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{NOMENT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="30"
+						y="43"
+						width="277"
+						height="13"
+						key="staticText-19"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[SECRETARIA DE COMUNICACIONES Y TRANSPORTES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="30"
+						y="55"
+						width="47"
+						height="13"
+						key="staticText-25"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Presente]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="30"
+						y="18"
+						width="336"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTITULAR}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="1"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="424"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="40"
+						y="350"
+						width="66"
+						height="13"
+						key="staticText-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[Atentamente]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="40"
+						y="361"
+						width="167"
+						height="30"
+						key="staticText-13"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[El Director General Adjunto de Supervisión Física de Autopistas]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="27"
+						y="100"
+						width="497"
+						height="30"
+						key="staticText-30"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font/>
+					</textElement>
+				<text><![CDATA[Sobre  el  particular,  hago  de su  conocimiento  que  el  C. Director  General de Desarrollo  Carretero ha emitido su autorización para que se construya ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="27"
+						y="126"
+						width="497"
+						height="51"
+						key="staticText-31"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font/>
+					</textElement>
+				<text><![CDATA[mencionado, con base a que esta Dirección General Adjunta de Supervisión Física de Autopistas ha resuelto favorablemente la continuación del trámite de la solicitud presentada, dado que la documentación suministrada cumple con la normatividad técnica y legal aplicable y que se han pagado los derechos correspondientes.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="40"
+						y="230"
+						width="450"
+						height="100"
+						key="staticText-32"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font/>
+					</textElement>
+				<text><![CDATA[•	Entregar al solicitante, un tanto del permiso y una copia del plano del proyecto aprobado.
+•	Que el solicitante, una vez entregado el permiso llene el formato de encuesta y sea remitido a esta dirección.
+•	Turnar al Jefe de la Unidad General de Servicios Técnicos adscrito a esa Dirección General de su digno cargo la copia del permiso y del plano del proyecto aprobado para dar la supervisión a la obra referida e informar a esta Dirección General Adjunta sobre el avance mensual, la terminación y el cumplimiento de los trabajos de acuerdo al permiso otorgado.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="40"
+						y="334"
+						width="450"
+						height="13"
+						key="staticText-33"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font/>
+					</textElement>
+				<text><![CDATA[Sin otro particular, aprovecho la ocasión para enviarle un cordial saludo.]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="238"
+						y="124"
+						width="280"
+						height="0"
+						key="line-5"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="238"
+						y="112"
+						width="259"
+						height="13"
+						key="textField-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" isBold="true" isUnderline="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTRAM}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="27"
+						y="190"
+						width="497"
+						height="51"
+						key="staticText-42"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font/>
+					</textElement>
+				<text><![CDATA[Por tal razón, me permito enviarle copia del permiso No. ________________, del plano del proyecto aprobado con firmas autógrafas y al mismo tiempo le solicito atentamente que emita sus apreciables instrucciones para:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="27"
+						y="50"
+						width="497"
+						height="13"
+						key="staticText-44"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[solicitó permiso a la Secretaría para construir ]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="233"
+						y="61"
+						width="283"
+						height="0"
+						key="line-6"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="27"
+						y="63"
+						width="497"
+						height="13"
+						key="staticText-45"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font/>
+					</textElement>
+				<text><![CDATA[ubicado en                                   dentro del derecho de vía de la autopista]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="83"
+						y="74"
+						width="86"
+						height="0"
+						key="line-7"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="26"
+						y="23"
+						width="497"
+						height="13"
+						key="staticText-46"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[Me refiero a la solicitud de fecha ___________________________________, mediante la cual el representante]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="26"
+						y="36"
+						width="497"
+						height="13"
+						key="staticText-47"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[legal de _]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="29"
+						y="75"
+						width="497"
+						height="13"
+						key="textField-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCARRETERA}+'.']]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="69"
+						y="36"
+						width="454"
+						height="13"
+						key="textField-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CSOLICITANTE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="90"
+						y="62"
+						width="73"
+						height="13"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CCADENAMIENTO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="248"
+						y="49"
+						width="259"
+						height="13"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" isBold="true" isUnderline="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTRAM}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="193"
+						y="23"
+						width="179"
+						height="13"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTSOL}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="68"
+						y="48"
+						width="450"
+						height="0"
+						key="line-8"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="29"
+						y="88"
+						width="492"
+						height="0"
+						key="line-9"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="284"
+						y="190"
+						width="81"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CNUMPERMISO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="40"
+						y="411"
+						width="249"
+						height="13"
+						key="staticText-48"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Ing. Hector Armando Castañeda Molina]]></text>
+				</staticText>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="66"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="40"
+						y="36"
+						width="507"
+						height="29"
+						key="staticText-34"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" isStyledText="true">
+						<font pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
+Tel. 01 (55) 54824362  Conmutador 54824200 Ext. 16014
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="CABEZERA"
+						x="40"
+						y="24"
+						width="44"
+						height="13"
+						key="staticText-35"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="10"/>
+					</textElement>
+				<text><![CDATA[DGASFA]]></text>
+				</staticText>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="82"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="40"
+						y="23"
+						width="507"
+						height="12"
+						key="staticText-36"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Anexos: Dos tantos del permiso No ____________., dos copias del plano del proyecto aprobado y formato de encuesta.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="40"
+						y="34"
+						width="507"
+						height="48"
+						key="staticText-37"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[C.c.p.               C. Coordinador General de Planeación y Centros SCT.-presente
+                        C. Director General de Desarrollo Carretero.- presente
+                        Minutario
+                        Archivo
+]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="178"
+						y="23"
+						width="69"
+						height="12"
+						key="textField-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CNUMPERMISO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</summary>
+</jasperReport>

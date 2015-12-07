@@ -1,0 +1,14 @@
+-JAVA JDK 1.6.43
+jdk-6u43-windows-i586.exe
+
+-Spring Tools Suite IDE
+spring-tool-suite-3.2.0.RELEASE-e3.8.2-win32-installer.exe
+
+_DB2 v.9.7
+v9.7_nt32_server.zip
+
+-WebLogic 10.3.3
+wls1033_oepe111150_win32.exe
+
+-SQuirrel
+java -jar squirrel-sql-3.5.0-install.jar

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="classic_landscape"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="782"
+		 pageHeight="555"
+		 columnWidth="782"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="sDtIni" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="sDtFin" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[(SELECT TIMESTAMP(HIST.DTREGISTRO) AS TSREGISTRO, VARCHAR_FORMAT(HIST.DTREGISTRO, 'DD/MM/YYYY') AS DTREGSITRO, VARCHAR_FORMAT(HIST.DTINGRESO, 'DD/MM/YYYY') AS DTINGRESO, HIST.IEJERCICIO, TRAM.CDSCBREVE, CARR.CCONSECIONARIO, CARR.CDSCARRETERA, OFI.CDSCBREVE as COFI, 
+YEAR(HIST.DTINGRESO - HIST.DTREGISTRO)*365 + MONTH(HIST.DTINGRESO - HIST.DTREGISTRO)*30 + DAY(HIST.DTINGRESO - HIST.DTREGISTRO)  AS DIASTRANS
+FROM TRACATTRAMITE TRAM
+ JOIN TRADATOSHISTADV HIST ON TRAM.ICVETRAMITE = HIST.ICVETRAMITE
+ JOIN TRACATCARRETERA CARR ON HIST.ICVEAUTOPISTA = CARR.ICVECARRETERA
+ JOIN GRLOFICINA OFI ON HIST.ICVEOFICINA = OFI.ICVEOFICINA
+WHERE HIST.DTREGISTRO  BETWEEN $P{sDtIni} and $P{sDtFin}
+AND HIST.DTREGISTRO IS NOT NULL AND HIST.DTREGISTRO IS NOT NULL)
+UNION
+(SELECT SOL.TSREGISTRO, VARCHAR_FORMAT(SOL.TSREGISTRO, 'DD/MM/YYYY') AS DTREGSITRO, VARCHAR_FORMAT(SOL.DTRECEPCION, 'DD/MM/YYYY') AS DTINGRESO,SOL.IEJERCICIO, TRAM.CDSCBREVE, CARR.CCONSECIONARIO, CARR.CDSCARRETERA, OFI.CDSCBREVE AS COFI,
+YEAR(SOL.DTRECEPCION - DATE(SOL.TSREGISTRO))*365 + MONTH(SOL.DTRECEPCION - DATE(SOL.TSREGISTRO))*30 + DAY(SOL.DTRECEPCION - DATE(SOL.TSREGISTRO))  AS DIASTRANS
+FROM TRACATTRAMITE TRAM
+ JOIN TRAREGSOLICITUD SOL ON TRAM.ICVETRAMITE = SOL.ICVETRAMITE
+ JOIN TRAREGDATOSADVXSOL ADV ON  ADV.IEJERCICIO = SOL.IEJERCICIO AND ADV.INUMSOLICITUD = SOL.INUMSOLICITUD
+ JOIN TRACATCARRETERA CARR ON ADV.ICVECARRETERA =CARR.ICVECARRETERA
+ JOIN GRLOFICINA OFI ON OFI.ICVEOFICINA = SOL.ICVEOFICINA  
+WHERE SOL.TSREGISTRO  BETWEEN $P{sDtIni} and $P{sDtFin}
+AND SOL.TSREGISTRO IS NOT NULL AND SOL.DTRECEPCION IS NOT NULL)
+ORDER BY CDSCBREVE]]></queryString>
+
+	<field name="TSREGISTRO" class="java.sql.Timestamp"/>
+	<field name="DTREGSITRO" class="java.lang.String"/>
+	<field name="DTINGRESO" class="java.lang.String"/>
+	<field name="IEJERCICIO" class="java.lang.Long"/>
+	<field name="CDSCBREVE" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="CDSCARRETERA" class="java.lang.String"/>
+	<field name="COFI" class="java.lang.String"/>
+	<field name="DIASTRANS" class="java.lang.Integer"/>
+
+		<background>
+			<band height="1"  isSplitAllowed="true" >
+				<line direction="BottomUp">
+					<reportElement
+						x="-1"
+						y="0"
+						width="782"
+						height="0"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="39"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						mode="Opaque"
+						x="-1"
+						y="-2"
+						width="782"
+						height="40"
+						forecolor="#000000"
+						backcolor="#808080"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch" pen="None"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="0"
+						y="10"
+						width="269"
+						height="17"
+						forecolor="#FFFFFF"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[TRÁMITE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="270"
+						y="10"
+						width="161"
+						height="17"
+						forecolor="#FFFFFF"
+						key="staticText-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[FECHA DE REGISTRO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="432"
+						y="0"
+						width="155"
+						height="38"
+						forecolor="#FFFFFF"
+						key="staticText-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[FECHA DE INGRESO DGDC]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="589"
+						y="10"
+						width="191"
+						height="17"
+						forecolor="#FFFFFF"
+						key="staticText-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12"/>
+					</textElement>
+				<text><![CDATA[DÍAS TRANSCURRIDOS]]></text>
+				</staticText>
+				<line direction="BottomUp">
+					<reportElement
+						x="0"
+						y="38"
+						width="781"
+						height="0"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="line-4"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="51"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="2"
+						y="0"
+						width="269"
+						height="49"
+						forecolor="#000000"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCBREVE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="276"
+						y="14"
+						width="150"
+						height="17"
+						forecolor="#000000"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTREGSITRO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="436"
+						y="14"
+						width="145"
+						height="17"
+						forecolor="#000000"
+						key="textField-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTINGRESO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="589"
+						y="14"
+						width="191"
+						height="17"
+						forecolor="#000000"
+						key="textField-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="false" isItalic="false" isUnderline="false" isPdfEmbedded ="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{DIASTRANS}]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="1"
+						y="50"
+						width="779"
+						height="0"
+						forecolor="#CCCCCC"
+						key="line-5"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

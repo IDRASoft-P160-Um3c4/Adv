@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="552"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<queryString><![CDATA[SELECT 
+PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
+case (REP.CNOMRAZONSOCIAL) 
+when '' THEN '' 
+ELSE ' REPRESENTADO LEGALMENTE POR '||REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO  
+END as cRepL, 
+TRACATTRAMITE.CDSCBREVE as cTramite, 
+TRACATTRAMITE.CCVEINTERNA as cClaveT, 
+ADV.CKMSENTIDO, 
+ADV.CHECHOS as cHechos,   
+UPPER(CARR.CDSCARRETERA) as cCARRETERA,  
+UPPER(CARR.CCONSECIONARIO) as CCONSECIONARIO,  
+ENTOF.CNOMBRE as cNomEnt, 
+VARCHAR_FORMAT(TRAREGSOLICITUD.TSREGISTRO, 'DD/MM/YYYY') AS cDTSOL, 
+VARCHAR_FORMAT(CURRENT_DATE, 'DD/MM/YYYY') AS cDTREP, 
+TRADATOSPERM.CFOLPERMISO AS CFOLPERM, 
+TRADATOSPERM.CFOLVOLANTE, 
+TRADATOSPERM.CFOLPERMISO, 
+TRADATOSPERM.CDGDC, 
+TRADATOSPERM.CNUMERAL, 
+TRADATOSPERM.CPARRAF_1, 
+TRADATOSPERM.CPARRAF_2, 
+TRADATOSPERM.CPARRAF_3, 
+TRADATOSPERM.CPARRAF_4, 
+TRADATOSPERM.CPARRAF_5, 
+TRADATOSPERM.CPARRAF_6, 
+TRADATOSPERM.CARTICULOS, 
+TRADATOSPERM.CREVDGDC, 
+TRADATOSPERM.CPLAZO, 
+TRADATOSPERM.CCALMAT, 
+GRLDOMICILIO.CCALLE || ' Int. ' || GRLDOMICILIO.CNUMINTERIOR || ', Ext. ' || GRLDOMICILIO.CNUMEXTERIOR || ', Col. ' || GRLDOMICILIO.CCOLONIA || ', C.P. ' || GRLDOMICILIO.CCODPOSTAL || ', ' || GRLMUNICIPIO.CNOMBRE || ', ' ||  GRLENTIDADFED.CNOMBRE || ', ' || GRLPAIS.CNOMBRE as cDomicilio 
+FROM TRAREGSOLICITUD  
+JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE 
+AND GRLDOMICILIO.ICVEDOMICILIO = TRAREGSOLICITUD.ICVEDOMICILIOSOLICITANTE 
+JOIN GRLMUNICIPIO ON GRLMUNICIPIO.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+AND GRLMUNICIPIO.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED 
+AND GRLMUNICIPIO.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO 
+JOIN GRLENTIDADFED ON GRLENTIDADFED.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+AND GRLENTIDADFED.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED 
+JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE   
+JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE  
+LEFT JOIN GRLREPLEGAL ON GRLREPLEGAL.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL   
+LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL  
+JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD   
+JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA  
+JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA   
+JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS  
+JOIN TRADATOSNOAFEC ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSNOAFEC.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSNOAFEC.INUMSOL  
+JOIN TRAFOLENVIOS ON TRAREGSOLICITUD.IEJERCICIO = TRAFOLENVIOS.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRAFOLENVIOS.INUMSOLICITUD 
+JOIN TRADATOSPERM ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSPERM.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSPERM.INUMSOLICITUD 
+where TRAREGSOLICITUD.IEJERCICIO= 2015 and TRAREGSOLICITUD.INUMSOLICITUD=  53]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="CREPL" class="java.lang.String"/>
+	<field name="CTRAMITE" class="java.lang.String"/>
+	<field name="CCLAVET" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CCARRETERA" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="CNOMENT" class="java.lang.String"/>
+	<field name="CDTSOL" class="java.lang.String"/>
+	<field name="CDTREP" class="java.lang.String"/>
+	<field name="CFOLPERM" class="java.lang.String"/>
+	<field name="CFOLVOLANTE" class="java.lang.String"/>
+	<field name="CFOLPERMISO" class="java.lang.String"/>
+	<field name="CDGDC" class="java.lang.String"/>
+	<field name="CNUMERAL" class="java.lang.String"/>
+	<field name="CPARRAF_1" class="java.lang.String"/>
+	<field name="CPARRAF_2" class="java.lang.String"/>
+	<field name="CPARRAF_3" class="java.lang.String"/>
+	<field name="CPARRAF_4" class="java.lang.String"/>
+	<field name="CPARRAF_5" class="java.lang.String"/>
+	<field name="CPARRAF_6" class="java.lang.String"/>
+	<field name="CARTICULOS" class="java.lang.String"/>
+	<field name="CREVDGDC" class="java.lang.String"/>
+	<field name="CPLAZO" class="java.lang.String"/>
+	<field name="CCALMAT" class="java.lang.String"/>
+	<field name="CDOMICILIO" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="598"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="11"
+						y="0"
+						width="529"
+						height="590"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["TERCERA.- EL PERMISIONARIO podrá contratar con terceros la ejecución de "+$F{CTRAMITE}+", pero será el único responsable ante LA SECRETARÍA del cumplimiento de las obligaciones establecidas en este permiso.\n\nLa Unidad General de Servicios Técnicos adscrita al Centro SCT "+$F{CNOMENT}+" será la única facultada para llevar a cabo la supervisión de los trabajos. El personal del concesionario no está autorizado para dar indicaciones a EL PERMISIONARIO en relación con la ejecución de "+$F{CTRAMITE}+". En todo caso, cualquier requerimiento será a través del Centro SCT "+$F{CNOMENT}+"\n\nCUARTA.- Una vez concluida la construcción de "+$F{CTRAMITE}+", EL PERMISIONARIO dará aviso a la Dirección General del Centro SCT "+$F{CNOMENT}+" dentro de los 30 días naturales siguientes a dicha conclusión, la cual realizará la inspección del mismo y verificará que se haya ajustado a las disposiciones legales y administrativas aplicables y al proyecto técnico autorizado, en caso contrario el "+$F{CTRAMITE}+" no podrá entrar en operación, hasta en tanto no se lleven a cabo las adecuaciones que correspondan.\n\nQUINTA.- LA SECRETARÍA podrá autorizar, dentro de un plazo de 60 días naturales contados a partir de la presentación de la solicitud, la cesión de los derechos y las obligaciones establecidas en el permiso, siempre que éste hubiera estado vigente por un lapso no menor de 3 años y se cumpla con los términos establecidos en la legislación aplicable en la materia.\n\nSEXTA.- La vigencia del presente permiso será por tiempo indefinido. No obstante, de conformidad con lo dispuesto en el artículo 37, fracción VI del Reglamento, EL PERMISIONARIO está obligado a desocupar dentro del plazo establecido por LA SECRETARÍA o cuando ésta lo solicite, el derecho de vía de que se trate sin costo alguno para LA SECRETARÍA.\n\nSÉPTIMA.- En caso de ampliación o conservación de la carretera, EL PERMISIONARIO se obliga a llevar a cabo, a su cargo y en el plazo que le indique LA SECRETARÍA, las modificaciones a la obra que por escrito le indique LA SECRETARÍA o, en caso de ser necesario, desocupar el derecho de vía en los términos señalados en la Condición Sexta anterior.\n\nEn caso contrario, LA SECRETARÍA lo efectuará formulando la liquidación correspondiente a cargo de EL PERMISIONARIO en términos de ley."]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

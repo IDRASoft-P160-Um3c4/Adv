@@ -1,0 +1,11 @@
+[PropertyInfo]
+cSistema,String,false,false, , ,false,<default>
+dFolio,TDDatosFolio,false,false, , ,false,<default>
+dOficDepto,TDDatosOficinaDepto,false,false, , ,false,<default>
+dOficina,TDDatosOficina,false,false, , ,false,<default>
+dPersona,TDDatosPersona,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

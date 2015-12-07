@@ -1,0 +1,9 @@
+;Delphi-generated INF file for dpr00Proj1.ocx
+[Add.Code]
+dpr00Proj1.ocx=dpr00Proj1.ocx
+
+[dpr00Proj1.ocx]
+file=http://AF_INRED4/dpr00Proj1.cab
+clsid={0E7C4F61-D02B-4366-B487-D15B67F1320A}
+RegisterServer=yes
+FileVersion=1,0,0,0

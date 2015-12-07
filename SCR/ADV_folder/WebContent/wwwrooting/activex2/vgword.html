@@ -1,0 +1,42 @@
+<html>
+<body onLoad="fRun();">
+
+<object id="dpr001" classid="clsid:0E7C4F61-D02B-4366-B487-D15B67F1320A">
+   	           codebase="http://localhost:8080/sipmm/wwwrooting/activex/dpr00Proj1.ocx"
+</object>
+
+</body>
+</html>
+<script>
+
+function fRun(){
+  alert('kike');
+  dpr001.FNAME = 'c:\\Plantillas\\InclusionP.doc';
+  dpr001.TextoB01 = '[&Eti1]|[&Eti14]|[&EtiTram]|[&Eti2]|[&Eti8]|[&Eti15]|[&Eti16]|'+
+                    '[&Eticon1]|[&EtiMar1]|[&EtiMod1]|[&EtiNiv1]|'+
+                    '[&EtiMotor1]|[&EtiPlaca1]|[&Etitipo1]|[&Eti13]|';
+  dpr001.TextoR01 = '1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|';
+  dpr001.URUN = 'YES' ;
+  dpr001.SELBOOKMARK('tabla');
+  dpr001.ADDTABLEROWS(10);
+  dpr001.ADDCELL('109');
+  dpr001.ADDCELL('1091');
+  dpr001.ADDCELL('1092');
+  dpr001.ADDCELL('1093');
+  dpr001.ADDCELL('1094');
+  dpr001.ADDCELL('1095');
+  dpr001.ADDCELL('1096');
+  dpr001.ADDCELL('1097');
+  dpr001.ADDCELL('1098');
+  dpr001.ADDCELL('109');
+  dpr001.ADDCELL('1099');
+  dpr001.ADDCELL('1090');
+  dpr001.ADDCELL('1095');
+  dpr001.ADDCELL('1097');
+  dpr001.ADDCELL('1099');
+  dpr001.ADDCELL('10932');  
+  //dpr001.ISVISIBLE = 'yes';
+  //dpr001.IMPRIMIR(1);
+}
+</script>
+

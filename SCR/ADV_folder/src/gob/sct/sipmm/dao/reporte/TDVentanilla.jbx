@@ -1,0 +1,21 @@
+[PropertyInfo]
+cLeyendaBien,String,false,false, , ,false,<default>
+cLeyendaEval,String,false,false, , ,false,<default>
+cLeyendaPago,String,false,false, , ,false,<default>
+cNombreReporte,String,false,false, , ,false,<default>
+cNotaCapitania,String,false,false, , ,false,<default>
+cSistema,String,false,false, , ,false,<default>
+dataSourceName,String,false,false, , ,false,<default>
+iNumeroCopias,int,false,false, , ,false,<default>
+iNumeroReporte,int,false,false, , ,false,<default>
+iTiempoEsperaAcuses,int,false,false, , ,false,<default>
+lAutoImprimir,boolean,false,false, , ,false,<default>
+rep,TExcel,false,false, , ,false,<default>
+tFecha,TFechas,false,false, , ,false,<default>
+tTramite,TDTramite,false,false, , ,false,<default>
+VParametros,TParametro,false,false, , ,false,<default>
+[IconNames]
+
+
+
+

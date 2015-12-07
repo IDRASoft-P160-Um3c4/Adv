@@ -1,0 +1,17 @@
+[PropertyInfo]
+cNumModulo,String,false,false, , ,false,<default>
+excel_cClassID,String,false,false, , ,false,<default>
+excel_cCodeBase,String,false,false, , ,false,<default>
+excel_cDelim,String,false,false, , ,false,<default>
+excel_cRutaDest,String,false,false, , ,false,<default>
+excel_cRutaOrig,String,false,false, , ,false,<default>
+vParametros,TParametro,false,false, , ,false,<default>
+word_cClassID,String,false,false, , ,false,<default>
+word_cCodeBase,String,false,false, , ,false,<default>
+word_cRutaDest,String,false,false, , ,false,<default>
+word_cRutaOrig,String,false,false, , ,false,<default>
+[IconNames]
+
+
+
+
