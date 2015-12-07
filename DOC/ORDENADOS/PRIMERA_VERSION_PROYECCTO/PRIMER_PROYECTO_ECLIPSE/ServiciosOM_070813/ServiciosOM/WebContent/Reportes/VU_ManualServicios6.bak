@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VU_ManualServicios6"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["C:\\eclipse_oracle\\wspaces\\Sipmm\\WebContent\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://localhost:7001/sipmm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iEjercicio" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(2007)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iCveTramite" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(21)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iCveModalidad" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(6)]]></defaultValueExpression>
+	</parameter>
+
+	<field name="IEJERCICIO" class="java.lang.Integer"/>
+	<field name="ICVETRAMITE" class="java.lang.Integer"/>
+	<field name="ICVEMODALIDAD" class="java.lang.Integer"/>
+	<field name="ICVECONCEPTO" class="java.lang.Integer"/>
+	<field name="LPAGOANTICIPADO" class="java.lang.Integer"/>
+	<field name="CDSCCONCEPTO" class="java.lang.String"/>
+	<field name="DTINIVIGENCIA" class="java.sql.Date"/>
+	<field name="DTFINVIGENCIA" class="java.sql.Date"/>
+	<field name="IREFNUMERICAINGRESOS" class="java.lang.Long"/>
+	<field name="DIMPORTESINAJUSTE" class="java.math.BigDecimal"/>
+	<field name="DIMPORTEAJUSTADO" class="java.math.BigDecimal"/>
+
+	<variable name="dtFechaActual" class="java.util.Date" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+		<background>
+			<band height="779"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="65"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="16"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="703"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="3"
+						y="6"
+						width="566"
+						height="690"
+						key="staticText-1"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[POLÍTICAS DE OPERACIÓN DE LA VENTANILLA ÚNICA 
+
+1.	La recepción de las solicitudes y entrega de los trámites se efectuará invariablemente en la Ventanilla Única, ya sea de oficinas centrales o en los casos que corresponda en las  Capitanías de Puerto. Asimismo, las solicitudes foráneas deberán enviarse por oficialía de partes de la Dependencia, quién deberá enviarlas a la Ventanilla Única Central.
+
+2.	Los usuarios no deberán dirigirse a las áreas responsables de los trámites para los efectos señalados en el numeral 1.
+
+3.	Cada trámite deberá acompañarse de la solicitud correspondiente, ya sea en los formatos establecidos o en escrito libre, siempre y cuando cuente con los datos requeridos para el trámite y los requisitos establecidos en la Guía de Trámites y Servicios de la Coordinación General de Puertos y Marina Mercante.
+
+4.	La solicitud deberá ser firmada:
+i.	En caso de personas morales, por el representante o apoderado legal quien acreditará debidamente con poder notarial en original o copia certificada (para cotejo) y original y copia de la identificación oficial con fotografía. El representante legal acreditado podrá designar a otra persona para recoger la resolución del trámite, indicándolo en la solicitud y anexando copia de la identificación correspondiente.
+ii.	En caso de personas físicas, si quien realiza el trámite no es el interesado, su representante deberá acreditarse en carta poder simple en original acompañada de copia de las identificaciones oficiales con fotografía de ambos.
+
+5.	Con el objeto de mantener actualizado el registro de representantes legales, las empresas deberán comunicar de manera oficial (Documento membretado y firmado, anexando poder notarial) a la Ventanilla Única de la Coordinación General de Puertos y Marina Mercante los cambios que realicen, a fin de dar de baja aquellos que ya no funjan como tales y de alta a los nuevos designados.
+
+6.	Las solicitudes de trámites deberán acompañarse de los documentos indicados en la cédula correspondiente en la Guía de Trámites y Servicios de la Coordinación General de Puertos y Marina Mercante, en caso de la falta de algún documento no podrá realizarse dicho trámite y se notificará de inmediato el motivo de la improcedencia. 
+
+7.	Cada trámite cuenta con un plazo de respuesta, el cual es el compromiso por parte de la autoridad, al término de éste el interesado podrá requerir su respuesta. 
+
+8.	Recibido el trámite, si la información soporte no cumple los requisitos y/o características  establecidas, se avisará al interesado dentro de los 3 días siguientes para que los satisfaga en un plazo de 5 o 10 días; de acuerdo al trámite solicitado. Si al término de éste no se han subsanado las observaciones del trámite se dará por cancelado. 
+
+9.	Para los trámites en los que se requieren realizar pago de derechos, el Usuario procederá a realizar el mismo, siguiendo el procedimiento administrativo establecido para tal fin, con las tarifas establecidas en la Ley Federal de Derechos vigente. 
+
+a)	Para los trámites proporcionados por la Dirección General de Marina Mercante, el usuario puede realizar su pago a través de tarjeta de crédito o débito directamente en la Ventanilla Única, por Internet o en el Banco Nacional de México (BANAMEX), en este último caso, la Ventanilla Única proporcionará al usuario la ficha de depósito para realizar el pago. Una vez efectuado el pago, ésta será entregará debidamente sellada en la Ventanilla Única de la Coordinación General de Puertos y Marina Mercante. 
+
+b)	Para los trámites proporcionados por la Dirección General de Puertos, el usuario acreditará su pago a través del formato de SAT, debidamente sellado por alguna de las instituciones bancarias autorizadas para tal fin.
+
+10.	En los trámites que se especifican en las cédulas de la Guía de Trámites y Servicios de la Coordinación General de Puertos y Marina Mercante, el pago deberá efectuarse con la presentación de la solicitud.
+
+11.	Se recomienda que las solicitudes de trámites de los usuarios de la Dirección General de Marina Mercante sean realizadas en la Capitanía que corresponda a su jurisdicción, a fin de obtener su respuesta de manera ágil, sin gastos adicionales por traslado a la Ciudad de México. De acuerdo con los programas de desconcentración son muy pocos los trámites que solo pueden efectuar en Oficinas Centrales, en tanto que para los correspondientes a la Dirección General de Puertos sólo serán a través de la Ventanilla Única Central.
+]]></text>
+				</staticText>
+			</band>
+		</summary>
+</jasperReport>

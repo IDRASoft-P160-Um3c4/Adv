@@ -1,0 +1,22 @@
+que es el numero de tramite CIS
+	se refiere al equivalente del tramite y las etapas en el sistema CIS, se entiende como una entidad para notificar, no afecta directamente la operación
+
+
+***tramite por internet check
+
+
+EL FORMATO QUE SE ASOCIA A EL REQUISITO CREADO DONDE SE DEFINE!?
+
+
+
+
+
+a la hora de recibir la solicitud dee hacerce con el departamento que resuelve el tramite
+
+
+delete from GRLSeguimientoPNC;
+delete from TRAREGPNCETAPA;
+delete from GRLREGCAUSAPNC;
+delete from GRLREGISTROPNC;
+
+para "resetear" el seguimiento de un tramite

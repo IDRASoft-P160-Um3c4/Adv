@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VU_ManualServicios13"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["C:\\eclipse_oracle\\wspaces\\Sipmm\\WebContent\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://localhost:7001/sipmm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLFormatosEMar" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://e-mar.sct.gob.mx/fileadmin/user_upload/msp/tramites/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLDespliegaFormato" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://localhost:7001/sipmm/pgMuestraFormato.jsp"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cCveTramite" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["1"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT T.ICVETRAMITE, T.CCVEINTERNA, T.CDSCTRAMITE, M.ICVEMODALIDAD, M.CDSCMODALIDAD,
+C.CCVECOFEMER, F.ICVEFORMATO, F.CTITULO
+FROM TRAConfiguraTramite CT
+JOIN TRACatTramite T ON T.ICVETRAMITE = CT.ICVETRAMITE
+JOIN TRAModalidad M ON M.ICVEMODALIDAD = CT.ICVEMODALIDAD
+JOIN GRLFormato F ON F.iCveFormato = CT.iCveFormato
+LEFT JOIN TRACofemer C ON C.IEJERCICIO = YEAR(CURRENT DATE) AND C.ICVETRAMITE = CT.ICVETRAMITE
+WHERE CT.iCveTramite = $P{cCveTramite}
+  AND T.iCveTramite = $P{cCveTramite}
+  AND T.LVIGENTE = 1 AND M.LVIGENTE = 1 AND T.LIMPRIMEMANUAL=1
+  AND CT.DTINIVIGENCIA = (SELECT MAX(CT2.DTINIVIGENCIA) FROM TRAConfiguraTramite CT2 WHERE CT2.ICVETRAMITE = CT.ICVETRAMITE AND CT2.ICVEMODALIDAD = CT.ICVEMODALIDAD)]]></queryString>
+
+	<field name="ICVETRAMITE" class="java.lang.Integer"/>
+	<field name="CCVEINTERNA" class="java.lang.String"/>
+	<field name="CDSCTRAMITE" class="java.lang.String"/>
+	<field name="ICVEMODALIDAD" class="java.lang.Integer"/>
+	<field name="CDSCMODALIDAD" class="java.lang.String"/>
+	<field name="CCVECOFEMER" class="java.lang.String"/>
+	<field name="ICVEFORMATO" class="java.lang.Integer"/>
+	<field name="CTITULO" class="java.lang.String"/>
+
+	<sortField name="CCVEINTERNA" />
+	<sortField name="CDSCMODALIDAD" />
+
+	<variable name="dtFechaActual" class="java.util.Date" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+		<background>
+			<band height="779"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="74"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="17"
+						y="65"
+						width="87"
+						height="9"
+						key="staticText-7"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="7" isBold="true"/>
+					</textElement>
+				<text><![CDATA[COFEMER]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="114"
+						y="65"
+						width="276"
+						height="9"
+						key="staticText-8"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="7" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="399"
+						y="65"
+						width="170"
+						height="9"
+						key="staticText-9"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="7" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CLAVE INTERNA - MODALIDAD]]></text>
+				</staticText>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="10"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="17"
+						y="0"
+						width="87"
+						height="9"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField-26"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="7" isBold="false" isItalic="false" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CCVECOFEMER}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="114"
+						y="0"
+						width="276"
+						height="9"
+						forecolor="#000000"
+						backcolor="#FFFFFF"
+						key="textField-27"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="7" isBold="false" isItalic="false" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCTRAMITE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="Reference"  hyperlinkTarget="Blank" >
+					<reportElement
+						mode="Opaque"
+						x="399"
+						y="-1"
+						width="170"
+						height="10"
+						forecolor="#0033FF"
+						backcolor="#FFFFFF"
+						key="textField-28"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="7" isBold="false" isItalic="false" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CCVEINTERNA}+" - "+$F{CDSCMODALIDAD}]]></textFieldExpression>
+						<hyperlinkReferenceExpression><![CDATA[(($F{ICVEFORMATO}.intValue()==0)?
+($P{URLFormatosEMar}+$F{CCVEINTERNA}.toUpperCase()+".html"):
+($P{URLDespliegaFormato}+"?Modo=Despliega&cDscTituloFormato=SOLICITUD DE TRAMITE / VENTANILLA UNICA&iCveFormato=1,2,"+$F{ICVEFORMATO}+",3"))]]></hyperlinkReferenceExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="17"
+						y="0"
+						width="557"
+						height="0"
+						forecolor="#CCCCCC"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="109"
+						y="0"
+						width="0"
+						height="10"
+						forecolor="#CCCCCC"
+						key="line-2"
+						stretchType="RelativeToBandHeight"/>
+					<graphicElement stretchType="RelativeToBandHeight"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="394"
+						y="0"
+						width="0"
+						height="10"
+						forecolor="#CCCCCC"
+						key="line-3"
+						stretchType="RelativeToBandHeight"/>
+					<graphicElement stretchType="RelativeToBandHeight"/>
+				</line>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="16"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

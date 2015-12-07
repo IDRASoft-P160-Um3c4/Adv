@@ -1,0 +1,8 @@
+user=db2upaas
+driverType=4
+serverName=10.33.141.253
+portNumber=50006
+databaseName=ADMSEG
+
+
+

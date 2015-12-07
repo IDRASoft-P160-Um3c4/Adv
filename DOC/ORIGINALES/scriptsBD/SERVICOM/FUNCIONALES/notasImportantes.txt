@@ -1,0 +1,1927 @@
+INDICES Y CONSTRAINTS REPETIDOS
+
+
+
+CREATE UNIQUE INDEX SQL070206224312150 ON SERVICOM.GLRFOLIO ( IEJERCICIOFOLIO, INUMDIRECCION, INUMDEPARTAMENTO, ICONSECUTIVOFOLIO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224312150" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115460 FOREIGN KEY ( IEJERCICIO, ICVEOBSERVACION ) REFERENCES SERVICOM.GRLOBSERVACION ( IEJERCICIO, ICVEOBSERVACION )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115460" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115460 FOREIGN KEY ( IEJERCICIO, ICVEOBSERVACION ) REFERENCES SERVICOM.GRLOBSERVACION ( IEJERCICIO, ICVEOBSERVACION )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115460" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115460 FOREIGN KEY ( IEJERCICIO, ICVEOBSERVACION ) REFERENCES SERVICOM.GRLOBSERVACION ( IEJERCICIO, ICVEOBSERVACION )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115460" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115430 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115430" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115430 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115430" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLATRIBFORMATOREG ADD CONSTRAINT SQL070207020115430 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115430" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224312490 ON SERVICOM.GRLATRIBFORMATOREG ( IEJERCICIO, ICVEFORMATOREG, ICVEFORMATO, ICVEATRIBUTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224312490" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+CREATE UNIQUE INDEX SQL130404191220780 ON SERVICOM.GRLBANCO(ICVEBANCO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174722190" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX CC1266454043463 ON SERVICOM.GRLBITACORA ( ICVEUSUARIO, TSMOVIMIENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.CC1266454043463" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+ALTER TABLE SERVICOM.GRLBITACORAMOV ADD CONSTRAINT CC1266454602699 FOREIGN KEY ( ICVEUSUARIO, TSMOVIMIENTO ) REFERENCES SERVICOM.GRLBITACORA ( ICVEUSUARIO, TSMOVIMIENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1266454602699" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLBITACORAMOV ADD CONSTRAINT CC1266454602699 FOREIGN KEY ( ICVEUSUARIO, TSMOVIMIENTO ) REFERENCES SERVICOM.GRLBITACORA ( ICVEUSUARIO, TSMOVIMIENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1266454602699" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLBITACORAMOV ADD CONSTRAINT CC1266454602699 FOREIGN KEY ( ICVEUSUARIO, TSMOVIMIENTO ) REFERENCES SERVICOM.GRLBITACORA ( ICVEUSUARIO, TSMOVIMIENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1266454602699" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX CC1266454592274 ON SERVICOM.GRLBITACORAMOV ( ICVEUSUARIO, TSMOVIMIENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.CC1266454592274" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130507163118170 ON SERVICOM.GRLCATEGORIAOFIC(ICVECATEGORIA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174722470" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+ALTER TABLE SERVICOM.GRLCAUSAPNC ADD CONSTRAINT SQL070207020115530 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCAUSAPNC ADD CONSTRAINT SQL070207020115530 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCAUSAPNC ADD CONSTRAINT SQL070207020115530 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+
+CREATE UNIQUE INDEX SQL070206224313210 ON SERVICOM.GRLCAUSAPNC ( ICVEPRODUCTO, ICVECAUSAPNC )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224313210" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+
+
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115590 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115590" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115620 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTONIVELANTERIOR ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115620 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTONIVELANTERIOR ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115620 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTONIVELANTERIOR ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115590 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115590" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGCATFORMATO ADD CONSTRAINT SQL070207020115590 FOREIGN KEY ( ICVEFORMATO, ICVEATRIBUTO ) REFERENCES SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115590" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224313850 ON SERVICOM.GRLCONFIGCATFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224313850" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+
+ALTER TABLE SERVICOM.GRLCONFIGFORMATO ADD CONSTRAINT SQL070207020115720 FOREIGN KEY (ICVEFORMATO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGFORMATO ADD CONSTRAINT SQL070207020115720 FOREIGN KEY (ICVEFORMATO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLCONFIGFORMATO ADD CONSTRAINT SQL070207020115720 FOREIGN KEY (ICVEFORMATO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+
+
+CREATE UNIQUE INDEX SQL070206224314690 ON SERVICOM.GRLCONFIGFORMATO ( ICVEFORMATO, ICVEATRIBUTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224314690" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+
+
+
+
+
+CREATE UNIQUE INDEX SQL130404191222580 ON SERVICOM.GRLDEPARTAMENTO(ICVEDEPARTAMENTO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174722890" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+
+
+
+
+
+ALTER TABLE SERVICOM.GRLDEPTODEPEND ADD CONSTRAINT SQL070207020115770 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDEPTODEPEND ADD CONSTRAINT SQL070207020115770 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDEPTODEPEND ADD CONSTRAINT SQL070207020115770 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224315100 ON SERVICOM.GRLDEPTODEPEND ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEDEPTOHIJO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224315100" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLDEPTOXOFIC ADD CONSTRAINT SQL070207020115840 FOREIGN KEY (ICVEOFICINA) REFERENCES SERVICOM.GRLOFICINA(ICVEOFICINA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115840" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDEPTOXOFIC ADD CONSTRAINT SQL070207020115840 FOREIGN KEY (ICVEOFICINA) REFERENCES SERVICOM.GRLOFICINA(ICVEOFICINA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115840" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDEPTOXOFIC ADD CONSTRAINT SQL070207020115840 FOREIGN KEY (ICVEOFICINA) REFERENCES SERVICOM.GRLOFICINA(ICVEOFICINA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115840" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+
+
+
+
+CREATE UNIQUE INDEX SQL070206224315430 ON SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224315430" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070206224315610 ON SERVICOM.GRLDIANOHABIL ( IEJERCICIO, DTNOHABIL )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224315610" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLDIGITOSFOLIOXDEPTO ADD CONSTRAINT SQL070207020115950 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDIGITOSFOLIOXDEPTO ADD CONSTRAINT SQL070207020115950 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDIGITOSFOLIOXDEPTO ADD CONSTRAINT SQL070207020115950 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224315810 ON SERVICOM.GRLDIGITOSFOLIOXDEPTO ( CDIGITOSFOLIO, DTASIGNACION )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224315810" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070206224316020 ON SERVICOM.GRLDOCFOLIOCM ( IEJERCICIO, IIDGESTORDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224316020" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070206224316190 ON SERVICOM.GRLDOCREGISTRADO ( IEJERCICIO, IIDGESTORDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224316190" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020115990 FOREIGN KEY (CMIMETYPE) REFERENCES SERVICOM.GRLMIMETYPE(CMIMETYPE)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115990" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020115990 FOREIGN KEY (CMIMETYPE) REFERENCES SERVICOM.GRLMIMETYPE(CMIMETYPE)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115990" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020116030 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116030" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020115990 FOREIGN KEY (CMIMETYPE) REFERENCES SERVICOM.GRLMIMETYPE(CMIMETYPE)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020115990" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020116030 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116030" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOCUMENTO ADD CONSTRAINT SQL070207020116030 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116030" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070215163517320 ON SERVICOM.GRLDOCUMENTO ( IEJERCICIO, ICVETIPODOCUMENTO, IIDDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070215163517320" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL100910123603380 ON SERVICOM.GRLDOCUMENTOXSOL ( IEJERCICIO, ICVETIPODOCUMENTO, IIDDOCUMENTO, INUMSOLICITUD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL100910123603380" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285016000259 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285016000259" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116100 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD ) REFERENCES SERVICOM.GRLLOCALIDAD ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116100" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285092958568 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285092958568" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285016000259 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285016000259" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285093290288 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285093290288" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116160 FOREIGN KEY (ICVETIPODOMICILIO) REFERENCES SERVICOM.GRLTIPODOMICILIO(ICVETIPODOMICILIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116160" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116160 FOREIGN KEY (ICVETIPODOMICILIO) REFERENCES SERVICOM.GRLTIPODOMICILIO(ICVETIPODOMICILIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116160" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285093290288 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285093290288" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285092958568 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285092958568" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116130 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116130 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116130 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116100 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD ) REFERENCES SERVICOM.GRLLOCALIDAD ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116100" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116100 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD ) REFERENCES SERVICOM.GRLLOCALIDAD ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116100" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285092958568 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285092958568" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285093290288 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285093290288" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT SQL070207020116160 FOREIGN KEY (ICVETIPODOMICILIO) REFERENCES SERVICOM.GRLTIPODOMICILIO(ICVETIPODOMICILIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116160" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLDOMICILIO ADD CONSTRAINT CC1285016000259 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "CC1285016000259" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070206224317040 ON SERVICOM.GRLDOMICILIO ( ICVEPERSONA, ICVEDOMICILIO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224317040" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.GRLENTIDADFED ADD CONSTRAINT SQL070207020116190 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLENTIDADFED ADD CONSTRAINT SQL070207020116190 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLENTIDADFED ADD CONSTRAINT SQL070207020116190 FOREIGN KEY (ICVEPAIS) REFERENCES SERVICOM.GRLPAIS(ICVEPAIS)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224317250 ON SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224317250" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLFOLIO ADD CONSTRAINT SQL070207020116330 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116330" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLFOLIO ADD CONSTRAINT SQL070207020116330 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116330" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLFOLIO ADD CONSTRAINT SQL070207020116330 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116330" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070215163518860 ON SERVICOM.GRLFOLIO ( IEJERCICIO, ICVEOFICINA, ICVEDEPARTAMENTO, CDIGITOSFOLIO, ICONSECUTIVO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070215163518860" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070206224320070 ON SERVICOM.GRLFOLIOXSEGTOENT ( ICVESEGTOENTIDAD, ICONSECUTIVOSEGTOREF )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224320070" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191225000 ON SERVICOM.GRLFORMATO(ICVEFORMATO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174724280" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191225100 ON SERVICOM.GRLFORMATOSALIDA(ICVEFORMATOSALIDA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174724370" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLLOCALIDAD ADD CONSTRAINT SQL070207020116540 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLLOCALIDAD ADD CONSTRAINT SQL070207020116540 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLLOCALIDAD ADD CONSTRAINT SQL070207020116540 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070206224322410 ON SERVICOM.GRLLOCALIDAD ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO, ICVELOCALIDAD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224322410" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191225300 ON SERVICOM.GRLMIMETYPE(CMIMETYPE)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174724580" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116710 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116710" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116680 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116680" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116680 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116680" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116710 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116710" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116710 FOREIGN KEY (ICVETIPODOCUMENTO) REFERENCES SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116710" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMODTIPODOCUMENTO ADD CONSTRAINT SQL070207020116680 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116680" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070206224323380 ON SERVICOM.GRLMODTIPODOCUMENTO ( ICVESISTEMA, ICVEMODULO, ICVETIPODOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224323380" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070206224323590 ON SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224323590" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191225690 ON SERVICOM.GRLMOTIVOCANCELA(ICVEMOTIVOCANCELA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174724920" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.GRLMUNICIPIO ADD CONSTRAINT SQL070207020116770 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMUNICIPIO ADD CONSTRAINT SQL070207020116770 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLMUNICIPIO ADD CONSTRAINT SQL070207020116770 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED ) REFERENCES SERVICOM.GRLENTIDADFED ( ICVEPAIS, ICVEENTIDADFED )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070206224324000 ON SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224324000" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070206224324160 ON SERVICOM.GRLOBSERVACION ( IEJERCICIO, ICVEOBSERVACION )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224324160" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070206230749940 ON SERVICOM.GRLOBSERVALARGA ( IEJERCICIOOBSLARGA, ICVEOBSLARGA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206230749940" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLOFICINA ADD CONSTRAINT SQL070207020116800 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116800" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLOFICINA ADD CONSTRAINT SQL070207020116800 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116800" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLOFICINA ADD CONSTRAINT SQL070207020116800 FOREIGN KEY ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO ) REFERENCES SERVICOM.GRLMUNICIPIO ( ICVEPAIS, ICVEENTIDADFED, ICVEMUNICIPIO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020116800" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL130404191226160 ON SERVICOM.GRLOFICINA(ICVEOFICINA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174725350" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191226260 ON SERVICOM.GRLPAIS(ICVEPAIS)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174725480" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL130404191226370 ON SERVICOM.GRLPERSONA(ICVEPERSONA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174725630" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191226470 ON SERVICOM.GRLPROCESO(ICVEPROCESO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174725730" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191226570 ON SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174725830" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117170 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117090 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117190 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117090 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117190 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117170 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117090 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117190 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117190" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117170 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117130 FOREIGN KEY (ICVEFORMATOSALIDA) REFERENCES SERVICOM.GRLFORMATOSALIDA(ICVEFORMATOSALIDA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117130 FOREIGN KEY (ICVEFORMATOSALIDA) REFERENCES SERVICOM.GRLFORMATOSALIDA(ICVEFORMATOSALIDA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLPRODXOFICDEPTO ADD CONSTRAINT SQL070207020117130 FOREIGN KEY (ICVEFORMATOSALIDA) REFERENCES SERVICOM.GRLFORMATOSALIDA(ICVEFORMATOSALIDA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117130" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224326810 ON SERVICOM.GRLPRODXOFICDEPTO ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224326810" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117420 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117450 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117450" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117450 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117450" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117510 FOREIGN KEY ( ICVEPRODUCTO, ICVECAUSAPNC ) REFERENCES SERVICOM.GRLCAUSAPNC ( ICVEPRODUCTO, ICVECAUSAPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117510" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117510 FOREIGN KEY ( ICVEPRODUCTO, ICVECAUSAPNC ) REFERENCES SERVICOM.GRLCAUSAPNC ( ICVEPRODUCTO, ICVECAUSAPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117510" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117540 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC ) REFERENCES SERVICOM.GRLREGISTROPNC ( IEJERCICIO, ICONSECUTIVOPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117450 FOREIGN KEY (ICVEPROCESO) REFERENCES SERVICOM.GRLPROCESO(ICVEPROCESO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117450" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117540 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC ) REFERENCES SERVICOM.GRLREGISTROPNC ( IEJERCICIO, ICONSECUTIVOPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117540 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC ) REFERENCES SERVICOM.GRLREGISTROPNC ( IEJERCICIO, ICONSECUTIVOPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117540" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117420 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117420 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGCAUSAPNC ADD CONSTRAINT SQL070207020117510 FOREIGN KEY ( ICVEPRODUCTO, ICVECAUSAPNC ) REFERENCES SERVICOM.GRLCAUSAPNC ( ICVEPRODUCTO, ICVECAUSAPNC )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117510" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070215163519940 ON SERVICOM.GRLREGCAUSAPNC ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070215163519940" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117630 FOREIGN KEY ( ICVEOFICINAASIGNADO, ICVEDEPTOASIGNADO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117630" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117660 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117660" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117660 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117660" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117600 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO ) REFERENCES SERVICOM.GRLPRODXOFICDEPTO ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117660 FOREIGN KEY (ICVEPRODUCTO) REFERENCES SERVICOM.GRLPRODUCTO(ICVEPRODUCTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117660" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117630 FOREIGN KEY ( ICVEOFICINAASIGNADO, ICVEDEPTOASIGNADO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117630" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117600 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO ) REFERENCES SERVICOM.GRLPRODXOFICDEPTO ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117600 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO ) REFERENCES SERVICOM.GRLPRODXOFICDEPTO ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEPROCESO, ICVEPRODUCTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREGISTROPNC ADD CONSTRAINT SQL070207020117630 FOREIGN KEY ( ICVEOFICINAASIGNADO, ICVEDEPTOASIGNADO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117630" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070215163520910 ON SERVICOM.GRLREGISTROPNC ( IEJERCICIO, ICONSECUTIVOPNC )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070215163520910" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117690 FOREIGN KEY (ICVEEMPRESA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117690" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117690 FOREIGN KEY (ICVEEMPRESA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117690" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117720 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117690 FOREIGN KEY (ICVEEMPRESA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117690" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117720 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPLEGAL ADD CONSTRAINT SQL070207020117720 FOREIGN KEY (ICVEPERSONA) REFERENCES SERVICOM.GRLPERSONA(ICVEPERSONA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117720" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070206224329180 ON SERVICOM.GRLREPLEGAL ( ICVEEMPRESA, ICVEPERSONA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224329180" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117750 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117750" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117750 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117750" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117780 FOREIGN KEY (ICVEFORMATOFILTRO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117780" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117780 FOREIGN KEY (ICVEFORMATOFILTRO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117780" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117750 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO ) REFERENCES SERVICOM.GRLMODULO ( ICVESISTEMA, ICVEMODULO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117750" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTE ADD CONSTRAINT SQL070207020117780 FOREIGN KEY (ICVEFORMATOFILTRO) REFERENCES SERVICOM.GRLFORMATO(ICVEFORMATO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117780" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070206224329880 ON SERVICOM.GRLREPORTE ( ICVESISTEMA, ICVEMODULO, INUMREPORTE )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224329880" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.GRLREPORTEXFOLIO ADD CONSTRAINT SQL070207020117810 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO, INUMREPORTE ) REFERENCES SERVICOM.GRLREPORTE ( ICVESISTEMA, ICVEMODULO, INUMREPORTE )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117810" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTEXFOLIO ADD CONSTRAINT SQL070207020117810 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO, INUMREPORTE ) REFERENCES SERVICOM.GRLREPORTE ( ICVESISTEMA, ICVEMODULO, INUMREPORTE )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117810" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLREPORTEXFOLIO ADD CONSTRAINT SQL070207020117810 FOREIGN KEY ( ICVESISTEMA, ICVEMODULO, INUMREPORTE ) REFERENCES SERVICOM.GRLREPORTE ( ICVESISTEMA, ICVEMODULO, INUMREPORTE )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020117810" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070206224330240 ON SERVICOM.GRLREPORTEXFOLIO ( IEJERCICIOFOLIO, ICVEOFICINA, ICVEDEPARTAMENTO, CDIGITOSFOLIO, ICONSECUTIVO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224330240" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070215163521630 ON SERVICOM.GRLSEGUIMIENTOPNC ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVESEGUIMIENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070215163521630" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191227510 ON SERVICOM.GRLTIPODOCUMENTO(ICVETIPODOCUMENTO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174726710" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191227630 ON SERVICOM.GRLTIPODOMICILIO(ICVETIPODOMICILIO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174726800" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.GRLUSUARIOXOFIC ADD CONSTRAINT SQL070207020118040 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020118040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLUSUARIOXOFIC ADD CONSTRAINT SQL070207020118040 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020118040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.GRLUSUARIOXOFIC ADD CONSTRAINT SQL070207020118040 FOREIGN KEY ( ICVEOFICINA, ICVEDEPARTAMENTO ) REFERENCES SERVICOM.GRLDEPTOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020118040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070216092508550 ON SERVICOM.GRLUSUARIOXOFIC ( ICVEOFICINA, ICVEDEPARTAMENTO, ICVEUSUARIO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216092508550" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130516133443620 ON SERVICOM.INTCAMPOS(ICVECAMPO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174727060" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.INTTRAMXCAMPO ADD CONSTRAINT R_1 FOREIGN KEY (ICVECAMPO) REFERENCES SERVICOM.INTCAMPOS(ICVECAMPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "R_1" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.INTTRAMXCAMPO ADD CONSTRAINT R_1 FOREIGN KEY (ICVECAMPO) REFERENCES SERVICOM.INTCAMPOS(ICVECAMPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "R_1" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.INTTRAMXCAMPO ADD CONSTRAINT R_1 FOREIGN KEY (ICVECAMPO) REFERENCES SERVICOM.INTCAMPOS(ICVECAMPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "R_1" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX XPKINTTRAMXCAMPO ON SERVICOM.INTTRAMXCAMPO ( ICVECAMPO, ICVETRAMITE, ICVEMODALIDAD, ICVEREQUISITO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.XPKINTTRAMXCAMPO" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX CC1110402706971 ON SERVICOM.SEGGPOXUSR ( ICVESISTEMA, ICVEUSUARIO, ICVEGRUPO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.CC1110402706971" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX CC1110402783738 ON SERVICOM.SEGGRUPO ( ICVESISTEMA, ICVEGRUPO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.CC1110402783738" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070206224332490 ON SERVICOM.SEGPROGRAMA ( ICVESISTEMA, ICVEPROGRAMA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070206224332490" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.SEGSISTEMA ADD CONSTRAINT SQL070207020136570 FOREIGN KEY (ICVEUSUARIO) REFERENCES SERVICOM.SEGUSUARIO(ICVEUSUARIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020136570" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.SEGSISTEMA ADD CONSTRAINT SQL070207020136570 FOREIGN KEY (ICVEUSUARIO) REFERENCES SERVICOM.SEGUSUARIO(ICVEUSUARIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020136570" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.SEGSISTEMA ADD CONSTRAINT SQL070207020136570 FOREIGN KEY (ICVEUSUARIO) REFERENCES SERVICOM.SEGUSUARIO(ICVEUSUARIO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020136570" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL130404191228210 ON SERVICOM.SEGSISTEMA(ICVESISTEMA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174727540" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL130404191228330 ON SERVICOM.SEGUSUARIO(ICVEUSUARIO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174727640" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRACARACXREQUISITO ADD CONSTRAINT SQL070207020139470 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139470" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACARACXREQUISITO ADD CONSTRAINT SQL070207020139470 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139470" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACARACXREQUISITO ADD CONSTRAINT SQL070207020139470 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139470" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070207015512970 ON SERVICOM.TRACARACXREQUISITO ( ICVEREQUISITO, ICVECARACTERISTICA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015512970" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL130404191228620 ON SERVICOM.TRACATTRAMITE(ICVETRAMITE)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174727840" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.TRACOFEMER ADD CONSTRAINT SQL070207020139520 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139520" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACOFEMER ADD CONSTRAINT SQL070207020139520 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139520" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACOFEMER ADD CONSTRAINT SQL070207020139520 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139520" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015513890 ON SERVICOM.TRACOFEMER ( IEJERCICIO, ICVETRAMITE, ICVEMODALIDAD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015513890" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191228890 ON SERVICOM.TRACONCEPTOPAGO(ICVECONCEPTO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174728050" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070207015514440 ON SERVICOM.TRACONCEPTOXGRUPO ( ICVEGRUPO, ICVECONCEPTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015514440" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRACONCEPTOXTIPOIN ADD CONSTRAINT SQL111011200926420 FOREIGN KEY (ICVECONCEPTO) REFERENCES SERVICOM.TRACONCEPTOPAGO(ICVECONCEPTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL111011200926420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONCEPTOXTIPOIN ADD CONSTRAINT SQL111011200926420 FOREIGN KEY (ICVECONCEPTO) REFERENCES SERVICOM.TRACONCEPTOPAGO(ICVECONCEPTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL111011200926420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONCEPTOXTIPOIN ADD CONSTRAINT SQL111011200926420 FOREIGN KEY (ICVECONCEPTO) REFERENCES SERVICOM.TRACONCEPTOPAGO(ICVECONCEPTO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL111011200926420" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL111011200926350 ON SERVICOM.TRACONCEPTOXTIPOIN ( ICVECONCEPTO, ICVEGRUPOCERTIF, ITIPOCERTIFICADO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL111011200926350" with a matching definition already exists.  
+SQLSTATE=01550
+ALTER TABLE SERVICOM.TRACONCEPTOXTRAMMOD ADD CONSTRAINT SQL070207020139640 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139640" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONCEPTOXTRAMMOD ADD CONSTRAINT SQL070207020139640 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139640" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONCEPTOXTRAMMOD ADD CONSTRAINT SQL070207020139640 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139640" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070207015514760 ON SERVICOM.TRACONCEPTOXTRAMMOD ( IEJERCICIO, ICVETRAMITE, ICVEMODALIDAD, ICVECONCEPTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015514760" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRACONFIGURATRAMITE ADD CONSTRAINT SQL070207020139760 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139760" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONFIGURATRAMITE ADD CONSTRAINT SQL070207020139760 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139760" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRACONFIGURATRAMITE ADD CONSTRAINT SQL070207020139760 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139760" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070207015515300 ON SERVICOM.TRACONFIGURATRAMITE ( ICVETRAMITE, ICVEMODALIDAD, DTINIVIGENCIA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015515300" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070207015515470 ON SERVICOM.TRADATOSCITA ( IEJERCICIO, IIDCITA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015515470" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139820 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139870 FOREIGN KEY (ICVEMODALIDADHIJO) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139870" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139820 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139870 FOREIGN KEY (ICVEMODALIDADHIJO) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139870" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139870 FOREIGN KEY (ICVEMODALIDADHIJO) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139870" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADEPENDENCIA ADD CONSTRAINT SQL070207020139820 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070216090034660 ON SERVICOM.TRADEPENDENCIA ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216090034660" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070207015515960 ON SERVICOM.TRADOCTOTRAMITE ( IEJERCICIOSOLICITUD, INUMSOLICITUD, IEJERCICIO, ICVETIPODOCUMENTO, IIDDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015515960" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRADOCTOXOPINION ADD CONSTRAINT SQL070207020139970 FOREIGN KEY ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD ) REFERENCES SERVICOM.TRAOPNENTTRAMITE ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139970" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADOCTOXOPINION ADD CONSTRAINT SQL070207020139970 FOREIGN KEY ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD ) REFERENCES SERVICOM.TRAOPNENTTRAMITE ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139970" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRADOCTOXOPINION ADD CONSTRAINT SQL070207020139970 FOREIGN KEY ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD ) REFERENCES SERVICOM.TRAOPNENTTRAMITE ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020139970" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+
+CREATE UNIQUE INDEX SQL070207015516310 ON SERVICOM.TRADOCTOXOPINION ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD, IEJERCICIO, ICVETIPODOCUMENTO, IIDDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015516310" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070207015516680 ON SERVICOM.TRADOCXREQUIS ( IEJERCICIOREQ, INUMSOLICITUD, ICVETRAMITE, ICVEMODALIDAD, ICVEREQUISITO, IEJERCICIO, ICVETIPODOCUMENTO, IIDDOCUMENTO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015516680" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL130404191233030 ON SERVICOM.TRAETAPA(ICVEETAPA)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174729130" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756770 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO ) REFERENCES SERVICOM.TRADEPENDENCIA ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756770 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO ) REFERENCES SERVICOM.TRADEPENDENCIA ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756740 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756740" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756740 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756740" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756770 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO ) REFERENCES SERVICOM.TRADEPENDENCIA ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756770" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAVINCULADA ADD CONSTRAINT SQL100921183756740 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL100921183756740" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL100921184550200 ON SERVICOM.TRAETAPAVINCULADA ( ICVETRAMITE, ICVEMODALIDAD, ICVETRAMITEHIJO, ICVEMODALIDADHIJO, ICVEETAPA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL100921184550200" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140140 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140140" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140170 FOREIGN KEY (ICVEETAPA) REFERENCES SERVICOM.TRAETAPA(ICVEETAPA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140140 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140140" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140170 FOREIGN KEY (ICVEETAPA) REFERENCES SERVICOM.TRAETAPA(ICVEETAPA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140140 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140140" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXMODTRAM ADD CONSTRAINT SQL070207020140170 FOREIGN KEY (ICVEETAPA) REFERENCES SERVICOM.TRAETAPA(ICVEETAPA)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140170" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015517260 ON SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015517260" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.TRAETAPAXOBJETO ADD CONSTRAINT SQL070207020140230 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140230" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXOBJETO ADD CONSTRAINT SQL070207020140230 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140230" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAETAPAXOBJETO ADD CONSTRAINT SQL070207020140230 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140230" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070207015517700 ON SERVICOM.TRAETAPAXOBJETO ( ICVESISTEMA, ICVEPROGRAMA, COBJETO, ICONSECUTIVO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015517700" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191234720 ON SERVICOM.TRAGPOREQUISITO(ICVEGRUPO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174729540" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL130404191234880 ON SERVICOM.TRAGRUPOCONCEPTO(ICVEGRUPO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174729660" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191235020 ON SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174729760" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+CREATE UNIQUE INDEX SQL070207015518570 ON SERVICOM.TRAOFICIOXSOLICITUD ( IEJERCICIO, INUMSOLICITUD, ICVESEGTOENTIDAD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015518570" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070207015518890 ON SERVICOM.TRAOPNENTTRAMITE ( IEJERCICIOSOLICITUD, INUMSOLICITUD, ICVEOPINIONENTIDAD, ICVESEGTOENTIDAD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015518890" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070207015519150 ON SERVICOM.TRAPLANOXTRAMITE ( IEJERCICIO, INUMSOLICITUD, ICVEPLANO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015519150" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070207015519520 ON SERVICOM.TRAREFERENCIACONCEPTO ( IEJERCICIO, ICVECONCEPTO, DTINIVIGENCIA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015519520" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140530 FOREIGN KEY ( ICVEREQUISITO, ICVECARACTERISTICA ) REFERENCES SERVICOM.TRACARACXREQUISITO ( ICVEREQUISITO, ICVECARACTERISTICA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140530 FOREIGN KEY ( ICVEREQUISITO, ICVECARACTERISTICA ) REFERENCES SERVICOM.TRACARACXREQUISITO ( ICVEREQUISITO, ICVECARACTERISTICA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140530 FOREIGN KEY ( ICVEREQUISITO, ICVECARACTERISTICA ) REFERENCES SERVICOM.TRACARACXREQUISITO ( ICVEREQUISITO, ICVECARACTERISTICA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140530" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140500 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO ) REFERENCES SERVICOM.TRAREGREQXCAUSA ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140500" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140500 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO ) REFERENCES SERVICOM.TRAREGREQXCAUSA ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140500" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGCARACXREQPNC ADD CONSTRAINT SQL070207020140500 FOREIGN KEY ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO ) REFERENCES SERVICOM.TRAREGREQXCAUSA ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140500" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015519880 ON SERVICOM.TRAREGCARACXREQPNC ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO, ICVECARACTERISTICA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015519880" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140620 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140620 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140620 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140620" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140650 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140650" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140650 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140650" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGETAPASXMODTRAM ADD CONSTRAINT SQL070207020140650 FOREIGN KEY ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA ) REFERENCES SERVICOM.TRAETAPAXMODTRAM ( ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020140650" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070216090035590 ON SERVICOM.TRAREGETAPASXMODTRAM ( IEJERCICIO, INUMSOLICITUD, ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA, IORDEN )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216090035590" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070207015520980 ON SERVICOM.TRAREGPNCETAPA ( IEJERCICIO, INUMSOLICITUD, ICVETRAMITE, ICVEMODALIDAD, ICVEETAPA, IORDEN, ICVEPNCXETAPA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015520980" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070207015521760 ON SERVICOM.TRAREGREFPAGO ( IEJERCICIO, INUMSOLICITUD, ICONSECUTIVO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015521760" with a matching definition already exists.  
+SQLSTATE=01550
+
+CREATE UNIQUE INDEX SQL070207015522210 ON SERVICOM.TRAREGREQXCAUSA ( IEJERCICIO, ICONSECUTIVOPNC, ICVEPRODUCTO, ICVECAUSAPNC, ICVEREQUISITO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015522210" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070216090036710 ON SERVICOM.TRAREGREQXTRAM ( IEJERCICIO, INUMSOLICITUD, ICVETRAMITE, ICVEMODALIDAD, ICVEREQUISITO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216090036710" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141600 FOREIGN KEY ( IEJERCICIOCITA, IIDCITA ) REFERENCES SERVICOM.TRADATOSCITA ( IEJERCICIO, IIDCITA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141600 FOREIGN KEY ( IEJERCICIOCITA, IIDCITA ) REFERENCES SERVICOM.TRADATOSCITA ( IEJERCICIO, IIDCITA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141790 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141790" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141790 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141790" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141600 FOREIGN KEY ( IEJERCICIOCITA, IIDCITA ) REFERENCES SERVICOM.TRADATOSCITA ( IEJERCICIO, IIDCITA )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141600" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGSOLICITUD ADD CONSTRAINT SQL070207020141790 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141790" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+
+CREATE UNIQUE INDEX SQL070216090038550 ON SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216090038550" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+ALTER TABLE SERVICOM.TRAREGTRAMXSOL ADD CONSTRAINT SQL070207020141820 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGTRAMXSOL ADD CONSTRAINT SQL070207020141820 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREGTRAMXSOL ADD CONSTRAINT SQL070207020141820 FOREIGN KEY ( IEJERCICIO, INUMSOLICITUD ) REFERENCES SERVICOM.TRAREGSOLICITUD ( IEJERCICIO, INUMSOLICITUD )
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141820" of type "FOREIGN KEY".  SQLSTATE=42710
+
+
+CREATE UNIQUE INDEX SQL070216090039050 ON SERVICOM.TRAREGTRAMXSOL ( IEJERCICIO, INUMSOLICITUD )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070216090039050" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+ALTER TABLE SERVICOM.TRAREQEXTRA ADD CONSTRAINT SQL101019152601060 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL101019152601060" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQEXTRA ADD CONSTRAINT SQL101019152601060 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL101019152601060" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQEXTRA ADD CONSTRAINT SQL101019152601060 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL101019152601060" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL101019152601030 ON SERVICOM.TRAREQEXTRA ( ICVEREQUISITO, IORDEN )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL101019152601030" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL130404191237570 ON SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+SQL0605W  The index was not created because an index 
+"SYSIBM.SQL130821174731210" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141980 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141980" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141950 FOREIGN KEY (ICVEGRUPO) REFERENCES SERVICOM.TRAGPOREQUISITO(ICVEGRUPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141950 FOREIGN KEY (ICVEGRUPO) REFERENCES SERVICOM.TRAGPOREQUISITO(ICVEGRUPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141950 FOREIGN KEY (ICVEGRUPO) REFERENCES SERVICOM.TRAGPOREQUISITO(ICVEGRUPO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141950" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141980 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141980" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQUISITOXGPO ADD CONSTRAINT SQL070207020141980 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020141980" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015525400 ON SERVICOM.TRAREQUISITOXGPO ( ICVEGRUPO, ICVEREQUISITO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015525400" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142040 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142090 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142090 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142040 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142090 FOREIGN KEY (ICVEREQUISITO) REFERENCES SERVICOM.TRAREQUISITO(ICVEREQUISITO)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142090" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRAREQXMODTRAMITE ADD CONSTRAINT SQL070207020142040 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142040" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015525690 ON SERVICOM.TRAREQXMODTRAMITE ( ICVETRAMITE, ICVEMODALIDAD, ICVEREQUISITO )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015525690" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+CREATE UNIQUE INDEX SQL070207015526190 ON SERVICOM.TRASOLICITUDREL ( IEJERCICIO, INUMSOLICITUDPRINC, INUMSOLICITUDREL )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015526190" with a matching definition already exists.  
+SQLSTATE=01550
+
+ALTER TABLE SERVICOM.TRATIEMPOTRASLADO ADD CONSTRAINT SQL070207020142280 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142280" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRATIEMPOTRASLADO ADD CONSTRAINT SQL070207020142280 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142280" of type "FOREIGN KEY".  SQLSTATE=42710
+
+ALTER TABLE SERVICOM.TRATIEMPOTRASLADO ADD CONSTRAINT SQL070207020142280 FOREIGN KEY (ICVEMODALIDAD) REFERENCES SERVICOM.TRAMODALIDAD(ICVEMODALIDAD)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0601N  The name of the object to be created is identical to the existing 
+name "SQL070207020142280" of type "FOREIGN KEY".  SQLSTATE=42710
+
+CREATE UNIQUE INDEX SQL070207015526540 ON SERVICOM.TRATIEMPOTRASLADO ( ICVETRAMITE, ICVEMODALIDAD, ICVEOFICINAORIGEN, ICVEOFICINADESTINO, DTINIVIGENCIA )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015526540" with a matching definition already exists.  
+SQLSTATE=01550
+
+
+
+CREATE UNIQUE INDEX SQL070207015526810 ON SERVICOM.TRATRAMITEXOFIC ( ICVEOFICINA, ICVETRAMITE )
+SQL0605W  The index was not created because an index 
+"SERVICOM.SQL070207015526810" with a matching definition already exists.  
+SQLSTATE=01550

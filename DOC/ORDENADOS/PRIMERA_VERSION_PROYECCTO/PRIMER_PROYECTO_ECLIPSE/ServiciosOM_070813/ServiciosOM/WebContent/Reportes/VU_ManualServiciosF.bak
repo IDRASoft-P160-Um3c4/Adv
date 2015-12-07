@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VU_ManualServiciosF"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["D:\\Proyectos\\MarinaMercante\\02PTSMARMER\\05Implemen\\JAVA\\SIPMM\\sipmm\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLFormatosEMar" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://e-mar.sct.gob.mx/fileadmin/user_upload/msp/tramites/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLDespliegaFormato" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/Sipymm/pgMuestraFormato.jsp"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cCveTramiteFiltro" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["50"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cTramiteFiltro" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["true"]]></defaultValueExpression>
+	</parameter>
+
+	<field name="CDSCOFICINA" class="java.lang.String"/>
+	<field name="ICVECATEGORIA" class="java.lang.Integer"/>
+	<field name="ICVEENTIDADFED" class="java.lang.Integer"/>
+	<field name="ICVEMUNICIPIO" class="java.lang.Integer"/>
+	<field name="CCALLEYNO" class="java.lang.String"/>
+	<field name="CCOLONIA" class="java.lang.String"/>
+	<field name="CCODPOSTAL" class="java.lang.String"/>
+	<field name="CTITULAR" class="java.lang.String"/>
+	<field name="CDSCCATEGORIA" class="java.lang.String"/>
+	<field name="CNOMEF" class="java.lang.String"/>
+	<field name="CABREVEF" class="java.lang.String"/>
+	<field name="CNOMMUN" class="java.lang.String"/>
+	<field name="CABREVMUN" class="java.lang.String"/>
+	<field name="IORDEN" class="java.lang.Integer"/>
+	<field name="CDSCLITORAL" class="java.lang.String"/>
+
+	<variable name="dtFechaActual" class="java.util.Date" resetType="None" calculation="Nothing">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+		<background>
+			<band height="792"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						mode="Transparent"
+						x="12"
+						y="6"
+						width="578"
+						height="773"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="17"
+						y="10"
+						width="114"
+						height="53"
+						key="image-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{URLEstaticos} + "img/LogoSCT_0191_0127.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement
+						x="133"
+						y="10"
+						width="451"
+						height="53"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="10"/>
+					</textElement>
+				<text><![CDATA[COORDINACIÓN GENERAL DE PUERTOS Y MARINA MERCANTE
+VENTANILLA ÚNICA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="12"
+						y="782"
+						width="244"
+						height="8"
+						key="staticText-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="6"/>
+					</textElement>
+				<text><![CDATA[Elaborado por la Coordinación General de Puertos y Marina Mercante - Ventanilla Única]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="259"
+						y="782"
+						width="230"
+						height="8"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="6"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Fecha Impresión: " + $V{dtFechaActual}.toLocaleString()]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="494"
+						y="780"
+						width="96"
+						height="11"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Página " + $V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="584"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="556"
+						width="575"
+						height="11"
+						key="subreport-7"
+						positionType="Float">
+							<printWhenExpression><![CDATA[new Boolean($P{cTramiteFiltro}.equals("false"))]]></printWhenExpression>
+						</reportElement>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLDespliegaFormato">
+						<subreportParameterExpression><![CDATA[$P{URLDespliegaFormato}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLFormatosEMar">
+						<subreportParameterExpression><![CDATA[$P{URLFormatosEMar}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios11.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="571"
+						width="575"
+						height="11"
+						key="subreport-8"
+						positionType="Float">
+							<printWhenExpression><![CDATA[new Boolean($P{cTramiteFiltro}.equals("false"))]]></printWhenExpression>
+						</reportElement>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLFormatosEMar">
+						<subreportParameterExpression><![CDATA[$P{URLFormatosEMar}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLDespliegaFormato">
+						<subreportParameterExpression><![CDATA[$P{URLDespliegaFormato}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios3.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="556"
+						width="575"
+						height="11"
+						key="subreport-9"
+						positionType="Float">
+							<printWhenExpression><![CDATA[new Boolean($P{cTramiteFiltro}.equals("true"))]]></printWhenExpression>
+						</reportElement>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="cCveTramite">
+						<subreportParameterExpression><![CDATA[$P{cCveTramiteFiltro}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLDespliegaFormato">
+						<subreportParameterExpression><![CDATA[$P{URLDespliegaFormato}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios13.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="571"
+						width="575"
+						height="11"
+						key="subreport-10"
+						positionType="Float">
+							<printWhenExpression><![CDATA[new Boolean($P{cTramiteFiltro}.equals("true"))]]></printWhenExpression>
+						</reportElement>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLFormatosEMar">
+						<subreportParameterExpression><![CDATA[$P{URLFormatosEMar}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLDespliegaFormato">
+						<subreportParameterExpression><![CDATA[$P{URLDespliegaFormato}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="cCveTramite">
+						<subreportParameterExpression><![CDATA[$P{cCveTramiteFiltro}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios14.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="29"
+						y="4"
+						width="545"
+						height="454"
+						key="staticText-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica-Bold" size="48" isBold="true"/>
+					</textElement>
+				<text><![CDATA[MANUAL DE SERVICIOS AL PÚBLICO]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="493"
+						width="575"
+						height="11"
+						key="subreport-1"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios2.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="491"
+						width="612"
+						height="0"
+						key="element-1"
+						positionType="Float"/>
+				</break>
+				<break>
+					<reportElement
+						x="0"
+						y="507"
+						width="612"
+						height="0"
+						key="element-2"
+						positionType="Float"/>
+				</break>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="509"
+						width="575"
+						height="11"
+						key="subreport-2"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios8.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="461"
+						width="612"
+						height="0"
+						key="element-3"
+						positionType="Float"/>
+				</break>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="463"
+						width="575"
+						height="11"
+						key="subreport-3"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios6.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="478"
+						width="575"
+						height="11"
+						key="subreport-4"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios7.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="476"
+						width="612"
+						height="0"
+						key="element-4"
+						positionType="Float"/>
+				</break>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="525"
+						width="575"
+						height="11"
+						key="subreport-5"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios9.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="523"
+						width="612"
+						height="0"
+						key="element-5"
+						positionType="Float"/>
+				</break>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="15"
+						y="540"
+						width="575"
+						height="11"
+						key="subreport-6"
+						positionType="Float"/>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "VU_ManualServicios10.jasper"]]></subreportExpression>
+				</subreport>
+				<break>
+					<reportElement
+						x="0"
+						y="538"
+						width="612"
+						height="0"
+						key="element-6"
+						positionType="Float"/>
+				</break>
+				<break>
+					<reportElement
+						x="0"
+						y="554"
+						width="612"
+						height="0"
+						key="element-7"
+						positionType="Float"/>
+				</break>
+				<break>
+					<reportElement
+						x="0"
+						y="569"
+						width="612"
+						height="0"
+						key="element-8"
+						positionType="Float"/>
+				</break>
+			</band>
+		</summary>
+</jasperReport>

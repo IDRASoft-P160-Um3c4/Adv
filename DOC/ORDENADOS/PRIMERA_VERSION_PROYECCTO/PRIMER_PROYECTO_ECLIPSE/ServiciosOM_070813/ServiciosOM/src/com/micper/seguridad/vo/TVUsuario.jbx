@@ -1,0 +1,25 @@
+[PropertyInfo]
+CApMaterno,String,false,false, , ,true,<default>
+CApPaterno,String,false,false, , ,true,<default>
+CCalle,String,false,false, , ,true,<default>
+CColonia,String,false,false, , ,true,<default>
+CDscEntidadFed,String,false,false, , ,true,<default>
+CDscMunicipio,String,false,false, , ,true,<default>
+CDscPais,String,false,false, , ,true,<default>
+CNombre,String,false,false, , ,true,<default>
+CPassword,String,false,false, , ,true,<default>
+CTelefono,String,false,false, , ,true,<default>
+CUsuario,String,false,false, , ,true,<default>
+dtRegistro,java.sql.Date,false,false, , ,true,<default>
+ICodigoPostal,int,false,false, , ,true,<default>
+ICveEntidadFed,int,false,false, , ,true,<default>
+ICveMunicipio,int,false,false, , ,true,<default>
+ICvePais,int,false,false, , ,true,<default>
+ICveUnidadOrg,int,false,false, , ,true,<default>
+iCveusuario,int,false,false, , ,true,<default>
+LBloqueado,int,false,false, , ,true,<default>
+[IconNames]
+
+
+
+

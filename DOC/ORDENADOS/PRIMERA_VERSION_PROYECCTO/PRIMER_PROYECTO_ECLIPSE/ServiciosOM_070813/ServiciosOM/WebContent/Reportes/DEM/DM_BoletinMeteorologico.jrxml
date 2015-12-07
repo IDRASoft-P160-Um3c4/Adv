@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="DM_BoletinMeteorologico"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="iEjercicio" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(2007)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iNumBoletin" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(62)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["D:\\Proyectos\\MarinaMercante\\02PTSMARMER\\05Implemen\\JAVA\\SIPMM\\sipmm\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://10.33.98.182/sipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iCveLitoral" isForPrompting="false" class="java.lang.String">
+		<parameterDescription><![CDATA[Litoral del reporte]]></parameterDescription>
+	</parameter>
+	<queryString><![CDATA[SELECT CZ.iEjercicio, CZ.iCveLitoral, L.cDscLitoral,
+CZ.iCveZonaInfluencia, CZ.iNumReporte, CZ.tsRegistro,
+ZI.CDSCZONAINFLUENCIA, OL.CDSCOBSLARGA, B.cPuerosMenoresCerrados,
+U.cNombre, U.cApPaterno, U.cApMaterno, DATE(CZ.tsRegistro) AS dtRegistro,
+DATE(DAYS(DATE(CZ.tsRegistro))-15 ) AS dtIniBusqueda
+From DEMCondicionesZona CZ
+Join GRLLitoral L On L.iCveLitoral = CZ.iCveLitoral
+Join DEMZonasInfluencia ZI On ZI.iCveZonaInfluencia = CZ.iCveZonaInfluencia
+Join GRLOBSERVALARGA OL ON OL.IEJERCICIOOBSLARGA = CZ.IEJERCICIO AND OL.ICVEOBSLARGA = CZ.ICVEOBSLARGA
+Join DEMBoletin B ON B.iEjercicio = CZ.iEjercicio
+      AND B.iNumReporte = CZ.iNumReporte
+Join SEGUsuario U ON U.iCveUsuario = B.iiCvePersona
+Where CZ.iEjercicio = $P{iEjercicio}
+  AND CZ.iNumReporte = $P{iNumBoletin}]]></queryString>
+
+	<field name="IEJERCICIO" class="java.lang.Integer"/>
+	<field name="ICVELITORAL" class="java.lang.Integer"/>
+	<field name="CDSCLITORAL" class="java.lang.String"/>
+	<field name="ICVEZONAINFLUENCIA" class="java.lang.Integer"/>
+	<field name="INUMREPORTE" class="java.lang.Long"/>
+	<field name="TSREGISTRO" class="java.sql.Timestamp"/>
+	<field name="CDSCZONAINFLUENCIA" class="java.lang.String"/>
+	<field name="CDSCOBSLARGA" class="java.lang.String"/>
+	<field name="CPUEROSMENORESCERRADOS" class="java.lang.String"/>
+	<field name="CNOMBRE" class="java.lang.String"/>
+	<field name="CAPPATERNO" class="java.lang.String"/>
+	<field name="CAPMATERNO" class="java.lang.String"/>
+	<field name="DTREGISTRO" class="java.sql.Date"/>
+	<field name="DTINIBUSQUEDA" class="java.sql.Date"/>
+
+	<variable name="cNomElabora" class="java.lang.String" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[$F{CNOMBRE} + " " + $F{CAPPATERNO} + " " + $F{CAPMATERNO}]]></variableExpression>
+	</variable>
+	<variable name="cFinPeriodo" class="java.lang.String" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[(($F{DTREGISTRO}.getYear()+1900)+"-"+
+((($F{DTREGISTRO}.getMonth()+1)<10)?"0":"")+($F{DTREGISTRO}.getMonth()+1)+"-"+
+(($F{DTREGISTRO}.getDate()<10)?"0":"")+$F{DTREGISTRO}.getDate())]]></variableExpression>
+	</variable>
+	<variable name="cIniPeriodo" class="java.lang.String" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[(($F{DTINIBUSQUEDA}.getYear()+1900)+"-"+
+((($F{DTINIBUSQUEDA}.getMonth()+1)<10)?"0":"")+($F{DTINIBUSQUEDA}.getMonth()+1)+"-"+
+(($F{DTINIBUSQUEDA}.getDate()<10)?"0":"")+$F{DTINIBUSQUEDA}.getDate())]]></variableExpression>
+	</variable>
+		<background>
+			<band height="700"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						mode="Transparent"
+						x="2"
+						y="3"
+						width="585"
+						height="691"
+						forecolor="#CCCCCC"
+						key="staticText-8"
+						stretchType="RelativeToTallestObject"
+						isPrintInFirstWholeBand="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" lineSpacing="Double">
+						<font pdfFontName="Helvetica-Bold" size="50" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ESTE REPORTE TIENE EL CARACTER DE PRELIMINAR.
+LA PUBLICACIÓN DEL MISMO NO HA SIDO AUTORIZADA.]]></text>
+				</staticText>
+			</band>
+		</background>
+		<title>
+			<band height="88"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						mode="Transparent"
+						x="10"
+						y="61"
+						width="590"
+						height="25"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch" pen="1Point"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="135"
+						y="1"
+						width="451"
+						height="57"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Bottom">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="9"/>
+					</textElement>
+				<text><![CDATA[COORDINACIÓN GENERAL DE PUERTOS Y MARINA MERCANTE
+DIRECCIÓN GENERAL DE MARINA MERCANTE
+DIRECCIÓN GENERAL ADJUNTA DE MARINA MERCANTE
+DIRECCIÓN DE SUPERVISIÓN
+DERROTERO METEOROLÓGICO]]></text>
+				</staticText>
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="10"
+						y="5"
+						width="114"
+						height="53"
+						key="image-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{URLEstaticos} + "img/LogoSCT_0191_0127.jpg"]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="13"
+						y="63"
+						width="584"
+						height="11"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["''BOLETÍN METEOROLÓGICO MARÍTIMO Y CONDICIÓN OPERACIONAL DE PUERTOS DEL " + (($F{ICVELITORAL}.intValue() == 2)?"ATLÁNTICO, ":"") + $F{CDSCLITORAL} + "''"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="0000" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="90"
+						y="74"
+						width="22"
+						height="11"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{INUMREPORTE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="HHmm" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="146"
+						y="74"
+						width="22"
+						height="11"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{TSREGISTRO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="75"
+						y="74"
+						width="13"
+						height="11"
+						key="staticText-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<text><![CDATA[No.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="114"
+						y="74"
+						width="30"
+						height="11"
+						key="staticText-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<text><![CDATA[DE LAS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="171"
+						y="74"
+						width="39"
+						height="11"
+						key="staticText-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="8"/>
+					</textElement>
+				<text><![CDATA[HRS. DEL]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="EEEEE dd MMMMM yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="214"
+						y="74"
+						width="279"
+						height="11"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.sql.Timestamp"><![CDATA[$F{TSREGISTRO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="1"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="10"
+						y="0"
+						width="590"
+						height="0"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="8"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="10"
+						y="0"
+						width="589"
+						height="8"
+						key="textField-3"/>
+					<box topBorder="None" topBorderColor="#000000" topPadding="2" leftBorder="1Point" leftBorderColor="#000000" leftPadding="4" rightBorder="1Point" rightBorderColor="#000000" rightPadding="4" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="1"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Arial" pdfFontName="Helvetica" size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCZONAINFLUENCIA} + " " + $F{CDSCOBSLARGA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="78"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="10"
+						y="61"
+						width="590"
+						height="2"
+						key="textField-5"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="1Point" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="" size="6" isBold="false" isItalic="false" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["    "]]></textFieldExpression>
+				</textField>
+				<line direction="TopDown">
+					<reportElement
+						x="10"
+						y="0"
+						width="590"
+						height="0"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="10"
+						y="2"
+						width="590"
+						height="11"
+						key="staticText-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="7" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CONDICIONES DEL PUERTO PARA EMBARCACIONES MAYORES Y OBSERVACIONES METEOROLÓGICAS LOCALES]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="13"
+						width="590"
+						height="8"
+						key="subreport-1"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[new Boolean($P{iCveLitoral}.equals("1"))]]></printWhenExpression>
+						</reportElement>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico2.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="21"
+						width="590"
+						height="8"
+						key="subreport-2"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico3.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="29"
+						width="590"
+						height="8"
+						key="subreport-3"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico4.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="37"
+						width="590"
+						height="8"
+						key="subreport-4"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico5.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="519"
+						y="71"
+						width="81"
+						height="7"
+						key="staticText-6"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="5"/>
+					</textElement>
+				<text><![CDATA[FT-DGC-DM-01-01 B]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="10"
+						y="63"
+						width="445"
+						height="15"
+						key="staticText-7"
+						positionType="Float"/>
+					<box topBorder="1Point" topBorderColor="#000000" topPadding="2" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="5"/>
+					</textElement>
+				<text><![CDATA[ELABORADO CON INFORMACIÓN DEL S.M.N. TPC, NHC E IMAGENES DE SATELITE.
+DISPONIBLE POR INTERNET EN LA DIRECCIÓN ELECTRÓNICA: http://portal.sct.gob.mx/SctPortal/]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="45"
+						width="590"
+						height="8"
+						key="subreport-5"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iCveLitoral">
+						<subreportParameterExpression><![CDATA[$F{ICVELITORAL}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="dtIniBuscar">
+						<subreportParameterExpression><![CDATA[$V{cFinPeriodo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico8.jasper"]]></subreportExpression>
+				</subreport>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="455"
+						y="63"
+						width="145"
+						height="7"
+						key="textField-6"
+						positionType="Float"/>
+					<box topBorder="1Point" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Bottom" rotation="None" lineSpacing="Single">
+						<font fontName="SansSerif" pdfFontName="Helvetica" size="5" isBold="false" isItalic="false" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["ELABORÓ:  " + $V{cNomElabora}]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="53"
+						width="590"
+						height="8"
+						key="subreport-6"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="iEjercicio">
+						<subreportParameterExpression><![CDATA[$P{iEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iNumBoletin">
+						<subreportParameterExpression><![CDATA[$P{iNumBoletin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="iCveLitoral">
+						<subreportParameterExpression><![CDATA[$F{ICVELITORAL}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="dtFinBuscar">
+						<subreportParameterExpression><![CDATA[$V{cFinPeriodo}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico9.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="13"
+						width="590"
+						height="8"
+						key="subreport-7"
+						isPrintWhenDetailOverflows="true">
+							<printWhenExpression><![CDATA[new Boolean($P{iCveLitoral}.equals("2"))]]></printWhenExpression>
+						</reportElement>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "DM_BoletinMeteorologico10.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</summary>
+</jasperReport>

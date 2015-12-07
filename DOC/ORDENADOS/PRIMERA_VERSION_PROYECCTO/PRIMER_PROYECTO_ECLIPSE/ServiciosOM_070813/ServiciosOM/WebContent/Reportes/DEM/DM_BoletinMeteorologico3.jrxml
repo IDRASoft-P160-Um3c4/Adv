@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="DM_BoletinMeteorologico3"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="iEjercicio" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(2007)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iNumBoletin" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(61)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT P.tsRegistro, P.dtIniPrecaucion, P.dtFinPrecaucion, P.iCveLitoral, L.cDscLitoral, 
+O.cObsRegistrada, P.LAPLICALITORAL, P.LAPLICACAPITANIA, Ofi.CDSCBREVE, TP.CDSCTIPOPRECAUCION
+FROM SSMRegistroPrecaucion P
+LEFT JOIN GRLObservacion O ON O.iejercicio = P.iEjercicioPrecaucion AND O.iCveObservacion = P.IDSCPRECAUCION
+LEFT JOIN GRLLitoral L ON L.iCveLitoral = P.iCveLitoral
+LEFT JOIN GRLOficina Ofi ON Ofi.ICVEOFICINA = P.ICVEOFICINAAPLICA
+LEFT JOIN SSMtipoPrecaucion TP ON TP.ICVETIPOPRECAUCION = P.ICVETIPOPRECAUCION
+LEFT JOIN DEMBoletin B ON B.iEjercicio = $P{iEjercicio} AND B.iNumReporte = $P{iNumBoletin}
+WHERE P.dtIniPrecaucion <= DATE(B.tsBoletin)
+  AND P.dtFinPrecaucion  >= DATE(B.tsBoletin)]]></queryString>
+
+	<field name="TSREGISTRO" class="java.sql.Timestamp"/>
+	<field name="DTINIPRECAUCION" class="java.sql.Date"/>
+	<field name="DTFINPRECAUCION" class="java.sql.Date"/>
+	<field name="ICVELITORAL" class="java.lang.Integer"/>
+	<field name="CDSCLITORAL" class="java.lang.String"/>
+	<field name="COBSREGISTRADA" class="java.lang.String"/>
+	<field name="LAPLICALITORAL" class="java.lang.Integer"/>
+	<field name="LAPLICACAPITANIA" class="java.lang.Integer"/>
+	<field name="CDSCBREVE" class="java.lang.String"/>
+	<field name="CDSCTIPOPRECAUCION" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="8"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="590"
+						height="8"
+						key="textField-4"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" topPadding="2" leftBorder="1Point" leftBorderColor="#000000" leftPadding="2" rightBorder="1Point" rightBorderColor="#000000" rightPadding="2" bottomBorder="None" bottomBorderColor="#000000" bottomPadding="1"/>
+					<textElement textAlignment="Justified">
+						<font size="6"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["* SE RECOMIENDA MANTENER PRECAUCIÓN A LA NAVEGACIÓN " +
+(($F{LAPLICALITORAL}.intValue()==1 && $F{ICVELITORAL} != null)?"A LO LARGO DE LAS COSTAS DEL "+$F{CDSCLITORAL}:"") + 
+(($F{LAPLICACAPITANIA}.intValue()==1)?"A LO LARGO DE LAS COSTAS DE LA "+$F{CDSCBREVE}:"") + 
+" DEBIDO A " + $F{CDSCTIPOPRECAUCION} + ". " + $F{COBSREGISTRADA}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

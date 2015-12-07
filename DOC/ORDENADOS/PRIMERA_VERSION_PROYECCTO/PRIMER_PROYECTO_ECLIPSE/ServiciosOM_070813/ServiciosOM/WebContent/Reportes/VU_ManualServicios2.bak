@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VU_ManualServicios2"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["C:\\eclipse_oracle\\wspaces\\Sipmm\\WebContent\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://localhost:7001/sipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT O.CDSCOFICINA, O.ICVECATEGORIA, O.ICVEENTIDADFED, O.ICVEMUNICIPIO, O.CCALLEYNO, O.CCOLONIA, O.CCODPOSTAL, O.CTITULAR,
+CO.CDSCCATEGORIA, EF.CNOMBRE AS cNomEF, EF.CABREVIATURA AS cAbrevEF, M.CNOMBRE AS cNomMun, M.CABREVIATURA AS cAbrevMun, EFL.IORDEN, L.CDSCLITORAL
+FROM GRLOficina O
+LEFT JOIN GRLCategoriaOfic CO ON CO.ICVECATEGORIA = O.ICVECATEGORIA
+JOIN GRLEntidadFed EF ON EF.ICVEPAIS = O.ICVEPAIS AND EF.ICVEENTIDADFED = O.ICVEENTIDADFED
+JOIN GRLMunicipio M ON M.ICVEPAIS = O.ICVEPAIS AND M.ICVEENTIDADFED = O.ICVEENTIDADFED AND M.ICVEMUNICIPIO = O.ICVEMUNICIPIO
+JOIN GRLEntidadFedXLitoral EFL ON EFL.ICVEPAIS = O.ICVEPAIS AND EFL.ICVEENTIDADFED = O.ICVEENTIDADFED
+JOIN GRLLitoral L ON L.ICVELITORAL = EFL.ICVELITORAL
+WHERE O.iCveOficina > 0
+ORDER BY EFL.ICVELITORAL, EFL.IORDEN, M.CNOMBRE]]></queryString>
+
+	<field name="CDSCOFICINA" class="java.lang.String"/>
+	<field name="ICVECATEGORIA" class="java.lang.Integer"/>
+	<field name="ICVEENTIDADFED" class="java.lang.Integer"/>
+	<field name="ICVEMUNICIPIO" class="java.lang.Integer"/>
+	<field name="CCALLEYNO" class="java.lang.String"/>
+	<field name="CCOLONIA" class="java.lang.String"/>
+	<field name="CCODPOSTAL" class="java.lang.String"/>
+	<field name="CTITULAR" class="java.lang.String"/>
+	<field name="CDSCCATEGORIA" class="java.lang.String"/>
+	<field name="CNOMEF" class="java.lang.String"/>
+	<field name="CABREVEF" class="java.lang.String"/>
+	<field name="CNOMMUN" class="java.lang.String"/>
+	<field name="CABREVMUN" class="java.lang.String"/>
+	<field name="IORDEN" class="java.lang.Integer"/>
+	<field name="CDSCLITORAL" class="java.lang.String"/>
+
+	<variable name="dtFechaActual" class="java.util.Date" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+
+		<group  name="Litoral" isStartNewPage="true" >
+			<groupExpression><![CDATA[$F{CDSCLITORAL}]]></groupExpression>
+			<groupHeader>
+			<band height="18"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="0"
+						y="3"
+						width="275"
+						height="13"
+						forecolor="#FFFFFF"
+						backcolor="#999999"
+						key="textField-1"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica-BoldOblique" size="9" isBold="true" isItalic="true" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCLITORAL}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<group  name="EntidadFed" >
+			<groupExpression><![CDATA[$F{ICVEENTIDADFED}]]></groupExpression>
+			<groupHeader>
+			<band height="18"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="10"
+						y="3"
+						width="265"
+						height="13"
+						forecolor="#000000"
+						backcolor="#CCCCCC"
+						key="textField-2"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica-Oblique" size="9" isBold="false" isItalic="true" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CNOMEF} + " (" + $F{CABREVEF} + ".)"]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="779"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="65"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="16"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="1"
+						width="200"
+						height="11"
+						key="textField-5"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCOFICINA}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="230"
+						y="1"
+						width="339"
+						height="11"
+						key="textField-6"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[(($F{CCALLEYNO} != null && !$F{CCALLEYNO}.equals(""))?$F{CCALLEYNO}:"")+ 
+(($F{CCOLONIA} != null && !$F{CCOLONIA}.equals(""))?(" COL. "+$F{CCOLONIA}):"") + 
+(($F{CCODPOSTAL} != null && !$F{CCODPOSTAL}.equals(""))?(" C.P. "+$F{CCODPOSTAL}):"") + 
+" " +
+(($F{ICVEMUNICIPIO}.intValue()>0)?($F{CNOMMUN}+","):"")+
+(($F{ICVEENTIDADFED}.intValue()>0)?(" ("+$F{CABREVEF}+".)"):"")]]></textFieldExpression>
+				</textField>
+				<line direction="BottomUp">
+					<reportElement
+						x="19"
+						y="13"
+						width="555"
+						height="1"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="16"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

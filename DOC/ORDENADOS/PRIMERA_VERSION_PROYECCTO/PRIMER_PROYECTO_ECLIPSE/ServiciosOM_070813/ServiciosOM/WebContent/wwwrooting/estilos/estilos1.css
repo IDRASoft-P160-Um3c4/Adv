@@ -1,0 +1,673 @@
+/*  ******************          Hoja de Estilos: 00_estilos.css          ******************  */
+/*  Estilos de uso General en aplicaciones  */
+
+/* Estilo para caracter?sticas generales del cuerpo de la p?gina */
+body { 
+margin-top: 0px ;
+margin-right: 0px ;
+margin-bottom: 0px ;
+margin-left:0px
+ }
+
+/* ********** TITULOS ********** */
+
+/* Estilo para el t?tulo Grande de la p?gina (para aplicaci?n) */
+.ETituloG  {
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: center ;
+color:#FFFFFF;
+ }
+
+/* Estilo para el t?tulo de la p?gina */
+.ETitulo  {
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: left;
+color: #FFFFFF ;
+ }
+
+/* Estilo para el subt?tulo de la p?gina */
+.ESTitulo  {
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #FFFFFF;
+background-color: #15A031;
+ }
+
+/* Estilo para el subt?tulo de la p?gina */
+.ESTitWiz  {
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #FFFFFF;
+background-color: #63A58C;
+ }
+
+
+/* Estilo para el subt?tulo de la p?gina */
+.ESUsrPwd  {
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold;
+color: #FFFFFF;
+ }
+
+
+.ESTituloFolder  {
+font-family: verdana;
+font-size: 14pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #000000;
+ }
+
+.EFolderTab  {
+color: #000000;
+background-color: #C3D5CE;
+ }
+
+
+/* ********** MENSAJES DE ERROR ********** */
+
+/* Mensajes de Error mostrado con color  */
+.EResalta  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #003366;
+ }
+
+/* Mensajes de Error mostrado con color  */
+.EResaltaR  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000000;
+text-align: right ;
+ }
+
+/* ********** PRESENTACI?N DE VALORES Y ETIQUETAS ********** */
+/* Despliegue de Datos informativos */
+.ECampo  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: Left ;
+color: #000000 ;
+ }
+
+/* Despliegue de Datos informativos */
+.ECampoC  {
+font-family: verdana;
+font-weight: Bold ;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #000000 ;
+ }
+
+/* Despliegue de Datos informativos */
+.ECampoR  {
+font-family: verdana;
+font-weight: Bold ;
+font-size: 9pt ;
+text-align: Right ;
+color: #000000 ;
+ }
+
+/* Etiqueta desplegada a la izquierda de un campo, alineada a la derecha */
+.EEtiqueta  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000000 ;
+text-align: Right ;
+ }
+
+/* Etiqueta desplegada a la izquierda de un campo, alienada a la izquierda */
+.EEtiquetaL  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000000 ;
+text-align: Left ;
+ }
+
+/* Etiqueta desplegada a la izquierda de un campo, alineada al centro */
+.EEtiquetaC  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000000 ;
+text-align: center ;
+ }
+
+/* Etiqueta peque?a desplegada a la izquierda de un campo, alineada a la derecha */
+.EEtiquetaP  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000000 ;
+text-align: Right ;
+ }
+
+/* Etiqueta peque?a desplegada a la izquierda de un campo, alienada a la izquierda */
+.EEtiquetaPL  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #336699 ;
+text-align: Left ;
+ }
+
+/* Etiqueta peque?a desplegada a la izquierda de un campo, alineada al centro */
+.EEtiquetaPC  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #336699 ;
+text-align: center ;
+ }
+ 
+ /* Etiqueta para Mandatorios */
+.EEtiquetaM  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #000080 ;
+text-align: Right ;
+ }
+
+.EEtiquetaLST {
+font-family: verdana;
+font-size: 11pt ;
+font-weight: Bold ;
+color: #000000 ;
+ }
+
+/* ********** TEXTO ********** */
+
+/* Estilo para textos convencionales alineado a la izquierda */
+.ENormal  {
+font-family: verdana;
+font-size: 9pt ;
+color: #666666;
+text-align: left ;
+ }
+
+/* Estilo para textos convencionales alineado a la derecha */
+.ENormalR  {
+font-family: verdana;
+font-weight: Bold ;
+font-size: 9pt ;
+color: #000000;
+text-align: Right ;
+ }
+
+/* Estilo para textos convencionales alineado al centro */
+.ENormalC  {
+font-family: verdana;
+font-size: 9pt ;
+color: #666666;
+text-align: center ;
+ }
+
+/* Estilo para textos de ayuda alineado a la izquierda */
+.ENormalA  {
+font-family: verdana;
+font-size: 9pt ;
+color: #000000;
+text-align: left ;
+ }
+
+/* Estilo para textos de ayuda alineado a la derecha */
+.ENormalAR  {
+font-family: verdana;
+font-size: 9pt ;
+color: #000000;
+text-align: right ;
+ }
+
+/* Estilo para textos de ayuda alineado al centro */
+.ENormalAC  {
+font-family: verdana;
+font-size: 9pt ;
+color: #000000;
+text-align: center ;
+ }
+
+/* Estilo para pie de pagina alineado a la izquierda */
+.EPie  {
+font-family: verdana;
+font-size: 7pt ;
+font-weight: Bold ;
+color: #000000;
+text-align: Left ;
+ }
+
+/* Estilo para pie de pagina alineado a la derecha */
+.EPieR  {
+font-family: verdana;
+font-size: 7pt ;
+font-weight: Bold ;
+color: #000000;
+text-align: Right ;
+ }
+
+/* Estilo para pie de pagina alineado al centro */
+.EPieC  {
+font-family: verdana;
+font-size: 7pt ;
+font-weight: Bold ;
+color: #666666;
+text-align: center ;
+ }
+
+.EProceso  {
+font-family: verdana;
+font-size: 11pt ;
+font-weight: bold ;
+color: #FFFFFF;
+text-align: center ;
+ }
+
+
+/* ********** TABLAS ********** */
+
+/* Estilo para general para Tablas */
+.ETablaGral {
+border: 0px solid #cccccc ;
+padding: 1px ;
+spacing: 2px ;
+ }
+
+/* Estilo para Tablas de Informacion */
+.ETablaInfo {
+border: 1px solid #c0c0c0 ;
+background-color: #F6FEF7 ;
+ }
+
+/* Estilo para Tablas de Informacion */
+.ETablaInfoLST {
+border: 0px;
+background-color: #FFFFFF ;
+ }
+
+/* Estilo para subtitulo de Tabla alineado a la izquierda*/
+.ETablaST  {
+border: 1px solid #999999 ;
+padding: 0px ;
+spacing: 0px ;
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: center;
+color: #FFFFFF;
+background-color: #63A58C;
+ }
+
+.ETablaSTL  {
+border: 0px solid #999999 ;
+padding: 0px ;
+spacing: 0px ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #FFFFFF;
+background-color: #63A58C;
+ }
+
+
+/* Estilo para subtitulo de Tabla centrado*/
+.ETablaSTC  {
+border: 0px solid #999999 ;
+padding: 0px ;
+spacing: 0px ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #2F4B83;
+background-color: #BDD3E8;
+ }
+
+/* Estilo utilizado para los Títulos del Listado02 */
+.ETablaSTLP  {
+border: 0px solid #999999 ;
+padding: 0px ;
+spacing: 0px ;
+font-family: verdana;
+font-size: 8pt ;
+font-weight: Bold ;
+color: #FFFFFF;
+background-color: #63A58C;
+ }
+
+
+/* Estilo para subtitulo de Tabla alineado a la derecha*/
+.ETablaSTR  {
+border: 0px solid #999999 ;
+padding: 0px ;
+spacing: 0px ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: right ;
+color: #2F4B83;
+background-color: #BDD3E8;
+ }
+
+/* Estilo para texto de tabla normal alineaci?n izquierda */
+.ETabla  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: left ;
+color: #2F4B83 ;
+
+
+/* Estilo para texto de tabla normal alineaci?n derecha */
+.ETablaR  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: right ;
+color: #2F4B83 ;
+ }
+
+/* Estilo para texto de tabla normal alineaci?n al centro */
+.ETablaC  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: center ;
+color: #2F4B83 ;
+ }
+
+/* Estilo para t?tulo de tablas */
+.ETablaT  {
+background-color: #63A58C ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: LEFT;
+color: #FFFFFF ;
+ }
+
+/* Estilo para t?tulo de tablas alineado a la izquierda */
+.ETablaTL  {
+background-color: #4275AD ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: left ;
+color: #EBF3FB ;
+ }
+
+/* Estilo para t?tulo de tablas alineado a la izquierda */
+.ETablaTR  {
+background-color: #4275AD ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: right ;
+color: #EBF3FB ;
+ }
+
+
+/* Estilo para Tabla Titulo de Encabezado */
+.ELogoTSist  {
+border: 0px solid #003366 ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: left;
+color: #CCCCCC ;
+ }
+
+/* Estilo para Tabla Titulo de Encabezado */
+.ETituloTSist  {
+border: 0px ;
+font-family: verdana;
+font-size: 9pt ;
+text-align: left;
+color: #336699 ;
+ }
+
+/* Estilo para Tabla Titulo Botones de Encabezado */
+.ETituloTSistBtn  {
+border: 0px;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: right;
+color: #CCCCCC ;
+ }
+
+/* Estilo para el subt?tulo de la p?gina */
+.ETituloTPag  {
+border: 0px;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #EBF3FB ;
+ }
+
+/* Estilo para Tabla SubTitulo de Encabezado #cccccc */
+
+
+/* ********** CAMPOS DE ENTRADA ********** */
+
+/* Estilo para los campos de entrada */
+input  {
+font-family: verdana;
+font-size: 8pt ;
+font-weight: Bold ;
+color: #000000 ;
+ }
+
+/* Estilo para las cuadros de texto */
+textarea  {
+font-family: verdana;
+font-size: 8pt ;
+font-weight: Bold ;
+color: #000000 ;
+ }
+
+/* Estilo para las listas de selecci?n */
+select  {
+font-family: verdana;
+font-size: 8pt ;
+font-weight: Bold ;
+color: #000000 ;
+ }
+
+
+/* ********** LIGAS ********** */
+/* Estilo para todas las ligas no visitadas */
+A:Link  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #004000 ;
+TEXT-DECORATION:none;
+ }
+
+/* Estilo para todas las ligas visitadas (solo IE) */
+A:Visited  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+color: #004000 ;
+TEXT-DECORATION:none;
+ }
+
+/* ********** MARQUEE ********** */
+ .MRQ{
+    COLOR:#004000;
+    font-family: verdana;
+    font-size: 14pt ;
+    font-weight: bold;
+    text-align: center ;
+    border: 0 ;
+ }
+
+/* ********** Editor ********** */
+ .ENumeros{
+    COLOR:#9C9CCE;
+    font-family: Courier New ;
+    font-size: 9pt ;
+    text-align: center ;
+    border: 0 ;
+ }
+
+ .EReporte{
+    COLOR:#000000;
+    font-family: Courier New ;
+    font-size: 9pt ;
+    text-align: left ;
+    border: 0 ;
+ }
+
+/* ********** REPORTES ********** */
+
+/* Despliegue de Datos informativos */
+.ERCampo  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: Left ;
+color: #000000 ;
+ }
+
+/* Despliegue de Datos informativos */
+.ERCampoC  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: center ;
+color: #000000 ;
+ }
+
+/* Despliegue de Datos informativos */
+.ERCampoR  {
+font-family: verdana;
+font-size: 9pt ;
+text-align: Right ;
+color: #000000 ;
+ }
+
+/* Estilo para t?tulo de tablas */
+.ERTablaT  {
+background-color: #000000 ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #FFFFFF ;
+ }
+
+/* Estilo para t?tulo de tablas alineado a la izquierda */
+.ERTablaTL  {
+background-color: #000000 ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: left ;
+color: #FFFFFF ;
+ }
+
+/* Estilo para t?tulo de tablas alineado a la izquierda */
+.ERTablaTR  {
+background-color: #000000 ;
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: right ;
+color: #FFFFFF ;
+ }
+
+/* Estilo para La paginaci?n de Anterior Siguiente */
+.EAntSig  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: center;
+color: #000000 ;
+ }
+.EFolderMSG{
+font-family: verdana;
+font-size: 10pt ;
+font-weight: Bold ;
+text-align: center;
+color: #420000 ;
+ }
+/* ********** EVC ********** */
+ .EPregunta{
+    COLOR:#FF0000;
+    font-family: verdana;
+    font-size: 15pt ;
+    font-weight: Bold;
+    text-align: left ;
+    border: 0 ;
+ }
+ .EPreguntaTabla{
+    COLOR:#000080;
+    font-family: verdana;
+    font-size: 13pt ;
+    font-weight: Bold;
+    text-align: left ;
+ }
+
+
+
+
+/*** Estilos utilizados en el Wizard ***/
+/* Pesta?a del Wizard no seleccionada */
+.EWizNoSelec  {
+font-family: verdana;
+font-size: 8pt ;
+font-weight: Bold ;
+color: #000000 ;
+text-align: Left ;
+ }
+
+
+/* Pesta?a del Wizard  seleccionada */
+.EWizSelec  {
+font-family: verdana;
+font-size: 9pt ;
+font-weight: Bold ;
+text-align: center ;
+color: #FFFFFF;
+background-color: #63A58C;
+ }
+
+/*** Estilos empleados en comparación de huellas ***/
+.ECampoCodigoBidim  {
+	font-family: verdana;
+	font-size: 3pt ;
+	font-weight: Bold ;
+	text-align: Left ;
+	color: #FFFFFF ;
+	background-color: #FFFFFF;
+}
+
+.EResultadoHuellaNO {
+	font-family: verdana;
+	font-size: 12pt ;
+	font-weight: Bold ;
+	text-align: center ;
+	color: #D60808 ;
+	background-color: #F7DEAF;
+}
+
+.EResultadoHuellaSI { 
+	font-family: verdana;
+	font-size: 12pt ;
+	font-weight: Bold ;
+	text-align: center ;
+	color: #06CE6E ;
+	background-color: #F7DEAF;
+}

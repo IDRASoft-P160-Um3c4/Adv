@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VU_ManualServicios7"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="612"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="SUBREPORT_DIR" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["C:\\eclipse_oracle\\wspaces\\Sipmm\\WebContent\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://localhost:7001/sipmm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iEjercicio" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(2007)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iCveTramite" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(21)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="iCveModalidad" isForPrompting="false" class="java.lang.Integer">
+		<defaultValueExpression ><![CDATA[new Integer(6)]]></defaultValueExpression>
+	</parameter>
+
+	<field name="IEJERCICIO" class="java.lang.Integer"/>
+	<field name="ICVETRAMITE" class="java.lang.Integer"/>
+	<field name="ICVEMODALIDAD" class="java.lang.Integer"/>
+	<field name="ICVECONCEPTO" class="java.lang.Integer"/>
+	<field name="LPAGOANTICIPADO" class="java.lang.Integer"/>
+	<field name="CDSCCONCEPTO" class="java.lang.String"/>
+	<field name="DTINIVIGENCIA" class="java.sql.Date"/>
+	<field name="DTFINVIGENCIA" class="java.sql.Date"/>
+	<field name="IREFNUMERICAINGRESOS" class="java.lang.Long"/>
+	<field name="DIMPORTESINAJUSTE" class="java.math.BigDecimal"/>
+	<field name="DIMPORTEAJUSTADO" class="java.math.BigDecimal"/>
+
+	<variable name="dtFechaActual" class="java.util.Date" resetType="Report" calculation="Nothing">
+		<variableExpression><![CDATA[new java.util.Date()]]></variableExpression>
+	</variable>
+		<background>
+			<band height="779"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="65"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="16"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="461"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="3"
+						y="111"
+						width="275"
+						height="13"
+						forecolor="#FFFFFF"
+						backcolor="#999999"
+						key="textField-3"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica-BoldOblique" size="9" isBold="true" isItalic="true" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["CÉDULA DE TRÁMITE"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="3"
+						y="126"
+						width="567"
+						height="256"
+						key="staticText-2"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Por cada uno de los trámites se incluye una cédula con la información básica que sita:
+    * Datos que se requieren para realizar el trámite, lo cual es de utilidad cuando la solicitud se hace a través de un escrito libre. En estos casos habrá que verificar que se incluya toda la información indicada.
+    * Documentos que deben presentar acompañando la solicitud, se recomienda poner atención si se trata de copias u originales. Se ha previsto que el interesado puede entregar copia de un documento requerido como original, siempre y cuando presente ambos en la Ventanilla Única para validación.
+    * Formato de solicitud que corresponda al trámite, el cual se recomienda requisitar, ya que contiene la información y documentación que el trámite requiere.
+    * El tiempo de resolución indica, en días hábiles, el plazo en que se emitirá la resolución.
+    * Cuando algún trámite se inicia en la Capitanía de Puerto y debe resolverse por las unidades centrales, a este tiempo hay que sumar lo correspondiente a envío y regreso de la documentación.
+    * Las unidades ante las que puede realizar el trámite, indicando cuando así procedan las salvedades del caso.
+    * Se incluye la información relativa a objetivos de los trámites, documentos que se entregarán como resultados de la gestión y vigencia de los documentos en días naturales, ya sea autorización, permisos, certificado o cualquier otro documento que se genere como resultado del trámite.
+    * Con objeto de apoyar las consultas que llegaran a requerirse, se incluye cada trámite con su fundamento jurídico, al efecto se consideró un cuadro resumen con las abreviaturas.
+    * En derechos se indican por cada trámite, los montos que se deberán cubrir en cada caso, para este efecto, se identifican los trámites registrados con su número. Es de hacer notar que el catálogo de derechos se actualiza semestralmente.
+    * Notas que contienen aclaraciones sobre la información que se presentan en los apartados que conforman la cédula, así como orientaciones e indicaciones al usuario, para facilitar su trámite.
+]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="3"
+						y="391"
+						width="275"
+						height="13"
+						forecolor="#FFFFFF"
+						backcolor="#999999"
+						key="textField-4"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top" rotation="None" lineSpacing="Single">
+						<font fontName="Verdana" pdfFontName="Helvetica-BoldOblique" size="9" isBold="true" isItalic="true" isUnderline="false" pdfEncoding ="Cp1252" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["INFORMACIÓN DE TRÁMITES REGISTRADOS"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="3"
+						y="405"
+						width="567"
+						height="46"
+						key="staticText-3"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Cada cédula de trámite se encuentra identificada con la clave que le corresponde en el Registro Federal de Trámites (D.O.F. 2 de octubre de 2000) en donde las dos primeras cifras correspondientes a la Dirección General (07: Dirección General de Marina Mercante) y a las tres siguientes al número consecutivo de trámite, el cual puede abrirse en diferentes modalidades que se identifican con letras A, B, C, etc.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="8"
+						width="567"
+						height="90"
+						key="staticText-4"
+						stretchType="RelativeToBandHeight"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font fontName="Verdana" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<text><![CDATA[12.	La gestión de las solicitudes se atenderá en Ventanilla Única con los siguientes horarios:
+
+* Oficinas Centrales: 8:30 a 14:30 horas de lunes a viernes
+* Capitanías de Puerto: 9:00 a 14:30 horas de lunes a viernes.
+
+13.	Para cualquier aclaración se pone a disposición los siguientes números telefónicos: 
+(55)   52653293, 52653294 y 52653295.
+]]></text>
+				</staticText>
+			</band>
+		</summary>
+</jasperReport>
