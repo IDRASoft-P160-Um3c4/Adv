@@ -179,7 +179,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
-"DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS\n"+"DIRECCIÓN DE PERMISOS Y APROVECAHMIENTOS"]]></textFieldExpression>
+"DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS\n"+"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

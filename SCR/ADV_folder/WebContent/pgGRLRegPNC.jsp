@@ -48,9 +48,9 @@
 
     try{
       vDinRep = dGRLRegistroPNC.insertExiste(vDinRep,null);
-      System.out.print(">>>jsp  1:"+vDinRep.getString("cObsLey1"));
-      System.out.print(">>>jsp  2:"+vDinRep.getString("cObsLey2"));
-      System.out.print(">>>jsp  3:"+vDinRep.getString("cObsLey3"));
+      //System.out.print(">>>jsp  1:"+vDinRep.getString("cObsLey1"));
+      //System.out.print(">>>jsp  2:"+vDinRep.getString("cObsLey2"));
+      //System.out.print(">>>jsp  3:"+vDinRep.getString("cObsLey3"));
       iConsecutivoPNC = dGRLRegistroPNC.getConsecutivoPNC();
     }catch(Exception e){
       cError="Guardar";

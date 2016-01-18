@@ -18,9 +18,6 @@
   TVUsuario vUsuario;
   
   boolean lChPwd=false;
-  
-//  PasswordHash a = new PasswordHash();
-//  System.out.print(a.createHash("admin123"));
 
   if(application.getAttribute("Sesiones")==null
   &&  vParametros.getPropEspecifica("UnaSesion").toUpperCase().equals("TRUE"))
@@ -40,8 +37,8 @@
         	lChPwd = dPermisos.islChgPwd();
         	
         	//comentar para omitir el cambio de contrasena si son iguales
-       if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
-       		lChPwd = true;
+       //if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
+       	//	lChPwd = true;
             //comentar para omitir el cambio de contrasena si son iguales
         	
         	usrGpo=vUsuario.getiCveGrupo();

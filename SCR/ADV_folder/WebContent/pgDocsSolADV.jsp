@@ -19,7 +19,7 @@
   
   String queryADV ="";
   
-  System.out.print(oAccion.getCAccion());
+  //System.out.print(oAccion.getCAccion());
   
   /** Verifica si existe una o más sesiones */
   if(!oAccion.unaSesion(vParametros,(CFGSesiones)application.getAttribute("Sesiones"),(TVUsuario)request.getSession(true).getAttribute("UsrID")))
@@ -325,7 +325,7 @@
 			  "JOIN TRAMODALIDAD ON TRAREQXMODTRAMITE.ICVEMODALIDAD = TRAMODALIDAD.ICVEMODALIDAD "+
 			  "WHERE TRAREQXMODTRAMITE.ICVETRAMITE ="+request.getParameter("iCveTramite")+
 			    " AND TRAREQXMODTRAMITE.ICVEMODALIDAD ="+request.getParameter("iCveModalidad")+
-			  " ORDER TRAREQXMODTRAMITE.IORDEN";
+			  " ORDER by TRAREQXMODTRAMITE.IORDEN";
 	}
    
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */

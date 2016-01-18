@@ -60,7 +60,7 @@
     }
   }
 
-  System.out.print(oAccion.getCFiltro());
+  //System.out.print(oAccion.getCFiltro());
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
   Vector vcListado = dGRLReporte.findByCustom("iCveSistema,iCveModulo,iNumReporte",
   "SELECT " +

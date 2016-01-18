@@ -21,8 +21,6 @@ statusArr[3] = ['4','CANCELADO'];
 statusArr[4] = ['5','NEGADO'];
 
 var stFilter ="";
-
-
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg111040031.js";
@@ -109,7 +107,7 @@ function fDefPag() {
 				TDEtiRadio(false,"EEtiqueta",0,"Concesionario","iSolxAnioOt",3,false, "", "", true, 'onClick="changeAnioOt(3);"', "", "");
 				TDEtiRadio(false,"EEtiqueta",0,"Centro SCT","iSolxAnioOt",4,false, "", "", true, 'onClick="changeAnioOt(4);"', "", "");
 				ITD("EEtiqueta",3,"","","center","center");
-					Liga("Generar reporte solicitudes en otorgado","fSolxAnioOt();","Generar reporte solicitudes otorgadas");
+					Liga("Generar reporte solicitudes otorgadas","fSolxAnioOt();","Generar reporte solicitudes otorgadas");
 				FTD();
 			FTR();
 			ITRTD("ETablaST",8,"100%","","center");
@@ -137,10 +135,17 @@ function fDefPag() {
 
 // SEGMENTO Después de Cargar la página (Definición Mandatoria)
 function fOnLoad() {
+
 	 frm = document.forms[0];
 	 frm.iTipoTram.value=1;
 	 frm.iSolxAnio.value=1;
 	 frm.iSolxAnioOt.value=1;
+	 
+	 changeTipoTram(1);
+	 changeEstatus(1);
+	 changeAnio(1);
+	 changeAnioOt(1);
+	 
 }
 
 
@@ -165,7 +170,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 
 
 function fTipoTramite() {
-	if(frm.dtInit.value!=""&&frm.dtEnd.value!=""){
+	if(validaRango()==true){
 	  cClavesModulo="3,";
 	  
 	  switch(frm.iTipoTram.value){
@@ -182,10 +187,7 @@ function fTipoTramite() {
 	  
  	  cFiltrosRep= frm.dtInit.value+","+frm.dtEnd.value+"," +cSeparadorRep;
  	  fReportes();
-	}else{
-		fAlert("- Debe proporcionar el rango de fechas para generar el reporte.")
-	}
-	
+	}	
 }
 
 function changeTipoTram(val){
@@ -193,7 +195,7 @@ function changeTipoTram(val){
 }
 
 function fSolxAnio() {
-	if(frm.dtInit.value!=""&&frm.dtEnd.value!=""){
+	if(validaRango()==true){
 	  cClavesModulo="3,";
 	  
 	  switch(frm.iSolxAnio.value){
@@ -213,10 +215,7 @@ function fSolxAnio() {
 	  
  	  cFiltrosRep= frm.dtInit.value+","+frm.dtEnd.value+"," +cSeparadorRep;
  	  fReportes();
-	}else{
-		fAlert("- Debe proporcionar el rango de fechas para generar el reporte.")
-	}
-	
+	}	
 }
 
 function changeAnio(val){
@@ -225,7 +224,7 @@ function changeAnio(val){
 
 
 function fSolxAnioOt() {
-	if(frm.dtInit.value!=""&&frm.dtEnd.value!=""){
+	if(validaRango()==true){
 	  cClavesModulo="3,";
 	  
 	  switch(frm.iSolxAnioOt.value){
@@ -245,10 +244,7 @@ function fSolxAnioOt() {
 	  
  	  cFiltrosRep= frm.dtInit.value+","+frm.dtEnd.value+"," +cSeparadorRep;
  	  fReportes();
-	}else{
-		fAlert("- Debe proporcionar el rango de fechas para generar el reporte.")
 	}
-	
 }
 
 function changeAnioOt(val){
@@ -257,15 +253,12 @@ function changeAnioOt(val){
 
 
 function fTiempos() {
-	if(frm.dtInit.value!=""&&frm.dtEnd.value!=""){
+	if(validaRango()==true){
 	  cClavesModulo="3,";
 	  cNumerosRep="68,";
  	  cFiltrosRep= frm.dtInit.value+","+frm.dtEnd.value+"," +cSeparadorRep;
  	  fReportes();
-	}else{
-		fAlert("- Debe proporcionar el rango de fechas para generar el reporte.")
 	}
-	
 }
 
 function changeEstatus(val){
@@ -274,7 +267,7 @@ function changeEstatus(val){
 
 
 function fEstatus() {
-	if(frm.dtInit.value!=""&&frm.dtEnd.value!=""){
+	if(validaRango()==true){
 	  cClavesModulo="3,";
 	  
 	  switch(frm.iEstatus.value){
@@ -297,10 +290,15 @@ function fEstatus() {
 	  
  	  cFiltrosRep= frm.dtInit.value+","+frm.dtEnd.value+"," +cSeparadorRep;
  	  fReportes();
-	}else{
-		fAlert("- Debe proporcionar el rango de fechas para generar el reporte.")
 	}
-	
+}
+
+function validaRango(){
+	if(!fValFecha(frm.dtInit.value,false) || !fValFecha(frm.dtEnd.value,false)){
+		fAlert("El formato de las fechas debe ser dd/mm/aaaa. Verifique los datos.");
+		return false;
+	}
+	return true;
 }
 
 

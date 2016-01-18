@@ -97,6 +97,7 @@ function fDefPag() {
 	
 	ITRTD("", "", "", "40", "center");
 	IFrame("IPanel", "515", "34", "Paneles.js");
+//    Liga("Simular firma de documentos.","simulaFirma();");
 	FTDTR();
 	FinTabla();
 	FTDTR();
@@ -629,9 +630,7 @@ function fGenSol(aRes, cSol, aRes2, cOrigen, cFirma, cFirmante){
 						+ aIngresos[h][8] + "..." + FTDTR();
 			}
 			cTabla += ITRTD("EEtiquetaC", 10);
-//					+ Liga(
-//							"Simular firma de documentos.",
-//							"simulaFirma();") + FTDTR();
+
 			cTabla += FinTabla();
 			newRow = tBdy.insertRow(iRR++);
 			newCell = newRow.insertCell(0);
@@ -901,7 +900,6 @@ function fNuevo() {
 }
 function firmaSuccess(outputPaths, cCadFirmada, cNombre, cCURP, cRFC, cFirmNum,
 		cLocSerialNumber, cLocIssuerDN, cLocSubjectDN, iCveCertificado) {
-	// firmaSuccess(iCvetramite,outputPaths,cCadFirmada,cNombre,cCURP,cRFC){
 	
 	fEnProceso(true);
 	
@@ -1687,5 +1685,5 @@ else {
 function simulaFirma(){
 	 cCadenaOriginal = cadDatosADV();
 	 cCadenaOriginal += fGetCadOriginal();	
-	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MAPJ8808156U6", "cFirmNuum","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "iCveCertificado");
+	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MAPJ8808156U6", "102030405060","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "iCveCertificado");
 }

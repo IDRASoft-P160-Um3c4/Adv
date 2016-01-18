@@ -45,7 +45,7 @@ String cSQL =  " SELECT " +
                " JOIN INTTRAMXCAMPO TC ON TC.ICVECAMPO=C.ICVECAMPO AND S.ICVETRAMITE=TC.ICVETRAMITE AND S.ICVEMODALIDAD=TC.ICVEMODALIDAD" +
                oAccion.getCFiltro() + 
                oAccion.getCOrden();
-  System.out.print("*****      INTCampoXCarp:     *****\n\n"+cSQL+"\n");
+  //System.out.print("*****      INTCampoXCarp:     *****\n\n"+cSQL+"\n");
   Vector vcListado = dCampo.findByCustom("ICVETRAMITE",cSQL);
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();

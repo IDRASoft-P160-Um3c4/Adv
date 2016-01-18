@@ -108,7 +108,7 @@
   cConsulta.append(" AND TRARegSolicitud.tsRegistro BETWEEN "+"'"+dtFechaUno.toString()+" 00:00:00' "+" AND "+"'"+dtFechaDos.toString()+" 23:59:00' ");
   cConsulta.append(" ORDER BY TRARegSolicitud.iEjercicio, TRARegSolicitud.iNumSolicitud ");
 
-//  System.out.print(cConsulta);
+//  //System.out.print(cConsulta);
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
   Vector vcListado = dTDConsulta.findByCustom("iEjercicio,iNumSolicitud", cConsulta.toString());
   oAccion.navega(vcListado);

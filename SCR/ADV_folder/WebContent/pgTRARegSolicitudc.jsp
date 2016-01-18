@@ -75,11 +75,11 @@
   }catch(Exception e){
     e.printStackTrace();
   }
-  System.out.print("Tamaño vector = " + vcListado.size());
+  //System.out.print("Tamaño vector = " + vcListado.size());
   oAccion.setINumReg(vcListado.size());
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();
-  System.out.print("lisatdo "+vcListado.size());
+  //System.out.print("lisatdo "+vcListado.size());
 %>
 <SCRIPT LANGUAGE="JavaScript" SRC="<%=vParametros.getPropEspecifica("RutaFuncs")%>CD/ineng.js"></SCRIPT>
 <script language="JavaScript">

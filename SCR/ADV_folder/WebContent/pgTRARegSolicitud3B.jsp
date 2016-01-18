@@ -17,7 +17,7 @@
  */
 
   TFechas fecha = new TFechas();
-  System.out.print("*****     "+fecha.getThisTime());
+  //System.out.print("*****     "+fecha.getThisTime());
   TLogger.setSistema("44");
   TParametro  vParametros = new TParametro("44");
   TVDinRep vDinRep;
@@ -241,8 +241,8 @@
       }
       vcListado = vcResultado;
     }
-  System.out.print("*****     "+fecha.getThisTime());
-  System.out.print("*****     ");
+  //System.out.print("*****     "+fecha.getThisTime());
+  //System.out.print("*****     ");
   }catch(Exception e){
     cError = e.getMessage();
   }

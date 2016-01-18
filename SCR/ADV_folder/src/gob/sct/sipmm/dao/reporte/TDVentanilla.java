@@ -5219,36 +5219,38 @@ public class TDVentanilla extends DAOBase {
 	public HashMap paramEstadistico(String cFiltro) throws Exception {
 		
 		HashMap hParametros = new HashMap();				
-		SimpleDateFormat sdfA = new SimpleDateFormat("dd/MM/yyyy");
-		SimpleDateFormat sdfB = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		
 		String[] cDatosFiltro = cFiltro.split(",");
 		String ini="",end="";
 		
-		try{ 		
-			Date a = sdfA.parse(cDatosFiltro[0]);
-			Date b = sdfA.parse(cDatosFiltro[1]);
+		String strIni = null, strFin = null; 
+		Date tsDtIni = null, tsDtFin = null; 
+		Timestamp tsIni=null,tsFin = null;
+		try{ 	
 			
-			Date dtIni = new Date(a.getTime()-86400);
-			ini = sdfB.format(dtIni);
+			strIni = cDatosFiltro[0] + " 00:00:00";
+			strFin = cDatosFiltro[1] +" 23:59:59";
 			
+			tsDtIni = sdf.parse(strIni);
+			tsDtFin = sdf.parse(strFin);
 			
-			Calendar c = Calendar.getInstance();
-			c.setTime(b);
-			c.add(Calendar.DATE, 1);
-			end= sdfB.format(c.getTime());
-
+			tsIni = new Timestamp(tsDtIni.getTime());
+			tsFin = new Timestamp(tsDtFin.getTime());
 		
 		}catch(Exception e){
 			e.printStackTrace();
+			throw new Exception("Error, parametros incorrectos.");
 		}
-		
-		//System.out.println(ini);
-		//System.out.println(end);
-
-		hParametros.put("sDtIni", ini);
-		hParametros.put("sDtFin", end);
+				
 		hParametros.put("sDtIniO", cDatosFiltro[0]);
 		hParametros.put("sDtFinO", cDatosFiltro[1]);
+		
+		hParametros.put("dtIni", tsDtIni);
+		hParametros.put("dtFin", tsDtFin);
+		
+		hParametros.put("tsIni", tsIni);
+		hParametros.put("tsFin", tsFin);
 				
 		return hParametros;
 	}

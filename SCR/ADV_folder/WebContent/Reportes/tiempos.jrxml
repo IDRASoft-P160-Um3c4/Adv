@@ -26,11 +26,15 @@
 	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
 		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
 	</parameter>
-	<parameter name="sDtIni" isForPrompting="false" class="java.lang.String"/>
-	<parameter name="sDtFin" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="sDtIniO" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="sDtFinO" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
 		<defaultValueExpression ><![CDATA[".\\"]]></defaultValueExpression>
 	</parameter>
+	<parameter name="dtIni" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="dtFin" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="tsIni" isForPrompting="false" class="java.sql.Timestamp"/>
+	<parameter name="tsFin" isForPrompting="false" class="java.sql.Timestamp"/>
 	<queryString><![CDATA[select count(iejercicio) from traregsolicitud]]></queryString>
 
 	<field name="1" class="java.lang.Integer"/>
@@ -77,7 +81,7 @@
 					<textElement textAlignment="Center">
 						<font pdfFontName="Helvetica-Bold" size="13" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["RELACIÓN DE SOLICITUDES DE PERMISO PARA EL APROVECHAMIENTO DEL DERECHO DE VÍA, PERIODO DEL " +$P{sDtIni} +" AL " + $P{sDtFin} +"."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["RELACIÓN DE SOLICITUDES DE PERMISO PARA EL APROVECHAMIENTO DEL DERECHO DE VÍA, PERIODO DEL " +$P{sDtIniO} +" AL " + $P{sDtFinO} +"."]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -118,11 +122,29 @@
 						width="1140"
 						height="70"
 						key="subreport-2"/>
-					<subreportParameter  name="sDtIni">
-						<subreportParameterExpression><![CDATA[$P{sDtIni}]]></subreportParameterExpression>
+					<subreportParameter  name="URLEstaticos">
+						<subreportParameterExpression><![CDATA[$P{URLEstaticos}]]></subreportParameterExpression>
 					</subreportParameter>
-					<subreportParameter  name="sDtFin">
-						<subreportParameterExpression><![CDATA[$P{sDtFin}]]></subreportParameterExpression>
+					<subreportParameter  name="sDtIniO">
+						<subreportParameterExpression><![CDATA[$P{sDtIniO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="sDtFinO">
+						<subreportParameterExpression><![CDATA[$P{sDtFinO}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="dtIni">
+						<subreportParameterExpression><![CDATA[$P{dtIni}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="dtFin">
+						<subreportParameterExpression><![CDATA[$P{dtFin}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="tsIni">
+						<subreportParameterExpression><![CDATA[$P{tsIni}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="tsFin">
+						<subreportParameterExpression><![CDATA[$P{tsFin}]]></subreportParameterExpression>
 					</subreportParameter>
 					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
 					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "subTiempos.jasper"]]></subreportExpression>

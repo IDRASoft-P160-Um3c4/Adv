@@ -109,7 +109,7 @@
 <script language="JavaScript">
 <%
    out.print(oAccion.getArrayCD());
-   System.out.print("*****     "+cURLDespliegaFormato);
+   //System.out.print("*****     "+cURLDespliegaFormato);
 %>
   fEngResultado('<%=request.getParameter("cNombreFRM")%>',
                 '<%=request.getParameter("cId")%>',

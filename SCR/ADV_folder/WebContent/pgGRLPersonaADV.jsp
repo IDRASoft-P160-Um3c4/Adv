@@ -29,7 +29,7 @@
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   else{
 	  
-  System.out.print(oAccion.getCAccion());
+  //System.out.print(oAccion.getCAccion());
 	  
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
@@ -87,13 +87,13 @@
   
   if(oAccion.getCAccion().equals("GuardarRepL")){
 	  vDinRep = oAccion.setInputs("iCveRepL,iCveRepresentado");
-	  System.out.print(vDinRep.getInt("iCveRepL"));
-	  System.out.print(vDinRep.getInt("iCveRepresentado"));
+	  //System.out.print(vDinRep.getInt("iCveRepL"));
+	  //System.out.print(vDinRep.getInt("iCveRepresentado"));
 	  dGRLPersona.guardaAsociacionPersonaRepL(vDinRep,null);
   }else if(oAccion.getCAccion().equals("BorrarRepL")){
 	  vDinRep = oAccion.setInputs("iCveRepL,iCveRepresentado");
-	  System.out.print(vDinRep.getInt("iCveRepL"));
-	  System.out.print(vDinRep.getInt("iCveRepresentado"));
+	  //System.out.print(vDinRep.getInt("iCveRepL"));
+	  //System.out.print(vDinRep.getInt("iCveRepresentado"));
 	  dGRLPersona.borraAsociacionPersonaRepL(vDinRep,null);
   }
   else if(oAccion.getCAccion().equals("getEntidades")){

@@ -103,9 +103,9 @@
   String cSQL2 = "", cSQL3="", cSQL4="";
   try{
     vcListado = dTRARegSolicitud.findByCustom("iEjercicio,iNumSolicitud",cSql);
-    System.out.print("*****    Listado.length "+vcListado.size());
+    //System.out.print("*****    Listado.length "+vcListado.size());
     if (vcListado != null && vcListado.size() > 0){
-      System.out.print("*****    Entra en requiere pago");
+      //System.out.print("*****    Entra en requiere pago");
       TVDinRep vDataSol = new TVDinRep();
       for (int i=0; i<vcListado.size(); i++){
         vDataSol = (TVDinRep)vcListado.get(i);
@@ -184,8 +184,8 @@
         }
         vcResultado.add(vDataSol);
         for(int j = 0;j < vDataSol.getVcKeys().size();j++){
-          System.out.print((String) vDataSol.getVcKeys().get(j));
-        System.out.print(vDataSol.toHashMap().toString());
+          //System.out.print((String) vDataSol.getVcKeys().get(j));
+        //System.out.print(vDataSol.toHashMap().toString());
         }
       }
       vcListado = vcResultado;

@@ -43,9 +43,8 @@
 	</parameter>
 	<parameter name="cLeyendaEnc" isForPrompting="false" class="java.lang.String"/>
 	<queryString><![CDATA[SELECT PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
-case (REP.ICVEPERSONA) 
-when NULL THEN '' 
-ELSE REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO || ' representate legal de '
+case when REP.ICVEPERSONA is null THEN ''
+ELSE REP.CNOMRAZONSOCIAL || ' '|| REP.CAPPATERNO || ' ' || REP.CAPMATERNO || ' representante legal de '
 END as cRepL, 
 TRACATTRAMITE.CDSCBREVE as cTramite, 
 TRACATTRAMITE.CCVEINTERNA as cClaveT, 

@@ -297,3 +297,7 @@ function fShowDatosOficios(aRes) {
 function resetBloqueaGuardar(){
 	bloqueaGuardar=false;
 }
+
+function getWindowOpener(){
+	return window.opener;
+}

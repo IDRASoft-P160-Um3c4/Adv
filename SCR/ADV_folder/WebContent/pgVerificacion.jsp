@@ -104,7 +104,7 @@
   String cSQL = "";
   if(request.getParameter("hdBotonAux") != null){
     if(request.getParameter("hdBotonAux").equals("VERIFICACION") || lPNC ||
-      request.getParameter("hdBotonAux").equals("GOficio")){System.out.print("VERIFICACION");
+      request.getParameter("hdBotonAux").equals("GOficio")){//System.out.print("VERIFICACION");
 
       Vector vcVerPNC = dVerificacion.findByCustom("","SELECT count(1) as iCuenta FROM TRAREGPNCETAPA "+
     		                                              "where IEJERCICIO="+request.getParameter("iEjercicio")+
@@ -162,7 +162,7 @@
     cSQL += "JOIN GRLDEPARTAMENTO ON GRLDEPARTAMENTO.ICVEDEPARTAMENTO = TRAREQUISITO.ICVEDEPTOEVAL ";
     //cSQL += "LEFT JOIN TRAREGEVAREQXAREA ON TRAREGREQXTRAM.IEJERCICIO=TRAREGEVAREQXAREA.IEJERCICIO AND TRAREGREQXTRAM.INUMSOLICITUD=TRAREGEVAREQXAREA.INUMSOLICITUD AND TRAREGREQXTRAM.ICVEREQUISITO=TRAREGEVAREQXAREA.ICVEREQUISITO AND TRAREGEVAREQXAREA.ICONSECUTIVOPNC IS NULL";
     }
-    else if(request.getParameter("hdBotonAux").equals("CONCEPTOS")){System.out.print("CONCEPTOS");
+    else if(request.getParameter("hdBotonAux").equals("CONCEPTOS")){//System.out.print("CONCEPTOS");
     cSQL =
       " SELECT cv.cDscConcVerifica , pr.iCveProceso, pr.iCveProducto , cvxp.iCveConcVerifica, "+
       " vp.dtVerifica, vp.iEjercicio, vp.iNumVerifica, cxvp.lConcAprobado, cxvp.cObs, "+

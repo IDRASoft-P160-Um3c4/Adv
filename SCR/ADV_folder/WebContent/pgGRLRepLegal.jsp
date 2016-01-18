@@ -62,7 +62,7 @@
   if(oAccion.getCAccion().equals("IntegraRepresentante")){
 	    vDinRep = oAccion.setInputs("iCvePersonaD,iCvePersonaO,iCveRepLegal");
 	    try{
-	    	System.out.print("integra");
+	    	//System.out.print("integra");
 	      vDinRep = dGRLRepLegal.integra(vDinRep,null);
 	    }catch(Exception e){
 	      cError="Guardar";

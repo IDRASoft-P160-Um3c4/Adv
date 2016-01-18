@@ -45,24 +45,27 @@ function fEngSubmite(cPaginaM, cIdM, cParametro){
 }
 // Función que realiza la verificación
 function fVerTpoLocal(){
+	
   iTpoLocalIneng = top.fGetTiempoActualLocal();
   if(iTpoLocalIneng == 0){
      return true;
   }else{
     iTpoVerLocal = top.fGetTiempoVerificacion() * 1000 * 60;
     dtHoraLocalIneng = new Date();
+        
     if((iTpoVerLocal + iTpoLocalIneng) < dtHoraLocalIneng.getTime()){
-    	//fSetNuevoTpoLocal();
-      if((wVerifica != null) && (!wVerifica.closed))
-      	wVerifica.focus();
-      else
-      	fAbreSubVerifica(true,"CD/verifica","no","no","no","no",175,150,100,100,'wndVerifica');
+ 	    	if((wVerifica != null) && (!wVerifica.closed))
+	      	wVerifica.focus();
+	      else
+	      	fAbreSubVerifica(true,"CD/verifica","no","no","no","no",175,150,100,100,'wndVerifica');
       return false;
+      
     }
     fSetNuevoTpoLocal();
     return true;
   }
 }
+
 function fAbreSubVerifica(lModalM,cNombreM,cMenubarM,cResizableM,cScrollbarsM,cStatusM,cAnchoM,cAltoM,iX,iY,cNomVentana){ // 5000-Abre una Nueva Ventana (.js) con un FRMMI propio (Ventana Transaccional)
     if((wVerifica != null) && (!wVerifica.closed))
       wVerifica.focus();
@@ -78,6 +81,11 @@ function fAbreSubVerifica(lModalM,cNombreM,cMenubarM,cResizableM,cScrollbarsM,cS
 function fSetNuevoTpoLocal(){
    dtHoraLocalIneng = new Date();
    top.fSetTiempoActualLocal(dtHoraLocalIneng.getTime());
+}
+
+function fSetTpoLocalMuerto(){
+		//setea fecha del 01/01/2000
+	   top.fSetTiempoActualLocal(946684800000);
 }
 
 function fUsrPwdAceptar(cUsr,cPwd, lastUsrId) {
@@ -112,6 +120,7 @@ function fEngResultado(cFrame,cId,cP1,cP2,cP3,cP4,cP5,cP6,cP7,cP8,cP9,cP10){
            alert("Mensaje de Seguridad: \n\n - Favor de realizar nuevamente la acción...");
            fSetNuevoTpoLocal();
          }else{
+        	fSetTpoLocalMuerto();
             alert("Mensaje de Seguridad: \n\n - Acceso Incorrecto. Será redireccionado fuera del sistema!");
             fSalirTotal();
          }

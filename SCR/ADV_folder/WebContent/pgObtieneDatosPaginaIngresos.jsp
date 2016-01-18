@@ -34,16 +34,16 @@
   String cAreaRecaudadora     = vParametros.getPropEspecifica("WSIngRecauda");
   String cURLRespuesta        = vParametros.getPropEspecifica("TRAURLRespuesta");
 
-  System.out.print("****** VALORES PARA INVOCAR LA HOJA DE PAGO - INGRESOS ************");
+  //System.out.print("****** VALORES PARA INVOCAR LA HOJA DE PAGO - INGRESOS ************");
   
-  System.out.print("cTraIngresosURL ->"+cTraIngresosURL);
-  System.out.print("cTRAIngresosNumBytes ->"+cTRAIngresosNumBytes);
-  System.out.print("cTRAIngresosCifrado ->"+cTRAIngresosCifrado);
-  System.out.print("cAreaRecaudadora ->"+cAreaRecaudadora);
-  System.out.print("cURLRespuesta ->"+cURLRespuesta);
-  System.out.print("iCveUsuario ->"+request.getParameter("iCveUsuario"));
-  System.out.print("hdUsrIngresos ->"+request.getParameter("hdUsrIngresos"));
-  System.out.print("hdPassUsrIngresos ->"+request.getParameter("hdPassUsrIngresos"));
+  //System.out.print("cTraIngresosURL ->"+cTraIngresosURL);
+  //System.out.print("cTRAIngresosNumBytes ->"+cTRAIngresosNumBytes);
+  //System.out.print("cTRAIngresosCifrado ->"+cTRAIngresosCifrado);
+  //System.out.print("cAreaRecaudadora ->"+cAreaRecaudadora);
+  //System.out.print("cURLRespuesta ->"+cURLRespuesta);
+  //System.out.print("iCveUsuario ->"+request.getParameter("iCveUsuario"));
+  //System.out.print("hdUsrIngresos ->"+request.getParameter("hdUsrIngresos"));
+  //System.out.print("hdPassUsrIngresos ->"+request.getParameter("hdPassUsrIngresos"));
   
   eDatos.setLengthAndKey(Integer.parseInt(cTRAIngresosNumBytes),cTRAIngresosCifrado);
   String cIdUsrIngresos = eDatos.getCifrado(request.getParameter("iCveUsuario"));  

@@ -33,7 +33,7 @@
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
 
-    System.out.print("Dentro del Guardar");
+    //System.out.print("Dentro del Guardar");
 
     vDinRep = oAccion.setInputs("iEjercicio,bDocAlmacenado,lActivo");
     try{
@@ -47,7 +47,7 @@
  /** Verifica si la Acción a través de hdBotón es igual a "GuardarA" (Actualizar) */
   if(oAccion.getCAccion().equals("GuardarA")){
 
-    System.out.print("Dentro del GuardarA");
+    //System.out.print("Dentro del GuardarA");
 
     vDinRep = oAccion.setInputs("iEjercicio,iIdGestorDocumento,bDocAlmacenado,lActivo");
     try{
@@ -62,7 +62,7 @@
   if(oAccion.getCAccion().equals("Borrar")){
     oAccion.setCAccion("Actual");
 
-    System.out.print("Dentro del Borrar");
+    //System.out.print("Dentro del Borrar");
 
     vDinRep = oAccion.setInputs("iEjercicio,iIdGestorDocumento");
     try{

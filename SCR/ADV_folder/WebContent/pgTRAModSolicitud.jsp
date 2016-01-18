@@ -85,9 +85,9 @@
       }
       dTRARegReqXTram.FinalizaPNC(vPNC);
     }catch(Exception e){
-    	System.out.print("*************");
+    	//System.out.print("*************");
     	if(e.getMessage().substring(0,9).equals("El tiempo")){
-        	System.out.print(e.getMessage());
+        	//System.out.print(e.getMessage());
         	cError = e.getMessage();
     	}
     	else

@@ -41,7 +41,7 @@
 	  
 	  if(vcListIng!=null && vcListIng.size()>0){
 	  	vDinRep = (TVDinRep) vcListIng.get(0);
-	  	System.out.println(vDinRep.getInt("ICVEUSUARIO"));
+	  	//System.out.println(vDinRep.getInt("ICVEUSUARIO"));
 	  }
   }
   }catch(Exception e){

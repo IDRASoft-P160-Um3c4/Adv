@@ -368,7 +368,7 @@ public class TDTRARegSolicitud
     ResultSet rset = null;
     Vector vcDinRep = new Vector();
     try{
-      System.out.print("*****    Pregunta por el maximo de solicitud...");
+      //System.out.print("*****    Pregunta por el maximo de solicitud...");
       dbConn = new DbConnection(dataSourceName);
       conn = dbConn.getConnection();
       conn.setAutoCommit(false);
@@ -381,10 +381,10 @@ public class TDTRARegSolicitud
 
     } catch(SQLException ex){
       cError = cMensaje = getSQLMessages(ex);
-      System.out.print("*****    Error en TDTraRegSolicitud.FindNextSolicitud\n"+cError);
+      //System.out.print("*****    Error en TDTraRegSolicitud.FindNextSolicitud\n"+cError);
     } catch(Exception ex){
       cError = ex.getMessage();
-      System.out.print("*****    Error en TDTraRegSolicitud.FindNextSolicitud\n"+cError);
+      //System.out.print("*****    Error en TDTraRegSolicitud.FindNextSolicitud\n"+cError);
     } finally{
       try{
         if(rset != null){
@@ -544,7 +544,7 @@ public class TDTRARegSolicitud
           cOficinaResuelve = iCveOficinaOrigen + "";
           cDeptoResuelve   = iCveDeptoOrigen + "";
         }
-        System.out.print("*****    Llega a 544 justo antes de preguntar por el maximo!!");
+        //System.out.print("*****    Llega a 544 justo antes de preguntar por el maximo!!");
         if(i == 0){
           vcDataMax = this.FindNextSolicitud("", cSQLMax, dataSourceName);
           if(vcDataMax.size() > 0)
@@ -625,10 +625,10 @@ public class TDTRARegSolicitud
         try{
           TDCis dCIS = new TDCis();
           vInteresados = (Vector)dCIS.consultaInteresadoRFC("MOBE770402");
-          System.out.print("Interesado=" + vData.getString("cRFC"));
-          System.out.print("Interesados vector = " + vInteresados.size());
+          //System.out.print("Interesado=" + vData.getString("cRFC"));
+          //System.out.print("Interesados vector = " + vInteresados.size());
           for(int z=0; z<vInteresados.size(); z++)
-            System.out.print("------>" + ((TVDinRep)vInteresados.get(z)).toHashMap().toString());
+            //System.out.print("------>" + ((TVDinRep)vInteresados.get(z)).toHashMap().toString());
         }catch(Exception e){
 
         }
@@ -692,7 +692,7 @@ public class TDTRARegSolicitud
         try{
           this.updateEtapasCIS(vCIS,conn);
         }catch(Exception e){
-          System.out.print("*****    Error en la incercion del CIS\n"+e);
+          //System.out.print("*****    Error en la incercion del CIS\n"+e);
         }
         /***************************************************************************************/
 
@@ -1839,10 +1839,10 @@ public java.sql.Date getFechaLimiteEntregaDocs(int iCveTramite, int iCveModalida
         iCveCitaCis = dCis.insertaCita(iCveTramiteCis,iCveInteresadoCIS,1,"",iCveOficinaCis);
          //dCis.insertaCita(tramite,interesado,numTramites,descripcioncitas,areacis)
     }catch(Exception ex){
-        System.out.print("*****    Error en la Insercion de Cita CIS");
+        //System.out.print("*****    Error en la Insercion de Cita CIS");
         lError  = true;
     }finally{
-        System.out.print("*****    CitaCIS   "+iCveCitaCis);
+        //System.out.print("*****    CitaCIS   "+iCveCitaCis);
     }
     return iCveCitaCis;
    }

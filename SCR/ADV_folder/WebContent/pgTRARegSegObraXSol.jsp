@@ -35,7 +35,7 @@
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   }else{
 	  
-	  System.out.print("la accion--"+oAccion.getCAccion());
+	  //System.out.print("la accion--"+oAccion.getCAccion());
 
    if (vUsuario != null){
       iCveUsuario = vUsuario.getICveusuario();

@@ -10,8 +10,7 @@ public class ModeloConsulta {
 	private String tipoPermiso;
 	private String solicitante; 
 	private String autopista; 
-	private String kilometraje; 
-	private String sentido;
+	private String kmSentido; 
 	private String justificacion;
 	private String diasTranscurridos; 
 	private String estatus; 
@@ -24,7 +23,6 @@ public class ModeloConsulta {
 	private String tienePNC; 
 	private String fechaVT;
 
-	
 	public ModeloConsulta(){
 		
 	}
@@ -40,23 +38,21 @@ public class ModeloConsulta {
 		this.setEjercicio(datosSolicitud.getString("IEJERCICIO"));
 		this.setSolicitud(datosSolicitud.getString("INUMSOLICITUD"));
 		this.setfRegistro(datosSolicitud.getString("TSREGISTRO"));
-		this.setTipoPermiso(datosSolicitud.getString("CDSCTRAMITE"));
+		this.setTipoPermiso(datosSolicitud.getString("CDSCBREVETRAMITE"));
 		this.setSolicitante(datosSolicitud.getString("CNOMBRECOMPLETO"));
 		this.setAutopista(datosSolicitud.getString("CDSCBREVEOFICINA"));
-		this.setKilometraje(datosSolicitud.getString("CCADENAMIENTO"));
-		this.setSentido(datosSolicitud.getString("SENTIDO"));
+		this.setKmSentido(datosSolicitud.getString("CKMSENTIDO"));
 		this.setJustificacion(datosSolicitud.getString("CHECHOS"));
-		this.setDiasTranscurridos(datosSolicitud.getString("DIASTRANS"));
+		this.setDiasTranscurridos(String.valueOf(Math.round(Float.parseFloat(datosSolicitud.getString("DIASTRANS")))));
 		this.setEstatus(datosSolicitud.getString("LABANDONADA"));
 		this.setResolucionVT(datosSolicitud.getString("RESOLVT"));
 		this.setEvalAJuridicos(datosSolicitud.getString("LJURIDICO"));
 		this.setEvalSTecnicos(datosSolicitud.getString("LTECNICO"));
-		this.setNumPermiso(datosSolicitud.getString("CNUMPERMISO"));
-		this.setfImprPermiso(datosSolicitud.getString("DTPERMISO"));
+		this.setNumPermiso(datosSolicitud.getString("COLF").equals("null")?"":datosSolicitud.getString("COLF"));
+		this.setfImprPermiso(datosSolicitud.getString("COLG").equals("null")?"":datosSolicitud.getString("COLG"));
 		this.setOficinaOrigen(datosSolicitud.getString("CDSCBREVEOFICINA"));
 		this.setTienePNC(datosSolicitud.getString("ICONSECUTIVOPNC"));
 		this.setFechaVT(datosSolicitud.getString("DTVISITA"));
-
 	}
 
 	public String getEjercicio() {
@@ -105,22 +101,6 @@ public class ModeloConsulta {
 
 	public void setAutopista(String autopista) {
 		this.autopista = autopista;
-	}
-
-	public String getKilometraje() {
-		return kilometraje;
-	}
-
-	public void setKilometraje(String kilometraje) {
-		this.kilometraje = kilometraje;
-	}
-
-	public String getSentido() {
-		return sentido;
-	}
-
-	public void setSentido(String sentido) {
-		this.sentido = sentido;
 	}
 
 	public String getJustificacion() {
@@ -208,23 +188,31 @@ public class ModeloConsulta {
 	}
 
 	
+	public String getKmSentido() {
+		return kmSentido;
+	}
+
+	public void setKmSentido(String kmSentido) {
+		this.kmSentido = kmSentido;
+	}
+
 	public TVDinRep calculaTextos(TVDinRep datosConsulta){
 
 		if (!datosConsulta.getString("DTCANCELACION").equals("") && !datosConsulta.getString("DTCANCELACION").equals("null")){
 			datosConsulta.remove("LABANDONADA");
-			datosConsulta.put("LABANDONADA","CANCELADA");
+			datosConsulta.put("LABANDONADA","CANCELADO");
 		}
 		else if (!datosConsulta.getString("LABANDONADA").equals("") && Integer.parseInt(datosConsulta.getString("LABANDONADA"))> 0) {
 			datosConsulta.remove("LABANDONADA");
-			datosConsulta.put("LABANDONADA","ABANDONADA");
+			datosConsulta.put("LABANDONADA","ABANDONADO");
 		} 
-		else if (Integer.parseInt(datosConsulta.getString("LRESOLUCIONPOSITIVA")) > 0) {
+		else if (Integer.parseInt(datosConsulta.getString("LRESOLUCIONPOSITIVA")) > 0 && !datosConsulta.getString("COLF").equals("null") &&  !datosConsulta.getString("COLG").equals("null")) {
 			datosConsulta.remove("LABANDONADA");
-			datosConsulta.put("LABANDONADA","APROBADA");
+			datosConsulta.put("LABANDONADA","OTORGADO");
 		} 
 		else if (Integer.parseInt(datosConsulta.getString("LRESOLUCIONPOSITIVA"))==0 && !datosConsulta.getString("DTRESOLTRAM").equals("") && !datosConsulta.getString("DTRESOLTRAM").equals("null")){
 			datosConsulta.remove("LABANDONADA");
-			datosConsulta.put("LABANDONADA","NEGADA");
+			datosConsulta.put("LABANDONADA","NEGADO");
 		} 
 		else if (Integer.parseInt(datosConsulta.getString("LRESOLUCIONPOSITIVA"))==0 && (datosConsulta.getString("DTRESOLTRAM").equals("")||datosConsulta.getString("DTRESOLTRAM").equals("null")) ){
 			datosConsulta.remove("LABANDONADA");
@@ -248,12 +236,6 @@ public class ModeloConsulta {
 			datosConsulta.remove("LJURIDICO");
 			datosConsulta.put("LJURIDICO","PENDIENTE");
 		}
-				/*
-		String diasT = datosConsulta.getString("DIASTRANS");
-
-		datosConsulta.remove("DIASTRANS");
-		datosConsulta.put("DIASTRANS",diasT.substring(0, ind));
-		*/
 
 		if (datosConsulta.getString("RESOLVT").equals("NEGATIVO")) {
 
@@ -290,7 +272,25 @@ public class ModeloConsulta {
 		if (datosConsulta.getString("DTVISITA").equals("null") || datosConsulta.getString("DTVISITA").equals("")) {
 			datosConsulta.remove("DTVISITA");
 			datosConsulta.put("DTVISITA","");
-		}		
+		}
+		
+		if (datosConsulta.getString("LABANDONADA").equals("OTORGADO")){
+			datosConsulta.remove("DIASTRANS");
+			datosConsulta.put("DIASTRANS",datosConsulta.getString("DIASPERM"));
+		}
+		
+		if (datosConsulta.getString("LABANDONADA").equals("NEGADO")){
+			if(Float.valueOf(datosConsulta.getString("DIASRESOL"))>0){
+				datosConsulta.remove("DIASTRANS");
+				datosConsulta.put("DIASTRANS",datosConsulta.getString("DIASRESOL"));
+			}
+		}
+
+		if (datosConsulta.getString("LABANDONADA").equals("CANCELADO")){
+			datosConsulta.remove("DIASTRANS");
+			datosConsulta.put("DIASTRANS",datosConsulta.getString("DIASCANCELA"));
+		}
+		
 		return datosConsulta;
 	}
 }

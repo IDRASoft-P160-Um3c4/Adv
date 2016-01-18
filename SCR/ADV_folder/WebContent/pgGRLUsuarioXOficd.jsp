@@ -29,7 +29,7 @@
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
   vDinRep = oAccion.setInputs("iCveEntidad");
   String iCveEntidad = vDinRep.getString("iCveEntidad") ;
-  System.out.print("iCveEntidad: "+iCveEntidad);
+  //System.out.print("iCveEntidad: "+iCveEntidad);
   Vector vcListado = dGRLUsuarioXOfic.findByCustom("GRLUsuarioXOfic.iCveOficina,GRLUsuarioXOfic.iCveDepartamento,GRLUsuarioXOfic.iCveUsuario","Select " +
   " GRLUsuarioXOfic.iCveOficina, GRLOficina.cDscBreve" +
   " from GRLUsuarioXOfic " +

@@ -28,13 +28,17 @@
 	</parameter>
 	<parameter name="sDtIni" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="sDtFin" isForPrompting="false" class="java.lang.String"/>
-	<parameter name="sDtFinO" isForPrompting="false" class="java.lang.String"/>
 	<parameter name="sDtIniO" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="sDtFinO" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="tsIni" isForPrompting="false" class="java.sql.Timestamp"/>
+	<parameter name="tsFin" isForPrompting="false" class="java.sql.Timestamp"/>
+	<parameter name="dtFin" isForPrompting="false" class="java.util.Date"/>
+	<parameter name="dtIni" isForPrompting="false" class="java.util.Date"/>
 	<queryString><![CDATA[(SELECT TIMESTAMP(HIST.DTREGISTRO) AS TSREGISTRO, CAST(HIST.IEJERCICIO AS FLOAT) AS IEJERCICIO, TRAM.CDSCBREVE, CARR.CCONSECIONARIO, CARR.CDSCARRETERA, OFI.CDSCBREVE as COFI FROM TRACATTRAMITE TRAM
  JOIN TRADATOSHISTADV HIST ON TRAM.ICVETRAMITE = HIST.ICVETRAMITE
  JOIN TRACATCARRETERA CARR ON HIST.ICVEAUTOPISTA = CARR.ICVECARRETERA
  JOIN GRLOFICINA OFI ON HIST.ICVEOFICINA = OFI.ICVEOFICINA
-WHERE HIST.DTREGISTRO BETWEEN $P{sDtIni} and $P{sDtFin}
+WHERE HIST.DTREGISTRO BETWEEN $P{dtIni} and $P{dtFin}
 AND HIST.CESTATUS='OTORGADO')
 UNION
 (SELECT SOL.TSREGISTRO, CAST(SOL.IEJERCICIO AS FLOAT) AS IEJERCICIO, TRAM.CDSCBREVE, CARR.CCONSECIONARIO, CARR.CDSCARRETERA, OFI.CDSCBREVE AS COFI FROM TRACATTRAMITE TRAM 
@@ -42,7 +46,7 @@ UNION
  JOIN TRAREGDATOSADVXSOL ADV ON  ADV.IEJERCICIO = SOL.IEJERCICIO AND ADV.INUMSOLICITUD = SOL.INUMSOLICITUD
  JOIN TRACATCARRETERA CARR ON ADV.ICVECARRETERA =CARR.ICVECARRETERA
  JOIN GRLOFICINA OFI ON OFI.ICVEOFICINA = SOL.ICVEOFICINA  
-WHERE SOL.TSREGISTRO BETWEEN $P{sDtIni} and $P{sDtFin}
+WHERE SOL.TSREGISTRO BETWEEN $P{tsIni} and $P{tsFin}
 AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 
 	<field name="TSREGISTRO" class="java.sql.Timestamp"/>
@@ -94,7 +98,7 @@ AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 					<textElement textAlignment="Center">
 						<font pdfFontName="Helvetica-Bold" size="13" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["RELACIÓN DE SOLICITUDES DE PERMISO PARA EL APROVECHAMIENTO DEL DERECHO DE VÍA, PERIODO DEL " +$P{sDtIni} +" AL " + $P{sDtFin} +"."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["RELACIÓN DE SOLICITUDES DE PERMISO PARA EL APROVECHAMIENTO DEL DERECHO DE VÍA, PERIODO DEL " +$P{sDtIniO} +" AL " + $P{sDtFinO} +"."]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -143,7 +147,7 @@ AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 				<textFieldExpression   class="java.lang.String"><![CDATA["AÑO / APROVECHAMIENTO"]]></textFieldExpression>
 				</textField>
 						</cellContents>
-					</crosstabHeaderCell>					<rowGroup name="CDSCBREVE" width="120" totalPosition="End">
+					</crosstabHeaderCell>					<rowGroup name="CDSCARRETERA" width="120" totalPosition="End">
 						<bucket>
 							<bucketExpression class="java.lang.String"><![CDATA[$F{CDSCBREVE}]]></bucketExpression>
 						</bucket>
@@ -161,7 +165,7 @@ AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$V{CDSCBREVE}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{CDSCARRETERA}]]></textFieldExpression>
 				</textField>
 						</cellContents>
 						</crosstabRowHeader>
@@ -307,7 +311,7 @@ AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 				</textField>
 						</cellContents>
 					</crosstabCell>
-					<crosstabCell width="53" height="61" rowTotalGroup="CDSCBREVE">
+					<crosstabCell width="53" height="61" rowTotalGroup="CDSCARRETERA">
 						<cellContents mode="Transparent">
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
@@ -338,7 +342,7 @@ AND SOL.DTRESOLTRAM IS NOT NULL AND SOL.LPERMISO=1)]]></queryString>
 				</textField>
 						</cellContents>
 					</crosstabCell>
-					<crosstabCell width="102" height="61" rowTotalGroup="CDSCBREVE" columnTotalGroup="IEJERCICIO">
+					<crosstabCell width="102" height="61" rowTotalGroup="CDSCARRETERA" columnTotalGroup="IEJERCICIO">
 						<cellContents mode="Transparent">
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="1Point" rightBorderColor="#000000" bottomBorder="1Point" bottomBorderColor="#000000"/>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >

@@ -67,6 +67,6 @@
       out.print(oAccion.getArrayCD());
     %>
       fEngResultado('<%=request.getParameter("cNombreFRM")%>','<%=request.getParameter("cId")%>','<%=""%>');
-      <%System.out.print("*****     "+request.getParameter("cNombreFRM"));%>
-      <%System.out.print("*****     "+request.getParameter("cId"));%>
+      <%//System.out.print("*****     "+request.getParameter("cNombreFRM"));%>
+      <%//System.out.print("*****     "+request.getParameter("cId"));%>
     </script>

@@ -448,7 +448,7 @@ function fShowFormularioADV() {
 	tCell.innerHTML = "*Oficina donde su solicitud será atendida:";
 	tCell.className = "EEtiqueta";
 	tCell = tRw.insertCell();
-	tCell.innerHTML = Select("iCveOficina", "onChangeOf();");
+	tCell.innerHTML = Select("iCveOficina", "");
 
 	/*
 	 * tRw = tBarraWizard.insertRow(); tCell = tRw.insertCell(); tCell.innerHTML =
