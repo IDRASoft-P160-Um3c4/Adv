@@ -492,14 +492,8 @@ public class TDINTSolicitud extends DAOBase {
 	
 	// ...
 	lPStmt = conn.prepareStatement(lSQL);
-	
-	Vector vcDocMax = new Vector ();
-	vcDocMax = this.findByNessted("IIDGESTORDOCUMENTO","SELECT max(IIDGESTORDOCUMENTO) as IIDGESTORDOCUMENTO FROM GRLDOCFOLIOCM", conn);
-	
-	if(vcDocMax.size()>0){		
-		int iICVEVEHDOCDIG =(((TVDinRep) vcDocMax.get(0)).getInt("IIDGESTORDOCUMENTO"))+1; 
-		vData.put("ICVEDOCDIG", iICVEVEHDOCDIG);
-		lPStmt.setInt(1,vData.getInt("ICVEDOCDIG"));
+			 
+		lPStmt.setInt(1,vData.getInt("IIDGESTORDOCUMENTO"));
 		lPStmt.setTimestamp(2, fecha.getThisTime());
 		lPStmt.setString(3, (vData.getString("CDOCUMENTO").length()>=20?vData.getString("CDOCUMENTO").substring(0,19):vData.getString("CDOCUMENTO")));
 		lPStmt.setString(4, vData.getString("CNOMARCHIVO").length()>=100?vData.getString("CNOMARCHIVO").substring(0,99):vData.getString("CNOMARCHIVO"));
@@ -510,7 +504,6 @@ public class TDINTSolicitud extends DAOBase {
 		lPStmt.setInt(8, vData.getInt("ICVEREQUISITO"));
 
 		lPStmt.executeUpdate();
-	}
 	
 	    if (cnNested == null) {
 	        conn.commit(); 
@@ -656,10 +649,10 @@ public class TDINTSolicitud extends DAOBase {
 		    
 		    lPStmt = conn.prepareStatement(lSQL);
 		    
-		    //System.out.print(vData.getInt("ICVEDOCHIST"));
-		    //System.out.print(vData.getInt("ICVEUSUARIO"));
-		    //System.out.print(vData.getString("fName"));
-		    //System.out.print(vData.getInt("ICVEHISTADV"));
+		    System.out.print(vData.getInt("ICVEDOCHIST"));
+		    System.out.print(vData.getInt("ICVEUSUARIO"));
+		    System.out.print(vData.getString("fName"));
+		    System.out.print(vData.getInt("ICVEHISTADV"));
 		    
 		    
 			lPStmt.setInt(1,vData.getInt("ICVEDOCHIST"));

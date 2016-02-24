@@ -71,7 +71,7 @@ public StringBuffer fAprovacionMaritima(String cQuery){
                   "LEFT JOIN INSDISPCATEGORIA CAT ON CAT.ICVECATEGORIA = D.ICVECATEGORIA "+
                   "LEFT JOIN INSDISPCARACTERISTICA CAR ON CAR.ICVECARACTERISTICA = D.ICVECARACTERISTICA "+
                   "Where d.iEjercicio = " + cParametros[0]+" AND D.INUMDISPOSITIVO = "+cParametros[1];
-  //System.out.print("*****    \n\n"+cQuery1+"\n\n");
+  System.out.print("*****    \n\n"+cQuery1+"\n\n");
   try{
     vRegs = super.FindByGeneric("",cQuery1, dataSourceName);
   }catch(SQLException ex){

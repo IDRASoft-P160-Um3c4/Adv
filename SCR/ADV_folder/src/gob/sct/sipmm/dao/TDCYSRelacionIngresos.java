@@ -551,7 +551,7 @@ public Vector findRelacionIng(TVDinRep vData) throws DAOException{
        vBimestre.put("dImpTotal",dImporte);
        vBimestre.put("lCompleto",lCompleto);
        vcIngresos1.addElement(vBimestre);
-//       //System.out.print("***** Relación Ingresos  " + ((TVDinRep)vcIngresos1.get(0)).toHashMap().toString());
+//       System.out.print("***** Relación Ingresos  " + ((TVDinRep)vcIngresos1.get(0)).toHashMap().toString());
     }
 
   } catch(Exception e){

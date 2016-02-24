@@ -79,8 +79,9 @@ protected void doGet(HttpServletRequest request,HttpServletResponse response) th
       if(conn != null){
     	  JasperRunManager.runReportToPdfStream(reportStream,servletOutputStream,parameterMap,conn);
         conn.close();
-      }else
+      }else{
         //System.out.print("Conn es nula");
+      }
       request.getSession().removeAttribute("cNombreReporte");
       request.getSession().removeAttribute("hashParametros");
       response.setContentType("application/pdf");

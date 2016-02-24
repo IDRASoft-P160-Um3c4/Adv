@@ -19,7 +19,10 @@ var existInput = false;
 var bloqueaGuardar = false;
 var cPagRet;
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
-function fBefLoad() {
+function fBefLoad(cMsgError) {
+	if (cMsgError != undefined)
+		msgErr = cMsgError;
+
 	cPaginaWebJS = "pgSubirOficioSeguimiento.js";
 	cPagRet = "pgSubirOficioSeguimiento";
 }
@@ -110,6 +113,24 @@ function fNavega() {
 }
 // RECEPCIN de Datos de provenientes del Servidor
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
+
+	if (msgErr != "") {// si ocurre un error en el servidor al cargar los
+		// archivos
+		fAlert(msgErr);
+		msgErr = "";
+	}
+
+	if (cError == "Guardar") {
+		fAlert("Existió un error en el Guardado!\n");
+		return;
+	} else if (cError == "Borrar") {
+		fAlert("Existió un error en el Borrado!");
+		return;
+	} else if (cError == "Cascada") {
+		fAlert("El registro es utilizado por otra entidad, no es posible eliminarlo!");
+		return;
+	}
+
 	if (cId == "Listado" && cError == "") {
 		fShowDatos(aRes);
 	}
@@ -197,8 +218,8 @@ function fShowDatos(aRes) {
 		tCell = tRw.insertCell();
 		bloqueaGuardar = false;
 		tCell.innerHTML = '<input id="file_id_' + frm.iCveOfiSeg.value
-				+ '" type="file" onChange="checkFile(this,'
-				+ frm.iCveOfiSeg.value + ')" name="fileButonADV'+frm.iCveOfiSeg.value+'" size="25">';
+				+ '" type="file" name="fileButonADV'
+				+ frm.iCveOfiSeg.value + '" size="25">';
 
 		obj = [ nomOfic, frm.iCveOfiSeg.value, "0", "0" ];
 		arrTmp.push(obj);
@@ -230,22 +251,6 @@ function validaAchivos() {
 		valRet = true;
 	}
 
-	var valBand = false;
-
-	if (existInput == true)
-		valBand = validaTamInvalid(arrTmp);
-
-	if (valBand == true) {
-		valRet = true;
-	}
-
-	if (existInput == true)
-		valBand = checkAllFiles(arrTmp);
-
-	if (valBand == true) {
-		valRet = true;
-	}
-
 	return valRet;
 }
 
@@ -264,21 +269,11 @@ function validaDocExt(arrayDocsName) {
 				msgErr += "\n- Existen documentos que no cumplen con el formato PDF. Favor de verificarlos.";
 				return true;
 			}
-
 		}
 	}
 	return false;
 }
 
-function validaTamInvalid(arrF) {
-	for ( var ab = 0; ab < arrF.length; ab++) {
-		if (arrF[ab][2] == "1") {
-			msgErr += "\n- Existen documentos que exceden el tamaño máximo de 15Mb. Favor de verificarlos.";
-			return true;
-		}
-	}
-	return false;
-}
 
 function getIdx(id) {
 
@@ -312,56 +307,4 @@ function fValidaTodo() {
 	if (msgErr != "")
 		fAlert(msgErr);
 	return ret;
-}
-
-function checkFile(e, idx) {
-
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-
-		for ( var i = 0; i < arrTmp.length; i++) {
-			if (arrTmp[i][1] == idx) {
-				arrTmp[i][3] = size;
-				break;
-			}
-		}
-
-		if (size > (15 * 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			for ( var i = 0; i < arrTmp.length; i++) {
-				if (arrTmp[i][1] == idx) {
-					arrTmp[i][2] = "1";
-					break;
-				}
-			}
-			return;
-		}
-	}
-	
-	for ( var i = 0; i < arrTmp.length; i++) {
-		if (arrTmp[i][1] == idx) {
-			arrTmp[i][2] = "0";
-			break;
-		}
-	}
-
-}
-
-function checkAllFiles(arrF) {
-	var totSize = 0;
-
-	for ( var i = 0; i < arrF.length; i++) {
-		totSize += parseInt(arrF[i][3]);
-	}
-
-	if (totSize > (50 * 1024 * 1024)) {
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-
-	return false;
 }

@@ -45,7 +45,7 @@ public class TDTRAOpnEntTramite extends DAOBase{
    */
   public TVDinRep insert(TVDinRep vData,Connection cnNested) throws
       DAOException{
-    //System.out.print("...DAO 1..");
+    System.out.print("...DAO 1..");
     DbConnection dbConn = null;
     Connection conn = cnNested;
     PreparedStatement lPStmt = null;
@@ -84,7 +84,7 @@ public class TDTRAOpnEntTramite extends DAOBase{
       }
 
 //Insertar Registro en GRLFolioXSegtoEnt
-      //System.out.print("...DAO 2..");
+      System.out.print("...DAO 2..");
       String lSQL2 =
           "insert into GRLFolioXSegtoEnt(iCveSegtoEntidad,iConsecutivoSegtoRef) values (?,?)";
 
@@ -104,7 +104,7 @@ public class TDTRAOpnEntTramite extends DAOBase{
       if(cnNested == null){
         conn.commit();
       }
-      //System.out.print("...DAO 3..");
+      System.out.print("...DAO 3..");
 // Insertar registro en TRAOpnEntTRamite
       String lSQL1 =
             "insert into TRAOpnEntTramite(iEjercicioSolicitud,iNumSolicitud,iCveOpinionEntidad,iCveSegtoEntidad) values (?,?,?,?)";
@@ -124,7 +124,7 @@ public class TDTRAOpnEntTramite extends DAOBase{
               conn.commit();
             }
 
-      //System.out.print("...DAO 4..");
+      System.out.print("...DAO 4..");
     } catch(Exception ex){
       warn("insert",ex);
       if(cnNested == null){

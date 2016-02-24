@@ -60,7 +60,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))
@@ -110,7 +110,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))
@@ -177,7 +177,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))
@@ -245,7 +245,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))
@@ -321,7 +321,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))
@@ -431,7 +431,7 @@ public class TDRPODoctos extends DAOBase{
 			}
 
 		}else {
-			//System.out.print("No Encontro Datos");
+			System.out.print("No Encontro Datos");
 		}
 
 		if(!cMensaje.equals(""))

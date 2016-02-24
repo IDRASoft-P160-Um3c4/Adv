@@ -22,7 +22,7 @@
      cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
    }
    fSetWindowTitle();
-   cPermisosPag = fGetPermisos("pg111020031.js");
+   cPermisosPag = fGetPermisos("pg111020030.js");
  }
  // SEGMENTO Definición de la página (Definición Mandatoria)
  function fDefPag(){

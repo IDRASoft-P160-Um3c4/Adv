@@ -447,7 +447,7 @@ public class TDGRLRegistroPNC extends DAOBase{
         lPStmt.setInt(10,vData.getInt("iCveOficinaUsr"));
         lPStmt.setInt(11,vData.getInt("iCveDeptoUsr"));
         lPStmt.setInt(12,vData.getInt("iCveProceso"));
-         //System.out.print("*****    lAgregarAPNC:  "+lAgregarAPNC);
+         System.out.print("*****    lAgregarAPNC:  "+lAgregarAPNC);
         if(lAgregarAPNC == false)
            lPStmt.executeUpdate();
         lPStmt.close();
@@ -455,14 +455,14 @@ public class TDGRLRegistroPNC extends DAOBase{
         //Agrega Causas de PNC
         try{
           if(vData.getInt("lResuelto")==0){
-            //System.out.print("*****   0   " + vData.getString("cCveCarac"));
+            System.out.print("*****   0   " + vData.getString("cCveCarac"));
             vData.put("iCveCausaPNC",vData.getString("cCveCarac"));
             vData.put("iCveUsuCorrige","0,0,");
             vData.put("dtResolucion","null");
           }
           else{
             //        vData1 = vData;
-            //System.out.print("*****   1   " + vData.getString("cCveCarac"));
+            System.out.print("*****   1   " + vData.getString("cCveCarac"));
             vData.put("iCveCausaPNC",vData.getString("cCveCarac"));
             vData.put("iCveUsuCorrige",
                       vData.getInt("iCveUsuRegistro") + "," +

@@ -9,6 +9,7 @@ var frm;
 var aResTemp = new Array();
 var iCveEtapa = 0;
 var recibeDGDC = false;
+var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg111020110.js";
@@ -16,6 +17,7 @@ function fBefLoad() {
 	// cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 	// }
 	cTitulo = "RECEPCIÓN DE TRÁMITES EN D.G.D.C.";
+	cPermisoPag = fGetPermisos(cPaginaWebJS);
 	fSetWindowTitle();
 }
 // SEGMENTO Definición de la página (Definición Mandatoria)
@@ -47,25 +49,60 @@ function fDefPag() {
 	TDEtiCampo(false, "EEtiqueta", 0, "Folio DGST:", "cFolDGST", "", 30, 50,
 			"Trámite", "fMayus(this);");
 	FTD();
-	TDEtiCampo(false, "EEtiqueta", 0, "Referencia CSCT:", "cRefDGST", "", 30, 50,
-			"Trámite", "fMayus(this);");
+	TDEtiCampo(false, "EEtiqueta", 0, "Referencia CSCT:", "cRefDGST", "", 30,
+			50, "Trámite", "fMayus(this);");
 	FTD();
-	TDEtiCampo(false,"EEtiqueta",0,"Fecha Referencia CSCT:","dtDGST","",50,10,"Fecha Referencia CSCT","fMayus(this);","","",false,"",0);
+	TDEtiCampo(false, "EEtiqueta", 0, "Fecha Referencia CSCT:", "dtDGST", "",
+			50, 10, "Fecha Referencia CSCT", "fMayus(this);", "", "", false,
+			"", 0);
 	FTD();
-	
+
 	FITR();
-	TDEtiAreaTexto(false, "EEtiqueta", 0, "Director DGAJL:", 50, 2,
-			"cDirDGAJL", "", "TooTip", "", "fMayus(this);",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "", 0);
-	FTD();
-	TDEtiAreaTexto(false, "EEtiqueta", 0, "Director DGST:", 50, 2, "cDirDGST",
-			"", "TooTip", "", "fMayus(this);", 'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+	TDEtiAreaTexto(
+			false,
+			"EEtiqueta",
+			0,
+			"Director DGAJL:",
+			50,
+			2,
+			"cDirDGAJL",
+			"",
+			"TooTip",
+			"",
+			"fMayus(this);",
+			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
 			true, true, true, "", 0);
 	FTD();
-	TDEtiAreaTexto(false, "EEtiqueta", 0, "Director general DGDC:", 50, 2, "cDirGen",
-			"", "TooTip", "", "fMayus(this);", 'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+	TDEtiAreaTexto(
+			false,
+			"EEtiqueta",
+			0,
+			"Director DGST:",
+			50,
+			2,
+			"cDirDGST",
+			"",
+			"TooTip",
+			"",
+			"fMayus(this);",
+			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
 			true, true, true, "", 0);
-		FTDTR();
+	FTD();
+	TDEtiAreaTexto(
+			false,
+			"EEtiqueta",
+			0,
+			"Director general DGDC:",
+			50,
+			2,
+			"cDirGen",
+			"",
+			"TooTip",
+			"",
+			"fMayus(this);",
+			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+			true, true, true, "", 0);
+	FTDTR();
 	FinTabla();
 	FTDTR();
 	ITRTD("", 0, "", "30", "center", "top");
@@ -174,7 +211,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 			fAlert("\nSe ha(n) recibido la solicitud(es) en la D.G.D.C. con éxito, ahora es posible realizar la evaluación jurídica y técnica.");
 			recibeDGDC = false;
 		}
-		
+
 		if (FRMListado.fGetLength() > 0)
 			FRMPanel.fSetTraStatus("Mod,");
 		else
@@ -189,20 +226,21 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 			frm.cDirDGAJL.value = aRes[0][4];
 			frm.cDirDGST.value = aRes[0][5];
 			frm.cDirGen.value = aRes[0][6];
-			frm.dtDGST.value = aRes[0][7];;
+			frm.dtDGST.value = aRes[0][7];
+			;
 			frm.cRefDGST.value = aRes[0][8];
-		}else{
-			frm.cFolDGAJL.value ="";
-			frm.cDirDGAJL.value ="";
-			frm.cFolDGST.value ="";
-			frm.cDirDGST.value ="";
-			frm.cDirGen.value ="";
-			frm.dtDGST.value ="";
-			frm.cRefDGST.value ="";
+		} else {
+			frm.cFolDGAJL.value = "";
+			frm.cDirDGAJL.value = "";
+			frm.cFolDGST.value = "";
+			frm.cDirDGST.value = "";
+			frm.cDirGen.value = "";
+			frm.dtDGST.value = "";
+			frm.cRefDGST.value = "";
 		}
 
 	}
-	
+
 	if (cId == "guardaDatosEnvios" && cError == "") {
 		frm.cFolDGAJL.disabled = true;
 		frm.cDirDGAJL.disabled = true
@@ -211,14 +249,12 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 		frm.cDirGen.disabled = true;
 		frm.dtDGST.disabled = true;
 		frm.cRefDGST.disabled = true;
-		
+
 		if (FRMListado.fGetLength() > 0)
 			FRMPanel.fSetTraStatus("Mod,");
 		else
 			FRMPanel.fSetTraStatus(",");
 	}
-	
-	
 
 	fResOficDeptoUsr(aRes, cId, cError);
 }
@@ -291,6 +327,12 @@ function fDeptoUsrOnChangeLocal() {
 }
 
 function fRecibeSolicitud() {
+
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
+
 	frm.iEjercicio.value = "";
 	frm.iNumSolicitud.value = "";
 	frm.iCveTramite.value = "";
@@ -386,7 +428,6 @@ function fCompruebaFolio(iEjer, iNumSol) {
 	}
 }
 
-
 function fCancelarEditar() {
 	if (lGuardar) {
 		lGuardar = false;
@@ -399,7 +440,7 @@ function fCancelarEditar() {
 }
 
 function fCancelar() {
-		
+
 	lModificando = false;
 	if (FRMListado.fGetLength() > 0)
 		FRMPanel.fSetTraStatus("Mod,");
@@ -410,7 +451,7 @@ function fCancelar() {
 
 	fDisabled(false);
 	fDisabled(true, "iEjercicio,iNumSolicitud,");
-	
+
 	frm.cFolDGAJL.disabled = true;
 	frm.cDirDGAJL.disabled = true
 	frm.cFolDGST.disabled = true;
@@ -434,8 +475,8 @@ function fModificar() {
 }
 
 function fGuardarA() {
-	if(frm.iEjercicio.value!=""&&frm.iNumSolicitud.value!=""){
-		frm.hdBoton.value ="guardaDatosEnvios"; 
+	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "") {
+		frm.hdBoton.value = "guardaDatosEnvios";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";
 		frm.hdNumReg.value = 1000;

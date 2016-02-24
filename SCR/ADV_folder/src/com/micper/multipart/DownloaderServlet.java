@@ -43,20 +43,20 @@ public class DownloaderServlet extends HttpServlet{
         byte[] archivo = null;
         DBManager dbm = new DBManager();
         try{
-        //System.out.print("DOWNLOADER");
+        System.out.print("DOWNLOADER");
         if(request.getParameter("cExpediente") != null){
-        //System.out.print("Expediente-"+(String)request.getParameter("cExpediente"));
-        //System.out.print("iCveClasifExped"+request.getParameter("iCveClasifExped").toString());
-        //System.out.print("iNumDocto"+request.getParameter("iNumDocto").toString());
+        System.out.print("Expediente-"+(String)request.getParameter("cExpediente"));
+        System.out.print("iCveClasifExped"+request.getParameter("iCveClasifExped").toString());
+        System.out.print("iNumDocto"+request.getParameter("iNumDocto").toString());
 
         archivo = dbm.getFile((String)request.getParameter("cExpediente"),
                            new Integer(request.getParameter("iCveClasifExped").toString()).intValue(),
                            new Integer(request.getParameter("iNumDocto").toString()).intValue());
         }
         else{
-          //System.out.print("iAnioBoleta: "+request.getParameter("iAnioBoleta"));
-          //System.out.print("iNumBoleta: "+request.getParameter("iNumBoleta"));
-          //System.out.print("iCveEstacion: "+request.getParameter("iCveEstacion"));
+          System.out.print("iAnioBoleta: "+request.getParameter("iAnioBoleta"));
+          System.out.print("iNumBoleta: "+request.getParameter("iNumBoleta"));
+          System.out.print("iCveEstacion: "+request.getParameter("iCveEstacion"));
 
           archivo = dbm.getFile(Integer.parseInt(request.getParameter("iAnioBoleta")),
                                 Integer.parseInt(request.getParameter("iNumBoleta")),

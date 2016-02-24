@@ -501,7 +501,7 @@ public class TDGRLPersona extends DAOBase {
 
 			vData.addPK(vData.getString("iCvePersona"));
 
-			//System.out.print(vData.getInt("hdiTipo"));
+			System.out.print(vData.getInt("hdiTipo"));
 			
 			lPStmt = conn.prepareStatement(lSQL);
 			lPStmt.setString(1, vData.getString("cRFC"));

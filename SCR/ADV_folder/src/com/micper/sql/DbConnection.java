@@ -37,7 +37,7 @@ private DbConnection dbConnection;
    InitialContext iCtx = new InitialContext();
    this.dataSource = (javax.sql.DataSource) iCtx.lookup(dataSourceName);
  }catch(Exception e){
-   //System.out.print("Error en constructor de DBConnection: ");
+   System.out.print("Error en constructor de DBConnection: ");
    e.printStackTrace();
  }
   }
@@ -61,7 +61,7 @@ private DbConnection dbConnection;
       try {
         conn.close();
       } catch (Exception ex) {
-        //System.out.print("no se pudo cerrar connection: "+dataSourceName);
+        System.out.print("no se pudo cerrar connection: "+dataSourceName);
         ex.printStackTrace();
       }
 

@@ -23,13 +23,13 @@ var DICTAMEN_FACTIBILIDAD = 4;
 var RESOLUCION_TRAMITE = 5;
 var PERMISO = 6;
 
-var ENVIO_DGST=11;
-var MEMO_DAJL=12;
-var ENTREGA_CONCE=13;
-var ENTREGA_SCT=14;
-var ENTREGA_SCT_PERM=15;
-var ENTREGA_PERM=16;
-var NOTIF_PNC=17;
+var ENVIO_DGST = 11;
+var MEMO_DAJL = 12;
+var ENTREGA_CONCE = 13;
+var ENTREGA_SCT = 14;
+var ENTREGA_SCT_PERM = 15;
+var ENTREGA_PERM = 16;
+var NOTIF_PNC = 17;
 
 var tramInt = false;
 var existInput = false;
@@ -37,7 +37,11 @@ var arrTmp = new Array();
 var msgErr = "";
 
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
-function fBefLoad() {
+function fBefLoad(cMsgError) {
+
+	if (cMsgError != undefined)
+		msgErr = cMsgError;
+
 	cPaginaWebJS = "pgSubirOficiosADV.js";
 	cPagRet = "pgSubirOficiosADV";
 	cTitulo = "ANEXO DE OFICIOS AL TRÁMITE";
@@ -125,6 +129,23 @@ function fNavega() {
 // RECEPCIN de Datos de provenientes del Servidor
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
 
+	if (msgErr != "") {// si ocurre un error en el servidor al cargar los
+		// archivos
+		fAlert(msgErr);
+		msgErr = "";
+	}
+
+	if (cError == "Guardar") {
+		fAlert("Existió un error en el Guardado!\n");
+		return;
+	} else if (cError == "Borrar") {
+		fAlert("Existió un error en el Borrado!");
+		return;
+	} else if (cError == "Cascada") {
+		fAlert("El registro es utilizado por otra entidad, no es posible eliminarlo!");
+		return;
+	}
+
 	if (iID == "esTramInt")
 		tramInt = true;
 
@@ -206,10 +227,10 @@ function fShowDatos(aRes) {
 	var hasMemoDAJL = false;
 	var hasEntConce = false;
 	var hasEntSCT = false;
-	var hasEntSCTPerm= false;
+	var hasEntSCTPerm = false;
 	var hasEntPerm = false;
-	var hasNotifPNC= false;
-	
+	//var hasNotifPNC = false;
+
 	for ( var i = 0; i < aRes.length; i++) {
 		switch (parseInt(aRes[i][0])) {
 		case ACUSE_DE_SOLICITUD:
@@ -227,7 +248,7 @@ function fShowDatos(aRes) {
 		case PERMISO:
 			hasPermiso = true;
 			break;
-			
+
 		case ENVIO_DGST:
 			hasEnvioDGST = true;
 			break;
@@ -246,10 +267,10 @@ function fShowDatos(aRes) {
 		case ENTREGA_PERM:
 			hasEntPerm = true;
 			break;
-		case NOTIF_PNC:	
-			hasNotifPNC = true;
-			break;
-		}	
+//		case NOTIF_PNC:
+//			hasNotifPNC = true;
+//			break;
+		}
 	}
 
 	var idx = 0;
@@ -266,8 +287,7 @@ function fShowDatos(aRes) {
 			tCell.className = "EEtiqueta";
 			tCell = tRw.insertCell();
 			tCell.innerHTML = '<input id="file_id_' + ACUSE_DE_SOLICITUD
-					+ '" type="file" onChange="checkFile(this,' + idx
-					+ ')" name="fileButonADV' + ACUSE_DE_SOLICITUD
+					+ '" type="file" name="fileButonADV' + ACUSE_DE_SOLICITUD
 					+ '" size="25">';
 			idx++;
 		}
@@ -283,8 +303,7 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + CONSTANCIA_NO_AFECTACION
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + CONSTANCIA_NO_AFECTACION
+				+ '" type="file" name="fileButonADV' + CONSTANCIA_NO_AFECTACION
 				+ '" size="25">';
 		idx++;
 	}
@@ -299,8 +318,7 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + DICTAMEN_FACTIBILIDAD
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + DICTAMEN_FACTIBILIDAD
+				+ '" type="file" name="fileButonADV' + DICTAMEN_FACTIBILIDAD
 				+ '" size="25">';
 		idx++;
 	}
@@ -315,8 +333,7 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + RESOLUCION_TRAMITE
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + RESOLUCION_TRAMITE + '" size="25">';
+				+ '" type="file" name="fileButonADV' + RESOLUCION_TRAMITE + '" size="25">';
 		idx++;
 	}
 
@@ -330,11 +347,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + PERMISO
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + PERMISO + '" size="25">';
+				+ '" type="file" name="fileButonADV' + PERMISO + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasEnvioDGST == false) {
 		obj = [ "envioDGST", ENVIO_DGST, "0", "0" ];
 		arrTmp.push(obj);
@@ -345,11 +361,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + ENVIO_DGST
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + ENVIO_DGST + '" size="25">';
+				+ '" type="file" name="fileButonADV' + ENVIO_DGST + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasMemoDAJL == false) {
 		obj = [ "memoDAJL", MEMO_DAJL, "0", "0" ];
 		arrTmp.push(obj);
@@ -360,11 +375,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + MEMO_DAJL
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + MEMO_DAJL + '" size="25">';
+				+ '" type="file" name="fileButonADV' + MEMO_DAJL + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasEntConce == false) {
 		obj = [ "entConce", ENTREGA_CONCE, "0", "0" ];
 		arrTmp.push(obj);
@@ -375,11 +389,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + ENTREGA_CONCE
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + ENTREGA_CONCE + '" size="25">';
+				+ '" type="file" name="fileButonADV' + ENTREGA_CONCE + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasEntSCT == false) {
 		obj = [ "entSCT", ENTREGA_SCT, "0", "0" ];
 		arrTmp.push(obj);
@@ -390,11 +403,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + ENTREGA_SCT
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + ENTREGA_SCT + '" size="25">';
+				+ '" type="file" name="fileButonADV' + ENTREGA_SCT + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasEntSCTPerm == false) {
 		obj = [ "entSCTPerm", ENTREGA_SCT_PERM, "0", "0" ];
 		arrTmp.push(obj);
@@ -405,11 +417,10 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + ENTREGA_SCT_PERM
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + ENTREGA_SCT_PERM + '" size="25">';
+				+ '" type="file" name="fileButonADV' + ENTREGA_SCT_PERM + '" size="25">';
 		idx++;
 	}
-	
+
 	if (hasEntPerm == false) {
 		obj = [ "entPerm", ENTREGA_PERM, "0", "0" ];
 		arrTmp.push(obj);
@@ -420,27 +431,26 @@ function fShowDatos(aRes) {
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		tCell.innerHTML = '<input id="file_id_' + ENTREGA_PERM
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + ENTREGA_PERM + '" size="25">';
+				+ '" type="file" name="fileButonADV' + ENTREGA_PERM + '" size="25">';
 		idx++;
 	}
-	
-	if (hasNotifPNC == false) {
-		obj = [ "notifPNC", NOTIF_PNC, "0", "0" ];
-		arrTmp.push(obj);
 
-		tRw = tBarraWizard.insertRow();
-		tCell = tRw.insertCell();
-		tCell.innerHTML = "NOTIFICACIÓN DE PNC: ";
-		tCell.className = "EEtiqueta";
-		tCell = tRw.insertCell();
-		tCell.innerHTML = '<input id="file_id_' + NOTIF_PNC
-				+ '" type="file" onChange="checkFile(this,' + idx
-				+ ')" name="fileButonADV' + NOTIF_PNC+ '" size="25">';
-	}
-	
+//	if (hasNotifPNC == false) {
+//		obj = [ "notifPNC", NOTIF_PNC, "0", "0" ];
+//		arrTmp.push(obj);
+//
+//		tRw = tBarraWizard.insertRow();
+//		tCell = tRw.insertCell();
+//		tCell.innerHTML = "NOTIFICACIÓN DE PNC: ";
+//		tCell.className = "EEtiqueta";
+//		tCell = tRw.insertCell();
+//		tCell.innerHTML = '<input id="file_id_' + NOTIF_PNC
+//				+ '" type="file" name="fileButonADV' + NOTIF_PNC + '" size="25">';
+//	}
 
-	 bloqueaGuardar = (hasAcuse&hasConstancia&hasDictamen&hasResol&hasPermiso&hasEnvioDGST&hasMemoDAJL&hasEntConce&hasEntSCT&hasEntSCTPerm&hasEntPerm&hasNotifPNC);
+	bloqueaGuardar = (hasAcuse & hasConstancia & hasDictamen & hasResol
+			& hasPermiso & hasEnvioDGST & hasMemoDAJL & hasEntConce & hasEntSCT
+			& hasEntSCTPerm & hasEntPerm);// & hasNotifPNC);
 
 	if (bloqueaGuardar == true) {
 		FRMPanel.fSetTraStatus("Disabled");
@@ -464,22 +474,6 @@ function validaAchivos() {
 	}
 
 	if (validaDocExt(arrayFilesNames) == true) {
-		valRet = true;
-	}
-
-	var valBand = false;
-
-	if (existInput == true)
-		valBand = validaTamInvalid(arrTmp);
-
-	if (valBand == true) {
-		valRet = true;
-	}
-
-	if (existInput == true)
-		valBand = checkAllFiles(arrTmp);
-
-	if (valBand == true) {
 		valRet = true;
 	}
 
@@ -507,15 +501,6 @@ function validaDocExt(arrayDocsName) {
 	return false;
 }
 
-function validaTamInvalid(arrF) {
-	for ( var ab = 0; ab < arrF.length; ab++) {
-		if (arrF[ab][9] == "1") {
-			msgErr += "\n- Existen documentos que exceden el tamaño máximo de 15Mb. Favor de verificarlos.";
-			return true;
-		}
-	}
-	return false;
-}
 
 function getIdx(id) {
 
@@ -549,41 +534,4 @@ function fValidaTodo() {
 	if (msgErr != "")
 		fAlert(msgErr);
 	return ret;
-}
-
-function checkFile(e, idx) {
-
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-
-		arrTmp[idx][3] = size;
-
-		if (size > (15 * 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			arrTmp[idx][2] = "1";
-			return;
-		}
-	}
-
-	arrTmp[idx][2] = "0";
-	arrTmp[idx][3] = "0";
-}
-
-function checkAllFiles(arrF) {
-	var totSize = 0;
-
-	for ( var i = 0; i < arrF.length; i++) {
-		totSize += parseInt(arrF[i][3]);
-	}
-
-	if (totSize > (50 * 1024 * 1024)) {
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-
-	return false;
 }

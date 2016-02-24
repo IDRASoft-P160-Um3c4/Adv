@@ -89,7 +89,7 @@ public class TDCYSOficios extends DAOBase{
 		iMovProcedimiento = Integer.parseInt(aFiltros[2],10);
 
 		Vector vOficioAntAnt = spOficio.findByProAntAntOficioNotRec(iEjercicio,iMovProcedimiento);
-		//System.out.print("\n\n vOficioAntAnt size  " + vOficioAntAnt.size());
+		System.out.print("\n\n vOficioAntAnt size  " + vOficioAntAnt.size());
 		if(vOficioAntAnt.size() > 0){
 			TVDinRep vDinOficAntAnt = (TVDinRep)vOficioAntAnt.get(0);
 			if(vDinOficAntAnt.getDate("dtAsignacion")!=null){
@@ -130,7 +130,7 @@ public class TDCYSOficios extends DAOBase{
 			} else{
 				rep.comRemplaza("[cFechaFolio]"," ");
 			}
-			//System.out.print("NotAsigna" + vdinRep.getDate("dtNotAsignacion"));
+			System.out.print("NotAsigna" + vdinRep.getDate("dtNotAsignacion"));
 			if(vdinRep.getDate("dtNotAsignacion") != null){
 
 				dtNotificacion = vdinRep.getDate("dtNotAsignacion");
@@ -156,14 +156,14 @@ public class TDCYSOficios extends DAOBase{
 			rep.comRemplaza("[cAreaSolic]",cArea);
 		}
 		Vector vTitulo = titTitulo.findByInfTitulo(Integer.parseInt(aFiltros[0],10));
-		//System.out.print("\n\n\n vTitulo size" + vTitulo.size());
+		System.out.print("\n\n\n vTitulo size" + vTitulo.size());
 		if(vTitulo.size() > 0){
 			TVDinRep vdinTit = (TVDinRep)vTitulo.get(0);
 			// rep.comRemplaza("[]");
 			rep.comRemplaza("[cTipoTitulo]",vdinTit.getString("cDscTipoTitulo"));
 			rep.comRemplaza("[cNumTitulo]",vdinTit.getString("cNumTitulo"));
 			dtPublicacionDOF = vdinTit.getDate("dtPublicacionDOF");
-			//System.out.print("FEchaPublicacion "  + dtPublicacionDOF);
+			System.out.print("FEchaPublicacion "  + dtPublicacionDOF);
 			if(vdinTit.getDate("dtPublicacionDOF")!=null){
 				rep.comRemplaza("[dtPublicacionDOF]",
 						String.valueOf(Fecha.getIntDay(dtPublicacionDOF)) +

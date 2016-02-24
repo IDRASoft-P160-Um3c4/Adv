@@ -73,11 +73,11 @@ public class TDGRLAseguradora extends DAOBase{
       lPStmt.setInt    (3,vData.getInt("iCveDomicilio"));
       lPStmt.setString (4,vData.getString("cObses"));
       lPStmt.setInt    (5,vData.getInt("lActivo"));
-      /*//System.out.print("*****   iCveAseguradora "+vData.getString("iCveAseguradora"));
-      //System.out.print("*****   iCvePersona     "+vData.getString("iCvePersona"));
-      //System.out.print("*****   iCveDomicilio   "+vData.getString("iCveDomicilio"));
-      //System.out.print("*****   cObses          "+vData.getString("cObses"));
-      //System.out.print("*****   lActivo         "+vData.getString("lActivo"));*/
+      /*System.out.print("*****   iCveAseguradora "+vData.getString("iCveAseguradora"));
+      System.out.print("*****   iCvePersona     "+vData.getString("iCvePersona"));
+      System.out.print("*****   iCveDomicilio   "+vData.getString("iCveDomicilio"));
+      System.out.print("*****   cObses          "+vData.getString("cObses"));
+      System.out.print("*****   lActivo         "+vData.getString("lActivo"));*/
       lPStmt.executeUpdate();
       if(cnNested == null){
         conn.commit();
@@ -210,7 +210,7 @@ public class TDGRLAseguradora extends DAOBase{
       lPStmt.setInt(1,vData.getInt("iCvePersona"));
       lPStmt.setInt(2,vData.getInt("iCveDomicilio"));
       lPStmt.setString(3,vData.getString("cObses"));
-      //System.out.print("*****    cObses "+vData.getString("cObses"));
+      System.out.print("*****    cObses "+vData.getString("cObses"));
       lPStmt.setInt(4,vData.getInt("lActivo"));
       lPStmt.setInt(5,vData.getInt("iCveAseguradora"));
       lPStmt.executeUpdate();

@@ -31,7 +31,7 @@ var arrayDocReq = null;
 var obtenSentido = true;
 var numSolADV = -1;
 
-var miArray = null;
+var diasVT = 10; //por default
 
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
@@ -127,14 +127,36 @@ function fDefPag() {
 	TDEtiCampo(true, "EEtiqueta", 0, " Fecha de la Visita Técnica:",
 			"dtVisita", "", 10, 10, " Fecha de la Visita Técnica",
 			"fMayus(this);", "", "", false, "", 0);
-	TDEtiAreaTexto(true, "EEtiqueta", 1, "Destino:", 49, 4, "cHechosTramite",
-			"", "Destino de la obra", "fMayus(this);", "",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "ECampo", 0);
+	TDEtiAreaTexto(
+			true,
+			"EEtiqueta",
+			1,
+			"Destino:",
+			49,
+			4,
+			"cHechosTramite",
+			"",
+			"Destino de la obra",
+			"fMayus(this);",
+			"",
+			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+			true, true, true, "ECampo", 0);
 	FITR();
 	TDEtiSelect(true, "EEtiqueta", 0, "Autopista:", "iCveCarretera", "");
-	TDEtiAreaTexto(true, "EEtiqueta", 1, "Cadenamientos y sentidos:", 49, 4,
-			"tKmSentido", "", "Cadenamientos y sentidos", "fMayus(this);", "",
-			'onchange="fMxTx(this,745);" onkeydown="fMxTx(this,745);" onblur="fMxTx(this,745);"', true, true, true, "ECampo", 0);
+	TDEtiAreaTexto(
+			true,
+			"EEtiqueta",
+			1,
+			"Cadenamientos y sentidos:",
+			49,
+			4,
+			"tKmSentido",
+			"",
+			"Cadenamientos y sentidos",
+			"fMayus(this);",
+			"",
+			'onchange="fMxTx(this,745);" onkeydown="fMxTx(this,745);" onblur="fMxTx(this,745);"',
+			true, true, true, "ECampo", 0);
 
 	FITR();
 	TDEtiTexto("EEtiqueta", 0, "", "ej. Latitud: 20.734377 ", "ECampo", 0);
@@ -146,9 +168,20 @@ function fDefPag() {
 	TDEtiCampo(false, "EEtiqueta", 0, "Longitud:", "tLongitud", "", 50, 100,
 			" Longitud", "fMayus(this);", "", "", false, "EEtiquetaL", 0);
 	FITR();
-	TDEtiAreaTexto(false, "EEtiqueta", 1, "Observaciones:", 49, 4,
-			"cObsTramite", "", "Observaciones", "fMayus(this);", "",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "ECampo", 0);
+	TDEtiAreaTexto(
+			false,
+			"EEtiqueta",
+			1,
+			"Observaciones:",
+			49,
+			4,
+			"cObsTramite",
+			"",
+			"Observaciones",
+			"fMayus(this);",
+			"",
+			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+			true, true, true, "ECampo", 0);
 	FTR();
 	FinTabla();
 
@@ -181,7 +214,7 @@ function fDefPag() {
 	Hidden("ClavesTramite");
 	Hidden("ClavesModalidad");
 	Hidden("iCveRequisito");
-	Hidden("cFisico");
+	// Hidden("cFisico");
 	Hidden("lNotificacion", 0);
 	Hidden("RequisitoPNC");
 	Hidden("Caracteristicas");
@@ -221,10 +254,13 @@ function fOnLoad() {
 	FRMLstReq = fBuscaFrame("IListado12B");
 	FRMLstReq.fSetSelReg(2);
 
-	FRMLstReq.fSetTitulo("Entregado,Físico,Obligatorio,Requisito,");
+	// FRMLstReq.fSetTitulo("Entregado,Físico,Obligatorio,Requisito,");
+	// FRMLstReq.fSetObjs(0, "Caja");
+	// FRMLstReq.fSetObjs(1, "Caja");
+//	FRMLstReq.fSetCampos("9,7,");
+	FRMLstReq.fSetTitulo("Entregado,Requisito,");
 	FRMLstReq.fSetObjs(0, "Caja");
-	FRMLstReq.fSetObjs(1, "Caja");
-	FRMLstReq.fSetCampos("9,7,");
+	FRMLstReq.fSetCampos("7,");
 
 	FRMLstReq.fSetAlinea("center,center,center,left,");
 	FRMLstReq.fSetDespliega("texto,texto,logico,texto,");
@@ -248,6 +284,8 @@ function fOnLoad() {
 	fDisabled(true, "iCveOficinaUsr,iCveDeptoUsr,");
 	if (frm.cCveTramite && frm.cCveTramite.disabled == false)
 		frm.cCveTramite.focus();
+	
+	getDiasVT();
 
 }
 
@@ -392,8 +430,24 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 			$("#INTdialog").dialog('open');
 		}
 	}
+	
+	if (cId == "DiasVT" && cError == "") {
+		if (aRes.length > 0) {
+			frm.hdBoton.value = "";
+			diasVT = aRes[0][0];
+		}
+	}
 
 }
+
+function getDiasVT() {
+	frm.hdBoton.value = "DiasVT";
+	frm.hdFiltro.value = "";	
+	frm.hdOrden.value = "";
+	frm.hdNumReg.value = "";
+	fEngSubmite("pgTRAResoViTecXSol.jsp", "DiasVT");
+}
+
 function fcargaArbol() {
 	fEngSubmite("pgARBOLTRAMITES.jsp", "Arbol");
 }
@@ -443,13 +497,13 @@ function fCompactaListado() {
 
 // FUNCIÓN donde se generan las validaciones de los datos ingresados
 
-function validaFechaVisita() {	
+function validaFechaVisita() {
 
 	var fVisita = frm.dtVisita.value.split("/"); // arreglo con los elementos
-													// de la feccha de la visita
+	// de la feccha de la visita
 
 	var fHoy = fGetTodayDate().split("/"); // arreglo con los elementos de la
-											// feccha de hoy
+	// feccha de hoy
 
 	var fV = new Date(fVisita[2] + '/' + fVisita[1] + '/' + fVisita[0]);
 	var fH = new Date(fHoy[2] + '/' + fHoy[1] + '/' + fHoy[0]);
@@ -460,7 +514,8 @@ function validaFechaVisita() {
 	if ((fV - fH) == 0)
 		return false;
 
-	if ((fV - fH) > (86400000 * 5))// if( (fV-fH) > (86400000 * 10)) para 10 dias
+	if ((fV - fH) > (86400000 * diasVT))// if( (fV-fH) > (86400000 * 10)) para 10
+									// dias
 		return false;
 
 	return true;
@@ -508,9 +563,9 @@ function fValidaTodo() {
 		cMsg += "\n-Debe seleccionar una autopista.";
 	if (!lRequisitoSel)
 		cMsg += "\n-Debe seleccionar como entregado al menos un requisito.";
-	
-	if(validaFechaVisita()==false){
-		cMsg +="\nLa fecha de la visita ténica debe estar dentro de los siguientes 5 días.";
+
+	if (validaFechaVisita() == false) {
+		cMsg += "\nLa fecha de la visita ténica debe estar dentro de los siguientes "+diasVT+" días.";
 	}
 
 	if (cMsg != "") {
@@ -576,16 +631,16 @@ function fGuardar() {
 	}
 
 	frm.hdFiltro.value = "";
-	
+
 	aCBoxReq = FRMLstReq.fGetObjs(0);
-	aCBoxFisico = FRMLstReq.fGetObjs(1);
+	// aCBoxFisico = FRMLstReq.fGetObjs(1);
 	var conCorreo = true;
 
 	if (fValidaTodo() && conCorreo) {
 		var cTramites = frm.iCveTramite.value;
 		var cModalidades = frm.iCveModalidad.value;
 		var cRequisitos = "";
-		var cFisico = "";
+		// var cFisico = "";
 		var cArchivos = "";
 
 		arrayReqEnt = new Array();
@@ -594,21 +649,20 @@ function fGuardar() {
 
 		var aReqTemp = fReqTramMod(frm.iCveTramite.value,
 				frm.iCveModalidad.value);
-				
-		var cCadenota="";
+
 		for ( var i = 0; i < aReqTemp.length; i++) {
-			
+
 			var lSelected = fReqSelected(aReqTemp[i][2], aCBoxReq);
-			var lFisico = fReqSelected(aReqTemp[i][2], aCBoxFisico);
+			// var lFisico = fReqSelected(aReqTemp[i][2], aCBoxFisico);
 
 			cRequisitos += (cRequisitos == "") ? "" : ",";
 			cRequisitos += aReqTemp[i][2] + "=" + lSelected + "/"
 					+ aReqTemp[i][9];
 
-			if (cFisico != "")
-				cFisico += ",";
-
-			cFisico += aReqTemp[i][2] + ":" + lFisico;			
+			// if (cFisico != "")
+			// cFisico += ",";
+			//
+			// cFisico += aReqTemp[i][2] + ":" + lFisico;
 		}
 
 		var cCalifica = "", cCalifTemp = "";
@@ -635,7 +689,7 @@ function fGuardar() {
 		frm.ClavesTramite.value = cTramites;
 		frm.ClavesModalidad.value = cModalidades;
 		frm.iCveRequisito.value = cRequisitos;
-		frm.cFisico.value = cFisico;
+		// frm.cFisico.value = cFisico;
 		frm.Caracteristicas.value = cCalifica;
 		frm.cNomAutorizaRecoger.value = frm.Persona_cNomRazonSocial.value;
 		frm.RequisitoPNC.value = cReqPNC;

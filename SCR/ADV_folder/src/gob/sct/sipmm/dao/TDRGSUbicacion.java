@@ -68,11 +68,11 @@ public class TDRGSUbicacion
         "insert into RGSUbicacion(iCveSenal,dtIniUbicacion,iGradosLatitud,iMinutosLatitud,dSegundosLatitud,iGradosLongitud,iMinutosLongitud,dSegundosLongitud) values (?,?,?,?,?,?,?,?)";
 
       lPStmt = conn.prepareStatement(lSQL);
-      //System.out.print("...senal.." + vData.getInt("iCveSenal"));
+      System.out.print("...senal.." + vData.getInt("iCveSenal"));
       lPStmt.setInt(1, vData.getInt("iCveSenal"));
-      //System.out.print("...fecha.." + vData.getDate("dtIniUbicacion"));
+      System.out.print("...fecha.." + vData.getDate("dtIniUbicacion"));
       lPStmt.setDate(2, vData.getDate("dtIniUbicacion"));
-      //System.out.print("...latitug.." + vData.getInt("iGradosLatitud"));
+      System.out.print("...latitug.." + vData.getInt("iGradosLatitud"));
       lPStmt.setInt(3, vData.getInt("iGradosLatitud"));
       lPStmt.setInt(4, vData.getInt("iMinutosLatitud"));
       lPStmt.setDouble(5, vData.getDouble("dSegundosLatitud"));
@@ -221,8 +221,8 @@ public class TDRGSUbicacion
       lPStmt.setInt(4, vData.getInt("iGradosLongitud"));
       lPStmt.setInt(5, vData.getInt("iMinutosLongitud"));
       lPStmt.setDouble(6, vData.getDouble("dSegundosLongitud"));
-      //System.out.print("*****    dSegundosLongitud "+vData.getDouble("dSegundosLongitud"));
-      //System.out.print("*****    dSegundosLatitud "+vData.getDouble("dSegundosLatitud"));
+      System.out.print("*****    dSegundosLongitud "+vData.getDouble("dSegundosLongitud"));
+      System.out.print("*****    dSegundosLatitud "+vData.getDouble("dSegundosLatitud"));
       lPStmt.setInt(7, vData.getInt("iCveSenal"));
       lPStmt.setDate(8, vData.getDate("dtIniUbicacion"));
       lPStmt.executeUpdate();

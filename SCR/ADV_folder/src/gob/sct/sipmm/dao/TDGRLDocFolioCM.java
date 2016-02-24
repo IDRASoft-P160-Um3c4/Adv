@@ -56,26 +56,17 @@ public class TDGRLDocFolioCM extends DAOBase{
         conn.setTransactionIsolation(2);
       }
       String lSQL =
-          "insert into GRLDocFolioCM(iEjercicio,iIdGestorDocumento,cTablaCM) values (?,?,?)";
+          "insert into GRLDocFolioCM(iEjercicio,cTablaCM, cguid) values (?,?,?)";
 
-      //AGREGAR AL ULTIMO ...
-      Vector vcData = findByCustom("","select MAX(iIdGestorDocumento) AS iIdGestorDocumento " +
-                                      "from GRLDocFolioCM "
-                                      // + " where iEjercicio = " + vData.getInt("iEjercicio")
-                                      );
-      if(vcData.size() > 0){
-         TVDinRep vUltimo = (TVDinRep) vcData.get(0);
-         vData.put("iIdGestorDocumento",vUltimo.getInt("iIdGestorDocumento") + 1);
-      }else
-         vData.put("iIdGestorDocumento",1);
       vData.addPK(vData.getString("iEjercicio"));
       vData.addPK(vData.getString("iIdGestorDocumento"));
 
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iEjercicio"));
-      lPStmt.setInt(2,vData.getInt("iIdGestorDocumento"));
-      lPStmt.setString(3,vData.getString("cTablaCM"));
+      lPStmt.setString(2,vData.getString("cTablaCM"));
+      lPStmt.setString(3,vData.getString("cGuid"));
       lPStmt.executeUpdate();
+      
       if(cnNested == null){
         conn.commit();
       }

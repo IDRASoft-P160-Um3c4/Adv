@@ -1443,6 +1443,22 @@ function fPagADV(){ // no
 	  fEnProceso(false);
 }
 
+function fPagADVError(cError){
+	  if(fBefLoad){
+	     fBefLoad(cError);
+	  }
+
+	  if(fDefPag){
+	     fDefPag();
+	  }
+	  if(fPagExe){
+	     fPagExe();
+	  }
+	  	  
+	  fEnProceso(false);
+}
+
+
 function fGetLoadedPag(){
     return lLoadedPag;
 }

@@ -76,9 +76,9 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
         lPStmt.setString(9,vData.getString("cObsLey1"));
         lPStmt.setString(10,vData.getString("cObsLey2"));
         lPStmt.setString(11,vData.getString("cObsLey3"));
-        //System.out.print(">>>TDGRLRegCausaPNC1  1:"+vData.getString("cObsLey1"));
-        //System.out.print(">>>TDGRLRegCausaPNC1  2:"+vData.getString("cObsLey2"));
-        //System.out.print(">>>TDGRLRegCausaPNC1  3:"+vData.getString("cObsLey3"));
+        System.out.print(">>>TDGRLRegCausaPNC1  1:"+vData.getString("cObsLey1"));
+        System.out.print(">>>TDGRLRegCausaPNC1  2:"+vData.getString("cObsLey2"));
+        System.out.print(">>>TDGRLRegCausaPNC1  3:"+vData.getString("cObsLey3"));
         lPStmt.executeUpdate();
         lPStmt.close();
       }
@@ -104,7 +104,7 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
         lPStmt.executeUpdate();
         lPStmt.close();
       }
-      //System.out.print("\n\n\n-------------  Por llamar a ReqCausa en insert");
+      System.out.print("\n\n\n-------------  Por llamar a ReqCausa en insert");
       TDTRARegReqXCausa trReqCausa = new TDTRARegReqXCausa();
       trReqCausa.insertMult(vData,conn);
 
@@ -152,7 +152,7 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
    */
   public TVDinRep insertA(TVDinRep vData,Connection cnNested, int iConsecutivo) throws
       DAOException{
-  //  //System.out.print("\n\n\n>>>>>>>>>>>>>>>>>>>>>   En insert A");
+  //  System.out.print("\n\n\n>>>>>>>>>>>>>>>>>>>>>   En insert A");
     DbConnection dbConn = null;
     Connection conn = cnNested;
     PreparedStatement lPStmt = null;
@@ -202,7 +202,7 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
   //      lPStmt2.setInt(5,vData.getInt("iCveRequisito"));
         lPStmt.setString(6,"");
         lPStmt.setInt(7,vData.getInt("lResuelto"));
-   //     //System.out.print("A lResuelto: " + vData.getInt("lResuelto"));
+   //     System.out.print("A lResuelto: " + vData.getInt("lResuelto"));
         if(vData.getDate("dtResolucion") == null)
           lPStmt.setNull(8,Types.DATE);
         else
@@ -241,7 +241,7 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
 
       if(cnNested == null){
         conn.commit();
-    //    //System.out.print("\n\n\n ----------------------Por llamar en insertA a ReqCausa");
+    //    System.out.print("\n\n\n ----------------------Por llamar en insertA a ReqCausa");
    /*     TDTRARegReqXCausa trReqCausa = new TDTRARegReqXCausa();
         trReqCausa.insertMult(vData,conn,iConsecutivo); */
       }

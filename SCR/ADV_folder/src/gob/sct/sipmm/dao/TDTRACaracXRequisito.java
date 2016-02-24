@@ -58,7 +58,7 @@ public class TDTRACaracXRequisito extends DAOBase{
       }
       String lSQL =
           "insert into TRACaracXRequisito(iCveRequisito,iCveCaracteristica,cDscCaracteristica,cDscBreve,lVigente,lEnRecepcion,lEnProceso,lMandatorio) values (?,?,?,?,?,?,?,?)";
-//System.out.print(" ****** "+vData.getInt("iCveRequisito")+" ****** "+vData.getInt("iCveCaracteristica")+" ****** "+vData.getInt("lVigente"));
+System.out.print(" ****** "+vData.getInt("iCveRequisito")+" ****** "+vData.getInt("iCveCaracteristica")+" ****** "+vData.getInt("lVigente"));
       //AGREGAR AL ULTIMO ...
       Vector vcData = findByCustom("","select MAX(iCveCaracteristica) AS iCveCaracteristica from TRACaracXRequisito WHERE iCveRequisito = " + vData.getString("iCveRequisito"));
       if(vcData.size() > 0){

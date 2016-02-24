@@ -586,7 +586,7 @@ public StringBuffer fAprobacionDocumentos(String cQuery){
       }
 
       try{
-        //System.out.print("*****    SupDireccionInspeccion  "+VParametros.getPropEspecifica("SupDireccionInspeccion"));
+        System.out.print("*****    SupDireccionInspeccion  "+VParametros.getPropEspecifica("SupDireccionInspeccion"));
         vRegs1 = super.FindByGeneric("","select ctitular from GRLDEPTOXOFIC where ICVEOFICINA = "+cParametros[2]+
                                      " and ICVEDEPARTAMENTO = "+VParametros.getPropEspecifica("SupDireccionInspeccion"),
                                      dataSourceName);
@@ -597,7 +597,7 @@ public StringBuffer fAprobacionDocumentos(String cQuery){
       }
       try{
         String cJefe = VParametros.getPropEspecifica("%SubDireccionIngNaval%");
-        //System.out.print("*****    SubDireccionIngNaval  "+cJefe);
+        System.out.print("*****    SubDireccionIngNaval  "+cJefe);
         vRegs3 = super.FindByGeneric("","select ctitular from GRLDEPTOXOFIC where ICVEOFICINA = "+cParametros[2]+
                                      " and ICVEDEPARTAMENTO = "+VParametros.getPropEspecifica("SubDireccionIngNaval"),
                                      dataSourceName);
@@ -610,7 +610,7 @@ public StringBuffer fAprobacionDocumentos(String cQuery){
 
       try{
         String cJefe = VParametros.getPropEspecifica("JefeDeptoInspeccion");
-        //System.out.print("*****    JefeDeptoInspeccion  "+cJefe);
+        System.out.print("*****    JefeDeptoInspeccion  "+cJefe);
         vRegs2 = super.FindByGeneric("","select ctitular from GRLDEPTOXOFIC where ICVEOFICINA = "+cParametros[2]+
                                      " and ICVEDEPARTAMENTO = "+cJefe,
                                      dataSourceName);
@@ -771,7 +771,7 @@ public StringBuffer fCertAprovMaritima(String iConsecutivoCertExp) throws Except
 //         rep.comDespliegaCombinado("NOMBRE DEL TECNICO","w",80,"ae",80,rep.getAT_HIZQUIERDA(),rep.getAT_VCENTRO(),true,15,true,false,1,1);
 
          int iReng=2;
-         //System.out.print("::Clave tipo Estacion::::::::" + vCertifIA.getInt("ICVETIPOESTACION"));
+         System.out.print("::Clave tipo Estacion::::::::" + vCertifIA.getInt("ICVETIPOESTACION"));
          //Caso 1
          if(vCertifIA.getInt("ICVETIPOESTACION")>12 && vCertifIA.getInt("ICVETIPOESTACION")<=27){
         	 rep.comDespliegaCombinado("CERTIFICADO DE REGISTRO","B",10,"AF",10,rep.getAT_COMBINA_CENTRO(),rep.getAT_VCENTRO(),true,15,true,false,1,1);        	
@@ -1138,7 +1138,7 @@ public StringBuffer fCertAprovMaritima(String iConsecutivoCertExp) throws Except
 //Obras de Protección
 
        rep.iniciaReporte();
-       //System.out.print("*****     "+iConsecutivoCertExp);
+       System.out.print("*****     "+iConsecutivoCertExp);
        String[] aParam = iConsecutivoCertExp.split(",");
        Vector vcData = this.findByCustom("",
            "SELECT es.DTREGISTRO, ES.DTAUTORIZACION, ES.CNOMESTACION, ES.ICVEESTACION, TC.IFOLIO, " +
@@ -1961,7 +1961,7 @@ public StringBuffer fReportGenCertificadoWord(String cQuery){
    if(!vDatos.getString("cSenialDist").equals(""))
  rep.comRemplaza("[LetrasDistintivas]",vDatos.getString("cSenialDist"));
    else rep.comRemplaza("[LetrasDistintivas]","_______________");
-   //System.out.print("*****    Fecha de construccion  "+vDatos.getString("DTCONSTRUCCION"));
+   System.out.print("*****    Fecha de construccion  "+vDatos.getString("DTCONSTRUCCION"));
    if(!vDatos.getString("DTCONSTRUCCION").equals("") && !vDatos.getString("dtConstrucccion").equals("null") && !vDatos.getString("dtConstrucccion").equals(null)){
  rep.comRemplaza("[FechaContruccion]",tFecha.getDateSPN(vDatos.getDate("DTCONSTRUCCION")).toLowerCase());
  rep.comRemplaza("[FechaContruccionDD/MM/AAAA]",(""+vDatos.getDate("DTCONSTRUCCION")).toLowerCase());
@@ -2052,7 +2052,7 @@ public StringBuffer fReportGenCertificadoWord(String cQuery){
  rep.comRemplaza("[CDSCTIPONAVEGA]","_______________");
    }
 
-   //System.out.print("*****    Antes de imprimir el tipo servicio!!!!");
+   System.out.print("*****    Antes de imprimir el tipo servicio!!!!");
 
    if(vDatos.getInt("ICVETIPOSERV")>0){
  rep.comRemplaza("[ICVETIPOSERV]",vDatos.getString("ICVETIPOSERV"));
@@ -2063,7 +2063,7 @@ public StringBuffer fReportGenCertificadoWord(String cQuery){
  rep.comRemplaza("[CDSCTIPOSERV]","_______________");
    }
 
-   //System.out.print("*****    Despues de imprimir los valores");
+   System.out.print("*****    Despues de imprimir los valores");
  }
  else {
    rep.comRemplaza("[_______________]","");

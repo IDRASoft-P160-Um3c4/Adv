@@ -28,8 +28,11 @@ var msgErr="";
 var existeInput=false;
 var arrReqFiles= new Array();
 
-function fBefLoad() { // Carga información antes de que la página sea
+function fBefLoad(cMsgError) { // Carga información antes de que la página sea
 						// mostrada.
+	if(cMsgError!=undefined)
+		msgErr = cMsgError;
+		
 	cPaginaWebJS = "pgINTSol02FIEL.js";
 	cTitulo = "SOLICITUD DE TRÁMITES POR INTERNET CON F.I.E.L. DE LA D.G.D.C.";
 }
@@ -97,7 +100,7 @@ function fDefPag() {
 	
 	ITRTD("", "", "", "40", "center");
 	IFrame("IPanel", "515", "34", "Paneles.js");
-//    Liga("Simular firma de documentos.","simulaFirma();");
+    Liga("Simular firma de documentos.","simulaFirma();");
 	FTDTR();
 	FinTabla();
 	FTDTR();
@@ -267,6 +270,12 @@ function fNewTram() {
 
 function fResultado(aRes, cId, cError, cNavStatus, cSol, aRes2, cOrigen,
 		cFirma, cFirmante) {
+	
+	if(msgErr!=""){
+		fAlert(msgErr);
+		msgErr="";
+	}
+	
 	if (cError != "")
 		fAlert("Error\n" + cError);
 	
@@ -438,14 +447,6 @@ function validaArch(){
 		existeError = true;
 	}
 	
-	if(validaTamInvalid()){
-		existeError = true;
-	}
-	
-	if(validaTamanioTotal()){
-		existeError = true;
-	}
-	
 	if(msgErr!="")
 		fAlert(msgErr);
 	
@@ -488,54 +489,6 @@ function validaDocExt(arrayDocsName) {
 	}
 	return false;
 }
-
-function validaTamanioTotal() {
-	var totSize = 0;
-	
-	for(var i=0;i<arrReqFiles.length;i++){
-		totSize+=parseInt(arrReqFiles[i][2]);
-	}
-	
-	if(totSize>(50*1024*1024)){
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-	
-	return false;
-}
-
-function validaTamInvalid() {
-	for ( var ab = 0; ab < arrReqFiles.length; ab++) {
-		if (arrReqFiles[ab][0] == false) {
-			msgErr += "\n- Existen documentos que exceden el tamaño máximo de 15Mb. Favor de verificarlos.";
-			return true;
-		}
-	}
-	return false;
-}
-
-
-
-function fCheckFile(e,idx){
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-		
-		arrReqFiles[idx][2]=size;
-		
-		if (size > (15* 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			arrReqFiles[idx][0]=false;
-			return;
-		}else{
-			arrReqFiles[idx][0]=true;
-		}
-	}
-}
-
 
 function fGenSol(aRes, cSol, aRes2, cOrigen, cFirma, cFirmante){
 	fDelTBdy();
@@ -846,7 +799,7 @@ function fSetField(aField, lEtiqueta, aRes2) {
 					+ FITD() + cMan
 					+ Hidden("CDOCUMENTO" + (iOrdHF++), aField[2])
 					+ Hidden("CCAMPO" + (iOrdHF++), aField[1])
-					+ '<input type="file" name="' + aField[1] + '" size="50" onChange="fCheckFile(this,'+ i +');" >'
+					+ '<input type="file" name="' + aField[1] + '" size="50">'
 					+ FTDTR();
 		} else {
 			try {

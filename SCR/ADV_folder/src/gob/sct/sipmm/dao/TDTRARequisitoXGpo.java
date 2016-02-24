@@ -256,7 +256,7 @@ public TVDinRep update1(TVDinRep vData,Connection cnNested) throws
       conn.setAutoCommit(false);
       conn.setTransactionIsolation(2);
     }
-    //System.out.print("     ******  Subir  ********      " + vData.getInt("iCveGrupo"));
+    System.out.print("     ******  Subir  ********      " + vData.getInt("iCveGrupo"));
     String lSQL = "update TRARequisitoXGpo set iOrden= 0 where iOrden = ? AND iCveGrupo = ? ";
     lPStmt = conn.prepareStatement(lSQL);
     lPStmt.setInt(1,vData.getInt("iOrden")-1);
@@ -331,7 +331,7 @@ public TVDinRep update2(TVDinRep vData,Connection cnNested) throws
       conn.setAutoCommit(false);
       conn.setTransactionIsolation(2);
     }
-    //System.out.print("     ******  Bajar  ********      " + vData.getInt("iCveGrupo"));
+    System.out.print("     ******  Bajar  ********      " + vData.getInt("iCveGrupo"));
     String lSQL = "update TRARequisitoXGpo set iOrden= 0 where iOrden = ? AND iCveGrupo = ? ";
     lPStmt = conn.prepareStatement(lSQL);
     lPStmt.setInt(1,vData.getInt("iOrden")+1);

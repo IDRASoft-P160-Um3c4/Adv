@@ -37,7 +37,9 @@
     vDinRep = oAccion.setInputs("ClavesTramite,ClavesModalidad,iCveRequisito,RequisitoPNC,Caracteristicas,iCveTipoPersona,"+
     "iCveSolicitante,iCveDomicilioSolicitante,iCveRepLegal,iCveDomicilioRepLegal,cNomAutorizaRecoger,iCveOficinaUsr,"+
     "iCveDeptoUsr,cObsTramite,cEnviarResolucionA,iCveUsuario,iIdBien,cDscBien,iCveOficina,dUnidCalculo,"+
-    "cOrganoAdmin,iCveCarretera,dtVisita,tLongitud,tLatitud,tKmSentido,cFisico,cHechosTramite");  //datos ADV
+    "cOrganoAdmin,iCveCarretera,dtVisita,tLongitud,tLatitud,tKmSentido,cHechosTramite");  //datos ADV
+    //"cOrganoAdmin,iCveCarretera,dtVisita,tLongitud,tLatitud,tKmSentido,cFisico,cHechosTramite");  //datos ADV
+
     
     while (!lInsertado && iIntentos < iMaxIntentos){
       iIntentos++;

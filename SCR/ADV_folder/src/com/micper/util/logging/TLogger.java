@@ -27,31 +27,31 @@ public class TLogger{
       cModulo = cMod;
       TParametro vParametros = new TParametro(cModulo);
 
-      //System.out.print(cModulo + " El Logger ha sido Configurado...");
+      System.out.print(cModulo + " El Logger ha sido Configurado...");
       lInfo = Boolean.valueOf(vParametros.getPropEspecifica("lInfo")).
           booleanValue();
-      //System.out.print(cModulo + " - lInfo: " + lInfo);
+      System.out.print(cModulo + " - lInfo: " + lInfo);
       lDebug = Boolean.valueOf(vParametros.getPropEspecifica("lDebug")).
           booleanValue();
-      //System.out.print(cModulo + " - lDebug: " + lDebug);
+      System.out.print(cModulo + " - lDebug: " + lDebug);
       lError = Boolean.valueOf(vParametros.getPropEspecifica("lError")).
           booleanValue();
-      //System.out.print(cModulo + " - lError: " + lError);
+      System.out.print(cModulo + " - lError: " + lError);
       lFatal = Boolean.valueOf(vParametros.getPropEspecifica("lFatal")).
           booleanValue();
-      //System.out.print(cModulo + " - lFatal: " + lFatal);
+      System.out.print(cModulo + " - lFatal: " + lFatal);
       lWarn = Boolean.valueOf(vParametros.getPropEspecifica("lWarn")).
           booleanValue();
-      //System.out.print(cModulo + " - lWarn: " + lWarn);
+      System.out.print(cModulo + " - lWarn: " + lWarn);
       lWarnST = Boolean.valueOf(vParametros.getPropEspecifica("lWarnST")).
           booleanValue();
-      //System.out.print(cModulo + " - lWarnST: " + lWarnST);
+      System.out.print(cModulo + " - lWarnST: " + lWarnST);
       lErrorST = Boolean.valueOf(vParametros.getPropEspecifica("lErrorST")).
           booleanValue();
-      //System.out.print(cModulo + " - lErrorST: " + lErrorST);
+      System.out.print(cModulo + " - lErrorST: " + lErrorST);
       lFatalST = Boolean.valueOf(vParametros.getPropEspecifica("lFatalST")).
           booleanValue();
-      //System.out.print(cModulo + " - lFatalST: " + lFatalST);
+      System.out.print(cModulo + " - lFatalST: " + lFatalST);
     }
   }
 
@@ -65,16 +65,16 @@ public class TLogger{
     }
     if(lDebug){
       if(level.equalsIgnoreCase(DEBUG)){
-        //System.out.print(" -DEBUG- " + cModulo + "." + obj + ": " + message);
+        System.out.print(" -DEBUG- " + cModulo + "." + obj + ": " + message);
       }
       if(lInfo){
         if(level.equalsIgnoreCase(INFO)){
-          //System.out.print(" -INFO- " + cModulo + "." + obj + ": " + message);
+          System.out.print(" -INFO- " + cModulo + "." + obj + ": " + message);
         }
       }
       if(lError){
         if(level.equalsIgnoreCase(ERROR)){
-          //System.out.print(" -ERROR- " + cModulo + "." + obj + ": " + message);
+          System.out.print(" -ERROR- " + cModulo + "." + obj + ": " + message);
           if(lErrorST){
             t.printStackTrace();
           }
@@ -82,7 +82,7 @@ public class TLogger{
       }
       if(lWarn){
         if(level.equalsIgnoreCase(WARN)){
-          //System.out.print(" -WARN- " + cModulo + "." + obj + ": " + message);
+          System.out.print(" -WARN- " + cModulo + "." + obj + ": " + message);
           if(lWarnST){
             t.printStackTrace();
           }
@@ -90,7 +90,7 @@ public class TLogger{
       }
       if(lFatal){
         if(level.equalsIgnoreCase(FATAL)){
-          //System.out.print(" -FATAL- " + cModulo + "." + obj + ": " + message);
+          System.out.print(" -FATAL- " + cModulo + "." + obj + ": " + message);
           if(lFatalST){
             t.printStackTrace();
           }

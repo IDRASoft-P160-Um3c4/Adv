@@ -336,17 +336,17 @@ public class TDCYSRRContrato extends DAOBase{
 
 		}
 
-		//System.out.print("FEcha 1 " + vData.getDate("DTREGISTRO") );
+		System.out.print("FEcha 1 " + vData.getDate("DTREGISTRO") );
 		rep.comRemplaza("[cFechaRegistroContrato]", tFecha.getDateSPN(vData.getDate("DTREGISTRO")));
-		//System.out.print("Sale FEcha 1");
+		System.out.print("Sale FEcha 1");
 		rep.comRemplaza("[cNumContrato]", vData.getString("CNUMCONTRATO"));
 		rep.comRemplaza("[cAPI]", vData.getString("CNOMBRE"));
-		//System.out.print("FEcha 2");
+		System.out.print("FEcha 2");
 		rep.comRemplaza("[cFechaContrato]", tFecha.getDateSPN(vData.getDate("DTCONTRATO")));
 		rep.comRemplaza("[cNumContratoModif]", cNumContratoMod);
 		rep.comRemplaza("[cFechaRegConModif]", cFechaRegMod);
 		rep.comRemplaza("[cFechaContratoModif]", cFechaContrato);
-		//System.out.print("\n\n\n\n " + vData.getDate("DTREGISTROINFO"));
+		System.out.print("\n\n\n\n " + vData.getDate("DTREGISTROINFO"));
 		rep.comRemplaza("[cFechaEscrito]", tFecha.getDateSPN(vData.getDate("DTREGISTROINFO")));
 
 		// Elaboración del Reporte.

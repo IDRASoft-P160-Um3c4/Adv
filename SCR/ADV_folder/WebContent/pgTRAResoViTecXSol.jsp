@@ -48,22 +48,25 @@
     }
     catch(Exception e1){
       cError= e1.getMessage();
-      //System.out.print("?????????????????     "+cError);
     }
     
-  /*  //System.out.print("::: Siguiente Etapa ::: " + vDinRep.getInt("iCveEtapa"));
-    if(vDinRep.getInt("iCveEtapa") == 7){
-    	 //System.out.print("::: Entro Cambio de Etapa Conlcusion en el AREA - CIS     " + vDinRep.getInt("iCveEtapa"));
-    	 //System.out.print("::: Parametros ::: " + vDinRep.toString());
-    	regEtapasXModTram.cambiaEtapaWSCIS(vDinRep,null);
-    }*/
-            
-    //oAccion.setBeanPK(vDinRep.getPK());
   }
 
+  
 
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
-  String cSQL = "SELECT"+
+ 
+  String cSQL = "";
+  Vector vcListado=null;
+ 
+  if(oAccion.getCAccion().equals("DiasVT")){
+	  String diasVt = vParametros.getPropEspecifica("DiasVT");
+	  vcListado = new Vector();
+	  vDinRep = new TVDinRep();
+	  vDinRep.put("DiasVT", diasVt); 
+	  vcListado.addElement(vDinRep);
+ }else{
+	 cSQL=  "SELECT"+
 			" TRACATTRAMITE.CCVEINTERNA,"+ //0 
 			" TRACATTRAMITE.CDSCBREVE,"+ //1
 			" TRAMODALIDAD.CDSCMODALIDAD,"+//2
@@ -81,11 +84,13 @@
 			" JOIN TRAREGDATOSADVXSOL ON TRAREGSOLICITUD.IEJERCICIO = TRAREGDATOSADVXSOL.IEJERCICIO"+
     		" AND TRAREGSOLICITUD.INUMSOLICITUD = TRAREGDATOSADVXSOL.INUMSOLICITUD"+
 		     oAccion.getCFiltro();
+	 
+	 vcListado = dTRARegEtapasXModTram.findByCustom("",cSQL);
+     //oAccion.getCFiltro() + oAccion.getCOrden());
+ }
   
- 
- Vector vcListado = dTRARegEtapasXModTram.findByCustom("",cSQL);
-         //oAccion.getCFiltro() + oAccion.getCOrden());
- 
+  
+  
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();
 %>

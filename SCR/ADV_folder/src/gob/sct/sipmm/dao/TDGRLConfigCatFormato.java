@@ -68,7 +68,7 @@ public class TDGRLConfigCatFormato extends DAOBase{
       vData.addPK(vData.getString("iCveAtributo"));
       vData.addPK(vData.getString("iCveFormato"));
       //...
-//System.out.print(vData.toHashMap().toString());
+System.out.print(vData.toHashMap().toString());
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iCveFormato"));
       lPStmt.setInt(2,vData.getInt("iCveAtributo"));

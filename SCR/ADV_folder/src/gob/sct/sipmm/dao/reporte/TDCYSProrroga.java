@@ -146,8 +146,8 @@ public class TDCYSProrroga extends DAOBase{
           cPuerto += " " + cToken.charAt(0) + cToken.substring(1,cToken.length()).toLowerCase();
        }
        //rep.comRemplaza("[cEntidadFed]",cEntidad);
-       //System.out.print("***************************---vDatos.getDate(dtIniVigenciaTitulo): "+vDatos.getDate("dtIniVigenciaTitulo"));
-       //System.out.print("***************************---vDatos.getDate(dtVigenciaTitulo): "+vDatos.getDate("dtVigenciaTitulo"));
+       System.out.print("***************************---vDatos.getDate(dtIniVigenciaTitulo): "+vDatos.getDate("dtIniVigenciaTitulo"));
+       System.out.print("***************************---vDatos.getDate(dtVigenciaTitulo): "+vDatos.getDate("dtVigenciaTitulo"));
        iAniosDuracion = Fechas.getDaysBetweenDates(vDatos.getDate("dtIniVigenciaTitulo"),vDatos.getDate("dtVigenciaTitulo"));
        iAniosDuracion = iAniosDuracion/365;
 

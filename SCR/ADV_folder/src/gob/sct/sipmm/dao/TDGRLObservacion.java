@@ -314,7 +314,7 @@ public TVDinRep insert4(TVDinRep vData,Connection cnNested) throws
     lPStmt.setInt(1,vData.getInt("iCveObservacion"));
     lPStmt.setString(2,vData.getString("cObsRegistrada"));
 
-    //System.out.print("obs en obs"+vData.getInt("iCveObservacion"));
+    System.out.print("obs en obs"+vData.getInt("iCveObservacion"));
     lPStmt.executeUpdate();
     if(cnNested == null){
        conn.commit();

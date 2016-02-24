@@ -243,7 +243,7 @@ public class TDCertificadosRPMN extends DAOBase{
     rep.comRemplaza("[cMatricula]",cMatricula);
 
     //Separar por letra la SD y buscar el nombre por letra y número
-    //System.out.print("*****    SD:  "+cSD);
+    System.out.print("*****    SD:  "+cSD);
     if(!cSD.equals("")  && cSD.length()==5){
       cLetra1 = cSD.substring(0,1);
       cLetra2 = cSD.substring(1,2);
@@ -260,7 +260,7 @@ public class TDCertificadosRPMN extends DAOBase{
     rep.comRemplaza("[cUAB]",cUAB);
 
     dObten2.dOficina.setOficina(iCveOficResuelve);
-    //System.out.print("dObten2.dOficina.getTitular(): "+dObten2.dOficina.getTitular());
+    System.out.print("dObten2.dOficina.getTitular(): "+dObten2.dOficina.getTitular());
     rep.comRemplaza("[cNombreRemitente]",dObten2.dOficina.getTitular());
     return rep.getEtiquetas(true);
   }
@@ -517,7 +517,7 @@ public class TDCertificadosRPMN extends DAOBase{
     tWord.comRemplaza("[iPartida]",cPartida);
     tWord.comRemplaza("[cImporte]",cImporte);
     tWord.comRemplaza("[cRefAlfaNum]",cRefAlfanum);
-    //System.out.print("............................cFechaPAgo......:--"+cFechaPago+"--");
+    System.out.print("............................cFechaPAgo......:--"+cFechaPago+"--");
     if(cFechaPago!="" && cFechaPago!=null && cFechaPago.length()==10)
       tWord.comRemplaza("[cFechaPago]", tFecha.getDateSPN(tFecha.getDateSQL(cFechaPago)));
     else
@@ -558,14 +558,14 @@ public class TDCertificadosRPMN extends DAOBase{
 
 
 
-        //System.out.print("--------------------------------------------------------------------");
+        System.out.print("--------------------------------------------------------------------");
         String[] aValoresRecibidos = cValores.split("=");
 
-        //System.out.print("*****    \n\n");
+        System.out.print("*****    \n\n");
 //        for(int j = 0; j<aValoresRecibidos.length; j++)
-//          //System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
+//          System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
 
-        //System.out.print(cValores);
+        System.out.print(cValores);
 
         /*String cNombre= aValoresRecibidos[14];
         String iCveEntidadFedPersona= aValoresRecibidos[15];
@@ -596,7 +596,7 @@ public class TDCertificadosRPMN extends DAOBase{
         String cUsuRegistro   = aValoresRecibidos[47];
         String cEntidadReg    = aValoresRecibidos[48];
         String cMunicipioReg  = aValoresRecibidos[49];
-        //System.out.print("*****    cMunReg  "+cMunicipioReg);
+        System.out.print("*****    cMunReg  "+cMunicipioReg);
         String cTramiteSol    = aValoresRecibidos[50];
         int iCveEntFedReg     = Integer.parseInt(aValoresRecibidos[51],10);
         int iCveMunReg     = Integer.parseInt(aValoresRecibidos[52],10);
@@ -899,15 +899,15 @@ public class TDCertificadosRPMN extends DAOBase{
     //58-Valor para q reconozca todo el arreglo por si hay espacios en blanco antes de este
 
 
-    //System.out.print("--------------------------------------------------------------------");
+    System.out.print("--------------------------------------------------------------------");
     String[] aValoresRecibidos = cValores.split("=");
 
-    //System.out.print("*****    \n\n");
+    System.out.print("*****    \n\n");
 //    for(int j = 0; j<aValoresRecibidos.length; j++)
-//      //System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
+//      System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
 
-    //System.out.print("aValoresRecibidos.length........"+aValoresRecibidos.length);
-    //System.out.print(cValores);
+    System.out.print("aValoresRecibidos.length........"+aValoresRecibidos.length);
+    System.out.print(cValores);
     String[] aFechaInsPartida = aValoresRecibidos[0].split(",");
     String[] aPartida = aValoresRecibidos[3].split(",");
     String[] aSintesis = aValoresRecibidos[24].split("rrrrr");
@@ -918,7 +918,7 @@ public class TDCertificadosRPMN extends DAOBase{
     int iOficinaReg = 0;
     int iFolioReg = 0;
     int iPartidaReg = 0;
-    //System.out.print("*****    <"+aValoresRecibidos[58].equals("")+"><"+aValoresRecibidos[58].equals(null)+">");
+    System.out.print("*****    <"+aValoresRecibidos[58].equals("")+"><"+aValoresRecibidos[58].equals(null)+">");
     if(!aValoresRecibidos[58].equals("")){
       iEjercicioRep = Integer.parseInt(aValoresRecibidos[58]);
       iOficinaReg = Integer.parseInt(aValoresRecibidos[59]);
@@ -926,7 +926,7 @@ public class TDCertificadosRPMN extends DAOBase{
       iPartidaReg = Integer.parseInt(aValoresRecibidos[61]);
     }
 
-    //System.out.print("*****    -*"+aValoresRecibidos[13]+"*-");
+    System.out.print("*****    -*"+aValoresRecibidos[13]+"*-");
     int iCveEntidadIns = aValoresRecibidos[13].equals("")?0:Integer.parseInt(aValoresRecibidos[13]);
     int iCveEntidadUsr = Integer.parseInt(aValoresRecibidos[48]);
     String cDscMunicipio = aValoresRecibidos[11].equals("")?"--------------":aValoresRecibidos[11];
@@ -1051,11 +1051,11 @@ public class TDCertificadosRPMN extends DAOBase{
 
 
     String[] aValoresRecibidos = cValores.split("=");
-    //System.out.print("*****    \n\n");
+    System.out.print("*****    \n\n");
 //    for(int j = 0; j<aValoresRecibidos.length; j++)
-//      //System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
-    //System.out.print("aValoresRecibidos.length........"+aValoresRecibidos.length);
-    //System.out.print(cValores);
+//      System.out.print("*****    AValores "+j+"   = "+aValoresRecibidos[j]);
+    System.out.print("aValoresRecibidos.length........"+aValoresRecibidos.length);
+    System.out.print(cValores);
     String[] aFechaInsPartida = aValoresRecibidos[0].split(",");
     String[] aPartida = aValoresRecibidos[3].split(",");
     //String[] aSintesis = aValoresRecibidos[24].split("rrrrr");
@@ -1176,7 +1176,7 @@ public class TDCertificadosRPMN extends DAOBase{
           //15-manga, 16-peso muerto, 17-puntal, 18-lugares
           //19-rep legal, 20-ejercicio permiso, 21-consec permiso
           //22-lugares, 24-cvetipo permiso
-//System.out.print(cValores);
+System.out.print(cValores);
            String cMotor=  "SELECT "+
            "  VEHVehiculo.iCveVehiculo, "+
            "  VEHMotor.iConsecutivo, "+
@@ -1295,7 +1295,7 @@ public class TDCertificadosRPMN extends DAOBase{
             }
 
          tWord.iniciaReporte();
-//         //System.out.print("Fecha Actual vDatosE.getString(dtRegistro): "+vDatosE.getString("dtRegistro"));
+//         System.out.print("Fecha Actual vDatosE.getString(dtRegistro): "+vDatosE.getString("dtRegistro"));
          sbBuscaAdic.append("[iPermiso]|[cPermiso]|[cAnioPermiso]|[cNumSolicitud]|[NombreSolicitante]|[NombreEmbarcacion]|")
                     .append("[NombrePuerto]|[DirSolicitante]|[FolioRPMN]|[AniosVigencia]|[cTipoEmbarcacion]|[cTipoServ]|")
                     .append("[cTrafico]|[iArqueoBruto]|[iArqueoNeto]|[iPesomuerto]|[iEslora]|[iManga]|")
@@ -1410,7 +1410,7 @@ public class TDCertificadosRPMN extends DAOBase{
          String[] aOficDeptoDirige = VParametros.getPropEspecifica("SMCapitaniaDependeOficDeptoCentral").split(",");
          String cRutas="",cEntidadRemplazaTexto = "";
 
-         //System.out.print("-------------------------aValoresRecibidos[7]: "+aValoresRecibidos[7]);
+         System.out.print("-------------------------aValoresRecibidos[7]: "+aValoresRecibidos[7]);
          String[] cDir=aValoresRecibidos[7].split(",") ;
          int cOfic=0, cDpto=0;
          //Vector vRutaRemitente = new Vector();
@@ -1445,7 +1445,7 @@ public class TDCertificadosRPMN extends DAOBase{
           vRegsU = super.FindByGeneric("",cUsuario,dataSourceName);
 
           if(vRegsR.size()>0){
-            //System.out.print("entra a tarifas2");
+            System.out.print("entra a tarifas2");
             vDatosU = (TVDinRep) vRegsU.get(0);
             vDatosR = (TVDinRep) vRegsR.get(0);
             cOfic = vDatosU.getInt("iCveOficina");
@@ -1467,8 +1467,8 @@ public class TDCertificadosRPMN extends DAOBase{
               }
             }
             String vigencia=tFecha.getDateSPN(vDatosR.getDate("dtIniVigencia"));
-            //System.out.print("---++++++cDir[0]: "+cDir[0]+"   cDir[1]: "+cDir[1]+"  cDir[2]: "+cDir[2]);
-            //System.out.print("---++++++cDir[0].trim(): "+cDir[0].trim()+"   cDir[1].trim: "+cDir[1].trim()+"  cDir[2].trim: "+cDir[2].trim());
+            System.out.print("---++++++cDir[0]: "+cDir[0]+"   cDir[1]: "+cDir[1]+"  cDir[2]: "+cDir[2]);
+            System.out.print("---++++++cDir[0].trim(): "+cDir[0].trim()+"   cDir[1].trim: "+cDir[1].trim()+"  cDir[2].trim: "+cDir[2].trim());
             cRutas=vDatosR.getString("cRutasOperacion");
             dDatos.dOficDepto.setOficinaDepto(Integer.parseInt(aOficDeptoDirige[0],10),Integer.parseInt(aOficDeptoDirige[1],10));
             tWord.iniciaReporte();
@@ -1559,15 +1559,15 @@ public class TDCertificadosRPMN extends DAOBase{
    public HashMap folioLiteral(String cFiltro) throws Exception{
      HashMap hParametros = new HashMap();
      String[] cDatos = cFiltro.split(",");
-     //System.out.print("Llego al folioLiteral \n"+cFiltro);
+     System.out.print("Llego al folioLiteral \n"+cFiltro);
      hParametros.put("iEjercicioIns",new Integer(cDatos[0]));
      hParametros.put("iCveOficina",new Integer(cDatos[1]));
      hParametros.put("iFolio",new Integer(cDatos[2]));
      hParametros.put("iRamo",new Integer(cDatos[3]));
-     //System.out.print("*****     Ejercicio    "+cDatos[0]);
-     //System.out.print("*****     Oficina      "+cDatos[1]);
-     //System.out.print("*****     Folio        "+cDatos[2]);
-     //System.out.print("*****     Ramo         "+cDatos[3]);
+     System.out.print("*****     Ejercicio    "+cDatos[0]);
+     System.out.print("*****     Oficina      "+cDatos[1]);
+     System.out.print("*****     Folio        "+cDatos[2]);
+     System.out.print("*****     Ramo         "+cDatos[3]);
      return hParametros;
    }
 }

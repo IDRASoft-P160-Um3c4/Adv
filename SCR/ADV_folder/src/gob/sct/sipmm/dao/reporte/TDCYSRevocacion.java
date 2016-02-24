@@ -1490,7 +1490,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vSustTit.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vSustTit.get(i);
-					//System.out.print("Programa de Sustitucion de Titulos: " + vDinRep.getInt("lExiste"));
+					System.out.print("Programa de Sustitucion de Titulos: " + vDinRep.getInt("lExiste"));
 				}
 			}
 	
@@ -1508,8 +1508,8 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vProMaeDesPor.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vProMaeDesPor.get(i);
-					//System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("iEjercicio"));
-					//System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getString("cMotivo"));
+					System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("iEjercicio"));
+					System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1527,7 +1527,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vExtProMaeDesPor.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vExtProMaeDesPor.get(i);
-					//System.out.print("Extracto del Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("lPresentacion"));
+					System.out.print("Extracto del Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("lPresentacion"));
 				}
 			}
 	
@@ -1545,8 +1545,8 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vProOpeAnual.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vProOpeAnual.get(i);
-					//System.out.print("Programa Operativo Anual: " + vDinRep.getInt("iEjercicio"));
-					//System.out.print("Programa Operativo Anual: " + vDinRep.getString("cMotivo"));
+					System.out.print("Programa Operativo Anual: " + vDinRep.getInt("iEjercicio"));
+					System.out.print("Programa Operativo Anual: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1568,8 +1568,8 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vRegOpe.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vRegOpe.get(i);
-					//System.out.print("Reglas de Operacion: " + vDinRep.getInt("iEjercicio"));
-					//System.out.print("Reglas de Operacion: " + vDinRep.getString("cMotivo"));
+					System.out.print("Reglas de Operacion: " + vDinRep.getInt("iEjercicio"));
+					System.out.print("Reglas de Operacion: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1584,7 +1584,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vComOpe.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vRegOpe.get(i);
-					//System.out.print("Comite de Operacion: " + vDinRep.getString("cMotivo"));
+					System.out.print("Comite de Operacion: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1599,7 +1599,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vOfiQue.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vRegOpe.get(i);
-					//System.out.print("Oficina de Quejas: " + vDinRep.getString("cMotivo"));
+					System.out.print("Oficina de Quejas: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1614,7 +1614,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vSisCom.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vRegOpe.get(i);
-					//System.out.print("Sistema de Computo: " + vDinRep.getString("cMotivo"));
+					System.out.print("Sistema de Computo: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1632,8 +1632,8 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vEdofin.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vRegOpe.get(i);
-					//System.out.print("Estados Financieros: " + vDinRep.getInt("iEjercicio"));
-					//System.out.print("Estados Financieros: " + vDinRep.getString("cMotivo"));
+					System.out.print("Estados Financieros: " + vDinRep.getInt("iEjercicio"));
+					System.out.print("Estados Financieros: " + vDinRep.getString("cMotivo"));
 				}
 			}
 	
@@ -1651,8 +1651,8 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vOtorgamiento.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vOtorgamiento.get(i);
-					//System.out.print("Otorgamiento: " + vDinRep.getInt("iEjercicioNoPagado"));
-					//System.out.print("Otorgamiento: " + vDinRep.getString("cPeriodoNoPagado"));
+					System.out.print("Otorgamiento: " + vDinRep.getInt("iEjercicioNoPagado"));
+					System.out.print("Otorgamiento: " + vDinRep.getString("cPeriodoNoPagado"));
 				}
 			}
 	
@@ -1670,7 +1670,7 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vDerSenalamiento.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vDerSenalamiento.get(i);
-					//System.out.print("Derecho del Señalamiento Marítimo: " + vDinRep.getInt("iExiste"));
+					System.out.print("Derecho del Señalamiento Marítimo: " + vDinRep.getInt("iExiste"));
 				}
 			}
 	
@@ -1688,18 +1688,18 @@ public class TDCYSRevocacion extends DAOBase{
 				for(int i=0;i<vDerExplotacion.size();i++){
 					TVDinRep vDinRep = new TVDinRep();
 					vDinRep = (TVDinRep) vDerExplotacion.get(i);
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dIngresos"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImporte"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesI"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioI"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesF"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioF"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPago"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPresentacion"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getString("cClave"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpPagado"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpCorrecto"));
-					//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dDiferencia"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dIngresos"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImporte"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesI"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioI"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesF"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioF"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPago"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPresentacion"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getString("cClave"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpPagado"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpCorrecto"));
+					System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dDiferencia"));
 	
 				}
 			}
@@ -3369,7 +3369,7 @@ public class TDCYSRevocacion extends DAOBase{
 
 			dtConcesion = vDatos.getDate("dtIniVigenciaTitulo");
 
-			//System.out.print("Valor de la Fecha de Concesión: " + dtConcesion);
+			System.out.print("Valor de la Fecha de Concesión: " + dtConcesion);
 
 
 			//Fuera de Recinto Portuario
@@ -3971,7 +3971,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vSustTit.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vSustTit.get(i);
-				//System.out.print("Programa de Sustitucion de Titulos: " + vDinRep.getInt("lExiste"));
+				System.out.print("Programa de Sustitucion de Titulos: " + vDinRep.getInt("lExiste"));
 			}
 		}
 
@@ -3989,8 +3989,8 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vProMaeDesPor.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vProMaeDesPor.get(i);
-				//System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("iEjercicio"));
-				//System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getString("cMotivo"));
+				System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("iEjercicio"));
+				System.out.print("Programa Maestro de Desarrollo Portuario: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4008,7 +4008,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vExtProMaeDesPor.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vExtProMaeDesPor.get(i);
-				//System.out.print("Extracto del Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("lPresentacion"));
+				System.out.print("Extracto del Programa Maestro de Desarrollo Portuario: " + vDinRep.getInt("lPresentacion"));
 			}
 		}
 
@@ -4026,8 +4026,8 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vProOpeAnual.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vProOpeAnual.get(i);
-				//System.out.print("Programa Operativo Anual: " + vDinRep.getInt("iEjercicio"));
-				//System.out.print("Programa Operativo Anual: " + vDinRep.getString("cMotivo"));
+				System.out.print("Programa Operativo Anual: " + vDinRep.getInt("iEjercicio"));
+				System.out.print("Programa Operativo Anual: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4049,8 +4049,8 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vRegOpe.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vRegOpe.get(i);
-				//System.out.print("Reglas de Operacion: " + vDinRep.getInt("iEjercicio"));
-				//System.out.print("Reglas de Operacion: " + vDinRep.getString("cMotivo"));
+				System.out.print("Reglas de Operacion: " + vDinRep.getInt("iEjercicio"));
+				System.out.print("Reglas de Operacion: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4065,7 +4065,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vComOpe.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vRegOpe.get(i);
-				//System.out.print("Comite de Operacion: " + vDinRep.getString("cMotivo"));
+				System.out.print("Comite de Operacion: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4080,7 +4080,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vOfiQue.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vRegOpe.get(i);
-				//System.out.print("Oficina de Quejas: " + vDinRep.getString("cMotivo"));
+				System.out.print("Oficina de Quejas: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4095,7 +4095,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vSisCom.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vRegOpe.get(i);
-				//System.out.print("Sistema de Computo: " + vDinRep.getString("cMotivo"));
+				System.out.print("Sistema de Computo: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4113,8 +4113,8 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vEdofin.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vRegOpe.get(i);
-				//System.out.print("Estados Financieros: " + vDinRep.getInt("iEjercicio"));
-				//System.out.print("Estados Financieros: " + vDinRep.getString("cMotivo"));
+				System.out.print("Estados Financieros: " + vDinRep.getInt("iEjercicio"));
+				System.out.print("Estados Financieros: " + vDinRep.getString("cMotivo"));
 			}
 		}
 
@@ -4132,8 +4132,8 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vOtorgamiento.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vOtorgamiento.get(i);
-				//System.out.print("Otorgamiento: " + vDinRep.getInt("iEjercicioNoPagado"));
-				//System.out.print("Otorgamiento: " + vDinRep.getString("cPeriodoNoPagado"));
+				System.out.print("Otorgamiento: " + vDinRep.getInt("iEjercicioNoPagado"));
+				System.out.print("Otorgamiento: " + vDinRep.getString("cPeriodoNoPagado"));
 			}
 		}
 
@@ -4151,7 +4151,7 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vDerSenalamiento.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vDerSenalamiento.get(i);
-				//System.out.print("Derecho del Señalamiento Marítimo: " + vDinRep.getInt("iExiste"));
+				System.out.print("Derecho del Señalamiento Marítimo: " + vDinRep.getInt("iExiste"));
 			}
 		}
 
@@ -4169,18 +4169,18 @@ public class TDCYSRevocacion extends DAOBase{
 			for(int i=0;i<vDerExplotacion.size();i++){
 				TVDinRep vDinRep = new TVDinRep();
 				vDinRep = (TVDinRep) vDerExplotacion.get(i);
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dIngresos"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImporte"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesI"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioI"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesF"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioF"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPago"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPresentacion"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getString("cClave"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpPagado"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpCorrecto"));
-				//System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dDiferencia"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dIngresos"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImporte"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesI"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioI"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iMesF"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getInt("iEjercicioF"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPago"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDate("dtPresentacion"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getString("cClave"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpPagado"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dImpCorrecto"));
+				System.out.print("Derecho y Explotacion 232 - A LFD: " + vDinRep.getDouble("dDiferencia"));
 
 			}
 		}

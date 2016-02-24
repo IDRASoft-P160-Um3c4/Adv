@@ -114,7 +114,7 @@ public HashMap getPropiedades(int iId, String cDataSource) throws DAOException{
         dbConn.closeConnection();
       }
       catch (Exception ex2) {
-//        //System.out.print("TGetADMSEG.getPropiedades");
+//        System.out.print("TGetADMSEG.getPropiedades");
         ex2.printStackTrace();
       }
       return hmPropiedades;

@@ -159,7 +159,7 @@
          "AND TRARegSolicitud.iNumSolicitud = TRARegEtapasXModTram.iNumSolicitud " +
          "AND TRARegSolicitud.lImpreso = 1 " +
          " AND TRARegSolicitud.LABANDONADA = 0 " +
-         cFiltroUsr +
+         //cFiltroUsr +
          oAccion.getCFiltro() + oAccion.getCOrden());
   if(!oAccion.getCAccion().equals("CambiaEtapa"))
      oAccion.navega(vcListado);

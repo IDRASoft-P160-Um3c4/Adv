@@ -557,7 +557,7 @@ public class TDDPOPMDP
           vData.getInt("iCveModulo")+","+
           vData.getInt("iNumReporte")+
           ")";
-      //System.out.print("**************" + lSQL + "**************");
+      System.out.print("**************" + lSQL + "**************");
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.executeUpdate();
       if(cnNested == null){

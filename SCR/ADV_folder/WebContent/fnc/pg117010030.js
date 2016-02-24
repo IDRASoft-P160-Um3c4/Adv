@@ -49,7 +49,7 @@ var	finObra=false;
 var dtInicioObra="";
 var dtFinObra="";
 var valorOficio=-1;
-
+var cPermisoPag;
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
    cPaginaWebJS = "pg117010030.js";
@@ -57,6 +57,7 @@ var valorOficio=-1;
    //  cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
    //}
    cTitulo =  "REGISTRO DE SEGUIMIENTO DE OBRA";
+   cPermisoPag = fGetPermisos(cPaginaWebJS);
    fSetWindowTitle();
  }
  
@@ -450,6 +451,11 @@ var valorOficio=-1;
  
  
  function subirDoc(){
+	 
+	 if (cPermisoPag != 1) {
+			fAlert("No tiene Permiso de ejecutar esta acción");
+			return;
+		}
 	 
 	 if( getValorOficio() > 0){
 		 fAbreSubWindow(false,"pgSubirOficioSeguimiento","no","yes","yes","yes","800","600",50,50);

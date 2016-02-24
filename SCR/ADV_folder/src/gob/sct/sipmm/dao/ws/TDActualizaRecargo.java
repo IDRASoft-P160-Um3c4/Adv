@@ -65,10 +65,10 @@ public class TDActualizaRecargo extends DAOBase {
         vDinRep.put("ImporteRecargo",vActRecargoOut.getMontoRecargos());
         vDinRep.put("ImporteTotal",vActRecargoOut.getTotal());
 
-//System.out.print("Valor de Importe Actualizado: " + vActRecargoOut.getMontoActualizado());
-//System.out.print("Valor de Recargos: " + vActRecargoOut.getMontoRecargos());
-//System.out.print("Valor de la Direrencia: " + vActRecargoOut.getDiferencia());
-//System.out.print("Valor del Total: " + vActRecargoOut.getTotal());
+System.out.print("Valor de Importe Actualizado: " + vActRecargoOut.getMontoActualizado());
+System.out.print("Valor de Recargos: " + vActRecargoOut.getMontoRecargos());
+System.out.print("Valor de la Direrencia: " + vActRecargoOut.getDiferencia());
+System.out.print("Valor del Total: " + vActRecargoOut.getTotal());
 
       }
       else {
@@ -122,11 +122,11 @@ public class TDActualizaRecargo extends DAOBase {
                vDinRep.put("ImporteRecargo",vActRecargoOut.getMontoRecargos());
                vDinRep.put("ImporteTotal",vActRecargoOut.getTotal());
                vResultado.add(vDinRep);
-               //System.out.print("Valor del Indice: " + i);
-               //System.out.print("Valor de Importe Actualizado: " + vActRecargoOut.getMontoActualizado());
-               //System.out.print("Valor de Recargos: " + vActRecargoOut.getMontoRecargos());
-               //System.out.print("Valor de la Direrencia: " + vActRecargoOut.getDiferencia());
-               //System.out.print("Valor del Total: " + vActRecargoOut.getTotal());
+               System.out.print("Valor del Indice: " + i);
+               System.out.print("Valor de Importe Actualizado: " + vActRecargoOut.getMontoActualizado());
+               System.out.print("Valor de Recargos: " + vActRecargoOut.getMontoRecargos());
+               System.out.print("Valor de la Direrencia: " + vActRecargoOut.getDiferencia());
+               System.out.print("Valor del Total: " + vActRecargoOut.getTotal());
              }
            }
          }

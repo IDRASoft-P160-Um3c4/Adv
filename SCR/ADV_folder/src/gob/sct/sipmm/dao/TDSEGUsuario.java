@@ -30,7 +30,7 @@ public class TDSEGUsuario extends DAOBase{
     } finally{
       if(!cError.equals(""))
         throw new DAOException(cError);
-      //System.out.print("*****  Tamaño del vector de usuarios:  "+vcRecords.size());
+      System.out.print("*****  Tamaño del vector de usuarios:  "+vcRecords.size());
       return vcRecords;
     }
  }

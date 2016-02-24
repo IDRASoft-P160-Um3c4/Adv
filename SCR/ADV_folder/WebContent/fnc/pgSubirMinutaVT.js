@@ -14,12 +14,14 @@ var lFirst = true;
 var bloqueaGuardar=false;
 var cPagRet;
 var tamanio = 0;
-var invalido = 0;
 var msgErr = "";
 
 
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
-function fBefLoad() {
+function fBefLoad(cMsgError) {
+	 if(cMsgError!==undefined)
+			msgErr = cMsgError;
+	
 	cPaginaWebJS = "pgSubirMinutaVT.js";
 	cPagRet = "pgSubirMinutaVT";
 	cTitulo="ANEXO DE OFICIO DE MINUTA TÉCNICA";
@@ -107,6 +109,11 @@ function fNavega() {
 }
 // RECEPCIN de Datos de provenientes del Servidor
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
+	if (msgErr != "") {// si ocurre un error en el servidor al cargar los archivos
+	fAlert(msgErr);
+	msgErr = "";
+	}
+	
 	if (cId == "Listado" && cError == "") {
 		fShowDatos(aRes);
 	}
@@ -194,7 +201,7 @@ function fShowDatos(aRes) {
 		bloqueaGuardar=false;
 		
 		//2 id del oficio de minuta tecnica
-		tCell.innerHTML = '<input type="file" name="fileButonADV2" onChange="checkFile(this);" size="25">';
+		tCell.innerHTML = '<input type="file" name="fileButonADV2" size="25">';
 		
 	}
 	
@@ -207,23 +214,6 @@ function fShowDatos(aRes) {
 
 function resetBloqueaGuardar(){
 	bloqueaGuardar=false;
-}
-
-function checkFile(e) {
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-		tamanio=size; 
-		if (size > (15* 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			invalido = 1;
-		}else{
-			invalido = 0;
-		}
-	}
 }
 
 function validaArchVacioExt() {
@@ -256,11 +246,6 @@ function valBeforeSave(){
 	
 	if(validaArchVacioExt()==true) {
 		err =true;
-	}
-	
-	if(invalido==true){
-		err=true;
-		msgErr+= "\n- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido";
 	}
 	
 	if(msgErr!="")

@@ -44,7 +44,7 @@ public class UploadFile extends HttpServlet{
         while(iter.hasNext()){
            FileItem item = (FileItem) iter.next();
           if(item.isFormField()){
-            //System.out.print("Campo:" + item.getFieldName() + " Valor:" + item.getString());
+            System.out.print("Campo:" + item.getFieldName() + " Valor:" + item.getString());
           } else{
              
             byte[] bArchivo = item.get();

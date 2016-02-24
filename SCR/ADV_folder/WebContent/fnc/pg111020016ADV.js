@@ -12,11 +12,15 @@ var aNotifica = new Array();
 var lFirst = true;
 var msgErr = "";
 var arrTmp = new Array();
-
+var lWorking = false;
+var lBloqueaSubmit = false;
 var bloqueaGuardar = false;
 
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
-function fBefLoad() {
+function fBefLoad(cMsgError) {
+	if (cMsgError !== undefined)
+		msgErr = cMsgError;
+
 	cPaginaWebJS = "pg111020016ADV.js";
 }
 // SEGMENTO Definicin de la pgina (Definicin Mandatoria)
@@ -54,7 +58,7 @@ function fDefPag() {
 
 	Hidden("iNumSolicitud", -1);
 	Hidden("iEjercicio", -1);
-	
+
 	fFinPagina();
 }
 function fAnexaDoc() {
@@ -75,6 +79,7 @@ function fOnLoad() {
 	FRMPanel.fSetControl(self, cPaginaWebJS);
 	FRMPanel.fShow("Tra,");
 	resetBloqueaGuardar();
+
 	fNavega();
 	// fShowDatos();
 }
@@ -85,10 +90,10 @@ function fDelTBdyFIEL() {
 }
 // LLAMADO al JSP especfico para la navegacin de la pgina
 function fNavega() {
-	
+
 	frm.iNumSolicitud.value = window.parent.getNumSolADVFiles();
 	frm.iEjercicio.value = window.parent.getEjercicioADVFiles();
-	
+
 	if (frm.iNumSolicitud.value > -1) {
 
 		frm.hdBoton.value = "requisitosEntregados";
@@ -100,19 +105,33 @@ function fNavega() {
 
 }
 
-function getNumSol(){
+function getNumSol() {
 	return frm.iNumSolicitud.value;
 };
 
-function getEjercicio(){
+function getEjercicio() {
 	return frm.iEjercicio.value;
 };
 
 // RECEPCIN de Datos de provenientes del Servidor
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
 
-	if (cError != "")
-		fAlert("Error\n" + cError);
+	if (msgErr != "") {// si ocurre un error en el servidor al cargar los
+						// archivos
+		fAlert(msgErr);
+		msgErr = "";
+	}
+
+	if (cError == "Guardar") {
+		fAlert("Existió un error en el Guardado!\n");
+		return;
+	} else if (cError == "Borrar") {
+		fAlert("Existió un error en el Borrado!");
+		return;
+	} else if (cError == "Cascada") {
+		fAlert("El registro es utilizado por otra entidad, no es posible eliminarlo!");
+		return;
+	}
 
 	if (cId == "Listado" && cError == "") {
 		fShowDatos(aRes);
@@ -128,11 +147,15 @@ function fNuevo() {
 }
 
 function fGuardar() {
-	if (fValidaTodo() == false) { // si no existieron errores
+
+	if (fValidaTodo() == false && lBloqueaSubmit == false) { // si no
+																// existieron
+		// errores
 		frm.iNumSolicitud.value = window.parent.getNumSolADVFiles();
 		frm.action = "UploadADVDocs?paramA=" + frm.iNumSolicitud.value;
 		fEnProceso(true);
 		frm.submit();
+		lBloqueaSubmit = true;
 	}
 }
 
@@ -173,8 +196,8 @@ function fShowDatos(aRes) {
 
 	for ( var t = 0; t < aRes.length; t++) {
 
-		aRes[t].push("0"); //bandera archivo invalido
-		aRes[t].push("0"); //tamnanio
+		aRes[t].push("0"); // bandera archivo invalido
+		aRes[t].push("0"); // tamnanio
 
 		tRw = tBarraWizard.insertRow();
 		tCell = tRw.insertCell();
@@ -192,20 +215,21 @@ function fShowDatos(aRes) {
 				bloqueaGuardar = false;
 				tCell.innerHTML = '<input id="file_id_' + aRes[t][1]
 						+ '" type="file" name="fileButonADV' + aRes[t][1]
-						+ '" onChange="checkFile(this,' + t + ');" size="25">';
-			}	
+						+ '" size="25">';
+				// + '" onChange="checkFile(this,' + t + ');" size="25">';
+			}
 		} else {
 			tCell.innerHTML = '<label><b>&nbsp;&nbsp;Entregado físicamente.</b></label>';
 		}
 	}
 
-//	if (bloqueaGuardar == true) {
-//		FRMPanel.fSetTraStatus("Disabled");
-//		window.parent.setPermiteImpresion(false);
-//	} else {
-		FRMPanel.fSetTraStatus("UpdateBegin");
-		window.parent.setPermiteImpresion(false);
-//	}
+	// if (bloqueaGuardar == true) {
+	// FRMPanel.fSetTraStatus("Disabled");
+	// window.parent.setPermiteImpresion(false);
+	// } else {
+	FRMPanel.fSetTraStatus("UpdateBegin");
+	window.parent.setPermiteImpresion(false);
+	// }
 
 	arrTmp = fCopiaArreglo(aRes);
 
@@ -228,13 +252,13 @@ function validaAchivos() {
 		valRet = true;
 	}
 
-	if (validaTamInvalid() == true) {
-		valRet = true;
-	}
-	
-	if (checkAllFiles() == true) {
-		valRet = true;
-	}
+	// if (validaTamInvalid() == true) {
+	// valRet = true;
+	// }
+	//	
+	// if (checkAllFiles() == true) {
+	// valRet = true;
+	// }
 
 	return valRet;
 
@@ -304,41 +328,3 @@ function fValidaTodo() {
 		fAlert(msgErr);
 	return ret;
 }
-
-function checkFile(e, idx) {
-
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-		arrTmp[idx][10]=size; 
-		if (size > (15* 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			arrTmp[idx][9] = "1";
-			return;
-		}
-	}
-	
-	arrTmp[idx][10]="0";
-	arrTmp[idx][9]="0";
-}
-
-function checkAllFiles(){
-	var totSize = 0;
-	
-	for(var i=0;i<arrTmp.length;i++){
-		totSize+=parseInt(arrTmp[i][10]);
-	}
-	
-	if(totSize>(50*1024*1024)){
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-	
-	return false;
-}
-
-
-

@@ -37,7 +37,7 @@
 
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
-//   cPaginaWebJS = "pg111020020.js";
+   cPaginaWebJS = "pg111020020.js";
 //   if(top.fGetTituloPagina){
 //     cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 //   }
@@ -432,19 +432,15 @@
     	 fSelectSetIndexFromValue(frm.lResolucion, valorResolucion);
      else	 
          fSelectSetIndexFromValue(frm.lResolucion, -1);
-     
    
+     fCancelar();
      
      if(frm.iEjercicioFiltro.value != '' && frm.iNumSolicitudFiltro.value != ''){
        fTraerSolicitud();
      }
-
+     
    }
    
-   if(cId == "Listado" && cError!=""){	 
-       fCancelar();
-    }
-
    if(cId == "idTramite" && cError==""){
      fFillSelect(frm.iCveTramite,aRes,true,0,0,3);
    }
@@ -1048,7 +1044,7 @@ function subirOficiosTramite(){
 		       frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != ''){
 			   if(fSoloNumeros(frm.iEjercicio.value) && fSoloNumeros(frm.iNumSolicitud.value)&&permiso){
 				  if(permiso>0) 
-				   	fAbreSubWindow(false,"pgSubirOficiosADV","no","yes","yes","yes","800","600",50,50);
+				   	fAbreSubWindowPermisos("pgSubirOficiosADV","800","600",false);
 				  else
 			          fAlert("La debe estar en la etapa \"ENTREGA DE PERMISO\".");
 			   }else
@@ -1059,9 +1055,11 @@ function subirOficiosTramite(){
 }
 
 function fDocsFinales(){
+	
 	if(fSoloNumeros(frm.iEjercicio.value) && fSoloNumeros(frm.iNumSolicitud.value)&&permiso){
 		  if(permiso>0) 
-		   	fAbreSubWindow(false,"pgDatosPermiso","no","yes","yes","yes","800","800",50,50);
+			  fAbreSubWindowPermisos("pgDatosPermiso","800","600",false);
+		   	//fAbreSubWindow(false,"pgDatosPermiso","no","yes","yes","yes","800","800",50,50);
 		  else
 	          fAlert("La debe estar en la etapa \"ENTREGA DE PERMISO\".");
 	} else{

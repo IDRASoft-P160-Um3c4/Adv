@@ -9,7 +9,7 @@
  var lCancelado = false;
  var lModificando = false;
  var aArreglo = new Array();
- 
+ var cPermisoPag;
  var isTramInt;
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
@@ -18,6 +18,7 @@
 //     cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 //   }
    cTitulo = "NOTIFICACIÓN DE PRODUCTO NO CONFORME";  
+   cPermisoPag = fGetPermisos(cPaginaWebJS);
    fSetWindowTitle();
  }
  // SEGMENTO Definición de la página (Definición Mandatoria)
@@ -333,6 +334,11 @@ function fGetICVETRAMITE(){
 }
 
 function fNotificaInt(){
+
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	} 
 	
 	if (frm.iEjercicio.value != 0 && frm.iEjercicio.value != '' &&
 		       frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != ''){
@@ -352,6 +358,12 @@ function fNotificaInt(){
 }
 
 function fVerifica(){
+	
+
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
 	 
 	 if (frm.iEjercicio.value != 0 && frm.iEjercicio.value != '' &&
 		       frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != ''){

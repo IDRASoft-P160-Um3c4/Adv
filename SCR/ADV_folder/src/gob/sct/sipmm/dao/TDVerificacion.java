@@ -561,11 +561,11 @@ public class TDVerificacion extends DAOBase{
       lPStmt.setInt(6,vData.getInt("iNumSolicitud"));
       
       
-      //System.out.print(">>>  lSQL:  "+lSQL);
-      //System.out.print(">>>  cNumOfReg:       "+vData.getString("cNumOfReg"));
-      //System.out.print(">>>  dtOfReg:         "+vData.getDate("dtOfReg"));
-      //System.out.print(">>>  iEjercicio:      "+vData.getString("iEjercicio"));
-      //System.out.print(">>>  iNumSolicitud:   "+vData.getString("iNumSolicitud"));
+      System.out.print(">>>  lSQL:  "+lSQL);
+      System.out.print(">>>  cNumOfReg:       "+vData.getString("cNumOfReg"));
+      System.out.print(">>>  dtOfReg:         "+vData.getDate("dtOfReg"));
+      System.out.print(">>>  iEjercicio:      "+vData.getString("iEjercicio"));
+      System.out.print(">>>  iNumSolicitud:   "+vData.getString("iNumSolicitud"));
       
       
       lPStmt.executeUpdate();

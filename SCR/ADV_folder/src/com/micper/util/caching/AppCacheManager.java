@@ -38,8 +38,8 @@ public static void SetAppCacheManager(String cMod, String Delimitador) {
     TParametro vParametros = new TParametro(cMod);
     StringTokenizer stExpEspCol, stExpEspCad;
     cModulo = cMod;
-    //System.out.print("");
-    //System.out.print("");
+    System.out.print("");
+    System.out.print("");
     info(" - Iniciando...");
     // Expiraciones y Loop - globales properties
     try {

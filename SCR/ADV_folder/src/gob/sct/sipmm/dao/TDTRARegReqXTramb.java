@@ -721,7 +721,7 @@ public class TDTRARegReqXTramb
        */
       /*El siguiente query se realiza para obtener la primer fecha de notificacion en caso de que existan otras*/
       
-      //System.out.print("EL CCONJUNTO-----------> "+vData.getString("cConjunto"));
+      System.out.print("EL CCONJUNTO-----------> "+vData.getString("cConjunto"));
       cConjunto = vData.getString("cConjunto").split(",");
 
       for(int ij = 0;ij < cConjunto.length;ij++){
@@ -947,7 +947,7 @@ public class TDTRARegReqXTramb
             	TDTRARegEtapasXModTram etapa = new TDTRARegEtapasXModTram();
             	etapa.cambiarEtapa(vCambiaEtapa, false, "", false, conn);
             }catch(Exception ex){
-              //System.out.print("\n\n>>>  "+ex.getMessage()+"\n\n");
+              System.out.print("\n\n>>>  "+ex.getMessage()+"\n\n");
               cErrorMsg = ex.getMessage();
               ex.printStackTrace();
               throw new Exception(ex.getMessage());

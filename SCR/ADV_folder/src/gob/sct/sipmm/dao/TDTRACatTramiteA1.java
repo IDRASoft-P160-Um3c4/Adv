@@ -25,7 +25,7 @@ public class TDTRACatTramiteA1 extends DAOBase{
     try{
       String cSQL = cWhere;
       vcRecords = this.FindByGeneric(cKey,cSQL,dataSourceName);
-      //System.out.print(cKey+cWhere);
+      System.out.print(cKey+cWhere);
     } catch(Exception e){
       cError = e.toString();
     } finally{

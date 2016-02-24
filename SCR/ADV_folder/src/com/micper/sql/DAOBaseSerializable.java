@@ -102,7 +102,7 @@ public class DAOBaseSerializable{
       cSQL1 = cSQL1.replaceAll(" ELSE ","\n          ELSE ");
       cSQL1 = cSQL1.replaceAll(" END "," END\n        ");
 
-      //System.out.print("\n--------------------------------------------\nClase:  "+this.getClass().getName()+"\n"+cSQL1 + "\n--------------------------------------------\n");
+      System.out.print("\n--------------------------------------------\nClase:  "+this.getClass().getName()+"\n"+cSQL1 + "\n--------------------------------------------\n");
     }
 
     try{
@@ -168,7 +168,7 @@ public class DAOBaseSerializable{
       cSQL1 = cSQL1.replaceAll(" ORDER ","\n  ORDER ");
       cSQL1 = cSQL1.replaceAll(" AND ","\n    AND ");
       cSQL1 = cSQL1.replaceAll(" FROM ","\nFROM ");
-      //System.out.print("\n============================================\n"+cSQL1 + "\n============================================\n");
+      System.out.print("\n============================================\n"+cSQL1 + "\n============================================\n");
 
       pstmt = conn.prepareStatement(cSQL);
       rset = pstmt.executeQuery();
@@ -231,7 +231,7 @@ public class DAOBaseSerializable{
       cSQL1 = cSQL1.replaceAll(" ORDER ","\n  ORDER ");
       cSQL1 = cSQL1.replaceAll(" AND ","\n    AND ");
       cSQL1 = cSQL1.replaceAll(" FROM ","\nFROM ");
-      //System.out.print("\n--------------------------------------------\n"+cSQL1 + "\n--------------------------------------------\n");
+      System.out.print("\n--------------------------------------------\n"+cSQL1 + "\n--------------------------------------------\n");
     }
 
     try{

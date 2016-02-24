@@ -271,8 +271,8 @@ public class TDCYSReversionPM extends DAOBase{
         rep.comRemplaza("[cPaisTit]",cPaisEntTit);
 
         rep.comRemplaza("[cEntidadFed]",cEntidad);
-        //System.out.print("***************************---vDatos.getDate(dtIniVigenciaTitulo): "+vDatos.getDate("dtIniVigenciaTitulo"));
-        //System.out.print("***************************---vDatos.getDate(dtVigenciaTitulo): "+vDatos.getDate("dtVigenciaTitulo"));
+        System.out.print("***************************---vDatos.getDate(dtIniVigenciaTitulo): "+vDatos.getDate("dtIniVigenciaTitulo"));
+        System.out.print("***************************---vDatos.getDate(dtVigenciaTitulo): "+vDatos.getDate("dtVigenciaTitulo"));
         iAniosDuracion = Fechas.getDaysBetweenDates(vDatos.getDate("dtIniVigenciaTitulo"),vDatos.getDate("dtVigenciaTitulo"));
         iAniosDuracion = iAniosDuracion/365;
         rep.comRemplaza("[cAniosDuracion]",""+iAniosDuracion);

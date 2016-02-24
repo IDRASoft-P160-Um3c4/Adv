@@ -67,7 +67,7 @@ public class TablaSecuenciaXAnio implements Serializable {
     for (int i = MIN_RETRIES; i <= RETRIES; i++) {
       try {
         stmtUpdate = lConn.createStatement();
-        //System.out.print("Tabla:" + pTableName + " Iejercicio_" + iEjercicio);
+        System.out.print("Tabla:" + pTableName + " Iejercicio_" + iEjercicio);
         stmtUpdate.executeUpdate("update SECUENCIASXANIO set INDICE = INDICE+1 where TABLA = '" + pTableName + "' and iEjercicio = " + iEjercicio );
         stmtSelect = lConn.createStatement();
         rSet = stmtSelect.executeQuery("select INDICE from SECUENCIASXANIO where TABLA = '" + pTableName + "' and iEjercicio = " + iEjercicio );

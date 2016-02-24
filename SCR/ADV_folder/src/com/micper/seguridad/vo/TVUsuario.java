@@ -195,7 +195,7 @@ public class TVUsuario implements Serializable {
 	}
 
 	public void destroy() {
-		//System.out.print("Destroy!!");
+		System.out.print("Destroy!!");
 	}
 
 	public int getiCveGrupo() {

@@ -132,7 +132,7 @@ public class TDTRARecepcion extends DAOBase {
 			} else if (vData.getInt("iCveEtapa") == Integer
 					.parseInt(VParametros
 							.getPropEspecifica("EtapaResEnviadaOficialia"))) {
-				//System.out.print("+++++++++++++++  EtapaResEnviadaOficialia");
+				System.out.print("+++++++++++++++  EtapaResEnviadaOficialia");
 				for (int i = 0; i < aEjercicio.length; i++) {
 					String cOficDep = "SELECT " + "iCveOficinaEnviaRes "
 							+ "FROM TRARegSolicitud " + "where IEJERCICIO = "
@@ -165,7 +165,7 @@ public class TDTRARecepcion extends DAOBase {
 			} else if (vData.getInt("iCveEtapa") == Integer
 					.parseInt(VParametros
 							.getPropEspecifica("EtapaEntregaResol"))) {
-				//System.out.print("+++++++++++++++++ EtapaEntregaResol");
+				System.out.print("+++++++++++++++++ EtapaEntregaResol");
 				for (int j = 0; j < 2; j++) {
 					int iCveEtapa = 0;
 					int iCveDepto = 0;
@@ -274,7 +274,7 @@ public class TDTRARecepcion extends DAOBase {
 
 			} else if (vData.getInt("iCveEtapa") == Integer
 					.parseInt(VParametros.getPropEspecifica("EtapaDocRetorno"))) {
-				//System.out.print("*****    EtapaDocRetorno");
+				System.out.print("*****    EtapaDocRetorno");
 				int iCveEtapa = Integer.parseInt(VParametros
 						.getPropEspecifica("EtapaConclusionTramite"));
 				for (int i = 0; i < aEjercicio.length; i++) {
@@ -300,7 +300,7 @@ public class TDTRARecepcion extends DAOBase {
 				}
 			} else {
 				for (int i = 0; i < aEjercicio.length; i++) {
-					//System.out.print("*****    ELSE     *****");
+					System.out.print("*****    ELSE     *****");
 					TVDinRep vCambiaEtapa = new TVDinRep();
 					vCambiaEtapa.put("iEjercicio",
 							Integer.parseInt(aEjercicio[i], 10));

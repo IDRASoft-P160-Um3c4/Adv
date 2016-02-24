@@ -581,7 +581,7 @@ public class TDINTTRAMITES
           */	  
 		  iNumSolicitud = TablaSecuenciaXAnio.getSecuencia(conn, "SOLICITUD", iEjercicio);
 		  vData.put("iNumSolicitud",iNumSolicitud);
-		  //System.out.print(">>>>>>>>>>iNumSolicitud:"+vData.getInt("iNumSolicitud"));
+		  System.out.print(">>>>>>>>>>iNumSolicitud:"+vData.getInt("iNumSolicitud"));
 		  
 		  vData.addPK(vData.getString("iNumSolicitud"));
 
@@ -958,7 +958,7 @@ public class TDINTTRAMITES
 		
 		/**PARA SABER QUE REQUISITOS SE ENTREGARAN COMO FISICOS PARA SOLICITARLOS EN LA SEGUNDA PESTANA DE TRAMITE POR INTERNET**/
 		
-		//System.out.print(vData.getString("cCadReqs"));
+		System.out.print(vData.getString("cCadReqs"));
 		
 		String[] arrReqsFisicos = vData.getString("cCadReqs").split(",");
 		

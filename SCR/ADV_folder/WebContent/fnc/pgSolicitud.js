@@ -10,6 +10,7 @@ var lTienePNCNR = false;
 var iEtapaVerif = 0;
 var cEtapasRestringidas = "";
 var aDocDig = new Array();
+var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgSolicitud.js";
@@ -17,6 +18,8 @@ function fBefLoad() {
 		// cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 		cTitulo = "EVALUACIÓN DE REQUISITOS POR D.G.D.C.";
 	}
+	
+	cPermisoPag = fGetPermisos(cPaginaWebJS);
 	fSetWindowTitle();
 }
 // SEGMENTO Definición de la página (Definición Mandatoria)
@@ -531,6 +534,11 @@ function fMuestraFolioPNC() {
 }
 
 function fOficPNC() {
+	
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
 
 	if (lTienePNCNR == true) {
 		cClavesModulo = "3,";
@@ -567,6 +575,12 @@ function fGuardarA() {
 
 
 function fVerifica() {
+	
+
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
 
 	if (lTienePNCNR == false) {
 

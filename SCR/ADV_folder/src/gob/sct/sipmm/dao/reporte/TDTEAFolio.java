@@ -41,7 +41,7 @@ public class TDTEAFolio extends DAOBase{
 				conn.setTransactionIsolation(2);
 			}
 			
-			//System.out.print("\n\n\n\n\n Entro insert");
+			System.out.print("\n\n\n\n\n Entro insert");
 			
 
 			String lSQL =

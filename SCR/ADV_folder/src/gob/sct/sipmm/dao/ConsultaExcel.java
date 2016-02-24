@@ -180,24 +180,24 @@ public class ConsultaExcel extends HttpServlet {
 			
 			XLSTransformer transformer = new XLSTransformer();
 			
-			//System.out.print("ruta del tamplate ----->"+getServletContext().getResource("/wwwrooting/plantilla/in.xlsx").getPath());
+			System.out.print("ruta del tamplate ----->"+getServletContext().getResource("/wwwrooting/plantilla/in.xlsx").getPath());
 
 			try { // NAS
 				
 				tmplPath = rutaNAS +"in.xlsx";
 				
-				//System.out.print("rutaTemplate--> " + tmplPath);
-				//System.out.print("rutaDestino--> " + outPath);
+				System.out.print("rutaTemplate--> " + tmplPath);
+				System.out.print("rutaDestino--> " + outPath);
 
 				transformer.transformXLS(tmplPath, beans, outPath);
 				
-				//System.out.print("paso del transformXLS NAS ");
+				System.out.print("paso del transformXLS NAS ");
 
 			} catch (Exception e) {
 				realiza=true;
-				//System.out.print("\n--------ERROR USANDO LA NAAAAAAS--------\n");
+				System.out.print("\n--------ERROR USANDO LA NAAAAAAS--------\n");
 				TLogger.log(this, TLogger.ERROR, "ERROR USANDO LA NAAAAAAS", e);
-				//System.out.print("errorNASS ->>" + e.getMessage());
+				System.out.print("errorNASS ->>" + e.getMessage());
 			}
 			
 			
@@ -206,18 +206,18 @@ public class ConsultaExcel extends HttpServlet {
 					
 					tmplPath=getServletContext().getResource("/wwwrooting/plantilla/in.xlsx").getPath();
 					
-					//System.out.print("rutaTemplate--> " + tmplPath);
-					//System.out.print("rutaDestino--> " + outPath);
+					System.out.print("rutaTemplate--> " + tmplPath);
+					System.out.print("rutaDestino--> " + outPath);
 
 					transformer.transformXLS(tmplPath, beans, outPath);
 					
-					//System.out.print("paso del transformXLS TEMPLATE");
+					System.out.print("paso del transformXLS TEMPLATE");
 	
 				} catch (Exception e) {
 	
-					//System.out.print("\n--------ERROR USANDO EL PATHHH DEL TEMPLATE--------\n");
+					System.out.print("\n--------ERROR USANDO EL PATHHH DEL TEMPLATE--------\n");
 					TLogger.log(this, TLogger.ERROR, "ERROR USANDO EL PATHHH DEL TEMPLATE", e);
-					//System.out.print("errorTEMPLATE ->>" + e.getMessage());
+					System.out.print("errorTEMPLATE ->>" + e.getMessage());
 				}
 			}
 

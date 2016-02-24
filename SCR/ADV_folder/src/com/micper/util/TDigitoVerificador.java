@@ -36,9 +36,9 @@ public class TDigitoVerificador {
 		lCadenaValida = null;
 	}*/
 	/*if(lCadenaValida == null)
-		//System.out.print("Cadena de matrícula no válida: " + cCadenaOrigen);
+		System.out.print("Cadena de matrícula no válida: " + cCadenaOrigen);
 	else {*/
-	//System.out.print(">>>  Cadena Original:   "+cCadenaOrigen);
+	System.out.print(">>>  Cadena Original:   "+cCadenaOrigen);
 		for(int i=0; i<cCadenaOrigen.length(); i++) {
 			String cTmp = cCadenaOrigen.substring(i, i+1).toUpperCase();
 			int iTmp = 0;
@@ -81,26 +81,26 @@ public class TDigitoVerificador {
 			if(cTmp.equals("Z")) iTmp=6;
 			
 			int iValorAct = new Integer(iTmp).intValue();
-			//System.out.print(">>>  VALOR DE SERIE: "+iValorAct);
+			System.out.print(">>>  VALOR DE SERIE: "+iValorAct);
 			
 			iAcumProd += iValorAct * (iValorAct + 1);
 		}
-		//System.out.print("iAcumProd=" + iAcumProd);
+		System.out.print("iAcumProd=" + iAcumProd);
 		iRecalculo = (iAcumProd * iAcumProd) + (2*(100 * iAcumProd)) + (100 * 100);
-		//System.out.print("iRecalculo=" + iRecalculo);
+		System.out.print("iRecalculo=" + iRecalculo);
 		cSubCadena = (new Integer(iRecalculo)).toString().substring(1);
-		//System.out.print("cSubCadena=" + cSubCadena);
+		System.out.print("cSubCadena=" + cSubCadena);
 		while (iSubProducto >= 10) {
 			iSubProducto = 0;
 			for (int i=0; i<cSubCadena.length(); i++) {
 				int iValorAct = new Integer(cSubCadena.substring(i, i+1)).intValue();
 				iSubProducto += iValorAct;
 			}
-			//System.out.print("iSubProducto=" + iSubProducto);
+			System.out.print("iSubProducto=" + iSubProducto);
 			cSubCadena = new Integer(iSubProducto).toString();
 		}
 		this.iDigito = new Integer(iSubProducto).intValue();
-		//System.out.print("Matrícula completa: " + cCadenaOrigen + "-" + this.iDigito);
+		System.out.print("Matrícula completa: " + cCadenaOrigen + "-" + this.iDigito);
 	//}
 	//return iDigito;
   }
@@ -111,7 +111,7 @@ public class TDigitoVerificador {
   public void setCDigito(String valores){
     //String valores = "0123456789abcdefghijklmnopkrstuvwwxyz";
     //String valores = "l804k436";
-//System.out.print(valores);
+System.out.print(valores);
     if(valores != null && valores.length() > 7 ){
       valores = valores.substring(0,8);
       char[] dIni = valores.toCharArray();
@@ -125,7 +125,7 @@ public class TDigitoVerificador {
           iFinal[i] = iFinal[i] - 10;
         if(iFinal[i] > 9)
           iFinal[i] = iFinal[i] - 10;
-//        //System.out.print(iFinal[i]+" - "+dIni[i]);
+//        System.out.print(iFinal[i]+" - "+dIni[i]);
       }
 
       for(int j = 0; j < iFinal.length;j++){
@@ -133,28 +133,28 @@ public class TDigitoVerificador {
         iFinal[j] = iFinal[j] + 1;
         if(iFinal[j] > 9)
           iFinal[j] = iFinal[j] - 10;
-//        //System.out.print(iFinal[j]);
+//        System.out.print(iFinal[j]);
       }
       int iSuma = 0;
       for(int k = 0; k < iFinal.length; k++ ){
         iSuma += iFinal[k] * iIni[k];
       }
-//      //System.out.print("iSuma : "+iSuma);
+//      System.out.print("iSuma : "+iSuma);
       //Recalcular Suma
       iSuma = (iSuma * iSuma) + (2 *(100 * iSuma)) + 10000;
       //int iNSuma = String.valueOf(iSuma).length();
       String cNSuma = String.valueOf(iSuma);
-//      //System.out.print("Recalcular iSuma : "+iSuma);
-//      //System.out.print("iNSuma : "+iNSuma);
+//      System.out.print("Recalcular iSuma : "+iSuma);
+//      System.out.print("iNSuma : "+iNSuma);
       String cASuma = cNSuma.substring(1,cNSuma.length());
-//      //System.out.print("cASuma : "+cASuma);
+//      System.out.print("cASuma : "+cASuma);
 
       char[] dcAsuma = cASuma.toCharArray();
       int iDPreVerif = 0;
       for(int l = 0; l < dcAsuma.length; l++){
         iDPreVerif +=  Integer.parseInt(String.valueOf(dcAsuma[l]));
       }
-//      //System.out.print("iDPreVerif : "+iDPreVerif);
+//      System.out.print("iDPreVerif : "+iDPreVerif);
       int iDigitoverificador = 0;
       char[] dDIgverrif = String.valueOf(iDPreVerif).toCharArray();
 
@@ -166,8 +166,8 @@ public class TDigitoVerificador {
                       iDigitoverificador = Integer.parseInt(String.valueOf(tem.charAt(0)))+ Integer.parseInt(String.valueOf( tem.charAt(1)));
               }
       }
-//      //System.out.print("valores : "+valores);
-//      //System.out.print("iDigitoverificador : "+iDigitoverificador);
+//      System.out.print("valores : "+valores);
+//      System.out.print("iDigitoverificador : "+iDigitoverificador);
       this.iDigito = iDigitoverificador;
     }
   }

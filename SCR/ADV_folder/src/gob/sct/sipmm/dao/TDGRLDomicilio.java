@@ -68,7 +68,7 @@ public class TDGRLDomicilio extends DAOBase{
       vData.addPK(vData.getString("iCvePersona"));
       vData.addPK(vData.getString("iCveDomicilio"));
       //...
- //System.out.print("iCvePersona" + vData.getInt("iCvePersona"));
+ System.out.print("iCvePersona" + vData.getInt("iCvePersona"));
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iCvePersona"));
       lPStmt.setInt(2,vData.getInt("iCveDomicilio"));
@@ -79,7 +79,7 @@ public class TDGRLDomicilio extends DAOBase{
       lPStmt.setString(7,vData.getString("cColonia"));
       lPStmt.setString(8,vData.getString("cCodPostal"));
       lPStmt.setString(9,vData.getString("cTelefono"));
-      //System.out.print("pais" + vData.getInt("iCvePais"));
+      System.out.print("pais" + vData.getInt("iCvePais"));
      lPStmt.setInt(10,vData.getInt("iCvePais"));
       lPStmt.setInt(11,vData.getInt("iCveEntidadFed"));
       lPStmt.setInt(12,vData.getInt("iCveMunicipio"));

@@ -2827,7 +2827,7 @@ public class TDTRARegSolicitud extends DAOBase {
 				.getPropEspecifica("VentanillaCausaRequisitoNoConforme"), 10);
 
 
-		String[] aTramites, aModalidades, aRequisitos, aFisico, aReqTemp, aReqValor, aEnvObl, aCarac, aReqCarac, aCaracTemp, aCarValor;
+		String[] aTramites, aModalidades, aRequisitos, aReqTemp, aReqValor, aEnvObl, aCarac, aReqCarac, aCaracTemp, aCarValor;//,aFisico;
 		Vector vcCaracPNC = new Vector();
 		// String cSQLMax =
 		// "SELECT MAX(iNumSolicitud) AS iNumSolicitud FROM TRARegSolicitud WHERE iEjercicio = "
@@ -2873,7 +2873,8 @@ public class TDTRARegSolicitud extends DAOBase {
 			aModalidades = vData.getString("ClavesModalidad").split(",");
 
 			aRequisitos = vData.getString("iCveRequisito").split(":");
-			aFisico = vData.getString("cFisico").split(",");
+			
+			//aFisico = vData.getString("cFisico").split(",");
 			
 			if (!vData.getString("Caracteristicas").equals(""))
 				aCarac = vData.getString("Caracteristicas").split(":");
@@ -3148,17 +3149,17 @@ public class TDTRARegSolicitud extends DAOBase {
 					
 					 Integer iCveReq = vDRequisitos.getInt("ICVEREQUISITO");
 					
-					int iFisico=0;
+					//int iFisico=0;
 					
-					for(int h=0;h<aFisico.length;h++){
-						String[] objFis = aFisico[h].split(":"); 
-						
-						if(Integer.parseInt(objFis[0])==iCveReq){
-							if(objFis[1].equals("true"))
-								iFisico = 1;
-							break;
-						}
-					}
+//					for(int h=0;h<aFisico.length;h++){
+//						String[] objFis = aFisico[h].split(":"); 
+//						
+//						if(Integer.parseInt(objFis[0])==iCveReq){
+//							if(objFis[1].equals("true"))
+//								iFisico = 1;
+//							break;
+//						}
+//					}
 
 					lPStmt2 = conn.prepareStatement(cSQLReq);
 					lPStmt2.setInt(1, iEjercicio); // iEjercicio
@@ -3183,7 +3184,8 @@ public class TDTRARegSolicitud extends DAOBase {
 					if (lReq == true) {
 						lPStmt2.setDate(8, tFecha.TodaySQL()); // dtRecepcion
 						lPStmt2.setInt(9, vData.getInt("iCveUsuario")); // iCveUsuRecibe
-						lPStmt2.setInt(14, iFisico); // lFisico
+						//lPStmt2.setInt(14, iFisico); // lFisico
+						lPStmt2.setInt(14, 0); // lFisico
 					} else {
 						lPStmt2.setNull(8, Types.DATE); // dtRecepcion
 						lPStmt2.setInt(9, 0); // iCveUsuRecibe
@@ -3354,17 +3356,17 @@ public class TDTRARegSolicitud extends DAOBase {
 
 			lPStmt = conn.prepareStatement(SqlADV);
 		
-			//System.out.println(SqlADV);
-			//System.out.println(consec);
-			//System.out.println(vData1.getInt("iEjer"));
-			//System.out.println(vData1.getInt("iNumSolicitud"));
-			//System.out.println(vData.getString("cHechosTramite"));
-			//System.out.println(vData.getString("cOrganoAdmin"));
-			//System.out.println(vData.getInt("iCveCarretera"));
-			//System.out.println(vData.getDate("dtVisita"));
-			//System.out.println(vData.getString("tLatitud"));
-			//System.out.println(vData.getString("tLongitud"));
-			//System.out.println(vData.getString("tKmSentido"));
+			System.out.println(SqlADV);
+			System.out.println(consec);
+			System.out.println(vData1.getInt("iEjer"));
+			System.out.println(vData1.getInt("iNumSolicitud"));
+			System.out.println(vData.getString("cHechosTramite"));
+			System.out.println(vData.getString("cOrganoAdmin"));
+			System.out.println(vData.getInt("iCveCarretera"));
+			System.out.println(vData.getDate("dtVisita"));
+			System.out.println(vData.getString("tLatitud"));
+			System.out.println(vData.getString("tLongitud"));
+			System.out.println(vData.getString("tKmSentido"));
 
 			lPStmt.setInt(1, consec);
 			lPStmt.setInt(2, vData1.getInt("iEjer"));

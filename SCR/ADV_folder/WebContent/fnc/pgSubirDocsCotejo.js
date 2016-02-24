@@ -11,21 +11,25 @@ var ICVETRAMITE = 0;
 var aNotifica = new Array();
 var lFirst = true;
 
-var bloqueaGuardar=false;
-var existInputPNC=false;
-var existInput=false;
-var msgErr="";
+var bloqueaGuardar = false;
+var existInputPNC = false;
+var existInput = false;
+var msgErr = "";
 
 var cPagRet;
 
-var arrTmp;	
+var arrTmp;
 var arrTmpPNC;
 
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
-function fBefLoad() {
+function fBefLoad(cMsgError) {
+
+	if (cMsgError !== undefined)
+		msgErr = cMsgError;
+
 	cPaginaWebJS = "pgSubirDocsCotejo.js";
-	cPagRet="pgSubirDocsCotejo";
-	cTitulo="ANEXAR DOCUMENTOS AL TRÁMITE";
+	cPagRet = "pgSubirDocsCotejo";
+	cTitulo = "ANEXAR DOCUMENTOS AL TRÁMITE";
 	fSetWindowTitle();
 }
 // SEGMENTO Definicin de la pgina (Definicin Mandatoria)
@@ -35,43 +39,42 @@ function fDefPag() {
 			+ '<form name="form1" enctype="multipart/form-data" method="post" action="UploadADVDocs">';
 	fInicioPagina(cColorGenJSFolder);
 	InicioTabla("", 0, "100%", "", "", "", "1");
-		ITRTD("EEtiquetaC", 7, "", "", "center");
-			TextoSimple(cTitulo);
-		FTDTR();
-		ITRTD("", 0, "", "", "top");
-			InicioTabla("", 0, "100%", "100%", "center", "", ".1", ".1");
-				ITRTD("ESTitulo1", 0, "100%", "100%", "center", "top");
-					InicioTabla("", 0, "100%", "1", "center");
-						ITRTD("EEtiquetaC", 0, "100%", "25", "center", "top");
-						 //TextoSimple("DOCUMENTOS ANEXOS AL TRÁMITE");
-							
-						FTDTR();
+	ITRTD("EEtiquetaC", 7, "", "", "center");
+	TextoSimple(cTitulo);
+	FTDTR();
+	ITRTD("", 0, "", "", "top");
+	InicioTabla("", 0, "100%", "100%", "center", "", ".1", ".1");
+	ITRTD("ESTitulo1", 0, "100%", "100%", "center", "top");
+	InicioTabla("", 0, "100%", "1", "center");
+	ITRTD("EEtiquetaC", 0, "100%", "25", "center", "top");
+	// TextoSimple("DOCUMENTOS ANEXOS AL TRÁMITE");
 
-						ITRTD("", 0, "", "", "center");
-							DinTabla("BarraWizard", "", 0, "", "90%", "center", "top", "", ".1", ".1");
-						FTDTR();
-						
-						ITRTD("", 0, "", "", "center");
-							DinTabla("BarraWizardA", "", 0, "", "90%", "center", "top", "", ".1", ".1");
-						FTDTR();
+	FTDTR();
 
-						
-						ITRTD("", 0, "", "", "center");
-							DinTabla("TDBdy", "", 0, "90%", "", "center", "", "", ".1", ".1");
-						FTDTR();
-						ITRTD("", "", "", "40", "center");
-							IFrame("IPanel", "515", "34", "Paneles.js");
-						FTDTR();
-					FinTabla();
-				FTDTR();
-			FinTabla();
-		FTDTR();
+	ITRTD("", 0, "", "", "center");
+	DinTabla("BarraWizard", "", 0, "", "90%", "center", "top", "", ".1", ".1");
+	FTDTR();
+
+	ITRTD("", 0, "", "", "center");
+	DinTabla("BarraWizardA", "", 0, "", "90%", "center", "top", "", ".1", ".1");
+	FTDTR();
+
+	ITRTD("", 0, "", "", "center");
+	DinTabla("TDBdy", "", 0, "90%", "", "center", "", "", ".1", ".1");
+	FTDTR();
+	ITRTD("", "", "", "40", "center");
+	IFrame("IPanel", "515", "34", "Paneles.js");
+	FTDTR();
 	FinTabla();
-	
-	Hidden("iNumSolicitud",-1);
-	Hidden("iEjercicio",-1);
-	Hidden("tienePNC",-1);
-	
+	FTDTR();
+	FinTabla();
+	FTDTR();
+	FinTabla();
+
+	Hidden("iNumSolicitud", -1);
+	Hidden("iEjercicio", -1);
+	Hidden("tienePNC", -1);
+
 	fFinPagina();
 }
 function fAnexaDoc() {
@@ -79,8 +82,8 @@ function fAnexaDoc() {
 }
 // SEGMENTO Despus de Cargar la pgina (Definicin Mandatoria)
 function fOnLoad() {
- frm = document.forms[0];
- 
+	frm = document.forms[0];
+
 	theTable = (document.all) ? document.all.TDBdy : document
 			.getElementById("TDBdy");
 	tBdy = theTable.tBodies[0];
@@ -88,17 +91,16 @@ function fOnLoad() {
 	tBarraWizard = document.getElementById("BarraWizard");
 	tBarraWizardA = document.getElementById("BarraWizardA");
 
-	//fDelTBdy();
+	// fDelTBdy();
 	FRMPanel = fBuscaFrame("IPanel");
 	FRMPanel.fSetControl(self, cPaginaWebJS);
 	FRMPanel.fShow("Tra,");
 	FRMPanel.fSetTraStatus("Disabled");
-	
-	if(top.opener){
-		frm.tienePNC.value=top.opener.getTienePNC();
-		
+
+	if (top.opener.getTienePNC) {
+		frm.tienePNC.value = top.opener.getTienePNC();
 	}
-	
+
 	fNavega();
 }
 function fDelTBdyFIEL() {
@@ -108,15 +110,14 @@ function fDelTBdyFIEL() {
 }
 // LLAMADO al JSP especfico para la navegacin de la pgina
 function fNavega() {
-	
-	if(top.opener){
-		frm.iNumSolicitud.value=top.opener.getNumSol();
-		frm.iEjercicio.value=top.opener.getEjercicio();
+
+	if (top.opener) {
+		frm.iNumSolicitud.value = top.opener.getNumSol();
+		frm.iEjercicio.value = top.opener.getEjercicio();
 	}
-	
-	
-	if(	frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '' ){
-		
+
+	if (frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '') {
+
 		frm.hdBoton.value = "subirDocsCotejo";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";
@@ -127,15 +128,14 @@ function fNavega() {
 }
 
 function fNavegaA() {
-	
-	if(top.opener){
-		frm.iNumSolicitud.value=top.opener.getNumSol();
-		frm.iEjercicio.value=top.opener.getEjercicio();
+
+	if (top.opener) {
+		frm.iNumSolicitud.value = top.opener.getNumSol();
+		frm.iEjercicio.value = top.opener.getEjercicio();
 	}
-	
-	
-	if(	frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '' ){
-		
+
+	if (frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '') {
+
 		frm.hdBoton.value = "subirDocsPNC";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";
@@ -146,12 +146,29 @@ function fNavegaA() {
 }
 // RECEPCIN de Datos de provenientes del Servidor
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
-	
+
+	if (msgErr != "") {// si ocurre un error en el servidor al cargar los
+		// archivos
+		fAlert(msgErr);
+		msgErr = "";
+	}
+
+	if (cError == "Guardar") {
+		fAlert("Existió un error en el Guardado!\n");
+		return;
+	} else if (cError == "Borrar") {
+		fAlert("Existió un error en el Borrado!");
+		return;
+	} else if (cError == "Cascada") {
+		fAlert("El registro es utilizado por otra entidad, no es posible eliminarlo!");
+		return;
+	}
+
 	if (cId == "Listado" && cError == "") {
 		fShowDatos(aRes);
 		fNavegaA();
 	}
-	
+
 	if (cId == "ListadoPNC" && cError == "") {
 		fShowDatosPNC(aRes);
 		bloqGuardar();
@@ -166,17 +183,20 @@ function fNuevo() {
 }
 
 function fGuardar() {
-	
-	if(fValidaTodo()==false){
-	    frm.action = "UploadADVDocs?paramA="+frm.iNumSolicitud.value+"&paramB="+cPagRet+"&paramC="+frm.tienePNC.value;      
-	    fEnProceso(true);
-		setTimeout(function(){frm.submit();},250);
+
+	if (fValidaTodo() == false) {
+		frm.action = "UploadADVDocs?paramA=" + frm.iNumSolicitud.value
+				+ "&paramB=" + cPagRet + "&paramC=" + frm.tienePNC.value;
+		fEnProceso(true);
+		setTimeout(function() {
+			frm.submit();
+		}, 250);
 	}
 
 }
 
 function fCancelar() {
-	if (FRMListado.fGetLength() > 0)
+	if (FRMListado!=undefined&&FRMListado.fGetLength() > 0)
 		FRMPanel.fSetTraStatus("Disabled");
 	else
 		FRMPanel.fSetTraStatus("AddOnly");
@@ -185,14 +205,15 @@ function fCancelar() {
 }
 // LLAMADO desde el Panel cada vez que se presiona al botn Borrar
 function fBorrar() {
-	/*if (confirm(cAlertMsgGen + "\n\n Desea usted eliminar el registro?")) {
-		fNavega();
-	}*/
+	/*
+	 * if (confirm(cAlertMsgGen + "\n\n Desea usted eliminar el registro?")) {
+	 * fNavega(); }
+	 */
 }
 //
-//function fValidaTodo() {
-//	return true;
-//}
+// function fValidaTodo() {
+// return true;
+// }
 
 function fCarga(lValor) {
 
@@ -211,37 +232,37 @@ function fShowDatos(aRes) {
 	tCell = tRw.insertCell();
 	tCell.colSpan = 2;
 	tCell.innerHTML = TextoSimple("ANEXAR DOCUMENTOS AL TRÁMITE");
-	tCell.className = "ETablaST";	
-	
-	for(var t=0; t < aRes.length;t++){
-		
-		aRes[t].push("0"); //bandera archivo invalido
-		aRes[t].push("0"); //tamnanio
-		
+	tCell.className = "ETablaST";
+
+	for ( var t = 0; t < aRes.length; t++) {
+
+		aRes[t].push("0"); // bandera archivo invalido
+		aRes[t].push("0"); // tamnanio
+
 		tRw = tBarraWizard.insertRow();
 		tCell = tRw.insertCell();
 
 		tCell.innerHTML = aRes[t][0] + ": ";
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
-		
-		if (aRes[t][8] == "0"){
-			if(aRes[t][7] == "") {
+
+		if (aRes[t][8] == "0") {
+			if (aRes[t][7] == "") {
 				existInput = true;
 				tCell.innerHTML = '<input id="file_id_' + aRes[t][1]
 						+ '" type="file" name="fileButonADV' + aRes[t][1]
-						+ '" onChange="checkFile(this,' + t + ');" size="25">';
-			}else {
+						+ '" size="25">';
+			} else {
 				tCell.innerHTML = '<label><b>&nbsp;&nbsp;Entregado digitalmente.</b></label>';
 			}
-		}else {
+		} else {
 			tCell.innerHTML = '<label><b>&nbsp;&nbsp;Entregado físicamente.</b></label>';
 		}
 	}
-	
-	if(existInput==true){
+
+	if (existInput == true) {
 		FRMPanel.fSetTraStatus("UpdateBegin");
-//		window.parent.setPermiteImpresion(false);
+		// window.parent.setPermiteImpresion(false);
 	}
 
 	arrTmp = fCopiaArreglo(aRes);
@@ -249,8 +270,7 @@ function fShowDatos(aRes) {
 }
 
 function fShowDatosPNC(aRes) {
-	
-	
+
 	while (tBarraWizardA.rows.length > 0) {
 		tBarraWizardA.deleteRow(tBarraWizardA.rows.length - 1);
 	}
@@ -262,93 +282,68 @@ function fShowDatosPNC(aRes) {
 	tCell = tRw.insertCell();
 	tCell.colSpan = 2;
 	tCell.innerHTML = TextoSimple("ANEXAR DOCUMENTOS COMO RESPUESTA A LA NOTIFICACIÓN");
-	tCell.className = "ETablaST";	
-	
-	
-for(var t=0; t < aRes.length;t++){
-		
-		aRes[t].push("0"); //bandera archivo invalido
-		aRes[t].push("0"); //tamnanio
-		
+	tCell.className = "ETablaST";
+
+	for ( var t = 0; t < aRes.length; t++) {
+
+		aRes[t].push("0"); // bandera archivo invalido
+		aRes[t].push("0"); // tamnanio
+
 		tRw = tBarraWizardA.insertRow();
 		tCell = tRw.insertCell();
 
 		tCell.innerHTML = aRes[t][0] + ": ";
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
-		
-		if (aRes[t][9] == "0"){
-			if(aRes[t][7] == "") {
+
+		if (aRes[t][9] == "0") {
+			if (aRes[t][7] == "") {
 				existInputPNC = true;
 				tCell.innerHTML = '<input id="file_id_' + aRes[t][1]
 						+ '" type="file" name="fileButonADV' + aRes[t][1]
-						+ '" onChange="checkFile(this,' + t + ',true);" size="25">';
-			}else {
+						+ '" onChange="checkFile(this,' + t
+						+ ',true);" size="25">';
+			} else {
 				tCell.innerHTML = '<label><b>&nbsp;&nbsp;Entregado digitalmente.</b></label>';
 			}
-		}else {
+		} else {
 			tCell.innerHTML = '<label><b>&nbsp;&nbsp;Entregado físicamente.</b></label>';
 		}
 	}
-	
-	if(existInputPNC==true){
+
+	if (existInputPNC == true) {
 		FRMPanel.fSetTraStatus("UpdateBegin");
-//		window.parent.setPermiteImpresion(false);
 	}
 
 	arrTmpPNC = fCopiaArreglo(aRes);
-		
+
 }
 
-function resetBloqueaGuardar(){
-	bloqueaGuardar=false;
+function resetBloqueaGuardar() {
+	bloqueaGuardar = false;
 }
 
-function bloqGuardar(){
-	
-	if(existInput==false&&existInputPNC==false)
+function bloqGuardar() {
+
+	if (existInput == false && existInputPNC == false)
 		FRMPanel.fSetTraStatus("Disabled");
 	else
 		FRMPanel.fSetTraStatus("UpdateBegin");
 }
 
 function validaAchivos() {
-	
+
 	var valRet = false;
 	var arrayFilesNames = fGetFilesValues(frm);
 
 	if (validaArchVacios(arrayFilesNames) == true) {
 		valRet = true;
 	}
-	
-	
+
 	if (validaDocExt(arrayFilesNames) == true) {
 		valRet = true;
 	}
-	
 
-	var valBand = false;
-	
-	if(existInput==true)
-		valBand = validaTamInvalid(arrTmp); 
-	else if(existInputPNC==true)
-		valBand = validaTamInvalidPNC(arrTmpPNC); 
-			
-	if (valBand== true) {
-		valRet = true;
-	}
-	
-	
-	if (existInput==true) {
-		valBand = checkAllFiles(arrTmp);
-	}else if (existInputPNC==true) {
-		valBand = checkAllFilesPNC(arrTmpPNC);
-	}
-	
-	if (valBand== true) {
-		valRet = true;
-	}
-	
 	return valRet;
 
 }
@@ -369,26 +364,6 @@ function validaDocExt(arrayDocsName) {
 				return true;
 			}
 
-		}
-	}
-	return false;
-}
-
-function validaTamInvalid(arrF) {
-	for ( var ab = 0; ab < arrF.length; ab++) {
-		if (arrF[ab][9] == "1") {
-			msgErr += "\n- Existen documentos que exceden el tamaño máximo de 15Mb. Favor de verificarlos.";
-			return true;
-		}
-	}
-	return false;
-}
-
-function validaTamInvalidPNC(arrF) {
-	for ( var ab = 0; ab < arrF.length; ab++) {
-		if (arrF[ab][10] == "1") {
-			msgErr += "\n- Existen documentos que exceden el tamaño máximo de 15Mb. Favor de verificarlos.";
-			return true;
 		}
 	}
 	return false;
@@ -417,11 +392,11 @@ function getIdxPNC(id) {
 }
 
 function validaArchVacios(arrayDocsName) {
-	
+
 	for ( var ab = 0; ab < arrayDocsName.length; ab++) {
-		
+
 		var nomDoc = arrayDocsName[ab][0];
-		
+
 		if (nomDoc == "" && arrTmp[getIdx(arrayDocsName[ab][1])][8] == "0") {
 			msgErr += "\n- Debe subir todos los documentos para completar la operación.";
 			return true;
@@ -437,73 +412,4 @@ function fValidaTodo() {
 	if (msgErr != "")
 		fAlert(msgErr);
 	return ret;
-}
-
-function checkFile(e, idx,isPNC) {
-
-	var myFSO = new ActiveXObject("Scripting.FileSystemObject");
-	var filepath = e.value;
-
-	if (filepath != "" && filepath != undefined) {
-		var thefile = myFSO.getFile(filepath);
-		var size = thefile.size;
-		
-		arrTmp[idx][10]=size;
-		
-		if(isPNC)
-			arrTmpPNC[idx][11]=size;
-		else
-			arrTmp[idx][10]=size;
-		
-		if (size > (15* 1024 * 1024)) {
-			fAlert("- El tamaño del archivo es mayor a 15Mb. Reemplace el archivo por uno válido");
-			
-			
-			if(isPNC)
-				arrTmpPNC[idx][10] = "1";
-			else
-				arrTmp[idx][9] = "1";
-
-			
-			return;
-		}
-	}
-	
-	if(isPNC){
-		arrTmpPNC[idx][10]="0";
-		arrTmpPNC[idx][9]="0";
-	}else{
-		arrTmp[idx][10]="0";
-		arrTmp[idx][9]="0";
-	}
-}	
-
-function checkAllFiles(arrF){
-	var totSize = 0;
-	
-	for(var i=0;i<arrF.length;i++){
-		totSize+=parseInt(arrF[i][10]);
-	}
-	
-	if(totSize>(50*1024*1024)){
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-	
-	return false;
-}
-
-function checkAllFilesPNC(arrF){
-	var totSize = 0;
-	
-	for(var i=0;i<arrF.length;i++){
-		totSize+=parseInt(arrF[i][11]);
-	}
-	
-	if(totSize>(50*1024*1024)){
-		msgErr += "\n- El tamaño del conjunto de archivos supera los 50Mb permitidos. Verifique los archivos.";
-		return true;
-	}
-	
-	return false;
 }

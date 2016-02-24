@@ -258,8 +258,8 @@ public class TDTRAFoliosAdv extends DAOBaseSerializable {
 				lPStmt.setString(5, vData.getString("hdcCol_RepL"));
 				lPStmt.setString(6, vData.getString("hdcCP_RepL"));
 				lPStmt.setString(7, vData.getString("hdcTel_RepL"));
-				lPStmt.setString(8, vData.getString("iCveEntidadFedA"));
-				lPStmt.setString(9, vData.getString("iCveMunicipioA"));
+				lPStmt.setInt(8, vData.getInt("iCveEntidadFedA"));
+				lPStmt.setInt(9, vData.getInt("iCveMunicipioA"));
 				lPStmt.setNull(10, Types.INTEGER);
 				
 				lPStmt.executeUpdate();
@@ -288,10 +288,9 @@ public class TDTRAFoliosAdv extends DAOBaseSerializable {
 				lPStmt.setString(5, vData.getString("hdcCol_Sol"));
 				lPStmt.setString(6, vData.getString("hdcCP_Sol"));
 				lPStmt.setString(7, vData.getString("hdcTel_Sol"));
-				lPStmt.setString(8, vData.getString("iCveEntidadFedB"));
-				lPStmt.setString(9, vData.getString("iCveMunicipioB"));
+				lPStmt.setInt(8, vData.getInt("iCveEntidadFedB"));
+				lPStmt.setInt(9, vData.getInt("iCveMunicipioB"));
 				lPStmt.setNull(10, Types.INTEGER);
-				
 				
 				lPStmt.executeUpdate();
 								

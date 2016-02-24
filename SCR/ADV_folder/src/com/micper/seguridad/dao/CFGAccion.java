@@ -116,7 +116,7 @@ public class CFGAccion{
         cNombre = stCampos.nextToken();
         vDinRep.put(cNombre,request.getParameter(cNombre).toString());
       } catch(Exception e){    	  
-        //System.out.print("Error Parametro: "+cNombre+", cCampos["+i+"]");
+        System.out.print("Error Parametro: "+cNombre+", cCampos["+i+"]");
         e.printStackTrace();
       }
       i++;
@@ -203,7 +203,7 @@ public class CFGAccion{
                 cDato += ",'" + cFecha + "-" + cHora + "'";
               } catch(Exception ex){
                 cDato += ",''";
-                //System.out.print(cLlave);
+                System.out.print(cLlave);
                 ex.printStackTrace();
               }
             }

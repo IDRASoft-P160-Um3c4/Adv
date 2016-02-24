@@ -80,6 +80,7 @@
    
    if(cId == "Listado" && cError==""){
 
+	   alert(aRes[0]);
 	   
 	   for(var i =0;i<aRes.length;i++){
 		   

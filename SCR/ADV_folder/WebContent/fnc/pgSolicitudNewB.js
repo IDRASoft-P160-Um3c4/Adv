@@ -11,15 +11,16 @@ var iEtapaVerif = 0;
 var cEtapasRestringidas = "";
 var aDocDig = new Array();
 var esTecnico=false;
-
+var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgSolicitudNewB.js";
 //	if (top.fGetTituloPagina) {
 //		cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 //	}
-//	cTitulo ="EVALUACIÓN REQUISITOS POR DEPARTAMENTO";
-//	fSetWindowTitle();
+	cPermisoPag = fGetPermisos(cPaginaWebJS);
+	cTitulo ="EVALUACIÓN REQUISITOS POR DEPARTAMENTO";
+	fSetWindowTitle();
 }
 // SEGMENTO Definición de la página (Definición Mandatoria)
 function fDefPag() {
@@ -517,6 +518,13 @@ function fValidaCampos() {
 	}
 }
 function fVerifica() {
+	
+
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
+	
 	if(lTienePNCNR==false){
 		
 		   if (frm.cTramite.value != "") {

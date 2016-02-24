@@ -1523,7 +1523,7 @@ public class TDConcesiones extends DAOBase{
       rep.comRemplaza("[cRepLegalCompleto]",cRepLegalCompleto);
 
     } else {
-      //System.out.print("No Encontro Datos");
+      System.out.print("No Encontro Datos");
     }
 
     if(!cMensaje.equals(""))
@@ -1978,7 +1978,7 @@ public class TDConcesiones extends DAOBase{
       rep.comRemplaza("[CDSCTIPOPARTACC]",vDatos.getString("CDSCTIPOPARTACC")!=null?vDatos.getString("CDSCTIPOPARTACC"):"");
 
     } else {
-      //System.out.print("No Encontraron Datos");
+      System.out.print("No Encontraron Datos");
     }
 
     if(!cMensaje.equals(""))
@@ -2787,7 +2787,7 @@ public class TDConcesiones extends DAOBase{
       rep.comRemplaza("[CDSCTIPOPARTACC]",vDatos.getString("CDSCTIPOPARTACC")!=null?vDatos.getString("CDSCTIPOPARTACC"):"");
 
     } else {
-      //System.out.print("No Encontraron Datos");
+      System.out.print("No Encontraron Datos");
     }
 
     if(!cMensaje.equals(""))
@@ -3668,7 +3668,7 @@ public class TDConcesiones extends DAOBase{
       rep.comRemplaza("[cNumTitulo]",(vDatos.get("cNumTitulo")!= null)?vDatos.get("cNumTitulo").toString():"");
 
     } else {
-      //System.out.print("No Encontro Datos");
+      System.out.print("No Encontro Datos");
     }
 
     if(!cMensaje.equals(""))

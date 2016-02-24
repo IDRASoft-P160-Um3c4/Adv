@@ -30,7 +30,7 @@ var dtNotif = "-1";
 var dictamen = false;
 
 var subio = false;
-
+var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg117010020.js";
@@ -38,8 +38,10 @@ function fBefLoad() {
 		;
 		cTitulo = top.fGetTituloPagina(cPaginaWebJS).toUpperCase();
 	}
+	cPermisoPag = fGetPermisos(cPaginaWebJS);
 	fSetWindowTitle();
 }
+
 // SEGMENTO Definición de la página (Definición Mandatoria)
 function fDefPag() {
 	fInicioPagina(cColorGenJS);
@@ -682,6 +684,11 @@ function fNoAfectacion() { // SE AGREGA EL DICTAMEN DE FACTIBILIDAD JUNTO CON
  */
 
 function fCompruebaFolio() {
+	
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
 
 	if (dictamen == true) {
 		var iEjer = frm.iEjercicio.value;
@@ -701,6 +708,12 @@ function fCompruebaFolio() {
 }
 
 function fSubirDocsADV() {
+	
+	if (cPermisoPag != 1) {
+		fAlert("No tiene Permiso de ejecutar esta acción");
+		return;
+	}
+	
 	if (frm.iEjercicio.value != 0 && frm.iEjercicio.value != ''
 			&& frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '') {
 		if (fSoloNumeros(frm.iEjercicio.value)

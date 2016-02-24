@@ -54,9 +54,9 @@ public class TDTRAReferenciaConcepto extends DAOBase{
     boolean lSuccess = true;
     TFechas fecha = new TFechas();
     int iAnioActual = fecha.getIntYear(fecha.getDateSQL(fecha.getThisTime()));
-    //System.out.print("*****     Año Actual:  "+iAnioActual);
+    System.out.print("*****     Año Actual:  "+iAnioActual);
     Date dtIniAnioSig = new Date((iAnioActual-1900+1),0,1);
-    //System.out.print("*****     Fecha inicio Año siguiente:  "+dtIniAnioSig);
+    System.out.print("*****     Fecha inicio Año siguiente:  "+dtIniAnioSig);
     try{
       if(cnNested == null){
         dbConn = new DbConnection(dataSourceName);
@@ -84,16 +84,16 @@ public class TDTRAReferenciaConcepto extends DAOBase{
       vData.addPK(vData.getString("iCveConcepto"));
       vData.addPK(dtVigIni);
       //...
-      //System.out.print("*****     "+dtVigIni);
-      //System.out.print("*****     "+vData.getDate("dtIniVigenciaIzq"));
+      System.out.print("*****     "+dtVigIni);
+      System.out.print("*****     "+vData.getDate("dtIniVigenciaIzq"));
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iEjercicio"));
       lPStmt.setInt(2,vData.getInt("iCveConcepto"));
-      //System.out.print("*****     Concepto:"+vData.getInt("iCveConcepto"));
+      System.out.print("*****     Concepto:"+vData.getInt("iCveConcepto"));
       lPStmt.setDate(3,dtVigIni);
       lPStmt.setInt(4,vData.getInt("iCategoriaIngresos"));
       lPStmt.setInt(5,vData.getInt("iConceptoIngresos"));
-      //System.out.print("*****     "+vData.getInt("iConceptoIngresos"));
+      System.out.print("*****     "+vData.getInt("iConceptoIngresos"));
       lPStmt.setInt(6,vData.getInt("iRefNumericaIngresos"));
       lPStmt.setInt(7,vData.getInt("lEsTarifaIzq"));
       lPStmt.setInt(8,vData.getInt("lEsPorcentajeIzq"));
@@ -160,7 +160,7 @@ public class TDTRAReferenciaConcepto extends DAOBase{
       //Ajustar Where de acuerdo a requerimientos...
       String lSQL = "delete from TRAReferenciaConcepto where iEjercicio = ? AND iCveConcepto = ? AND dtIniVigencia = ?  ";
       //...
-//System.out.print(" **** iEjercicio="+vData.getInt("iEjercicio")+"  iCveConcepto=" + vData.getInt("iCveConcepto")+"dtIniVigencia="+vData.getString("dtIniVigenciaIzq"));
+System.out.print(" **** iEjercicio="+vData.getInt("iEjercicio")+"  iCveConcepto=" + vData.getInt("iCveConcepto")+"dtIniVigencia="+vData.getString("dtIniVigenciaIzq"));
       lPStmt = conn.prepareStatement(lSQL);
 
       lPStmt.setInt(1,vData.getInt("iEjercicio"));
