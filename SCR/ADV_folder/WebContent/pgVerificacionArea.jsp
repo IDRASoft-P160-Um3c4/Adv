@@ -39,7 +39,7 @@
 	  }
 	  
 	  if(oAccion.getCAccion().equals("GuardarMultXArea")){
-		    vDinRep = oAccion.setInputs("iEjer,iNumSol,iCveTram,iCveModal,iCveRequi,iCveCausaPNC,cDscOtraCausa,CveUser,iCveProducto,iCveProceso");
+		    vDinRep = oAccion.setInputs("iEjer,iNumSol,iCveUser,cadenaObservaciones,iCveRequi");
 	    
 		    try{
 		      vDinRep = dVerificacion.insertMultCausas(vDinRep,null);

@@ -519,7 +519,7 @@
           cNomTitulo = aRes[0][10];
           permiso = aRes[0][11];
           
-          //alert(permiso);
+          alert(permiso);
           
           if(frm.dtEntrega.value != "")
              FRMPanel.fShow(",");
@@ -1059,7 +1059,6 @@ function fDocsFinales(){
 	if(fSoloNumeros(frm.iEjercicio.value) && fSoloNumeros(frm.iNumSolicitud.value)&&permiso){
 		  if(permiso>0) 
 			  fAbreSubWindowPermisos("pgDatosPermiso","800","600",false);
-		   	//fAbreSubWindow(false,"pgDatosPermiso","no","yes","yes","yes","800","800",50,50);
 		  else
 	          fAlert("La debe estar en la etapa \"ENTREGA DE PERMISO\".");
 	} else{

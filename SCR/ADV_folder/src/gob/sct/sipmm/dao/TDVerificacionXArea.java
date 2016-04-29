@@ -197,6 +197,8 @@ try{
  
   Integer icveRegEva=0;
   
+  System.out.println(vData.getInt("iEjer")+"-"+vData.getInt("iNumSol")+"-"+vData.getInt("iCveRequi"));
+  
   Vector vCveRegEva= new Vector();
   vCveRegEva=findByCustom("", "select ICVEEVALXAREA from TRAREGEVAREQXAREA where iejercicio="+vData.getInt("iEjer")
 		  					  +" and inumsolicitud="+vData.getInt("iNumSol")
@@ -206,41 +208,12 @@ try{
 	  icveRegEva = ( (TVDinRep) vCveRegEva.get(0)).getInt("ICVEEVALXAREA");
 
   
-  String upRegEv = "UPDATE TRAREGEVAREQXAREA SET ICVEUSUARIO="+vData.getInt("iCveUs")+","+
+  String upRegEv = "UPDATE TRAREGEVAREQXAREA SET ICVEUSUARIO="+vData.getInt("iCveUser")+","+
 			   "LVALIDO=0, DTEVALUACION=CURRENT_DATE WHERE " +
 	           "IEJERCICIO="+vData.getInt("iEjer")+" AND INUMSOLICITUD="+vData.getInt("iNumSol")+" AND ICVEREQUISITO="+vData.getInt("iCveRequi");
 
   lPStmt2 = conn.prepareStatement(upRegEv);
 
-  /*
-  String lSQL2 =
-          "insert into TRAREGEVAREQXAREA " +
-          "(ICVEEVALXAREA," +
-          "IEJERCICIO," +
-          "INUMSOLICITUD," +
-          "ICVETRAMITE," +
-          "ICVEMODALIDAD," +
-          "ICVEREQUISITO," +
-          "ICVEUSUARIO,"+
-          "LVALIDO," +
-          "ICONSECUTIVOPNC," +
-          "DTEVALUACION)" +
-          " values (?,?,?,?,?,?,?,?,?,(current date))";
-
-  lPStmt2 = conn.prepareStatement(lSQL2);
-  /*
-  vData.addPK(consec);
-  
-  lPStmt2.setInt(1,consec.intValue());
-  lPStmt2.setInt(2,vData.getInt("iEjer"));
-  lPStmt2.setInt(3,vData.getInt("iNumSol"));
-  lPStmt2.setInt(4,vData.getInt("iCveTram"));
-  lPStmt2.setInt(5,vData.getInt("iCveModal"));
-  lPStmt2.setInt(6,vData.getInt("iCveRequi"));    
-  lPStmt2.setInt(7,vData.getInt("CveUser"));
-  lPStmt2.setInt(8,0);
-  lPStmt2.setNull(9,Types.INTEGER);
-  */
   try {
 		lPStmt2.executeUpdate();
 		lPStmt2.close();
@@ -254,8 +227,6 @@ try{
   String lSqlUpTraRegReqXTram ="update TRAREGREQXTRAM set LVALIDO= 0, DTEVALUACION = CURRENT_DATE"+
     		" where IEJERCICIO=" + vData.getInt("iEjer") +
     		" and INUMSOLICITUD=" + vData.getInt("iNumSol")+
-    		" and ICVETRAMITE=" + vData.getInt("iCveTram") +
-    		" and ICVEMODALIDAD="+vData.getInt("iCveModal")+
     		" and ICVEREQUISITO="+vData.getInt("iCveRequi");
   
   
@@ -275,51 +246,28 @@ try{
   
   
   String lSQL2 = "INSERT INTO TRAREGCAUSASXAREA " +
-  		"(ICVECAUSAXAREA," +
-  		"ICVEEVALXAREA," +
-  		"ICVEPROCESO," +
-  		"ICVEPRODUCTO," +
-  		"ICVECAUSAPNC," +
+  		"(ICVEEVALXAREA," +
   		"CDSCOTRACAUSA)"+
-  		"VALUES (?,?,?,?,?,?)";
+  		"VALUES (?,?)";
           
   lPStmt2=null;
   lPStmt2 = conn.prepareStatement(lSQL2);
 
-  String [] strCveCausaPNC = vData.getString("iCveCausaPNC").split(",");
+  String [] strCausaPNC = vData.getString("cadenaObservaciones").split("~");
 
-  for(int i=0; i< strCveCausaPNC.length ;i++){
+  for(int i=0; i< strCausaPNC.length ;i++){
 	  
 	  Vector vcMaxCausa;
-	  
-	  vcMaxCausa=findByCustom("", "select max(ICVECAUSAXAREA) as CONSEC from TRAREGCAUSASXAREA");
-	  
-	  Integer conseCausas;
-	  
-
-	  
-	  if(vcMaxCausa.size() > 0 )
-	      conseCausas = ( (TVDinRep) vcMaxCausa.get(0)).getInt("CONSEC") + 1;
-	    else
-	      conseCausas = 1;
-	  
-      
-      vData.addPK(conseCausas);
-      
-      lPStmt2.setInt(1,conseCausas.intValue());
-      lPStmt2.setInt(2,icveRegEva.intValue());
-      lPStmt2.setInt(3,vData.getInt("iCveProceso"));
-      lPStmt2.setInt(4,vData.getInt("iCveProducto"));
-      lPStmt2.setInt(5,Integer.parseInt(strCveCausaPNC[i]));
-      lPStmt2.setString(6, vData.getString("cDscOtraCausa"));
- 
+      lPStmt2.setInt(1,icveRegEva.intValue());
+      lPStmt2.setString(2, strCausaPNC[i]);
       lPStmt2.executeUpdate();
-      
-      if(cnNested == null){
-    	    conn.commit();
-    	  }
-      
+        
   }
+
+  if(cnNested == null){
+	    conn.commit();
+	  }
+
 
 } catch(Exception ex){
   warn("insert",ex);

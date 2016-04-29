@@ -60,7 +60,7 @@
   }
  /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   if(oAccion.getCAccion().equals("Cambia")){
-    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveUsuario,iCveOficina,iCveDepartamento,iCveTramite,iCveModalidad,cObservacion,cPropietario,cInstalacion");
+    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveUsuario,iCveOficina,iCveDepartamento,iCveTramite,iCveModalidad,HDcPropietario,HDcInstalacion");
  
     try{
 	     dTRARegReqXTram.cotejoDocs(vDinRep,null);

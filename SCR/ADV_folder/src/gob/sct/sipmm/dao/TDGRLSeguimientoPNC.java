@@ -59,13 +59,13 @@ public class TDGRLSeguimientoPNC extends DAOBase{
         conn.setTransactionIsolation(2);
       }
       String lSQL =
-          "insert into GRLSeguimientoPNC(iEjercicio,iConsecutivoPNC,iCveProducto,iCveCausaPNC,iCveSeguimiento,tsMomentoSeguimiento,cComentarios,iCveUsuRegistra,iCveOficinaAsignado,iCveDeptoAsignado) values (?,?,?,?,?,?,?,?,?,?)";
+          "insert into GRLSeguimientoPNC(iEjercicio,iConsecutivoPNC,iCveSeguimiento,tsMomentoSeguimiento,cComentarios,iCveUsuRegistra,iCveOficinaAsignado,iCveDeptoAsignado) values (?,?,?,?,?,?,?,?)";
 
       //AGREGAR AL ULTIMO ...
       String strUltimo = "select MAX(iCveSeguimiento) AS iCveSeguimiento from GRLSeguimientoPNC " +
           "where iEjercicio = " + vData.getInt("iEjercicio") + " and iConsecutivoPNC = " +
-          vData.getInt("iConsecutivoPNC") + " and iCveProducto = " + vData.getInt("iCveProducto") +
-          " and iCveCausaPNC = " + vData.getInt("iCveCausaPNC");
+          vData.getInt("iConsecutivoPNC");
+      
       Vector vcData = findByCustom("",strUltimo);
       if(vcData.size() > 0){
          TVDinRep vUltimo = (TVDinRep) vcData.get(0);
@@ -78,14 +78,12 @@ public class TDGRLSeguimientoPNC extends DAOBase{
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iEjercicio"));
       lPStmt.setInt(2,vData.getInt("iConsecutivoPNC"));
-      lPStmt.setInt(3,vData.getInt("iCveProducto"));
-      lPStmt.setInt(4,vData.getInt("iCveCausaPNC"));
-      lPStmt.setInt(5,vData.getInt("iCveSeguimiento"));
-      lPStmt.setString(6,String.valueOf(tFecha.getThisTime()));
-      lPStmt.setString(7,vData.getString("cComentarios"));
-      lPStmt.setInt(8,vData.getInt("iCveUsuRegistra"));
-      lPStmt.setInt(9,vData.getInt("iCveOficinaAsignado"));
-      lPStmt.setInt(10,vData.getInt("iCveDeptoAsignado"));
+      lPStmt.setInt(3,vData.getInt("iCveSeguimiento"));
+      lPStmt.setString(4,String.valueOf(tFecha.getThisTime()));
+      lPStmt.setString(5,vData.getString("cComentarios"));
+      lPStmt.setInt(6,vData.getInt("iCveUsuRegistra"));
+      lPStmt.setInt(7,vData.getInt("iCveOficinaAsignado"));
+      lPStmt.setInt(8,vData.getInt("iCveDeptoAsignado"));
       lPStmt.executeUpdate();
       if(cnNested == null){
         conn.commit();

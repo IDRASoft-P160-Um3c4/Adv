@@ -215,9 +215,6 @@ public class TDGRLRegPNC extends DAOBase{
        String lSqlCausaxEva = "SELECT " +
        		"ICVECAUSAXAREA," +
        		"ICVEEVALXAREA," +
-       		"ICVEPROCESO," +
-       		"ICVEPRODUCTO," +
-       		"ICVECAUSAPNC," +
        		"CDSCOTRACAUSA " +
        		"FROM TRAREGCAUSASXAREA where ICVEEVALXAREA="+vDatosPrimerEvalNoValido.getInt("ICVEEVALXAREA"); //busco todas las causas asociadas a esa primera evaluacion no valida
       
@@ -254,19 +251,15 @@ public class TDGRLRegPNC extends DAOBase{
        vDatosFinalesPNC.put("iConsecutivoPNC", vData.getInt("iConsecutivoPNC"));
        vDatosFinalesPNC.put("dtRegistro", tFecha.TodaySQL());
        vDatosFinalesPNC.put("iCveUsuario", vData.getInt("iCveUsuario"));
-       vDatosFinalesPNC.put("iCveProducto", vDatosPrimeraCausaXPrimeraEval.get("ICVEPRODUCTO"));
        vDatosFinalesPNC.put("lResuelto", vData.getInt("lResuelto"));
        vDatosFinalesPNC.put("dtResolucion", vData.getInt("lResuelto"));
        vDatosFinalesPNC.put("iCveOficina", vDatosOficDptoXReq.getInt("ICVEOFICINAEVAL"));
        vDatosFinalesPNC.put("iCveDepartamento", vDatosOficDptoXReq.getInt("ICVEDEPTOEVAL"));
        
-       vDatosFinalesPNC.put("iCveProceso", vDatosPrimeraCausaXPrimeraEval.get("ICVEPROCESO"));
-       
-       
        vDatosFinalesPNC.addPK(vData.getString("iConsecutivoPNC"));
        
        String lSQL =
-    	          "insert into GRLRegistroPNC(iEjercicio,iConsecutivoPNC,dtRegistro,iCveUsuRegistro,iCveProducto,lResuelto,dtResolucion,iCveOficinaAsignado,iCveDeptoAsignado,iCveOficina,iCveDepartamento,iCveProceso,iNumSolicitud,dtoficio) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    	          "insert into GRLRegistroPNC(iEjercicio,iConsecutivoPNC,dtRegistro,iCveUsuRegistro,lResuelto,dtResolucion,iCveOficinaAsignado,iCveDeptoAsignado,iCveOficina,iCveDepartamento,iNumSolicitud,dtoficio) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 
        lPStmt = conn.prepareStatement(lSQL);
         
@@ -274,21 +267,19 @@ public class TDGRLRegPNC extends DAOBase{
         lPStmt.setInt(2,vDatosFinalesPNC.getInt("iConsecutivoPNC"));
         lPStmt.setDate(3,vDatosFinalesPNC.getDate("dtRegistro"));
         lPStmt.setInt(4,vDatosFinalesPNC.getInt("iCveUsuario"));
-        lPStmt.setInt(5,vDatosFinalesPNC.getInt("iCveProducto"));
-        lPStmt.setInt(6,vDatosFinalesPNC.getInt("lResuelto"));
+        lPStmt.setInt(5,vDatosFinalesPNC.getInt("lResuelto"));
         
         if(vData.getDate("dtResolucion") == null)
-            lPStmt.setNull(7,Types.DATE);
+            lPStmt.setNull(6,Types.DATE);
           else
-            lPStmt.setDate(7,vData.getDate("dtResolucion"));
+            lPStmt.setDate(6,vData.getDate("dtResolucion"));
         
-        lPStmt.setInt(8,vData.getInt("iCveOficina"));
-        lPStmt.setInt(9,vData.getInt("iCveDepartamento"));
-        lPStmt.setInt(10,vDatosFinalesPNC.getInt("iCveOficina"));
-        lPStmt.setInt(11,vDatosFinalesPNC.getInt("iCveDepartamento"));
-        lPStmt.setInt(12,vDatosFinalesPNC.getInt("iCveProceso"));
-        lPStmt.setInt(13,iNumSolicitud);
-        lPStmt.setDate(14,new java.sql.Date(new Date().getTime()));//para actualizar dtoficio en el pnc para que aparezcan en la notificacion del pnc
+        lPStmt.setInt(7,vData.getInt("iCveOficina"));
+        lPStmt.setInt(8,vData.getInt("iCveDepartamento"));
+        lPStmt.setInt(9,vDatosFinalesPNC.getInt("iCveOficina"));
+        lPStmt.setInt(10,vDatosFinalesPNC.getInt("iCveDepartamento"));
+        lPStmt.setInt(11,iNumSolicitud);
+        lPStmt.setDate(12,new java.sql.Date(new Date().getTime()));//para actualizar dtoficio en el pnc para que aparezcan en la notificacion del pnc
         
 //        System.out.print("of---> "+vData.getInt("iCveOficina"));
 //        System.out.print("dpto---> "+vData.getInt("iCveDepartamento"));
@@ -311,10 +302,7 @@ public class TDGRLRegPNC extends DAOBase{
     		           
             String lSqlCausasxReq = "SELECT " +
             		"ICVECAUSAXAREA," +
-            		"ICVEEVALXAREA," +
-            		"ICVEPROCESO," +
-            		"ICVEPRODUCTO," +
-            		"ICVECAUSAPNC," +
+            		"ICVEEVALXAREA," +            		
             		"CDSCOTRACAUSA " +
             		"FROM TRAREGCAUSASXAREA where ICVEEVALXAREA="+vReqAct.getInt("ICVEEVALXAREA"); //busco todas las causas asociadas a ese rquisito evaluado
            
@@ -331,19 +319,13 @@ public class TDGRLRegPNC extends DAOBase{
 	        		String lSqlGRLCausaPNC = "INSERT INTO GRLREGCAUSAPNC " +
 	        				"(IEJERCICIO," +
 	        				"ICONSECUTIVOPNC," +
-	        				"ICVEPRODUCTO," +
-	        				"ICVECAUSAPNC," +
 	        				"ICVEUSUCORRIGE," +
 	        				"CDSCOTRACAUSA," +
 	        				"LRESUELTO," +
 	        				"DTRESOLUCION," +
 	        				"ICVEOFICINA," +
 	        				"ICVEDEPARTAMENTO," +
-	        				"ICVEPROCESO," +
-	        				"COBSLEY1," +
-	        				"COBSLEY2," +
-	        				"COBSLEY3," +
-	        				"ICVEREQUISITO) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	        				"ICVEREQUISITO) VALUES (?,?,?,?,?,?,?,?,?)";
 	
 	        		
 	        		int iCveReqAct = vReqAct.getInt("ICVEREQUISITO");
@@ -368,24 +350,18 @@ public class TDGRLRegPNC extends DAOBase{
                		
                		lPStmt.setInt(1, iEjercicio);
                		lPStmt.setInt(2, vData.getInt("iConsecutivoPNC"));
-               		lPStmt.setInt(3, causaActXReq.getInt("ICVEPRODUCTO"));
-               		lPStmt.setInt(4, causaActXReq.getInt("ICVECAUSAPNC"));
-               		lPStmt.setInt(5,0);
-               		lPStmt.setString(6, causaActXReq.getString("CDSCOTRACAUSA"));
-               		lPStmt.setInt(7, vDatosFinalesPNC.getInt("lResuelto"));
+               		lPStmt.setInt(3,vData.getInt("iCveUsuario"));
+               		lPStmt.setString(4, causaActXReq.getString("CDSCOTRACAUSA"));
+               		lPStmt.setInt(5, vDatosFinalesPNC.getInt("lResuelto"));
                		
                		if(vData.getDate("dtResolucion") == null)
-                           lPStmt.setNull(8,Types.DATE);
+                           lPStmt.setNull(6,Types.DATE);
                          else
-                           lPStmt.setDate(8,vData.getDate("dtResolucion"));
+                           lPStmt.setDate(6,vData.getDate("dtResolucion"));
             		
-            		lPStmt.setInt(9, vDatosOficDptoReqAct.getInt("ICVEOFICINAEVAL"));
-            		lPStmt.setInt(10, vDatosOficDptoReqAct.getInt("ICVEDEPTOEVAL"));
-            		lPStmt.setInt(11, causaActXReq.getInt("ICVEPROCESO"));
-            		lPStmt.setString(12,"");
-            		lPStmt.setString(13,"");
-            		lPStmt.setString(14,"");
-            		lPStmt.setInt(15,iCveReqAct);
+            		lPStmt.setInt(7, vDatosOficDptoReqAct.getInt("ICVEOFICINAEVAL"));
+            		lPStmt.setInt(8, vDatosOficDptoReqAct.getInt("ICVEDEPTOEVAL"));
+            		lPStmt.setInt(9,iCveReqAct);
             		
             		lPStmt.executeUpdate();//hago los insert en GRLREGCAUSAPNC
             		
@@ -403,78 +379,15 @@ public class TDGRLRegPNC extends DAOBase{
                  		   juridico=true;
                  		}
                 	
-                		System.out.print(lupdSQL);
                 	 lPStmt=null;
                		 lPStmt = conn.prepareStatement(lupdSQL);
             		 
                		 lPStmt.executeUpdate();
             		}
             		
-            		
-            		cadActual= causaActXReq.getString("CDSCOTRACAUSA");
-            		
-            		if(!cadLis.contains(cadActual) && !cadActual.trim().equals(""))
-            			cadLis.add(cadActual);
 	            }
             }
 		}
-    	    	
-    	String cadFin = "";
-    	
-    	for(String a : cadLis){
-    		if(!a.trim().equals("")){
-	    		if(cadFin.equals(""))
-	    			cadFin += a;
-	    		else
-	    			cadFin += "; " + a;
-	    	}
-    	}
-    	
-    	if(!cadFin.trim().equals("")){
-    	
-    	String lCausaDscOtros = "INSERT INTO GRLREGCAUSAPNC " +
-				"(IEJERCICIO," +
-				"ICONSECUTIVOPNC," +
-				"ICVEPRODUCTO," +
-				"ICVECAUSAPNC," +
-				"ICVEUSUCORRIGE," +
-				"CDSCOTRACAUSA," +
-				"LRESUELTO," +
-				"DTRESOLUCION," +
-				"ICVEOFICINA," +
-				"ICVEDEPARTAMENTO," +
-				"ICVEPROCESO," +
-				"COBSLEY1," +
-				"COBSLEY2," +
-				"COBSLEY3) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    	
-    	
-    	    lPStmt = null;
-     		lPStmt=conn.prepareStatement(lCausaDscOtros);
-     		
-     		lPStmt.setInt(1, iEjercicio);
-     		lPStmt.setInt(2, vData.getInt("iConsecutivoPNC"));
-     		lPStmt.setInt(3, 0);
-     		lPStmt.setInt(4, 0);
-     		lPStmt.setInt(5,0);
-     		lPStmt.setString(6, cadFin);
-     		lPStmt.setInt(7, 0);
-     		
-     		if(vData.getDate("dtResolucion") == null)
-                 lPStmt.setNull(8,Types.DATE);
-               else
-                 lPStmt.setDate(8,vData.getDate("dtResolucion"));
-
-
-	  		lPStmt.setInt(9, vData.getInt("iCveOficina"));
-	  		lPStmt.setInt(10, vData.getInt("iCveDepartamento"));
-	  		lPStmt.setInt(11, 0);
-	  		lPStmt.setString(12,"");
-	  		lPStmt.setString(13,"");
-	  		lPStmt.setString(14,"");
-  		
-  		lPStmt.executeUpdate();//hago el insert de todas las otras causas para el reporte
-    	}
    	    	
 		for (int i=0;i < vcDatosEvalXArea.size();i++) {
     		
@@ -483,9 +396,6 @@ public class TDGRLRegPNC extends DAOBase{
             String lSqlCausasxReq = "SELECT " +
             		"ICVECAUSAXAREA," +
             		"ICVEEVALXAREA," +
-            		"ICVEPROCESO," +
-            		"ICVEPRODUCTO," +
-            		"ICVECAUSAPNC," +
             		"CDSCOTRACAUSA " +
             		"FROM TRAREGCAUSASXAREA where ICVEEVALXAREA="+vReqAct.getInt("ICVEEVALXAREA"); //busco todas las causas asociadas a ese rquisito evaluado
            
@@ -501,21 +411,17 @@ public class TDGRLRegPNC extends DAOBase{
 	        		String lSqlTraRegReqXCausa ="INSERT INTO TRAREGREQXCAUSA (" +
 	            			"IEJERCICIO," +
 	            			"ICONSECUTIVOPNC," +
-	            			"ICVEPRODUCTO,"+
-	            			"ICVECAUSAPNC," +
-	            			"ICVEREQUISITO) VALUES (?,?,?,?,?)";
+	            			"ICVEREQUISITO," +
+	            			"CDSCOTRACAUSA) VALUES (?,?,?,?)";
 	        		
 	        		
 	        		lPStmt=null;
 	        		lPStmt = conn.prepareStatement(lSqlTraRegReqXCausa);
 	        		
-	        		System.out.println(" ejer-"+iEjercicio+" consecPNC-"+vData.getInt("iConsecutivoPNC")+" PROD-"+causaActXReq.getInt("ICVEPRODUCTO")+" CAUSA-"+causaActXReq.getInt("ICVECAUSAPNC")+" REQ-"+vReqAct.getInt("ICVEREQUISITO"));
-	        		
 	        		lPStmt.setInt(1, iEjercicio);
 	        		lPStmt.setInt(2, vData.getInt("iConsecutivoPNC"));
-	        		lPStmt.setInt(3, causaActXReq.getInt("ICVEPRODUCTO"));
-	        		lPStmt.setInt(4, causaActXReq.getInt("ICVECAUSAPNC"));
-	        		lPStmt.setInt(5, vReqAct.getInt("ICVEREQUISITO"));
+	        		lPStmt.setInt(3, vReqAct.getInt("ICVEREQUISITO"));
+	        		lPStmt.setString(4, vReqAct.getString("CDSCOTRACAUSA"));
 	        		
 	        		lPStmt.executeUpdate();
             	}
@@ -612,10 +518,7 @@ public class TDGRLRegPNC extends DAOBase{
     	   TVDinRep vDatosRecNotifxReq = (TVDinRep) vcLRecNotificadoXReq.get(0);
     	   
     	   
-    	   String lSqlUpdateTraRegReqxTram=null; 
-    	   
-    	   System.out.print("lo que trae la cadena lrecnotif------>"+vDatosRecNotifxReq.getString("LRECNOTIFICADO"));
-    	   
+    	   String lSqlUpdateTraRegReqxTram=null;   	   
     	   
     	   if(vDatosRecNotifxReq.getInt("LRECNOTIFICADO") > 0 && vDatosItera.getInt("LVALIDO") > 0){
     		  lSqlUpdateTraRegReqxTram = "UPDATE TRAREGREQXTRAM SET";  
@@ -635,9 +538,7 @@ public class TDGRLRegPNC extends DAOBase{
      	  " AND ICVETRAMITE="+iCveTramite+
      	  " AND ICVEMODALIDAD="+iCveModalidad +
      	  " AND ICVEREQUISITO="+vDatosItera.getInt("ICVEREQUISITO");
-		   
-		   System.out.print("requisito que se actualiza -->>> "+lSqlUpdateTraRegReqxTram);
-    	   
+		       	   
     	   lPStmt = null;
     	   lPStmt = conn.prepareStatement(lSqlUpdateTraRegReqxTram);
     	   lPStmt.executeUpdate(); 

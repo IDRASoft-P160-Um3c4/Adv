@@ -11,6 +11,7 @@ var iEtapaVerif = 0;
 var cEtapasRestringidas = "";
 var aDocDig = new Array();
 var cPermisoPag;
+var tieneResolucion=false;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgSolicitud.js";
@@ -408,7 +409,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 			return;
 		}
 		if (!fBuscaTramite(0)) {
-			frm.hdFiltroUsrXDepto.value = " AND TRAREGSOLICITUD.DTENTREGA IS NULL AND (";
+//			frm.hdFiltroUsrXDepto.value = " AND TRAREGSOLICITUD.DTENTREGA IS NULL AND (";
+			frm.hdFiltroUsrXDepto.value = " AND (";
 			for (y = 0; y < aRes.length; y++) {
 				frm.hdFiltroUsrXDepto.value += " (trexmt.iCveOficina = "
 						+ aRes[y][0] + " AND trexmt.iCveDepartamento = "
@@ -451,6 +453,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 	if (cId == "cIdFolPNC" && cError == "") {
 		frm.cFolioPNC.value = aRes[0][0];
 		fMuestraFolioPNC();
+		fBuscaResolucion();
 	}
 
 	if (cId == "saveIdFolPNC" && cError == "") {
@@ -462,6 +465,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 		iNumEjercicio = parseInt(aRes[1][2], 10);
 		if (iNumEjercicio && iNumEjercicio != NaN && iNumEjercicio > 0)
 			frm.iEjercicio.value = aRes[1][2];
+	}
+	
+	if(cId == "BuscaResolucion" && cError == ""){
+	    if(aRes[0][0]==1){
+	    	tieneResolucion=true;
+	  }else{
+	    tieneResolucion=false;
+	  }
 	}
 }
 // Busca oficina y departamento de etapa recepción en el área
@@ -555,6 +566,14 @@ function fModificar() {
 	fMuestraFolioPNC();
 }
 
+function fBuscaResolucion() {
+		frm.hdBoton.value = "";
+		frm.hdBotonAux.value = "";
+		frm.hdFiltro.value = " IEJERCICIO = "+frm.iEjercicio.value+" AND INUMSOLICITUD= "+frm.iNumSolicitud.value;
+		fEngSubmite("pgTRAEvaluacionArea.jsp", "BuscaResolucion");
+}
+
+
 function fGuardar() {
 
 	if (lTienePNCNR == true) {
@@ -581,9 +600,13 @@ function fVerifica() {
 		fAlert("No tiene Permiso de ejecutar esta acción");
 		return;
 	}
+	
+	if (tieneResolucion == true) {
+		fAlert("\nNo es posible realizar la evaluación, la solcitud ya tiene resolución.");
+		return;
+	}
 
 	if (lTienePNCNR == false) {
-
 		if (frm.cTramite.value != "") {
 			fAbreSubWindowPermisos("pgVerifSol", "800", "460");
 			fTraeUsrXDeptos();
@@ -591,7 +614,10 @@ function fVerifica() {
 			fAlert(" \nDebe seleccionar una solicitud.");
 	} else {
 		fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
+		return;
 	}
+	
+	
 }
 function fBuscaSolicitud() {
 	fAbreBuscaSolicitud();

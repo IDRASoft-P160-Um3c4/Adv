@@ -10,6 +10,7 @@ var aResTemp = new Array();
 var iCveEtapa = 0;
 var recibeDGDC = false;
 var cPermisoPag;
+var tieneDatosEnvios = false;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg111020110.js";
@@ -43,23 +44,23 @@ function fDefPag() {
 	TextoSimple("NOTA: Antes de generar los oficios de envío requisite los siguientes campos para cada solicitud.");
 	FTR();
 	ITR();
-	TDEtiCampo(false, "EEtiqueta", 0, "Folio Memo DGAJL:", "cFolDGAJL", "", 30,
+	TDEtiCampo(true, "EEtiqueta", 0, "Folio Memo DGAJL:", "cFolDGAJL", "", 30,
 			50, "Trámite", "fMayus(this);");
 	FTD();
-	TDEtiCampo(false, "EEtiqueta", 0, "Folio DGST:", "cFolDGST", "", 30, 50,
+	TDEtiCampo(true, "EEtiqueta", 0, "Folio DGST:", "cFolDGST", "", 30, 50,
 			"Trámite", "fMayus(this);");
 	FTD();
-	TDEtiCampo(false, "EEtiqueta", 0, "Referencia CSCT:", "cRefDGST", "", 30,
+	TDEtiCampo(true, "EEtiqueta", 0, "Referencia CSCT:", "cRefDGST", "", 30,
 			50, "Trámite", "fMayus(this);");
 	FTD();
-	TDEtiCampo(false, "EEtiqueta", 0, "Fecha Referencia CSCT:", "dtDGST", "",
+	TDEtiCampo(true, "EEtiqueta", 0, "Fecha Referencia CSCT:", "dtDGST", "",
 			50, 10, "Fecha Referencia CSCT", "fMayus(this);", "", "", false,
 			"", 0);
 	FTD();
 
 	FITR();
 	TDEtiAreaTexto(
-			false,
+			true,
 			"EEtiqueta",
 			0,
 			"Director DGAJL:",
@@ -74,7 +75,7 @@ function fDefPag() {
 			true, true, true, "", 0);
 	FTD();
 	TDEtiAreaTexto(
-			false,
+			true,
 			"EEtiqueta",
 			0,
 			"Director DGST:",
@@ -89,7 +90,7 @@ function fDefPag() {
 			true, true, true, "", 0);
 	FTD();
 	TDEtiAreaTexto(
-			false,
+			true,
 			"EEtiqueta",
 			0,
 			"Director general DGDC:",
@@ -221,15 +222,17 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 	if (cId == "datosEnvios" && cError == "") {
 
 		if (aRes.length > 0) {
+			tieneDatosEnvios=true;
 			frm.cFolDGAJL.value = aRes[0][2];
 			frm.cFolDGST.value = aRes[0][3];
 			frm.cDirDGAJL.value = aRes[0][4];
 			frm.cDirDGST.value = aRes[0][5];
 			frm.cDirGen.value = aRes[0][6];
 			frm.dtDGST.value = aRes[0][7];
-			;
 			frm.cRefDGST.value = aRes[0][8];
+			FRMPanel.fSetTraStatus(",");
 		} else {
+			tieneDatosEnvios=false;
 			frm.cFolDGAJL.value = "";
 			frm.cDirDGAJL.value = "";
 			frm.cFolDGST.value = "";
@@ -237,8 +240,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 			frm.cDirGen.value = "";
 			frm.dtDGST.value = "";
 			frm.cRefDGST.value = "";
+			FRMPanel.fSetTraStatus("Mod,");			
 		}
-
 	}
 
 	if (cId == "guardaDatosEnvios" && cError == "") {
@@ -249,11 +252,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 		frm.cDirGen.disabled = true;
 		frm.dtDGST.disabled = true;
 		frm.cRefDGST.disabled = true;
-
-		if (FRMListado.fGetLength() > 0)
-			FRMPanel.fSetTraStatus("Mod,");
-		else
-			FRMPanel.fSetTraStatus(",");
+		tieneDatosEnvios=true;
+		FRMPanel.fSetTraStatus(",");
 	}
 
 	fResOficDeptoUsr(aRes, cId, cError);
@@ -475,7 +475,15 @@ function fModificar() {
 }
 
 function fGuardarA() {
-	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "") {
+	var cMsg = fValElements();
+	
+	if(cMsg!=""){
+		fAlert(cMsg);
+		return;
+	}
+	
+	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "" && 
+			confirm("Se guardará la información de los oficios de envío, una vez guardada no será posible modificarla.\n¿Desea continuar con la información en pantalla?")) {
 		frm.hdBoton.value = "guardaDatosEnvios";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";

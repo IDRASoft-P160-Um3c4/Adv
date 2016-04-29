@@ -44,66 +44,60 @@ function fDefPag() { // Define la página a ser mostrada
 	JSSource("pais.js");
 	JSSource("estados.js");
 	InicioTabla("", 0, "100%", "100%", "", "");
-	ITRTD("ETablaST", "", "", "", "center");
-	FTDTR();
-	ITRTD("EEtiquetaC", 0, "", "", "", "");
-	InicioTabla("ETablaInfo", 0, "0", "", "center", "", 1);
-	ITRTD("ETablaST", 16, "", "", "center");
-	TextoSimple("BÚSQUEDA DE SOLICITANTE");
-	FTDTR();
-	ITR();
-	TDEtiCampo(false, "EEtiqueta", 0, "R.F.C.:", "cRFC", "", 14, 13, " R.F.C.",
-			"fMayus(this);",
-			" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
-			false, "EEtiquetaL", 3);
-	Hidden("cRPA", "");
-	Hidden("cCURP", "");
-	FITR();
-	TDEtiCampo(false, "EEtiqueta", 0, "Nombre o Razón Social:",
-			"cNomRazonSocial", "", 87, 80, " Nombre o Razon Social",
-			"fMayus(this);",
-			" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
-			false, "EEtiquetaL", 11);
-	FITR();
-	TDEtiCampo(false, "EEtiqueta", 0, "Ap. Paterno:", "cApPaterno", "", 33, 30,
-			" Apellido Paterno", "fMayus(this);",
-			" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
-			false, "EEtiquetaL", 7);
-	TDEtiCampo(false, "EEtiqueta", 0, "Ap. Materno:", "cApMaterno", "", 33, 30,
-			" Apellido Materno", "fMayus(this);",
-			" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
-			false, "EEtiquetaL", 3);
-	FTR();
-	FITD("EEtiquetaC", 16);
-	BtnImg("vgbuscar", "lupa", "fBuscaDatos();", "");
-	FTDTR();
-	FinTabla();
-	FTDTR();
-	
-	ITRTD("EEtiquetaC", 0, "", "", "", "");
-	InicioTabla("", 0, "95%", "100%", "center");
-	ITRTD("", 0, "", "15", "center", "top");
-	IFrame("IListado20", "100%", "70", "Listado.js", "yes", true);
-	FTDTR();
-	FinTabla(); // Despliegue de búsqueda
-	FTDTR();
-	FTDTR();
-
-	ITRTD("EEtiquetaC", 0, "", "327", "", "");
-	InicioTabla("", 0, "100%", "100%", "center");
-	ITRTD("", 0, "100%", "100%", "center", "middle");
-	var cCadTitulos = "", cCadPaginas = "";
-	
-	if(buscarRepl!=true&&iniciaTramite!=true){
-		cCadTitulos += "Datos Generales<br>de la Persona|Representante<br>Legal|";
-		cCadPaginas += "pg111010011A.js|pg111010013.js|";
-	}else{
-		cCadTitulos += "Datos Generales<br>de la Persona|";
-		cCadPaginas += "pg111010011A.js|";
-	}
-	
-	fDefCarpeta(cCadTitulos, cCadPaginas + "false", "PEM", "99%", "99%", true);
-	FTDTR();
+	ITRTD("EEtiquetaC", 0, "", "100", "", "");
+		InicioTabla("ETablaInfo", 0, "0", "", "center", "", 1);
+			ITRTD("ETablaST", 16, "", "", "center");
+				TextoSimple("BÚSQUEDA DE SOLICITANTE");
+			FTDTR();
+			ITR();
+				TDEtiCampo(false, "EEtiqueta", 0, "R.F.C.:", "cRFC", "", 14, 13, " R.F.C.",
+						"fMayus(this);",
+						" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
+						false, "EEtiquetaL", 3);
+				Hidden("cRPA", "");
+				Hidden("cCURP", "");
+			FITR();
+				TDEtiCampo(false, "EEtiqueta", 0, "Nombre o Razón Social:",
+						"cNomRazonSocial", "", 87, 80, " Nombre o Razon Social",
+						"fMayus(this);",
+						" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
+						false, "EEtiquetaL", 11);
+			FITR();
+				TDEtiCampo(false, "EEtiqueta", 0, "Ap. Paterno:", "cApPaterno", "", 33, 30,
+						" Apellido Paterno", "fMayus(this);",
+						" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
+						false, "EEtiquetaL", 7);
+			TDEtiCampo(false, "EEtiqueta", 0, "Ap. Materno:", "cApMaterno", "", 33, 30,
+					" Apellido Materno", "fMayus(this);",
+					" onKeyPress='return fCheckForEnter(event, this, window);' ", "",
+					false, "EEtiquetaL", 3);
+			FTR();
+			FITD("EEtiquetaC", 16);
+			BtnImg("vgbuscar", "lupa", "fBuscaDatos();", "");
+			FTDTR();
+		FinTabla();
+		FTDTR();
+		ITRTD("EEtiquetaC", 0, "", "150", "", "");
+		InicioTabla("", 0, "95%", "50%", "center");
+			ITRTD("", 0, "", "15", "center", "top");
+				IFrame("IListado20", "100%", "150", "Listado.js", "yes", true);
+			FTDTR();
+		FinTabla(); // Despliegue de búsqueda
+		ITRTD("EEtiquetaC", 0, "", "", "", "");
+		InicioTabla("", 0, "100%", "100%", "center");
+		ITRTD("", 0, "100%", "100%", "center", "middle");
+			var cCadTitulos = "", cCadPaginas = "";
+			
+			if(buscarRepl!=true&&iniciaTramite!=true){
+				cCadTitulos += "Datos Generales<br>de la Persona|Representante<br>Legal|";
+				cCadPaginas += "pg111010011A.js|pg111010013.js|";
+			}else{
+				cCadTitulos += "Datos Generales<br>de la Persona|";
+				cCadPaginas += "pg111010011A.js|";
+			}
+			
+			fDefCarpeta(cCadTitulos, cCadPaginas + "false", "PEM", "99%", "99%", true);
+		FTDTR();
 	FinTabla(); // Folder
 	FTDTR();
 	FinTabla();
@@ -151,11 +145,6 @@ function fLimpiaSolicitante() {
 	FRMObj1.setEstausPanel("AddOnly");
 }
 
-function fLimpiaRepLegal() {
-	if(FRMObj2)
-		FRMObj2.resetAllForm();
-}
-
 function fFolderOnChange(iPag) { // iPag indica a la página que se desea
 									// cambiar
 	iPagAct = iPag;
@@ -180,15 +169,11 @@ function fSelReg(aDato) {
 		FRMObj1.setArrConsulta(aDato);
 		
 		if(FRMObj2){
-			FRMObj2.setICveRepresentado(aDato[0]);
-			FRMObj2.fSetRepresentante(cambioRepL(aDato), true);
+			cargaRepresentantesAsignados();
 		}
-		
-		
 	}else{
 		fPagFolder(1);
 		fLimpiaSolicitante();
-		fLimpiaRepLegal();
 	}
 }
 
@@ -333,4 +318,12 @@ function fBuscaPostGuardar(personaGuardada){
 
 function getIniciaTramite(){
 	return iniciaTramite;
+}
+
+
+function cargaRepresentantesAsignados(){
+	if(FRMObj2){
+		FRMObj2.setICveRepresentado(iCvePersonaSel);
+		FRMObj2.fBuscaAsignados();
+	}
 }

@@ -517,9 +517,9 @@ function fValidaCampos() {
 			frm.iNumSolicitud.focus();
 	}
 }
+
 function fVerifica() {
 	
-
 	if (cPermisoPag != 1) {
 		fAlert("No tiene Permiso de ejecutar esta acción");
 		return;
@@ -538,6 +538,7 @@ function fVerifica() {
 			fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
 		}	
 }
+
 function fBuscaSolicitud() {
 	fAbreBuscaSolicitud();
 	return;

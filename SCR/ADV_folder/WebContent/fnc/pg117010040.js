@@ -18,8 +18,8 @@ function fDefPag(){ // Define la página a ser mostrada
   TextoSimple(cTitulo);
   FTDTR();
   ITRTD("",0,"100%","100%","center","middle");
-  fDefCarpeta( "Solicitud|" ,
-             "pgSolicitudNewB.js|" ,
+  fDefCarpeta( "Evaluación DAJL|" ,
+             "pgTableroJuridico.js|" ,
              "PEM" , "99%" , "99%",true);
   FTDTR();
   FinTabla();

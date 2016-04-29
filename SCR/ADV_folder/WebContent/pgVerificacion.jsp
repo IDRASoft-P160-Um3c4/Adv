@@ -189,7 +189,8 @@
         }
   }
 
-  vcListado = dVerificacion.findByCustom("iCveRequisito", cSQL + oAccion.getCFiltro() + oAccion.getCOrden());
+  if(!cSQL.equals(""))
+  	vcListado = dVerificacion.findByCustom("iCveRequisito", cSQL + oAccion.getCFiltro() + oAccion.getCOrden());
 
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();

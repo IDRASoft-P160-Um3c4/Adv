@@ -516,7 +516,6 @@ public class TDTRARegReqXTramb
 				conn.setTransactionIsolation(2);
 			}
 
-
 			cConjunto = vData.getString("cConjunto").split(",");
 
 			for (int ij = 0; ij < cConjunto.length; ij++) {
@@ -525,23 +524,57 @@ public class TDTRARegReqXTramb
 			
 			for (int ij = 0; ij < cRequisito.size(); ij++) {
 				
-				lPStmt=null;
-
-				String cSQLUpdDtCotejo = "UPDATE TRAREGREQXTRAM SET DTCOTEJO = CURRENT_DATE, DTRECEPCION = CURRENT_DATE "+ //	TODO VERIFICAR COMO CAMBIA (NEGOCIO) LA FECHA DE ENTREGA EN TODOS LOS CASOS DE ENTREGA DE REQUISITOS
+				String cBuscaRecepcion = "SELECT DTRECEPCION FROM TRAREGREQXTRAM"+
 						 " WHERE IEJERCICIO = "+ vData.getInt("iEjercicio") +
 						 " AND INUMSOLICITUD= "+ vData.getInt("iNumSolicitud") +
-						 " AND ICVEREQUISITO= ";			
+						 " AND ICVEREQUISITO= "+ cRequisito.get(ij);
 				
-				cSQLUpdDtCotejo += cRequisito.get(ij);
+				Vector vecDtRecepcion = findByCustom("",cBuscaRecepcion);
 				
+				String cSQLUpdDtCotejo = "UPDATE TRAREGREQXTRAM SET DTCOTEJO = CURRENT_DATE ";
+				if(vecDtRecepcion.size()==0){//si no tiene fecha de recepcion se setea 
+					cSQLUpdDtCotejo += ", DTRECEPCION = CURRENT_DATE "; 
+				}
+				cSQLUpdDtCotejo += " WHERE IEJERCICIO = "+ vData.getInt("iEjercicio") +
+				 " AND INUMSOLICITUD= "+ vData.getInt("iNumSolicitud") +
+				 " AND ICVEREQUISITO="+cRequisito.get(ij);
+				
+				lPStmt=null;
 				lPStmt = conn.prepareStatement(cSQLUpdDtCotejo);
-				
 				lPStmt.executeUpdate();
 			}
 			
+			String lSQL = "SELECT AF.CPROPIETARIO, AF.CINSTALACION, AF.COBSERVACION FROM " +
+					"TRAREGSOLICITUD S " +
+					"JOIN TRADATOSNOAFEC AF ON AF.IEJERCICIO = S.IEJERCICIO AND AF.INUMSOL = S.INUMSOLICITUD " +
+					"WHERE S.IEJERCICIO="+ vData.getInt("iEjercicio") +" AND S.INUMSOLICITUD= "+vData.getInt("iNumSolicitud");
+			
+			Vector vecDatosAfec = findByCustom("",lSQL);
+			
+			if(vecDatosAfec.size()==0){//si no tiene datos de afectacion se guardan
+			
+				lSQL = " insert into TRADATOSNOAFEC  ( "
+					+ " iEjercicio, " + " iNumSol, "
+					+ " cPropietario, " + " cInstalacion, "
+					+ " cObservacion) " + " values ("
+					+ vData.getInt("iEjercicio")
+					+ ","
+					+ vData.getInt("iNumSolicitud")
+					+ ",'"
+					+ vData.getString("HDcPropietario")
+					+ "','"
+					+ vData.getString("HDcInstalacion")
+					+ "','"
+					+ "Se guarda la informacion sobre las instalaciones encontradas."
+					+ "')";
+			 						
+				lPStmt=null;
+				lPStmt = conn.prepareStatement(lSQL);
+				lPStmt.executeUpdate();				
+			}
 			if(cnNested == null){
 	            conn.commit();
-	          }
+	        }
 			
 			String cSQLCount= "SELECT COUNT(ICVEREQUISITO) AS CONT FROM TRAREGREQXTRAM WHERE DTCOTEJO IS NULL"+
 							  " AND IEJERCICIO=" + vData.getInt("iEjercicio") +
@@ -568,7 +601,7 @@ public class TDTRARegReqXTramb
 					vData.put("iOrden", 1);
 			
 			
-			String lSQL = " insert into TRARegEtapasXModTram  ( "
+			 lSQL = " insert into TRARegEtapasXModTram  ( "
 						+ " iEjercicio, " + " iNumSolicitud, "
 						+ " iCveTramite, " + " iCveModalidad, "
 						+ " iCveEtapa, " + " iOrden, " + " iCveOficina, "
@@ -599,31 +632,6 @@ public class TDTRARegReqXTramb
 				lPStmt=null;
 				lPStmt = conn.prepareStatement(lSQL);
 				lPStmt.executeUpdate();
-				
-				 lSQL = " delete from TRADATOSNOAFEC where iEjercicio= " + vData.getInt("iEjercicio") +" and iNumSol = "+vData.getInt("iNumSolicitud");
-					 						
-					lPStmt=null;
-					lPStmt = conn.prepareStatement(lSQL);
-					lPStmt.executeUpdate();				
-				
-				 lSQL = " insert into TRADATOSNOAFEC  ( "
-						+ " iEjercicio, " + " iNumSol, "
-						+ " cPropietario, " + " cInstalacion, "
-						+ " cObservacion) " + " values ("
-						+ vData.getInt("iEjercicio")
-						+ ","
-						+ vData.getInt("iNumSolicitud")
-						+ ",'"
-						+ vData.getString("cPropietario")
-						+ "','"
-						+ vData.getString("cInstalacion")
-						+ "','"
-						+ vData.getString("cObservacion")
-						+ "')";
-				 						
-				lPStmt=null;
-				lPStmt = conn.prepareStatement(lSQL);
-				lPStmt.executeUpdate();				
 				
 				TDTRARegEtapasXModTram obj = new TDTRARegEtapasXModTram();
 				

@@ -17,7 +17,7 @@ function fDefPag(){ // Define la página a ser mostrada
   TextoSimple(cTitulo);
   FTDTR();
   ITRTD("",0,"100%","100%","center","middle");
-  fDefCarpeta( "Solicitud|" ,
+  fDefCarpeta( "Ratificación final DGDC|" ,
              "pgSolicitud.js|" ,
              "PEM" , "99%" , "99%",true);
   FTDTR();

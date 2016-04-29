@@ -433,21 +433,19 @@ public class TDGRLPersona extends DAOBase {
 				conn.setAutoCommit(false);
 				conn.setTransactionIsolation(2);
 			}
-			
-			//se elimina la relacion existente
-			String lSQL = "DELETE FROM GRLREPLEGAL WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado");
-			lPStmt = conn.prepareStatement(lSQL);
-			lPStmt.executeUpdate();
-			
-			if (cnNested == null) {
-				conn.commit();
-			}
-			
+
+			Vector vcDataPrincipal = findByCustom("","SELECT COUNT(ICVEPERSONA) CCUENTA FROM GRLREPLEGAL WHERE ICVEEMPRESA = "+vData.getInt("iCveRepresentado")+" AND LPRINCIPAL = 1");
+			vData.put("lPrincipal",(vcDataPrincipal.size() > 0) ? ((TVDinRep) vcDataPrincipal.get(0)).getInt("CCUENTA") : 1);
+			System.out.println(vData.getInt("lPrincipal"));
+			int lPrincipal=0;
+			lPrincipal=vData.getInt("lPrincipal")==1?0:1;
+						
 			//se inserta la nueva relacion
-			lSQL = "INSERT INTO GRLREPLEGAL VALUES (?,?,CURRENT_DATE,1)";	
+			String lSQL = "INSERT INTO GRLREPLEGAL VALUES (?,?,CURRENT_DATE,?)";	
 			lPStmt = conn.prepareStatement(lSQL);
 			lPStmt.setInt(1,vData.getInt("iCveRepresentado"));
 			lPStmt.setInt(2,vData.getInt("iCveRepL"));
+			lPStmt.setInt(3,lPrincipal);
 			lPStmt.executeUpdate();
 			
 		    if (cnNested == null) {
@@ -582,7 +580,69 @@ public class TDGRLPersona extends DAOBase {
 			}
 			
 			//se elimina la relacion existente
-			String lSQL = "DELETE FROM GRLREPLEGAL WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado");
+			String lSQL = "DELETE FROM GRLREPLEGAL WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado") + " AND ICVEPERSONA="+vData.getInt("iCveRepL") ;
+			lPStmt = conn.prepareStatement(lSQL);
+			lPStmt.executeUpdate();
+			
+			lSQL = "UPDATE GRLREPLEGAL SET LPRINCIPAL = 1 WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado") + " AND ICVEPERSONA= (SELECT MAX(REPL.ICVEPERSONA) FROM GRLREPLEGAL REPL WHERE REPL.ICVEEMPRESA = "+vData.getInt("iCveRepresentado")+")";
+			lPStmt = conn.prepareStatement(lSQL);
+			lPStmt.executeUpdate();
+			
+			if (cnNested == null) {
+				conn.commit();
+			}
+			
+		} catch (Exception ex) {
+			warn("insert", ex);
+			if (cnNested == null) {
+				try {
+					conn.rollback();
+				} catch (Exception e) {
+					fatal("insert.rollback", e);
+				}
+			}
+			lSuccess = false;
+		} finally {
+			try {
+				if (lPStmt != null) {
+					lPStmt.close();
+				}
+				if (cnNested == null) {
+					if (conn != null) {
+						conn.close();
+					}
+					dbConn.closeConnection();
+				}
+			} catch (Exception ex2) {
+				warn("insert.close", ex2);
+			}
+			if (lSuccess == false)
+				throw new DAOException("");
+			return vData;
+		}
+	}
+	
+	public TVDinRep setPrincipal(TVDinRep vData,
+			Connection cnNested) throws DAOException {
+		
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+		PreparedStatement lPStmt = null;
+		boolean lSuccess = true;
+		try {
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			}
+			
+			//se elimina la relacion existente
+			String lSQL = "UPDATE GRLREPLEGAL SET LPRINCIPAL = 0 WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado");
+			lPStmt = conn.prepareStatement(lSQL);
+			lPStmt.executeUpdate();
+			
+			lSQL = "UPDATE GRLREPLEGAL SET LPRINCIPAL = 1 WHERE ICVEEMPRESA = " +vData.getInt("iCveRepresentado") + " AND ICVEPERSONA="+vData.getInt("iCveRepL") ;
 			lPStmt = conn.prepareStatement(lSQL);
 			lPStmt.executeUpdate();
 			

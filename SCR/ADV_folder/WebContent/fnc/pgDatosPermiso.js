@@ -8,6 +8,7 @@ var FRMListado = "";
 var frm;
 var msgErr="";
 var cPagRet;
+var tieneDatosPermiso=false;
 
 // SEGMENTO antes de cargar la pgina (Definicin Mandatoria)
 function fBefLoad() {
@@ -130,7 +131,6 @@ function fOnLoad() {
  
 	FRMPanel = fBuscaFrame("IPanel");
 	FRMPanel.fSetControl(self, cPaginaWebJS);
-	FRMPanel.fShow("Tra,");
 	
 	if(top.opener){
 		frm.iEjercicio.value = top.opener.fGetIEjercicio();
@@ -166,11 +166,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, iID) {
 	
 	if (cId == "guardaDatos" && cError == "") {
 		fAlert("La información se ha guardado con éxito. Ahora puede generar los documentos.");
+		FRMPanel.fShow(",");
+		fDisabled(true);
 	}
 }
 
 function fRellenaCampos(aRes){
 	if(aRes.length>0){ 
+		tieneDatosPermiso=true;
 		frm.cFolConce.value= aRes[0][0];
 		frm.cFolSCT.value= aRes[0][1];
 		frm.cFolPerm.value= aRes[0][2];
@@ -191,6 +194,12 @@ function fRellenaCampos(aRes){
 		frm.cRevDGDC.value= aRes[0][17];
 		frm.cPlazo.value= aRes[0][18];
 		frm.cCalMat.value= aRes[0][19];
+		FRMPanel.fShow(",");
+		fDisabled(true);
+	}else{
+		tieneDatosPermiso=false;
+		FRMPanel.fShow("Tra,");
+		fDisabled(false);
 	}
 }
 
@@ -202,7 +211,8 @@ function fNuevo() {
 }
 
 function fGuardar() {
-if(	frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '' ){
+if(	frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '' && 
+		confirm("Se guardará la información para permiso y oficios, una vez guardada no podrá modificarla.\n¿Desea continuar con la información en pantalla?")){
 		
 		frm.hdBoton.value = "guardarDatosPermisos";
 		frm.hdFiltro.value = "";

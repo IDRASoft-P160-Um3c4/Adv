@@ -430,26 +430,26 @@ function resetAllForm(){
 }
 
 function fRegresaDatos(){
-	var nuevoRepl = {};
+//	var nuevoRepl = {};
 	
-	nuevoRepl.iCvePersona= personaBuscada.iCvePersona;
-	nuevoRepl.iTipo=personaBuscada.iTipo;
-	nuevoRepl.cRFC=personaBuscada.cRFC; 
-	nuevoRepl.cCorreoE=personaBuscada.cCorreoE;
-	nuevoRepl.cNomRazonSocial=personaBuscada.cNomRazonSocial;
-	nuevoRepl.cApPaterno=personaBuscada.cApPaterno;
-	nuevoRepl.cApMaterno=personaBuscada.cApMaterno;
-	nuevoRepl.cCalle=personaBuscada.cCalle;
-	nuevoRepl.cNumExterior=personaBuscada.cNumExterior;
-	nuevoRepl.cNumInterior=personaBuscada.cNumInterior;
-	nuevoRepl.cColonia=personaBuscada.cColonia;
-	nuevoRepl.cCodPostal=personaBuscada.cCodPostal;	
-	nuevoRepl.cEntidad=frm.iCveEntidadFed.options[frm.iCveEntidadFed.selectedIndex].text;
-	nuevoRepl.cMunicipio=frm.iCveMunicipio.options[frm.iCveMunicipio.selectedIndex].text;
-	nuevoRepl.cLocalidad=frm.iCveLocalidad.options[frm.iCveLocalidad.selectedIndex].text;
-	
+//	nuevoRepl.iCvePersona= personaBuscada.iCvePersona;
+//	nuevoRepl.iTipo=personaBuscada.iTipo;
+//	nuevoRepl.cRFC=personaBuscada.cRFC; 
+//	nuevoRepl.cCorreoE=personaBuscada.cCorreoE;
+//	nuevoRepl.cNomRazonSocial=personaBuscada.cNomRazonSocial;
+//	nuevoRepl.cApPaterno=personaBuscada.cApPaterno;
+//	nuevoRepl.cApMaterno=personaBuscada.cApMaterno;
+//	nuevoRepl.cCalle=personaBuscada.cCalle;
+//	nuevoRepl.cNumExterior=personaBuscada.cNumExterior;
+//	nuevoRepl.cNumInterior=personaBuscada.cNumInterior;
+//	nuevoRepl.cColonia=personaBuscada.cColonia;
+//	nuevoRepl.cCodPostal=personaBuscada.cCodPostal;	
+//	nuevoRepl.cEntidad=frm.iCveEntidadFed.options[frm.iCveEntidadFed.selectedIndex].text;
+//	nuevoRepl.cMunicipio=frm.iCveMunicipio.options[frm.iCveMunicipio.selectedIndex].text;
+//	nuevoRepl.cLocalidad=frm.iCveLocalidad.options[frm.iCveLocalidad.selectedIndex].text;
+//	
 	if(top.opener.fSetRepresentante){
-		top.opener.fSetRepresentante(nuevoRepl, false);
+		top.opener.seleccionaReplegalEmergente(personaBuscada.iCvePersona);
 		top.close();
 	}
 	

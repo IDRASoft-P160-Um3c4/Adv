@@ -516,6 +516,8 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 				lPStmt.setInt(9, vData.getInt("iCveUsuario"));
 				lPStmt.setString(10, vData.getString("tsRegistro"));
 				lPStmt.setInt(11, vData.getInt("lAnexo"));
+				
+				
 
 				if (vData.getInt("iCveEtapa") == Integer.parseInt(VParametros
 						.getPropEspecifica("EtapaConcluidoArea")))
@@ -530,6 +532,15 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 											.getInt("iNumSolicitud")) + " RFC "
 									+ RFCSolicitante);
 
+				System.out.println(vData.getInt("iEjercicio"));
+				System.out.println(vData.getInt("iNumSolicitud"));
+				System.out.println(vData.getInt("iCveTramite"));
+				System.out.println(vData.getInt("iCveModalidad"));
+				System.out.println(vData.getInt("iCveEtapa"));
+				System.out.println(vData.getInt("iOrden"));
+				System.out.println(vData.getInt("iCveOficina"));
+				System.out.println(vData.getInt("iCveDepartamento"));
+				System.out.println(vData.getInt("iCveUsuario"));
 
 				lPStmt.executeUpdate();
 				
@@ -1171,6 +1182,146 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 												   "La solicitud ha concluido.", 
 												   conn);
 			}
+
+			if (cnNested == null) {
+				conn.commit();
+			}
+
+		} catch (SQLException se) {
+			se.printStackTrace();
+			cMensaje = super.getSQLMessages(se);
+			if (cnNested == null) {
+				try {
+					conn.rollback();
+				} catch (Exception e) {
+					e.printStackTrace();
+					fatal("insert.rollback", e);
+				}
+			}
+			lSuccess = false;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			warn("insert", ex);
+			if (cnNested == null) {
+				try {
+					conn.rollback();
+				} catch (Exception e) {
+					e.printStackTrace();
+					fatal("insert.rollback", e);
+				}
+			}
+			lSuccess = false;
+		} finally {
+			try {
+				if (lPStmt != null)
+					lPStmt.close();
+				if (cnNested == null) {
+					if (conn != null)
+						conn.close();
+					dbConn.closeConnection();
+				}
+			} catch (Exception ex2) {
+				warn("insert.close", ex2);
+			}
+			if (lSuccess == false) {
+				throw new Exception(cMensaje);
+			}
+		}
+	}
+	
+	public void resolucionNegativaPNC(TVDinRep vData, Connection cnNested)
+			throws Exception {
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+		TFechas dFecha = new TFechas();
+		PreparedStatement lPStmt = null;
+		String RFCSolicitante = "";
+		boolean lSuccess = true;
+
+		int consecutivo;
+
+		try {
+
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			}
+
+			String lSQL = " insert into TRARegEtapasXModTram( "
+					+ "             iEjercicio, "
+					+ "             iNumSolicitud, "
+					+ "             iCveTramite, "
+					+ "             iCveModalidad, "
+					+ "             iCveEtapa, " + "" 
+					+ "             iOrden, "
+					+ "             iCveOficina, "
+					+ "             iCveDepartamento, "
+					+ "             iCveUsuario, "
+					+ "             tsRegistro, " + "             lAnexo, "
+					+ "			   cObsEnviadaCIS) "
+					+ " values (?,?,?,?,?,?,?,?,?,?,?,?)";
+
+			// AGREGAR AL ULTIMO ...
+			String cEtapa = " select IORDEN, ICVEETAPA "
+					+ "        from TRARegEtapasXModTram "
+					+ " where iEjercicio = " + vData.getInt("iEjercicio")
+					+ "   and iNumSolicitud = " + vData.getInt("iNumSolicitud")
+					+ " ORDER BY IORDEN DESC ";
+
+			Vector vcData = this.findByNessted("", cEtapa, conn);
+
+			//obtengo el orden que a insertar
+			if (vcData.size() > 0) {
+				TVDinRep vUltimo = (TVDinRep) vcData.get(0);
+				vData.put("iOrden", vUltimo.getInt("iOrden") + 1);
+			}
+					
+			vData.put("tsRegistro", dFecha.getThisTime());
+			vData.put("lAnexo", 0);
+
+			lPStmt = null;
+
+			lPStmt = conn.prepareStatement(lSQL);
+			lPStmt.setInt(1, vData.getInt("iEjercicio"));
+			lPStmt.setInt(2, vData.getInt("iNumSolicitud"));
+			lPStmt.setInt(3, vData.getInt("iCveTramite"));
+			lPStmt.setInt(4, vData.getInt("iCveModalidad"));
+			lPStmt.setInt(7, vData.getInt("iCveOficina"));
+			lPStmt.setInt(8, vData.getInt("iCveDepartamento"));
+			lPStmt.setInt(9, vData.getInt("iCveUsuario"));
+			lPStmt.setString(10, vData.getString("tsRegistro"));
+			lPStmt.setInt(11, 0);
+				
+		// ETAPAS ENTREGA DE RESOLUCION Y CONCCLUSION EN EL AREA
+			lPStmt.setInt(5, Integer.parseInt(VParametros.getPropEspecifica("EtapaEntregaResol")));
+			lPStmt.setInt(6, vData.getInt("iOrden"));
+			lPStmt.setString(12, "Resolución negativa por PNC.");
+			
+			lPStmt.executeUpdate();
+			
+			lPStmt.setInt(5, Integer.parseInt(VParametros.getPropEspecifica("EtapaConcluidoArea")));
+			lPStmt.setInt(6, vData.getInt("iOrden") + 1);
+			lPStmt.setString(12, "Se le ha dado una resolución negativa a la solicitud por PNC.");
+
+			lPStmt.executeUpdate();
+
+			String upSol="UPDATE TRAREGSOLICITUD SET DTENTREGA=CURRENT_DATE, DTRESOLTRAM=CURRENT_DATE WHERE IEJERCICIO="+vData.getString("iEjercicio")+" AND INUMSOLICITUD="+vData.getString("iNumSolicitud");
+			lPStmt = conn.prepareStatement(upSol);
+			lPStmt.executeUpdate();
+			
+			this.upDateEstadoInformativoCISADV(Integer.parseInt(vData.getString("iEjercicio")), 
+											   Integer.parseInt(vData.getString("iNumSolicitud")), 
+											   Integer.parseInt(VParametros.getPropEspecifica("EtapaResolTramInt")), 
+											   "Se le ha dado una resolución negativa a su solicitud por PNC.", 
+											   conn);
+			
+			this.upDateEstadoInformativoCISADV(Integer.parseInt(vData.getString("iEjercicio")), 
+											   Integer.parseInt(vData.getString("iNumSolicitud")), 
+											   Integer.parseInt(VParametros.getPropEspecifica("EtapaConluidoInt")), 
+											   "La solicitud ha concluido.", 
+											   conn);
 
 			if (cnNested == null) {
 				conn.commit();

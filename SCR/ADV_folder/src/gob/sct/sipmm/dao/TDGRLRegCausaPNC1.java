@@ -441,7 +441,7 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
       conn.setAutoCommit(false);
       conn.setTransactionIsolation(2);
     }
-    String lSQL = "update GRLRegCausaPNC set iCveUsuCorrige=?, lResuelto=?, dtResolucion=? where iEjercicio = ? AND iConsecutivoPNC = ? AND iCveProducto = ? AND iCveCausaPNC = ? ";
+    String lSQL = "update GRLRegCausaPNC set iCveUsuCorrige=?, lResuelto=?, dtResolucion=? where iEjercicio = ? AND iConsecutivoPNC = ?";
     TFechas tFecha = new TFechas();
     vData.addPK(vData.getString("iEjercicio"));
     vData.addPK(vData.getString("iConsecutivoPNC"));
@@ -454,8 +454,6 @@ public class TDGRLRegCausaPNC1 extends DAOBase{
     lPStmt.setDate(3,tFecha.TodaySQL());
     lPStmt.setInt(4,vData.getInt("iEjercicio"));
     lPStmt.setInt(5,vData.getInt("iConsecutivoPNC"));
-    lPStmt.setInt(6,vData.getInt("iCveProducto"));
-    lPStmt.setInt(7,vData.getInt("iCveCausaPNC"));
     lPStmt.executeUpdate();
     if(cnNested == null){
       conn.commit();

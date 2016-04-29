@@ -914,34 +914,22 @@ public class TDINTTRAMITES
 				TVDinRep vDRequisitos = new TVDinRep();
 				
 				vDRequisitos=(TVDinRep)vRequisitos.get(j);
-			
-				String sqlMaxEv = "SELECT MAX(ICVEEVALXAREA) AS ICVEEVALXAREA FROM TRAREGEVAREQXAREA";
 				
-				Vector vMaxEv = this.findByCustom("", sqlMaxEv);
-				
-				int consEv = ((TVDinRep)vMaxEv.get(0)).getInt("ICVEEVALXAREA");
-				
-				if(!(consEv>0))
-					consEv=1;
-				else
-					consEv+=1;
-				
-				String sqlInsEv = "INSERT INTO TRAREGEVAREQXAREA (ICVEEVALXAREA,IEJERCICIO,INUMSOLICITUD,ICVETRAMITE,"+
+				String sqlInsEv = "INSERT INTO TRAREGEVAREQXAREA (IEJERCICIO,INUMSOLICITUD,ICVETRAMITE,"+
 								  "ICVEMODALIDAD,ICVEREQUISITO,ICVEUSUARIO,LVALIDO,ICONSECUTIVOPNC,DTEVALUACION) "+
-								  "VALUES (?,?,?,?,?,?,?,?,?,?)";
+								  "VALUES (?,?,?,?,?,?,?,?,?)";
 				lPStmt2=null;
 				lPStmt2 = conn.prepareStatement(sqlInsEv);
 				
-				lPStmt2.setInt(1,consEv);
-				lPStmt2.setInt(2,iEjercicio);
-				lPStmt2.setInt(3,iNumSolicitud);					
-				lPStmt2.setInt(4,vData.getInt("iCveTramite"));
-				lPStmt2.setInt(5,vData.getInt("iCveModalidad"));
-				lPStmt2.setInt(6,vDRequisitos.getInt("ICVEREQUISITO"));
+				lPStmt2.setInt(1,iEjercicio);
+				lPStmt2.setInt(2,iNumSolicitud);					
+				lPStmt2.setInt(3,vData.getInt("iCveTramite"));
+				lPStmt2.setInt(4,vData.getInt("iCveModalidad"));
+				lPStmt2.setInt(5,vDRequisitos.getInt("ICVEREQUISITO"));
+				lPStmt2.setInt(6,0);
 				lPStmt2.setInt(7,0);
-				lPStmt2.setInt(8,0);
-				lPStmt2.setNull(9, Types.INTEGER);
-				lPStmt2.setNull(10, Types.DATE);
+				lPStmt2.setNull(8, Types.INTEGER);
+				lPStmt2.setNull(9, Types.DATE);
 				
 				try {
 					lPStmt2.executeUpdate();

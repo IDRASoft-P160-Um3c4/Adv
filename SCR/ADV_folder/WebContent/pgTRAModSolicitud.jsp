@@ -64,12 +64,10 @@
     
     
     TVDinRep vPNC = oAccion.setInputs("iEjercicio,iNumSolicitud,iConsecutivoPNC,cObservacion");
-    Vector vcPNC = pais.findByCustom("","SELECT p.IEJERCICIO,p.ICONSECUTIVOPNC,p.ICVEPRODUCTO,CP.ICVECAUSAPNC,p.ICVEOFICINAASIGNADO,p.ICVEDEPTOASIGNADO " +
+    Vector vcPNC = pais.findByCustom("","SELECT p.IEJERCICIO,p.ICONSECUTIVOPNC,p.ICVEOFICINAASIGNADO,p.ICVEDEPTOASIGNADO " +
     																		"FROM GRLREGISTROPNC P " +
-    																		"join GRLREGCAUSAPNC cp ON CP.IEJERCICIO=P.IEJERCICIO AND CP.ICONSECUTIVOPNC = P.ICONSECUTIVOPNC AND CP.ICVEPRODUCTO = CP.ICVEPRODUCTO " +
     																		"WHERE P.IEJERCICIO="+vPNC.getInt("iEjercicio")+" and P.ICONSECUTIVOPNC="+vPNC.getInt("iConsecutivoPNC"));
     
-
      try{
       vDinRep.put("iCveUsuRecibe",iCveUsuario);
       dTRARegReqXTram.Cambia(vDinRep,null);
@@ -79,10 +77,10 @@
     	  vPNC1.put("iCveUsuRegistra",iCveUsuario);
     	  vPNC1.put("iCveUsuCorrige",iCveUsuario);
     	  dGRLSeguimientoPNC.insert(vPNC1,null);
-    	  regCausa.resolver(vPNC1,null);
     	  vPNC.remove("iConsecutivoPNC");
         vPNC.put("iConsecutivoPNC",vPNC1.getInt("ICONSECUTIVOPNC"));
       }
+	  regCausa.resolver(vPNC,null);
       dTRARegReqXTram.FinalizaPNC(vPNC);
     }catch(Exception e){
     	//System.out.print("*************");

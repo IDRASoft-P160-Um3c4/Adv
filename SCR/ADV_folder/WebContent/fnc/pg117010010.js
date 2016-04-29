@@ -113,7 +113,7 @@ function fDefPag() {
 	TDEtiSelect(true, "EEtiqueta", 3, "Resolución:", "lResolucion",
 			"onChangeResol();");
 	ITD("ECampo", 5, "", "", "LEFT", "LEFT");
-	Liga("*Anexar Oficio de Minuta Técnica", "fSubirMinutaVT();", "");
+	//Liga("*Anexar Oficio de Minuta Técnica", "fSubirMinutaVT();", "");
 	FTDTR();
 	TDEtiCampo(false, "EEtiqueta", 2, "Representante Centro SCT:", "cRepCSCT",
 			"", 50, 80, "Representante", "fMayus(this);");
@@ -331,15 +331,16 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 	if (cId == "Guardar" && cError == "") {
 		fCancelar();
 		fAlert("\n Se ha registrado con éxito la resolución de visita técnica para ésta solicitud.");
-		fAlert("\nDebe subir el formato de Minuta de Visita Técnica.");
-		// if(negativa==true&&solN>0&&ejerN>0){
-		permiteSubir = true;
-		if (negativa == true)
-			fOficios(ejerN, solN);
-		else
-			fOficios(ejerN, solN);
-
-		// }
+		blankFields();
+//		fAlert("\nDebe subir el formato de Minuta de Visita Técnica.");
+//		// if(negativa==true&&solN>0&&ejerN>0){
+//		permiteSubir = true;
+//		if (negativa == true)
+//			fOficios(ejerN, solN);
+//		else
+//			fOficios(ejerN, solN);
+//
+//		// }
 	}
 
 	if (cId == "CIDOficinaDeptoXUsr" && cError == "") {

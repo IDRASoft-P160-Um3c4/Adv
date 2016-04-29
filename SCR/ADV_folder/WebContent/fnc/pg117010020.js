@@ -28,7 +28,7 @@ var tienePNC = -1;
 var diasNohabTrans = -1;
 var dtNotif = "-1";
 var dictamen = false;
-
+var tieneDatosAfectacion = false;
 var subio = false;
 var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
@@ -145,11 +145,6 @@ function fDefPag() {
 			"cInstalacion", "", "TooTip", "", "fMayus(this);",
 			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "", 10);
 	FTDTR();
-	FITR();
-	TDEtiAreaTexto(false, "EEtiqueta", 0, "Observaciones:", 50, 2,
-			"cObservacion", "", "TooTip", "", "fMayus(this);",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "", 10);
-	FITR();
 	FinTabla();
 	Liga("*Generar Constancia de no Afectación y Dictamen de Factibiidad",
 			"fCompruebaFolio()", "");
@@ -179,6 +174,8 @@ function fDefPag() {
 
 	Hidden("lAutoImprimir", false);
 	Hidden("iNumCopias", 1);
+	Hidden("HDcPropietario");
+	Hidden("HDcInstalacion");
 	Hidden("lMostrarAplicacion", true);
 	Hidden("cArchivoOrig", "");
 	Hidden("cNomDestino", "");
@@ -253,13 +250,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 		if (aRes.length > 0) {
 			frm.cPropietario.value = aRes[0][0];
 			frm.cInstalacion.value = aRes[0][1];
-			frm.cObservacion.value = aRes[0][2];
+			tieneDatosAfectacion=true;
 		}else{
 			frm.cPropietario.value = "";
 			frm.cInstalacion.value = "";
-			frm.cObservacion.value = "";
+			tieneDatosAfectacion=false;
 		}
-		fNavega();
+		
+		//fNavega();
 	}
 
 	if (cId == "Listado" && cError == "") {
@@ -293,7 +291,12 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 		if (aRes.length == 0) {
 			fAlert("\n Se ha terminado de cotejar toda la documentación para ésta solicitud. Ahora es posible generar los formatos.");
 			dictamen = true;
+		}else{
+			if(frm.hdBoton.value == "Cambia")
+				fAlert("\n Se guardo correctamente la información.");
 		}
+		
+		fNavegaDatosAfect();
 	}
 
 	if (cId == "ListadoA" && cError == "") {
@@ -431,7 +434,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 					FRMPanel.fHabilitaReporte(false);
 					fAbandonar();
 				} else {
-					fNavegaDatosAfect();
+					fNavega();
 
 				}
 			}
@@ -545,14 +548,19 @@ function fDesactiva() {
 }
 
 function fModificar() {
-	// alert("fModificar");
 	lModificando = true;
 	FRMPanel.fSetTraStatus("UpdateBegin");
 	FRMPanel.fHabilitaReporte(false);
 	fDisabled(true);
-	frm.cObservacion.disabled = false;
-	frm.cPropietario.disabled = false;
-	frm.cInstalacion.disabled = false;
+	
+	frm.HDcPropietario.disabled = false;
+	frm.HDcInstalacion.disabled = false;
+	
+	if(tieneDatosAfectacion==false){
+		frm.cPropietario.disabled = false;
+		frm.cInstalacion.disabled = false;
+	}
+	
 	FRMListado.fSetDisabled(false);
 	// fValidaFechaNotif();
 }
@@ -576,6 +584,9 @@ function fGuardarA() {
 		}
 	}
 
+	frm.HDcPropietario.value = frm.cPropietario.value;
+	frm.HDcInstalacion.value = frm.cInstalacion.value;
+
 	if (frm.iLlave.value == 0)
 		frm.cConjunto.value = -1;
 	frm.hdBoton.value = "Cambia";
@@ -585,8 +596,16 @@ function fGuardarA() {
 		fAlert("\n Debe marcar como cotejado al menos un requisito."); // o
 		// todos?!
 	} else {
-		if (confirm("\nUna vez cotejados los requisitos no podrá anexar más documentos asociados. ¿Desea continuar con la información en pantalla?")) {
-			fNavega();
+		if(tieneDatosAfectacion==false){
+			if (confirm("\n-Una vez cotejados los requisitos no podrá anexar más documentos asociados." +
+					    "\n-Se guardará la información de instalaciones, una vez guardada no podrá modificar la información." +
+					    "\n\n¿Desea continuar con la información en pantalla?")) {
+				fNavega();
+			}
+		}else{
+			if (confirm("\n-Una vez cotejados los requisitos no podrá anexar más documentos asociados.\n\n¿Desea continuar con la información en pantalla?")) {
+				fNavega();
+			}
 		}
 	}
 }
