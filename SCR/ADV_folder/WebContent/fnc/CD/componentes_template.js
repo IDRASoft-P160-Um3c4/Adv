@@ -858,7 +858,6 @@ function fValTipo(ObjTxtM, iTipoM, cNombreM, lMandatoM, lMsg){ // 6000-Valida qu
            if(!fSoloNumeros(ObjTxtM.value))
              cVMsg1 = "\n - El campo '" + cNombreM + "' solo permite caracteres numéricos.";
         }
-        debugger;
         if (iTipoM == 2){
            if(!fSoloAlfanumericos(ObjTxtM.value))
              cVMsg1 = "\n - El campo '" + cNombreM + "' solo permite caracteres alfanuméricos (Números, Letras y Punto '.').";

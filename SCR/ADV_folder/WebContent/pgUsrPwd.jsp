@@ -36,8 +36,8 @@
         	lChPwd = dPermisos.islChgPwd();
         	
         	//comentar para omitir el cambio de contrasena si son iguales
-       //if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
-       	//	lChPwd = true;
+       if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
+       		lChPwd = true;
             //comentar para omitir el cambio de contrasena si son iguales
         	
         	usrGpo=vUsuario.getiCveGrupo();

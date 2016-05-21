@@ -47,7 +47,6 @@
 				.getPropEspecifica("RutaFuncs")));
 	else {
 
-		/*mioooooo etapa recepcion en area y visita tecnica*/
 		if (oAccion.getCAccion().equals("EtapaRecepVisita")) {
 			vDinRep = oAccion
 					.setInputs("iEjercicio,iNumSolicitud,iCveTramite,iCveModalidad,lAnexo,iCveOficinaUsr,iCveDeptoUsr,hdCveUsuario");

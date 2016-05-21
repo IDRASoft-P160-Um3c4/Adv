@@ -114,7 +114,7 @@
            	   ITD();FTD();
            	ITD();Liga("*Ver Documentación Anexa al Trámite","verDocsTramite()","Buscar");FTD();
            	ITD();Liga("*Generar Oficios, Resolución, Permiso","fDocsFinales()","Buscar");FTD();
-	           ITD();Liga("*Generar hoja de ayuda ingresos","validaUsrIng()","Buscar");FTD();
+	           ITD();Liga("*Generar hoja de ayuda ingresos","fBuscaDocumentos()","Buscar");FTD();
 	           
            FTR();
            
@@ -131,7 +131,7 @@
            ITR("","","","","");
            
 	       	   ITD();FTD();
-	       	   ITD();Liga("*Subir Oficios Anexos al Trámite","subirOficiosTramite()","Buscar");FTD();
+//	       	   ITD();Liga("*Subir Oficios Anexos al Trámite","subirOficiosTramite()","Buscar");FTD();
 //	       	   ITD();Liga("*Ver Documentación Anexa al Trámite","verDocsTramite()","Buscar");FTD();
 	           ITD();FTD();
            
@@ -385,6 +385,14 @@
 	      fAbreGeneraMovimientosX();
 	   }
    }
+   
+   if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(cEtapas!=""){
+			fAlert("No es posible realizar la acción. "+cEtapas); //se ocupa cetapas para mostrar el mensaje si faltan documentos
+		}else{
+			validaUsrIng();
+		}
+	}
 
    if(cId == "Listado" && cError==""){
 
@@ -519,8 +527,6 @@
           cNomTitulo = aRes[0][10];
           permiso = aRes[0][11];
           
-          alert(permiso);
-          
           if(frm.dtEntrega.value != "")
              FRMPanel.fShow(",");
           else
@@ -554,6 +560,22 @@
      aResOficDep = fCopiaArregloBidim(aRes);
 
  }
+ 
+ function fBuscaDocumentos(){
+	 if(permiso>0){
+		 if (frm.iEjercicioFiltro.value>0 && frm.iNumSolicitudFiltro.value>0 && frm.iCveEtapa.value>0) {		
+				frm.hdBoton.value = "buscaDocumentosEtapa";
+				frm.iCveEtapa.value = iCveEtapaEntregaPermiso;
+			  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+			}	
+		}
+		else{
+			fAlert('\nDebe buscar una solicitud valida. La solicitud debe estar en la etapa \"Entrega de Permiso\".');
+		} 
+}
+ 
+ 
+	
 
  function fBuscarPNC(){
    frm.hdFiltro.value =  "";
@@ -988,14 +1010,11 @@ function fGetDatosPersona(objRef){
 	}
 
 
-function validaUsrIng(){
-	if(frm.iEjercicio.value!="" && frm.iNumSolicitud.value!="" && permiso>0){
+function validaUsrIng(){	
+	if(frm.iEjercicio.value!="" && frm.iNumSolicitud.value!="" ){
 		frm.hdLlave.value="";
 		fEngSubmite("pgVerifUsrIngresosADV.jsp", "cIdVerifUsrIng");
 	}
-	else{
-		fAlert('\nDebe buscar una solicitud valida. La solicitud debe estar en la etapa \"Entrega de Permiso\".');
-	} 
 }
 
 function getDatosPerPago(){

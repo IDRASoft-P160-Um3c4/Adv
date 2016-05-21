@@ -64,8 +64,8 @@ protected void doGet(HttpServletRequest request,HttpServletResponse response) th
       }
       if(parameterMap == null)
         parameterMap = new HashMap();
-      parameterMap.put("URLEstaticos", (String)VParametros.getPropEspecifica("URLEstaticos")); //desarrollo
-//      parameterMap.put("URLEstaticos", (String)VParametros.getPropEspecifica("URLEstaticosReportesJasper")); //produccion en app.sct.gob.mx
+//      parameterMap.put("URLEstaticos", (String)VParametros.getPropEspecifica("URLEstaticos")); //desarrollo
+      parameterMap.put("URLEstaticos", (String)VParametros.getPropEspecifica("URLEstaticosReportesJasper")); //produccion en app.sct.gob.mx
       parameterMap.put("SUBREPORT_DIR", (String)VParametros.getPropEspecifica("SUBREPORT_DIR"));
       parameterMap.put("URLVinculacion",(String)VParametros.getPropEspecifica("URLVinculacion"));
       

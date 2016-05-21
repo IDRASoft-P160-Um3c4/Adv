@@ -89,8 +89,8 @@ function fShow(cEstatus,lHabDes){
        Cll=Rw.insertCell(i++);
        Cll.innerHTML=InicioTabla("ERegla",0,"0","100%","","",".1",".1")+ITRTD()+FTDTR();
      }
-     Cll=Rw.insertCell(i++);Cll.className = "ETablaInfoPanel";Cll.width="100";
-     Cll.innerHTML=InicioTabla("",0)+ITRTD()+BtnImg("Imprimir","pan-imprimir","fActual(document.forms[0].Imprimir,'Imprimir')")/*Liga("-Imprimir-","fActual(document.forms[0].Imprimir,'Imprimir')","Imprimir...")*/+FTDTR();
+     //Cll=Rw.insertCell(i++);Cll.className = "ETablaInfoPanel";Cll.width="100";
+     //Cll.innerHTML=InicioTabla("",0)+ITRTD()+BtnImg("Imprimir","pan-imprimir","fActual(document.forms[0].Imprimir,'Imprimir')")/*Liga("-Imprimir-","fActual(document.forms[0].Imprimir,'Imprimir')","Imprimir...")*/+FTDTR();
      if((lPRep==true && lDeshabTra==false) || lHabReporte==true){
        Cll=Rw.insertCell(i++);
        Cll.innerHTML=InicioTabla("ERegla",0,"0","100%","","",".1",".1")+ITRTD()+FTDTR();

@@ -188,7 +188,7 @@ function fDefPag() {
 	FTDTR();
 	ITR("ETablaInfo", 0, "", "", "center", "");
 	ITD("EEtiquetaC");
-	Liga("[Ratificación final de la D.G.D.C.]", "fVerifica();",
+	Liga("[Ratificación final de la D.G.D.C.]", "fBuscaDocumentos();",
 			"Verifica requisitos cualitativamente");
 	FITD("", 0, "", "", "center", "");
 	// Liga("[Adjuntar Documentos]","fEjecutaDocumentos();","Adjunta Documentos
@@ -253,7 +253,7 @@ function fDefPag() {
 	Hidden("hdLlave");
 	Hidden("cUsuario");
 	Hidden("iCveEtapaVerif", 0);
-	Hidden("iCveEtapa");
+	Hidden("iCveEtapa",3);
 	Hidden("iCveDepartamento");
 	Hidden("iCveOficina")
 	Hidden("lAnexo");
@@ -474,6 +474,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 	    tieneResolucion=false;
 	  }
 	}
+	
+	if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(cEtapasRestringidas!=""){
+			fAlert("No es posible realizar la acción. "+cEtapasRestringidas); //cEtapasRestringidas, se ocupa para mostrar el mensaje de los oficios que faltan
+		}else{
+			fVerifica();
+		}
+	}
 }
 // Busca oficina y departamento de etapa recepción en el área
 function fObtenOficDepto() {
@@ -593,9 +601,8 @@ function fGuardarA() {
 }
 
 
-function fVerifica() {
+function fVerifica() {	
 	
-
 	if (cPermisoPag != 1) {
 		fAlert("No tiene Permiso de ejecutar esta acción");
 		return;
@@ -616,9 +623,16 @@ function fVerifica() {
 		fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
 		return;
 	}
-	
-	
 }
+
+function fBuscaDocumentos(){
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
+		frm.hdBoton.value = "buscaDocumentosEtapa";
+	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+	}
+}
+
+
 function fBuscaSolicitud() {
 	fAbreBuscaSolicitud();
 	return;

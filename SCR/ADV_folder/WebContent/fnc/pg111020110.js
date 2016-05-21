@@ -7,7 +7,6 @@ var cTitulo = "";
 var FRMListado = "";
 var frm;
 var aResTemp = new Array();
-var iCveEtapa = 0;
 var recibeDGDC = false;
 var cPermisoPag;
 var tieneDatosEnvios = false;
@@ -107,7 +106,7 @@ function fDefPag() {
 	FinTabla();
 	FTDTR();
 	ITRTD("", 0, "", "30", "center", "top");
-	Liga("Recibir las solicitudes", "fRecibeSolicitud();",
+	Liga("Recibir solicitud en D.G.D.C.", "fRecibeSolicitud();",
 			"Registrar como recibida la solicitud");
 	FTDTR();
 	ITRTD("", 0, "", "40", "center", "bottom");
@@ -124,6 +123,7 @@ function fDefPag() {
 	Hidden("iNumSolicitud", "");
 	Hidden("iCveTramite", "");
 	Hidden("iCveModalidad", "");
+	Hidden("iCveEtapa", 2);
 	Hidden("lAnexo", "");
 	// Hidden("hdEtapa","EtapaRegistro");
 	Hidden("hdEtapa", "EtapaCotejoDoc");
@@ -152,11 +152,8 @@ function fOnLoad() {
 	// FRMListado.fSetTitulo("Recibido,Anexos,Requisitos,Ejercicio,Núm.
 	// Solicitud,Trámite,Modalidad,Oficina Origen,");
 	FRMListado
-			.fSetTitulo("Recibido,Ejercicio,Núm. Solicitud,Trámite,Modalidad,Unidad Administrativa,Formatos,");
+			.fSetTitulo("Ejercicio,Núm. Solicitud,Trámite,Modalidad,Centro SCT,Oficios,");
 	FRMListado.fSetCampos("0,1,4,5,8,9,");
-	FRMListado.fSetObjs(0, "Caja");
-	// FRMListado.fSetObjs(1,"Caja");
-	// FRMListado.fSetObjs(9,"Boton");
 	FRMListado.fSetAlinea("center,center,center,center,center,center,center,");
 	fDisabled(false);
 	frm.hdBoton.value = "Primero";
@@ -174,7 +171,7 @@ function fNavega() {
 	return fEngSubmite("pgTRARecepcion.jsp", "Listado");
 }
 // RECEPCIÓN de Datos de provenientes del Servidor
-function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
+function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) {
 	if (cError == "Guardar")
 		fAlert("Existió un error en el Guardado!");
 	if (cError == "Borrar")
@@ -217,6 +214,12 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 			FRMPanel.fSetTraStatus("Mod,");
 		else
 			FRMPanel.fSetTraStatus(",");
+		
+		frm.iEjercicio.value = "";
+		frm.iNumSolicitud.value = "";
+		frm.iCveTramite.value = "";
+		frm.iCveModalidad.value = "";
+		frm.lAnexo.value = "";
 	}
 
 	if (cId == "datosEnvios" && cError == "") {
@@ -255,6 +258,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 		tieneDatosEnvios=true;
 		FRMPanel.fSetTraStatus(",");
 	}
+	
+	if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(msgOficios!=""){
+			fAlert("No es posible realizar la acción. "+msgOficios);
+		}else{
+			doRecibeSolicitud();
+		}
+	}
 
 	fResOficDeptoUsr(aRes, cId, cError);
 }
@@ -268,6 +279,9 @@ function fCancelar() {
 function fSelReg(aDato, iCol) {
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
+	frm.iCveTramite.value = aDato[2];
+	frm.iCveModalidad.value = aDato[3];
+			frm.lAnexo.value = "0";
 
 	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "")
 		fGetDatosEnvios();
@@ -333,65 +347,36 @@ function fRecibeSolicitud() {
 		return;
 	}
 
-	frm.iEjercicio.value = "";
-	frm.iNumSolicitud.value = "";
-	frm.iCveTramite.value = "";
-	frm.iCveModalidad.value = "";
-	frm.lAnexo.value = "";
-
-	if (!confirm("¿Esta seguro que desea recibir el trámite?")) {
+	if (confirm("¿Esta seguro que desea recibir el trámite?")) {
+		buscaDocumentos();
+	}	else{
 		recibeDGDC = false;
 		return;
+	} 
+
+}
+
+function buscaDocumentos(){
+	
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
+		frm.hdBoton.value = "buscaDocumentosEtapa";
+		fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
 	}
+}
 
-	aCBoxReq = FRMListado.fGetObjs(0);
-	aCBoxAnexo = FRMListado.fGetObjs(1);
-
-	for (cont = 0; cont < aCBoxReq.length; cont++) {
-		if (aCBoxReq[cont]) {
-			if (frm.iEjercicio.value == "")
-				frm.iEjercicio.value = aResTemp[cont][0];
-			else
-				frm.iEjercicio.value += "," + aResTemp[cont][0];
-			if (frm.iNumSolicitud.value == "")
-				frm.iNumSolicitud.value = aResTemp[cont][1];
-			else
-				frm.iNumSolicitud.value += "," + aResTemp[cont][1];
-			if (frm.iCveTramite.value == "")
-				frm.iCveTramite.value = aResTemp[cont][2];
-			else
-				frm.iCveTramite.value += "," + aResTemp[cont][2];
-			if (frm.iCveModalidad.value == "")
-				frm.iCveModalidad.value = aResTemp[cont][3];
-			else
-				frm.iCveModalidad.value += "," + aResTemp[cont][3];
-			/*
-			 * if (frm.lAnexo.value==""){ if (aCBoxAnexo[cont])
-			 * frm.lAnexo.value="1"; else frm.lAnexo.value="0"; } else{ if
-			 * (aCBoxAnexo[cont]) frm.lAnexo.value+=",1"; else
-			 * frm.lAnexo.value+=",0"; }
-			 */
-
-			if (frm.lAnexo.value == "")
-				frm.lAnexo.value = "0";
-			else
-				frm.lAnexo.value += ",0";
-		}
-	}
-
+function doRecibeSolicitud(){
+	
 	if (frm.iEjercicio.value == "") {
-		fAlert('\n - Seleccione al menos un registro para hacer esta operación.');
+		fAlert('\n - Seleccione un registro para realizar esta operación.');
 		return;
 	}
 
-	recibeDGDC = true;
-	// frm.hdBoton.value = "RecibeTramite";
+	recibeDGDC = true; 
 	frm.hdBoton.value = "EtapaRecepVisita";
 	frm.hdFiltro.value = "";
 	frm.hdOrden.value = "iEjercicio,iNumSolicitud";
 	frm.hdNumReg.value = 1000;
 	fEngSubmite("pgTRARecepcion.jsp", "Listado");
-
 }
 
 function fEnviaDatosMuestraRequisitos(objWindow) {

@@ -297,7 +297,6 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
       fReposicionaListado(FRMListado,"9",cPosicionaReq);
     cPosicionaReq = "";
     if(aRes.length > 0){
-    	alert("df")
        fBuscaEtapa();
     }
 //    if(frm.lGuardar.value=="true"){
@@ -312,7 +311,6 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
   }
   
   if(cId == "idCveEtapa" && cError==""){
-	  alert("sss22");
     frm.iVerificacion.value = iEtapaVerifica;
     frm.iCveEtapa.value = frm.iVerificacion.value;
     frm.iRecepcion.value = iEtapaRecepcion;
@@ -373,7 +371,7 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
       	frm.hdBoton.value = "GuardarTodos";
         fEngSubmite("pgGRLRegPNC.jsp","idGuardoTodos");
     }
-    else{
+    else if(noValidos==false&&faltaEvaluacion==false){
      fAlert("\nLa evaluación de requisitos por la D.G.D.C. ha concluido exitosamente. Ahora es posible dar una resolución al trámite.");
      if(top.opener){
     	 top.opener.fNavega();
@@ -388,11 +386,7 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
     if(top.opener){
     	reloadSol();
    	 top.close();
-    }
-   // fSegOficios();
-    
-    
-    
+    }    
   }
   
   if(cId == "idCambiaEtapaPNC" && cError == ""){
@@ -1139,7 +1133,7 @@ function fVerificaFechas(){
                               "ELSE 0 " +
                               "END AS iESVALIDO, " +
                               "s.DTLIMITEENTREGADOCS,DATE(CURRENT DATE) AS DTACTUAL, " +
-                              "(SELECT count(1) as iContador FROM TRAREGETAPASXMODTRAM where iejercicio=s.iejercicio and INUMSOLICITUD= s.inumsolicitud and ICVEETAPA=23) " +
+                              "(SELECT count(1) as iContador FROM TRAREGETAPASXMODTRAM where iejercicio=s.iejercicio and INUMSOLICITUD= s.inumsolicitud and ICVEETAPA=23) " + //etapa 23 cerrar pnc
                               "FROM TRAREGSOLICITUD s " +
                               "WHERE IEJERCICIO="+frm.iEjercicio.value+
                               " AND INUMSOLICITUD="+frm.iNumSolicitud.value;

@@ -216,7 +216,7 @@ function fDefPag() {
 	Hidden("iCveDpto");
 	Hidden("iCveTram");
 	Hidden("iCveMod");
-
+	Hidden("iCveEtapa",26);//ide etapa resolucion
 	Hidden("cAcuerdos", "");
 	Hidden("lAutoImprimir", false);
 	Hidden("iNumCopias", 1);
@@ -295,7 +295,7 @@ function fNavega(vModo) {
 	}
 }
 // RECEPCIÓN de Datos de provenientes del Servidor
-function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
+function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) {
 
 	if (cError == "Guardar")
 		fAlert("Existió un error en el Guardado!\n");
@@ -332,15 +332,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 		fCancelar();
 		fAlert("\n Se ha registrado con éxito la resolución de visita técnica para ésta solicitud.");
 		blankFields();
-//		fAlert("\nDebe subir el formato de Minuta de Visita Técnica.");
-//		// if(negativa==true&&solN>0&&ejerN>0){
-//		permiteSubir = true;
-//		if (negativa == true)
-//			fOficios(ejerN, solN);
-//		else
-//			fOficios(ejerN, solN);
-//
-//		// }
+		fAlert("\nDebe generar y subir el formato de Minuta de Visita Técnica.");
+		fOficios(ejerN, solN);
 	}
 
 	if (cId == "CIDOficinaDeptoXUsr" && cError == "") {
@@ -349,7 +342,24 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 			frm.iCveDpto.value = aRes[0][2];
 		}
 	}
+	
+	
+	if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(msgOficios!=""){
+			fAlert("No es posible realizar la acción. "+msgOficios);
+		}else{
+			fHabilitaRegistro();
+		}
+	}
 }
+
+function fBuscaDocumentos(){
+	if (frm.iEjercicioFiltro.value>0 && frm.iNumSolicitudFiltro.value>0 && frm.iCveEtapa.value>0) {		
+		frm.hdBoton.value = "buscaDocumentosEtapa";
+	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+	}
+}
+
 
 function blankFields() {
 	fCancelar();
@@ -385,34 +395,39 @@ function blankFields() {
 // LLAMADO desde el Panel cada vez que se presiona al botón Nuevo
 function fNuevo() {
 
-	if (frm.cSolicitante.value != "" && frm.cHomoclave.value != ""
-			&& frm.cDscTramite.value != "" && frm.cDscModalidad.value != ""
-			&& frm.tFechaVisita.value != "") {
-		puedeAgregarAcuerdo = true;
-		FRMPanel.fSetTraStatus("UpdateBegin");
-		frm.lResolucion.disabled = false;
-
-		frm.cRepCSCT.disabled = false;
-		frm.cCargoCSCT.disabled = false;
-		frm.cComentCSCT.disabled = false;
-
-		frm.cRepProm.disabled = false;
-		frm.cCargoProm.disabled = false;
-		frm.cComentProm.disabled = false;
-
-		frm.cRepConce.disabled = false;
-		frm.cCargoConce.disabled = false;
-		frm.cComentConce.disabled = false;
-
-		frm.cObs.disabled = false;
-		frm.cAcuerdos.disabled = false;
-
-		permiteSubir = true;
+	if (frm.iEjercicioFiltro.value>0 && frm.iEjercicioFiltro.value>0) {
+		//etapa 26, resolucion de visita tecnica
+		fBuscaDocumentos();
 	} else {
-		fAlert("\nDebe buscar una solicitud existente.");
+		fAlert("\nDebe buscar una solicitud válida.");
 	}
 
 }
+
+function fHabilitaRegistro(){
+	puedeAgregarAcuerdo = true;
+	FRMPanel.fSetTraStatus("UpdateBegin");
+	frm.lResolucion.disabled = false;
+
+	frm.cRepCSCT.disabled = false;
+	frm.cCargoCSCT.disabled = false;
+	frm.cComentCSCT.disabled = false;
+
+	frm.cRepProm.disabled = false;
+	frm.cCargoProm.disabled = false;
+	frm.cComentProm.disabled = false;
+
+	frm.cRepConce.disabled = false;
+	frm.cCargoConce.disabled = false;
+	frm.cComentConce.disabled = false;
+
+	frm.cObs.disabled = false;
+	frm.cAcuerdos.disabled = false;
+
+	permiteSubir = true;
+}
+
+
 
 // LLAMADO desde el Panel cada vez que se presiona al botón Guardar
 function fGuardar() {

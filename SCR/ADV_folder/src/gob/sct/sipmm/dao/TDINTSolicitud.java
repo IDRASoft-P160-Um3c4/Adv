@@ -625,6 +625,78 @@ public class TDINTSolicitud extends DAOBase {
 		return vData;
 		}
 	
+	public TVDinRep insertOficioADV2016(TVDinRep vData, Connection cnNested)
+		    throws DAOException {
+		
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+		PreparedStatement lPStmt = null;
+		boolean lSuccess = true;
+		TFechas fecha = new TFechas();
+		
+		
+		try {
+			
+		    if (cnNested == null) {
+		        dbConn = new DbConnection(dataSourceName);
+		        conn = dbConn.getConnection();
+		        conn.setAutoCommit(false);
+		        conn.setTransactionIsolation(2);
+		    }
+		    
+		    String lSQL = "INSERT INTO TRAREGOFICIOADV (IEJERCICIO,INUMSOLICITUD,ICVEOFICIOADV,IIDGESTORDOCUMENTO,ICVEUSUARIO,TSREGISTRO) VALUES (?,?,?,?,?,CURRENT_TIMESTAMP)"; 
+		    
+		    lPStmt = conn.prepareStatement(lSQL);
+		    
+		    System.out.println(vData.getInt("iEjercicio"));
+		    System.out.println(vData.getInt("iNumSolicitud"));
+		    System.out.println(vData.getInt("iCveOficio"));
+		    System.out.println(vData.getInt("ICVEDOCDIG"));
+		    System.out.println(vData.getInt("iCveUsuario"));
+		    
+			lPStmt.setInt(1,vData.getInt("iEjercicio"));
+			lPStmt.setInt(2, vData.getInt("iNumSolicitud"));
+			lPStmt.setInt(3, vData.getInt("iCveOficio"));
+			lPStmt.setInt(4, vData.getInt("ICVEDOCDIG"));
+			lPStmt.setInt(5, vData.getInt("iCveUsuario"));
+			
+			lPStmt.executeUpdate();
+		
+		    if (cnNested == null) {
+		        conn.commit(); 
+		    }
+		} catch (Exception ex) {
+			
+		    warn("insert", ex);
+		    ex.printStackTrace();
+		    
+		if (cnNested == null) {
+		    try {
+		        conn.rollback();
+		    } catch (Exception e) {
+		        fatal("insert.rollback", e);
+		        }
+		    }
+		    lSuccess = false;
+		} finally {
+		    try {
+		        if (lPStmt != null) {
+		            lPStmt.close();
+		        }
+		        if (cnNested == null) {
+		            if (conn != null) {
+		                conn.close();
+		            }
+		            dbConn.closeConnection();
+		        }
+		    } catch (Exception ex2) {
+		        warn("insert.close", ex2);
+		    }
+		    if (lSuccess == false)
+		      throw new DAOException("");
+		}
+		return vData;
+		}
 	
 	public TVDinRep insertDoctoHistoricoADV(TVDinRep vData, Connection cnNested)
 		    throws DAOException {

@@ -682,6 +682,79 @@ public class TDTRARegReqXTramb
   return vData;
 }
 }   /**/
+	
+	public String buscaDocumentosEtapa(TVDinRep vData, Connection cnNested)
+			throws Exception {
+
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+
+		String cErrorMsg = "";
+		boolean lSuccess = true;
+		String retMsg="";
+		try {
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			}
+					
+			//busco las claves de los oficios requeridos por etapa
+			String cSQl = "SELECT CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
+			Vector vecDatos = findByCustom("",cSQl);			
+			TVDinRep vDatos, vOficiosRequeridos;
+			vDatos= (TVDinRep) vecDatos.get(0);
+			
+			String[] arrCvesOficios = vDatos.getString("CCVESOFICIOS").split(",");
+			Integer oficiosRequeridos = arrCvesOficios.length;
+			
+			//busco los registros de los oficios
+			cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+vDatos.getString("CCVESOFICIOS")+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud"); 
+			vecDatos = findByCustom("",cSQl);
+			
+			//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
+			if(vecDatos.size()<oficiosRequeridos){
+				cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+vDatos.getString("CCVESOFICIOS")+")";
+				vecDatos = findByCustom("",cSQl);
+				retMsg = "Debe asegurarse de que hayan sido subidos los oficios: \\n";
+				for(int i=0; i<vecDatos.size();i++){
+					vDatos = (TVDinRep) vecDatos.get(i);
+					retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
+				}
+			}
+		}	 
+		catch(Exception ex){
+			ex.printStackTrace();
+		  if(cnNested == null){
+		    try{
+		      conn.rollback();
+		    } catch(Exception e){
+		      e.printStackTrace();
+		      fatal("update.rollback",e);
+		    }
+		  }
+		 lSuccess = false;
+		} 
+		finally{
+		  try{
+		    if(cnNested == null){
+		      if(conn != null){
+		        conn.close();
+		      }
+		      dbConn.closeConnection();
+		    }
+		  } catch(Exception ex2){
+		    warn("update.close",ex2);
+		  }
+	  if(lSuccess == false)
+	    throw new DAOException(cErrorMsg);
+
+  return retMsg;
+}
+	}
+	
+	
 
 
   public TVDinRep Cambia(TVDinRep vData,Connection cnNested) throws

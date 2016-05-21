@@ -35,6 +35,8 @@
   if(!oAccion.unaSesion(vParametros,(CFGSesiones)application.getAttribute("Sesiones"),(TVUsuario)request.getSession(true).getAttribute("UsrID")))
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   else{
+	  System.out.println("----->"+ request.getParameter("hdBoton"));
+	  
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
     vDinRep = oAccion.setInputs("iNumSolicitud,iEjercicio,iCveTramite,iCveModalidad,iCveRequisito");
@@ -160,6 +162,7 @@
 
   }
   String cSQL = "";
+  
   if(oAccion.getCAccion().equals("GetSolicitud")){
 	    cSQL = "SELECT " +
 	           "S.IEJERCICIO,S.INUMSOLICITUD,"+

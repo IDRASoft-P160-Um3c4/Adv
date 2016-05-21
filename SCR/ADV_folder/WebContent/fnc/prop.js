@@ -92,9 +92,9 @@
   var cCapCondMet1 = "56,57,61,62,63,51,52,11,12,64,37,40,39";
   
   //Para el funcionamiento de elicencias
- var cRutaProgMM = 'http://localhost:7001/SGADV/';
+// var cRutaProgMM = 'http://localhost:7001/SGADV/';
 //  var cRutaProgMM = 'http://aplicaciones6.sct.gob.mx/SGADV/';
-//  var cRutaProgMM = 'http://app.sct.gob.mx/SGADV/'; 
+  var cRutaProgMM = 'http://app.sct.gob.mx/SGADV/'; 
   var cRutaProgLic = 'http://aplicaciones1.sct.gob.mx/elic/';
 
 function fSetIntervalo(lReporte, iInter){ // Solo se debe usar bajo condiciones específicas
@@ -548,6 +548,19 @@ function fCargaOficDeptoUsr(lTodas){
   }
 }
 
+function fCargaGrupoUsr(){
+	  
+	usrBuscar = fGetIdUsrSesion();
+
+	  if (frm.hdLlave && frm.hdSelect){
+	      frm.hdSelect.value = "SELECT ICVEGRUPO FROM SEGGPOXUSR WHERE ICVEUSUARIO = " + usrBuscar;
+	    }
+
+	  if (frm.hdNumReg)
+	      frm.hdNumReg.value = 100000;
+	  
+	    fEngSubmite("pgConsulta.jsp","CIDGrupoXUsr");
+}
 
 function fResOficDeptoUsr(aRes,cId,cError,lTodas,lSeleccione){
   if(!lSeleccione)

@@ -261,11 +261,10 @@
      fFillSelect(frm.iCveOficina,aRes,true,frm.iCveOficina.value,0,1);
    
    if(cId == "cIdRegPNC" && cError == ""){
-	   //alert(aRes);
-       //fFillSelect(frm.iConsecutivoPNC, aRes, false, 0,8,8);
-	   frm.iConsecutivoPNC.value = aRes[0][8];
-       //frm.iConsecutivoPNC.disabled = false;
-       fPNCOnChange();
+	   if(aRes.length>0){
+		   frm.iConsecutivoPNC.value = aRes[0][8];
+	       fPNCOnChange();
+	   }
    }
    
    if(cId == "Listado" && cError==""){

@@ -39,6 +39,10 @@
     <servlet-class>gob.sct.sipmm.dao.UploadOficioADV</servlet-class>
   </servlet>
   <servlet>
+    <servlet-name>UploadOficioADV2016</servlet-name>
+    <servlet-class>gob.sct.sipmm.dao.UploadOficioADV2016</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>UploadNotifica</servlet-name>
     <servlet-class>gob.sct.sipmm.dao.UploadNotifica</servlet-class>
   </servlet>
@@ -93,6 +97,10 @@
   <servlet-mapping>
     <servlet-name>UploadOficioADV</servlet-name>
     <url-pattern>/UploadOficioADV</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadOficioADV2016</servlet-name>
+    <url-pattern>/UploadOficioADV2016</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>UploadNotifica</servlet-name>

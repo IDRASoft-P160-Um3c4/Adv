@@ -50,7 +50,7 @@ function fOnLoad() {
 	frm = document.forms[0];
 	FRMListado = fBuscaFrame("IListado");
 	FRMListado.fSetControl(self);
-	FRMListado.fSetTitulo("Ejercicio, Núm. Solicitud, Solicitante, Trámite, Oficina de Origen, Tiene PNC, Documentos, Evaluación,");
+	FRMListado.fSetTitulo("Ejercicio, Núm. Solicitud, Solicitante, Trámite, Oficina de Origen, Tiene PNC, Requisitos, Evaluación,");
 	FRMListado.fSetCampos("0,1,2,3,4,5,6,7,");
 	FRMListado.fSetAlinea("center,center,center,center,center,center,center,center,");
 	frm.hdBoton.value = "Primero";
@@ -89,8 +89,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 				}else{
 					aRes[o][5]="";
 				}
-				aRes[o].push("<font color=blue>VER DOCUMENTOS</font>");
-				aRes[o].push("<font color=blue>EVALUACIÓN DE DOCUMENTOS</font>");
+				aRes[o].push("<font color=blue>VER REQUISITOS</font>");
+				aRes[o].push("<font color=blue>EVALUACIÓN DE REQUISITOS</font>");
 			}
 		}
 		frm.hdRowPag.value = iRowPag;
