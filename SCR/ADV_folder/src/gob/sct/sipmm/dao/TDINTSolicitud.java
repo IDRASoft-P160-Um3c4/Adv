@@ -647,13 +647,7 @@ public class TDINTSolicitud extends DAOBase {
 		    String lSQL = "INSERT INTO TRAREGOFICIOADV (IEJERCICIO,INUMSOLICITUD,ICVEOFICIOADV,IIDGESTORDOCUMENTO,ICVEUSUARIO,TSREGISTRO) VALUES (?,?,?,?,?,CURRENT_TIMESTAMP)"; 
 		    
 		    lPStmt = conn.prepareStatement(lSQL);
-		    
-		    System.out.println(vData.getInt("iEjercicio"));
-		    System.out.println(vData.getInt("iNumSolicitud"));
-		    System.out.println(vData.getInt("iCveOficio"));
-		    System.out.println(vData.getInt("ICVEDOCDIG"));
-		    System.out.println(vData.getInt("iCveUsuario"));
-		    
+		    	    
 			lPStmt.setInt(1,vData.getInt("iEjercicio"));
 			lPStmt.setInt(2, vData.getInt("iNumSolicitud"));
 			lPStmt.setInt(3, vData.getInt("iCveOficio"));

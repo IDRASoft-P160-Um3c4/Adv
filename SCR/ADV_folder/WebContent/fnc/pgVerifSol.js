@@ -389,11 +389,7 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
     }    
   }
   
-  if(cId == "idCambiaEtapaPNC" && cError == ""){
-     lEnVerificacion = true;
-     lGuardar = false;
-     fAbreRegistroPNC();
-  }
+  
   if(cId == "idRecibeN" && cError == "" && !lEnNotificacion){
     fBuscaDatosEtapa2();
   }
@@ -541,13 +537,6 @@ function fGuardarProcesa(){
         }
      }
     // else fVerificaFechas();
-}
-
-function fEtapaVerPNC(){
-   frm.hdBoton.value = "CambiaEtapa";
-   frm.hdFiltro.value = " TRAREGSOLICITUD.iEjercicio = "+frm.iEjercicio.value+
-                        " AND TRAREGSOLICITUD.iNumSolicitud = "+frm.iNumSolicitud.value + " ";
-   fEngSubmite("pgTRARegEtapasXModTram.jsp","idCambiaEtapaPNC");
 }
 
 function fReporte(){
@@ -1149,5 +1138,6 @@ function fVentanilla(){
 }
 
 function reloadSol(){
-	top.opener.fNavega();
+	top.opener.fSetRecarga(true);
+	top.opener.fRegsitraRetraso();
 }

@@ -155,7 +155,7 @@ function fDefPag(){
       Hidden("hdSelect");
       Hidden("iRecepcion",2);
       Hidden("iVerificacion",3);
-      Hidden("iNotificacion",20);
+      Hidden("iNotificacion",20);//etapa notificacion hacer propiedad
       Hidden("iCveEtapa");
       Hidden("iCveOficina");
       Hidden("iCveDepartamento");
@@ -170,6 +170,8 @@ function fDefPag(){
       Hidden("iCveVentanillaU");
       Hidden("lValidoBOX",false);
       Hidden("cNumOficio","");
+      Hidden("iDiasUltimaEtapa",0);
+      
       
       //FinLEL070906
 
@@ -391,14 +393,34 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
            frm.iCveDepartamento.value = aRes[0][3];
            frm.lAnexo.value = aRes[0][4];
            frm.iCveEtapa.value = frm.iNotificacion.value;
-           fEtapaNotif();
+           fRegistraRetraso();
      }
     }
     if(cId == "idCambiaNotif" && cError == ""){
      frm.cRecibeH.value = frm.cRecibeNotif.value;
-     lEnNotificacion = true;
-     fNavega();
-    }    
+     fAlert("Se ha registrado la notificación de PNC para esta solicitud.");
+     
+     if(top.opener){
+    	 top.close();
+    	 top.opener.fNavega();
+     }
+//     lEnNotificacion = true;
+//     fNavega();
+
+    }
+    
+    if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+		doGuardar();
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(iEtapaVerifica!="" && parseInt(iEtapaVerifica)>0)//se ocupa iEtapaVerifica para el mensaje del retraso
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+iEtapaVerifica+ " días.");
+		
+		fEtapaNotif();
+	}
+	
     return true;
 }
 
@@ -543,18 +565,22 @@ function fHabDeshab(){
     frm.cNumOficio.disabled = true;
 }
 function fGuardar(){
-    lGuardado=true;
-      if(frm.cNumOficio.value != "" && frm.lValidoBOX.checked == false && frm.cRecibeNotif.disabled == true){
-        fAlert("No es pocible dar de alta un PNC sobre un requisito con una notificación previa\nSe le recomienda cancelar el trámite");
-      }else{
-          if(fValidaRecibe()){
-              FRMPanel.fSetTraStatus(",");
-              frm.cRecibeNotif.disabled = true;
-              //frm.dtNotificacion.disabled = true;
-            frm.hdBoton.value = "GRecibeN";
-            fEngSubmite("pgGRLRegPNC.jsp","idRecibeN");
-          }
+	fDiasDesdeUltimaEtapa();
+}
+
+function doGuardar(){
+	lGuardado=true;
+    if(frm.cNumOficio.value != "" && frm.lValidoBOX.checked == false && frm.cRecibeNotif.disabled == true){
+      fAlert("No es pocible dar de alta un PNC sobre un requisito con una notificación previa\nSe le recomienda cancelar el trámite");
+    }else{
+        if(fValidaRecibe()){
+            FRMPanel.fSetTraStatus(",");
+            frm.cRecibeNotif.disabled = true;
+            //frm.dtNotificacion.disabled = true;
+          frm.hdBoton.value = "GRecibeN";
+          fEngSubmite("pgGRLRegPNC.jsp","idRecibeN");
         }
+      }
 }
 //Busca la oficina y el departamento de la Etapa 2
 function fBuscaDatosEtapa2(){
@@ -610,6 +636,9 @@ function fCargaPNCSolCom(){
                          "ORDER BY PS.iEjercicio, PS.iNumSolicitud, PS.iCONSECUTIVOPNC DESC";
     fEngSubmite("pgConsulta.jsp","CIDPNCSolCom");
   }
+
+
+
 
 
 

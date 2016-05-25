@@ -2816,8 +2816,7 @@ public class TDTRARegSolicitud extends DAOBase {
 		int iCveTramite = 0, iCveModalidad = 0, iCveOficinaOrigen, iCveDeptoOrigen;
 		String cOficinaResuelve, cDeptoResuelve, cSolicitudPNC = "", cTramitePNC = "", cModalidadPNC = "", cOrdenPNC = "";
 		boolean lReqCompletos;
-		int iCveEtapa = Integer.parseInt(
-				VParametros.getPropEspecifica("EtapaRegistro"), 10);
+		
 		int iPNC = Integer.parseInt(
 				VParametros.getPropEspecifica("VentanillaProductoRecepcion"),
 				10);
@@ -3041,86 +3040,89 @@ public class TDTRARegSolicitud extends DAOBase {
 				if (cnNested == null)
 					conn.commit();
 				
-				/******** Inserta etapa inicial del tr�mite para el seguimiento */
-
-				TVDinRep vEtapa = new TVDinRep();
-				vEtapa.put("iEjercicio", iEjercicio);
-				vEtapa.put("iNumSolicitud", iNumSolicitud);
-				vEtapa.put("iCveTramite", iCveTramite);
-				vEtapa.put("iCveModalidad", iCveModalidad);
-				vEtapa.put("iCveEtapa", iCveEtapa);
-
-				// vEtapa.put("iCveOficina",
-				// Integer.parseInt(cOficinaResuelve,10));
-				// vEtapa.put("iCveDepartamento",
-				// Integer.parseInt(cDeptoResuelve,10));
-
-				vEtapa.put("iCveOficina", vData.getInt("iCveOficinaUsr")); // para
-																			// que
-																			// guarde
-																			// la
-																			// etapa
-																			// con
-																			// la
-																			// ofic
-																			// y
-																			// el
-																			// dpto
-																			// de
-																			// quien
-																			// genera
-																			// la
-																			// etapa
-				vEtapa.put("iCveDepartamento", vData.getInt("iCveDeptoUsr"));
-
-				vEtapa.put("iCveUsuario", vData.getInt("iCveUsuario"));
-				vEtapa.put("tsRegistro", tsRegistro);
-				vEtapa.put("lAnexo", 0);
-				vEtapa.put(
-						"cObservaciones",
-						"Solicitud" + iEjercicio + "/" + iNumSolicitud
-								+ " registrada con fecha:"
-								+ tsRegistro.toString());
-				try {
-					vEtapa = dEtapaIni.insertEtapa(vEtapa, conn);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				// SE AGREGA LA ETAPA DE VISITA TECNICA AL INICIAR LA SOLICITUD
-				vEtapa.put("iCveEtapa", Integer.parseInt(
-						VParametros.getPropEspecifica("EtapaVisita"), 10));
-
-				try {
-					vEtapa = dEtapaIni.insertEtapa(vEtapa, conn);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				/************** Incerta al CIS **************/
-				TVDinRep vCIS = new TVDinRep();
-				vCIS.put("iEjercicio", iEjercicio);
-				vCIS.put("iNumSolicitud", iNumSolicitud);
-				vCIS.put("iCveTramite", iCveTramite);
-				vCIS.put("iCveModalidad", iCveModalidad);
-				vCIS.put("iCveOficina", Integer.parseInt(cOficinaResuelve, 10));
-				vCIS.put("iCveSolicitante", vData.getInt("iCveSolicitante"));
-				vCIS.put("dtCita", tFecha.getDateSQL(tsRegistro));
-
-				try {
-					this.updateEtapasCIS(vCIS, conn);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				try {
-					dEtapaIni.incertaEstadoCita(iEjercicio, iNumSolicitud,
-							iCveEtapa, conn);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				if (cnNested == null)
-					conn.commit();
+//				/******** Inserta etapa inicial del tr�mite para el seguimiento */
+//				
+//				int iCveEtapa = Integer.parseInt(
+//						VParametros.getPropEspecifica("EtapaRegistro"), 10);
+//
+//				TVDinRep vEtapa = new TVDinRep();
+//				vEtapa.put("iEjercicio", iEjercicio);
+//				vEtapa.put("iNumSolicitud", iNumSolicitud);
+//				vEtapa.put("iCveTramite", iCveTramite);
+//				vEtapa.put("iCveModalidad", iCveModalidad);
+//				vEtapa.put("iCveEtapa", iCveEtapa);
+//
+//				// vEtapa.put("iCveOficina",
+//				// Integer.parseInt(cOficinaResuelve,10));
+//				// vEtapa.put("iCveDepartamento",
+//				// Integer.parseInt(cDeptoResuelve,10));
+//
+//				vEtapa.put("iCveOficina", vData.getInt("iCveOficinaUsr")); // para
+//																			// que
+//																			// guarde
+//																			// la
+//																			// etapa
+//																			// con
+//																			// la
+//																			// ofic
+//																			// y
+//																			// el
+//																			// dpto
+//																			// de
+//																			// quien
+//																			// genera
+//																			// la
+//																			// etapa
+//				vEtapa.put("iCveDepartamento", vData.getInt("iCveDeptoUsr"));
+//
+//				vEtapa.put("iCveUsuario", vData.getInt("iCveUsuario"));
+//				vEtapa.put("tsRegistro", tsRegistro);
+//				vEtapa.put("lAnexo", 0);
+//				vEtapa.put(
+//						"cObservaciones",
+//						"Solicitud" + iEjercicio + "/" + iNumSolicitud
+//								+ " registrada con fecha:"
+//								+ tsRegistro.toString());
+//				try {
+//					vEtapa = dEtapaIni.insertEtapa(vEtapa, conn);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//
+//				// SE AGREGA LA ETAPA DE VISITA TECNICA AL INICIAR LA SOLICITUD
+//				vEtapa.put("iCveEtapa", Integer.parseInt(
+//						VParametros.getPropEspecifica("EtapaVisita"), 10));
+//
+//				try {
+//					vEtapa = dEtapaIni.insertEtapa(vEtapa, conn);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//
+//				/************** Incerta al CIS **************/
+//				TVDinRep vCIS = new TVDinRep();
+//				vCIS.put("iEjercicio", iEjercicio);
+//				vCIS.put("iNumSolicitud", iNumSolicitud);
+//				vCIS.put("iCveTramite", iCveTramite);
+//				vCIS.put("iCveModalidad", iCveModalidad);
+//				vCIS.put("iCveOficina", Integer.parseInt(cOficinaResuelve, 10));
+//				vCIS.put("iCveSolicitante", vData.getInt("iCveSolicitante"));
+//				vCIS.put("dtCita", tFecha.getDateSQL(tsRegistro));
+//
+//				try {
+//					this.updateEtapasCIS(vCIS, conn);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//				try {
+//					dEtapaIni.incertaEstadoCita(iEjercicio, iNumSolicitud,
+//							iCveEtapa, conn);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//
+//				if (cnNested == null)
+//					conn.commit();
 
 				/*************** REGISTRO DE REQUISITOS EN EL TR�MITE ***************/
 				int iRequisito;
@@ -3325,46 +3327,19 @@ public class TDTRARegSolicitud extends DAOBase {
 
 			// INSERTA EN LA TABLA TRAREGDATOSADVXSOL
 
-			String cEtapa = "SELECT MAX(ICVEDATOSADV) AS ICVEDATOSADV FROM TRAREGDATOSADVXSOL";
-			
-
-			Vector vcData = this.findByCustom("", cEtapa);
-
-			int consec;
-
-			if (vcData.size() > 0) {
-				TVDinRep vUltimo = (TVDinRep) vcData.get(0);
-				consec = vUltimo.getInt("ICVEDATOSADV") + 1;
-			} else {
-				consec = 1;
-			}
-
-			String SqlADV = "INSERT INTO TRAREGDATOSADVXSOL (ICVEDATOSADV, IEJERCICIO, INUMSOLICITUD, CHECHOS,CORGANO, ICVECARRETERA, DTVISITA, CLATITUD, CLONGITUD,CKMSENTIDO) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			String SqlADV = "INSERT INTO TRAREGDATOSADVXSOL ( IEJERCICIO, INUMSOLICITUD, CHECHOS,CORGANO, ICVECARRETERA, DTVISITA, CLATITUD, CLONGITUD,CKMSENTIDO) VALUES (?,?,?,?,?,?,?,?,?)";
 
 			lPStmt = conn.prepareStatement(SqlADV);
 		
-			System.out.println(SqlADV);
-			System.out.println(consec);
-			System.out.println(vData1.getInt("iEjer"));
-			System.out.println(vData1.getInt("iNumSolicitud"));
-			System.out.println(vData.getString("cHechosTramite"));
-			System.out.println(vData.getString("cOrganoAdmin"));
-			System.out.println(vData.getInt("iCveCarretera"));
-			System.out.println(vData.getDate("dtVisita"));
-			System.out.println(vData.getString("tLatitud"));
-			System.out.println(vData.getString("tLongitud"));
-			System.out.println(vData.getString("tKmSentido"));
-
-			lPStmt.setInt(1, consec);
-			lPStmt.setInt(2, vData1.getInt("iEjer"));
-			lPStmt.setInt(3, vData1.getInt("iNumSolicitud"));
-			lPStmt.setString(4, vData.getString("cHechosTramite"));
-			lPStmt.setString(5, vData.getString("cOrganoAdmin"));
-			lPStmt.setInt(6, vData.getInt("iCveCarretera"));
-			lPStmt.setDate(7, vData.getDate("dtVisita"));
-			lPStmt.setString(8, vData.getString("tLatitud"));
-			lPStmt.setString(9, vData.getString("tLongitud"));
-			lPStmt.setString(10, vData.getString("tKmSentido"));
+			lPStmt.setInt(1, vData1.getInt("iEjer"));
+			lPStmt.setInt(2, vData1.getInt("iNumSolicitud"));
+			lPStmt.setString(3, vData.getString("cHechosTramite"));
+			lPStmt.setString(4, vData.getString("cOrganoAdmin"));
+			lPStmt.setInt(5, vData.getInt("iCveCarretera"));
+			lPStmt.setDate(6, vData.getDate("dtVisita"));
+			lPStmt.setString(7, vData.getString("tLatitud"));
+			lPStmt.setString(8, vData.getString("tLongitud"));
+			lPStmt.setString(9, vData.getString("tKmSentido"));
 			
 			lPStmt.executeUpdate();
 

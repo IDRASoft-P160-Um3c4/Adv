@@ -112,19 +112,20 @@ function fDefPag() {
 	ITRTD("", 0, "", "40", "center", "bottom");
 	IFrame("IPanel", "95%", "34", "Paneles.js");
 	FTDTR();
-	if (top.fGetUsrID())
-		Hidden("hdCveUsuario", top.fGetUsrID());
-	else
-		Hidden("hdCveUsuario", 1);
-
+	
+	Hidden("hdCveUsuario", fGetIdUsrSesion());
 	Hidden("hdLlave", "");
 	Hidden("hdSelect", "");
 	Hidden("iEjercicio", "");
 	Hidden("iNumSolicitud", "");
 	Hidden("iCveTramite", "");
 	Hidden("iCveModalidad", "");
-	Hidden("iCveEtapa", 2);
+	Hidden("iCveEtapa", 2); //recepcion en dgdc (hacer propiedad)
 	Hidden("lAnexo", "");
+	
+	Hidden("iDiasUltimaEtapa", 0);
+	Hidden("iCveUsuario", fGetIdUsrSesion());
+	
 	// Hidden("hdEtapa","EtapaRegistro");
 	Hidden("hdEtapa", "EtapaCotejoDoc");
 	Hidden("hdEtapaGuardar", "EtapaRecepcion");
@@ -245,6 +246,9 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) 
 			frm.cRefDGST.value = "";
 			FRMPanel.fSetTraStatus("Mod,");			
 		}
+		
+		if(frm.iEjercicio.value > 0&& frm.iNumSolicitud.value >0)
+			fBuscaRetraso();
 	}
 
 	if (cId == "guardaDatosEnvios" && cError == "") {
@@ -263,9 +267,31 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) 
 		if(msgOficios!=""){
 			fAlert("No es posible realizar la acción. "+msgOficios);
 		}else{
-			doRecibeSolicitud();
+			fRegistraRetraso();
 		}
 	}
+	
+
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(msgOficios!="" && parseInt(msgOficios)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgOficios+ " días.");
+		
+		doRecibeSolicitud();
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
 
 	fResOficDeptoUsr(aRes, cId, cError);
 }

@@ -69,6 +69,18 @@
     }
     oAccion.setBeanPK(vDinRep.getPK());
   }
+ 
+  if(oAccion.getCAccion().equals("etapaCotejo")){
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iCveUsuario,iCveOficina,iCveDepartamento,iCveTramite,iCveModalidad");
+	 
+	    try{
+		     dTRARegReqXTram.etapaCotejo(vDinRep,null);
+	    }catch(Exception e){
+	         cError="Guardar";
+	    }
+	    oAccion.setBeanPK(vDinRep.getPK());
+  }
+  
   /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   String cSQL="";
   String CID=  (String)request.getParameter("cId");

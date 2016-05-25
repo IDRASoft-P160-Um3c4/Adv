@@ -11,6 +11,8 @@
  var aArreglo = new Array();
  var cPermisoPag;
  var isTramInt;
+ var notifInternet = false;
+ 
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
    cPaginaWebJS = "pg111020210.js";
@@ -49,6 +51,8 @@
                    Hidden("cDscTramite");
                    Hidden("cDscModalidad");
                    Hidden("cCveTramite");
+                   Hidden("iCveEtapa",20)//notificacion, hacer propiedad;
+                   
            FITR();
        ITRTD("",0,"","0","center","top");
          IFrame("IFiltro","100%","34","Filtros.js");
@@ -87,9 +91,9 @@
               FTDTR();
               ITR();
                 ITD("EEtiquetaC",0,"","","center");
-                  Liga("Registrar Notificación","fVerifica();","Registrar Notificación");
+                  Liga("Registrar Notificación","fBuscaDocumentos(false);","Registrar Notificación");
                   BR();BR();
-                  Liga("Registrar Notificación A Solicitud por Internet","fNotificaInt();","Registrar Notificación");
+                  Liga("Registrar Notificación A Solicitud por Internet","fBuscaDocumentos(true);","Registrar Notificación");
                   
                FTD();
               FTD();
@@ -157,7 +161,7 @@
 
 
  // RECEPCIÓN de Datos de provenientes del Servidor
- function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave){
+ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave, msgOficios){
    if(cError=="Guardar")
      fAlert("Existió un error en el Guardado!");
    if(cError=="Borrar")
@@ -192,7 +196,35 @@
    if(cId == "CIDTramite" && cError==""){
      fFillSelect(frm.iCveTramiteFiltro,aRes,true,frm.iCveTramiteFiltro.value,0,6);
    }
+   
+   if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+	}
+   
+   if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(msgOficios!=""){
+			fAlert("No es posible realizar la acción. "+msgOficios);
+		}else{
+			if(notifInternet==false)
+				fVerifica();
+			else
+				fNotificaInt();
+		}
+	}
  }
+ 
+ function fBuscaDocumentos(tipo){
+	 
+	 	notifInternet = tipo;
+		if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
+					
+			frm.hdBoton.value = "buscaDocumentosEtapa";
+			frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
+			
+		  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+		}
+	}
 /*
  // LLAMADO desde el Panel cada vez que se presiona al botón Nuevo
  function fNuevo(){
@@ -264,16 +296,19 @@
     }
  }*/
  // LLAMADO desde el Listado cada vez que se selecciona un renglón
- function fSelReg(aDato){
+ function fSelReg(aDato,iCol){
    frm.iEjercicio.value = aDato[0];
    frm.iNumSolicitud.value = aDato[1];
    frm.cDscTramite.value = aDato[3];
    frm.cDscModalidad.value = aDato[4];
-   
+     
    if(aDato[10]=="SI")
 		 isTramInt=true;
 	 else
 		 isTramInt=false;
+   
+   if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0&&iCol>0)
+		fBuscaRetraso();
  }
 
  function fImprimir(){

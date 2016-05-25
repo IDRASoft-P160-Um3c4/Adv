@@ -167,8 +167,109 @@ public class UploadOficioADV2016 extends HttpServlet {
 								datos.put("ICVEOFICIO", Integer.parseInt(iCveOficio));
 								datos.put("iCveUsuario", Integer.parseInt(iCveUsuario));
 						
-								dSol.insertOficioADV2016(datos, connFiles);
+								dSol.insertOficioADV2016(datos, null);
+																
+								/** si son los primeros oficios (Solicitud de permiso 1, 2 Acuse de recepción de documentos) **/ 
 								
+								if(iCveOficio.equals("1")||iCveOficio.equals("2")){
+									TFechas tFecha = new TFechas();
+									TDTRARegEtapasXModTram dEtapaIni = new TDTRARegEtapasXModTram();
+									TDTRARegSolicitud tdSolicitud =  new TDTRARegSolicitud();
+									java.sql.Timestamp tsRegistro = tFecha.getThisTime(false);
+									
+									Vector vecDatos = new Vector();
+									TVDinRep vDatos= new TVDinRep();
+									Integer cuenta = 0, iCveTramite=0, iCveModalidad=0, iCveOficinaUsr=0, iCveDeptoUsr=0,cOficinaResuelve=0,iCveSolicitante=0;
+									
+									/**se verifica que existan ambos para realizar la insercion de las etapas**/
+									String cSQL = "SELECT COUNT(ICVEOFICIOADV) iCUENTA FROM TRAREGOFICIOADV WHERE IEJERCICIO ="+year + " AND INUMSOLICITUD = "+iNumSolicitud+" AND ICVEOFICIOADV IN (1,2) ";
+									vecDatos = tdSolicitud.findByCustom("", cSQL);
+									
+									if (vecDatos.size() > 0) {
+										vDatos= (TVDinRep) vecDatos.get(0);
+										cuenta = vDatos.getInt("iCUENTA");
+									}
+									
+									/**si existen ambos se realiza la insercion de etapas para comenzar el conteo de tiempo**/
+									if(cuenta.equals(2)){
+																				//busco oficina y depto del usuario en sesion
+											cSQL = "SELECT ICVEOFICINA COLA, ICVEDEPARTAMENTO COLB FROM GRLUSUARIOXOFIC WHERE ICVEUSUARIO =  "+ iCveUsuario;
+											vecDatos = tdSolicitud.findByCustom("", cSQL);
+											
+											if (vecDatos.size() > 0) {
+												vDatos= (TVDinRep) vecDatos.get(0);
+												iCveOficinaUsr = vDatos.getInt("COLA");
+												iCveDeptoUsr = vDatos.getInt("COLB");
+											}
+											
+											//busco datos de la solicitud 
+											cSQL = "SELECT ICVETRAMITE COLA, ICVEMODALIDAD COLB, ICVESOLICITANTE COLC FROM TRAREGSOLICITUD WHERE IEJERCICIO = "+year+" AND INUMSOLICITUD ="+ iNumSolicitud;
+											vecDatos = tdSolicitud.findByCustom("", cSQL);
+											
+											if (vecDatos.size() > 0) {
+												vDatos= (TVDinRep) vecDatos.get(0);
+												iCveTramite= vDatos.getInt("COLA");
+												iCveModalidad= vDatos.getInt("COLB");
+												iCveSolicitante = vDatos.getInt("COLC");
+											}
+											
+											//oficina que resuelve el tramite
+											String cOficDestino = tdSolicitud.getOficinaDeptoResuelve(
+													iCveOficinaUsr, iCveTramite);
+											String[] aOficDepto = cOficDestino.split(",");
+											if (aOficDepto.length == 2) {
+												cOficinaResuelve = Integer.parseInt(aOficDepto[0]);
+											}
+											
+									
+											/******** Inserta etapa inicial del trï¿½mite para el seguimiento */
+											
+											int iCveEtapa = Integer.parseInt(
+													VParametros.getPropEspecifica("EtapaRegistro"), 10);
+							
+											TVDinRep vEtapa = new TVDinRep();
+											vEtapa.put("iEjercicio", year);
+											vEtapa.put("iNumSolicitud", Integer.parseInt(iNumSolicitud));
+											vEtapa.put("iCveTramite", iCveTramite);
+											vEtapa.put("iCveModalidad", iCveModalidad);
+											vEtapa.put("iCveEtapa", iCveEtapa);
+											vEtapa.put("iCveOficina", iCveOficinaUsr); //oficina y dpto de quien genera la etapa
+											vEtapa.put("iCveDepartamento", iCveDeptoUsr);
+											vEtapa.put("iCveUsuario", Integer.parseInt(iCveUsuario));
+											vEtapa.put("tsRegistro", tsRegistro);
+											vEtapa.put("lAnexo", 0);
+											vEtapa.put(
+													"cObservaciones",
+													"Solicitud" + year + "/" + iNumSolicitud
+															+ " registrada con fecha:"
+															+ tsRegistro.toString());
+
+											vEtapa = dEtapaIni.insertEtapa(vEtapa, connFiles);
+							
+											// SE AGREGA LA ETAPA DE VISITA TECNICA AL INICIAR LA SOLICITUD
+											vEtapa.put("iCveEtapa", Integer.parseInt(VParametros.getPropEspecifica("EtapaVisita"), 10));
+							
+
+											vEtapa = dEtapaIni.insertEtapa(vEtapa, connFiles);
+							
+											/************** Incerta al CIS **************/
+											TVDinRep vCIS = new TVDinRep();
+											vCIS.put("iEjercicio", year);
+											vEtapa.put("iNumSolicitud", Integer.parseInt(iNumSolicitud));
+											vCIS.put("iCveTramite", iCveTramite);
+											vCIS.put("iCveModalidad", iCveModalidad);
+											vCIS.put("iCveOficina", cOficinaResuelve);
+											vCIS.put("iCveSolicitante", iCveSolicitante);
+											vCIS.put("dtCita", tFecha.getDateSQL(tsRegistro));
+																		
+											tdSolicitud.updateEtapasCIS(vCIS, connFiles);
+											dEtapaIni.incertaEstadoCita(year, Integer.parseInt(iNumSolicitud),iCveEtapa, connFiles);
+												
+											//se actualiza la bandera impreso de la solicitud para que aparezca en las busquedas
+											tdSolicitud.fechaImpresion(year,Integer.parseInt(iNumSolicitud), connFiles);
+
+									}
+								}						
 							} else {
 								System.out
 										.println("el content regreso algo difernte de 0");

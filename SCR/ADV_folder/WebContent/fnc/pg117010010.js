@@ -216,7 +216,7 @@ function fDefPag() {
 	Hidden("iCveDpto");
 	Hidden("iCveTram");
 	Hidden("iCveMod");
-	Hidden("iCveEtapa",26);//ide etapa resolucion
+	Hidden("iCveEtapa",26);//ide etapa resolucion (hacer propiedad)
 	Hidden("cAcuerdos", "");
 	Hidden("lAutoImprimir", false);
 	Hidden("iNumCopias", 1);
@@ -228,6 +228,7 @@ function fDefPag() {
 	Hidden("cDigitosFolio", "00");
 	Hidden("lRequiereFolio", false);
 	Hidden("hdFiltrosRep", "");
+	Hidden("iDiasUltimaEtapa", 0);
 	Hidden("cFirmante", "");
 
 	fFinPagina();
@@ -282,6 +283,7 @@ function fNavega(vModo) {
 
 			if (vModo == "Guardar") {
 				// if(subioFormato==true||negativa==true)
+				frm.hdBoton.value ="Guardar";
 				fEngSubmite("pgTRAResoViTecXSol.jsp", "Guardar");
 				// else
 
@@ -321,13 +323,37 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) 
 			frm.iEjercicio.value = frm.iEjercicioFiltro.value;
 			frm.iNumSolicitud.value = frm.iNumSolicitudFiltro.value;
 			permiteSubir = true;
+			fBuscaRetraso();
 		} else {
 			blankFields();
 			fAlert("\n La solicitud no existe o se encuentra en una etapa en la cual no es posible relizar ésta operación.");
 
 		}
 	}
+	
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(msgOficios!="" && parseInt(msgOficios)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgOficios+ " días.");
+		
+		fNavega("Guardar");
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
 
+	
 	if (cId == "Guardar" && cError == "") {
 		fCancelar();
 		fAlert("\n Se ha registrado con éxito la resolución de visita técnica para ésta solicitud.");
@@ -335,7 +361,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) 
 		fAlert("\nDebe generar y subir el formato de Minuta de Visita Técnica.");
 		fOficios(ejerN, solN);
 	}
-
+	
 	if (cId == "CIDOficinaDeptoXUsr" && cError == "") {
 		if (aRes.length > 0) {
 			frm.iCveOfic.value = aRes[0][1];
@@ -354,8 +380,15 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgOficios) 
 }
 
 function fBuscaDocumentos(){
+	
 	if (frm.iEjercicioFiltro.value>0 && frm.iNumSolicitudFiltro.value>0 && frm.iCveEtapa.value>0) {		
+	
+		frm.iEjercicio.value = frm.iEjercicioFiltro.value;
+		frm.iNumSolicitud.value = frm.iNumSolicitudFiltro.value;
+		
 		frm.hdBoton.value = "buscaDocumentosEtapa";
+		frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicioFiltro.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitudFiltro.value; 
+		
 	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
 	}
 }
@@ -456,9 +489,12 @@ function fGuardar() {
 		if (confirm("\n ¿Desea guardar una resolución " + txRes
 				+ " a la visita técnica?")) {
 			frm.hdBoton.value = "Guardar";
+			
 			ejerN = frm.iEjercicio.value;
 			solN = frm.iNumSolicitud.value;
-			fNavega("Guardar");
+			
+			fRegistraRetraso();
+					
 		}
 	}
 }
@@ -652,3 +688,5 @@ function generaCadenaAcuerdos() {
 function myTrim(x) {
 	return x.replace(/^\s+|\s+$/gm, '');
 }
+
+

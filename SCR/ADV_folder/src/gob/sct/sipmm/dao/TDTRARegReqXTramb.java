@@ -9,6 +9,7 @@ import com.micper.seguridad.vo.*;
 import com.micper.sql.*;
 import com.micper.util.TFechas;
 import com.sun.java.swing.plaf.windows.WindowsInternalFrameTitlePane.ScalableIconUIResource;
+import com.sun.org.apache.bcel.internal.generic.IRETURN;
 
 /**
  * <p>Title: TDTRARegReqXTramb.java</p>
@@ -489,8 +490,131 @@ public class TDTRARegReqXTramb
   }
 }
   
+
+  public TVDinRep etapaCotejo(TVDinRep vData, Connection cnNested) throws Exception {
+
+	    DbConnection dbConn = null;
+		Connection conn = cnNested;
+		PreparedStatement lPStmt = null;
+
+		String cErrorMsg = "";
+		boolean lSuccess = true;
+		TParametro vParametros = new TParametro("44");
+		TFechas fecha = new TFechas();
+		java.sql.Date dtHoy = fecha.TodaySQL(); // ELEL Fecha actual
+
+		Vector cRequisito = new Vector();
+		
+		try{
+			 if(cnNested == null){
+			      dbConn = new DbConnection(dataSourceName);
+			      conn = dbConn.getConnection();
+			      conn.setAutoCommit(false);
+			      conn.setTransactionIsolation(2);
+			    }
+			
+		String cSQLCount= "SELECT COUNT(ICVEREQUISITO) AS CONT FROM TRAREGREQXTRAM WHERE DTCOTEJO IS NULL"+
+				  " AND IEJERCICIO=" + vData.getInt("iEjercicio") +
+				  " AND INUMSOLICITUD=" + vData.getInt("iNumSolicitud");
+		
+		Vector vcNumReqSinCotejo = findByCustom("",cSQLCount);
+		
+		TVDinRep vNumReq;
+		vNumReq = (TVDinRep) vcNumReqSinCotejo.get(0);
+		
+		if(vNumReq.getInt("CONT")==0){
+			
+				Vector vcDataMax = findByCustom(
+							""," select MAX(iOrden) AS iOrden"+ 
+				           " from TRARegEtapasXModTram " + 
+							   " where iEjercicio = " + vData.getInt("iEjercicio") + 
+							   " and iNumSolicitud = " + vData.getInt("iNumSolicitud"));
+					
+				if (vcDataMax.size() > 0) {
+						TVDinRep vUlt = (TVDinRep) vcDataMax.get(0);
+						vData.put("iOrden", vUlt.getInt("iOrden") + 1);
+					} else
+						vData.put("iOrden", 1);
+						
+				String lSQL = " insert into TRARegEtapasXModTram  ( "
+							+ " iEjercicio, " + " iNumSolicitud, "
+							+ " iCveTramite, " + " iCveModalidad, "
+							+ " iCveEtapa, " + " iOrden, " + " iCveOficina, "
+							+ " iCveDepartamento, " + " iCveUsuario, "
+							+ " tsRegistro, " + " lAnexo) " + " values ("
+							+ vData.getInt("iEjercicio")
+							+ ","
+							+ vData.getInt("iNumSolicitud")
+							+ ","
+							+ vData.getInt("iCveTramite")
+							+ ","
+							+ vData.getInt("iCveModalidad")
+							+ ","
+							+ Integer.parseInt(vParametros.getPropEspecifica("EtapaCotejoDoc"))
+							+ ","
+							+ vData.getInt("iOrden")
+							+ ","
+				        + vData.getInt("iCveOficina")
+				        +","
+				        + vData.getInt("iCveDepartamento")
+							+ ","
+							+ vData.getInt("iCveUsuario")
+							+ ",'"
+							+ fecha.getThisTime()
+							+ "',0)"; //lanexo
+				//			+ vData.getInt("lAnexo")
+				//			+ ")";
+					lPStmt=null;
+					lPStmt = conn.prepareStatement(lSQL);
+					lPStmt.executeUpdate();
+					
+					TDTRARegEtapasXModTram obj = new TDTRARegEtapasXModTram();
+					
+					obj.upDateEstadoInformativoCISADV(Integer.parseInt(vData.getString("iEjercicio")), 
+							   Integer.parseInt(vData.getString("iNumSolicitud")), 
+							   Integer.parseInt(VParametros.getPropEspecifica("EtapaCotejoDocInt")), 
+							   "Se ha terminado de cotejar su documentación en el CSCT, su solicitud ha sido enviada a la D.G.D.C.", 
+							   conn);
+					
+					if(cnNested == null){
+						conn.commit();
+					}
+					
+			}
+		
+  } catch(Exception ex){
+	  warn("update",ex);
+	  ex.printStackTrace();
+	  if(cnNested == null){
+	    try{
+	      conn.rollback();
+	    } catch(Exception e){
+	      e.printStackTrace();
+	      fatal("update.rollback",e);
+	    }
+	  }
+	  lSuccess = false;
+	} finally{
+	  try{
+	    if(lPStmt != null){
+	      lPStmt.close();
+	    }
+	    if(cnNested == null){
+	      if(conn != null){
+	        conn.close();
+	      }
+	      dbConn.closeConnection();
+	    }
+	  } catch(Exception ex2){
+	    warn("update.close",ex2);
+	  }
+	  if(lSuccess == false)
+	    throw new DAOException(cErrorMsg);
+
+	  return vData;
+	}
+ }
   
-  /**/
 	public TVDinRep cotejoDocs(TVDinRep vData, Connection cnNested)
 			throws Exception {
 
@@ -576,80 +700,6 @@ public class TDTRARegReqXTramb
 	            conn.commit();
 	        }
 			
-			String cSQLCount= "SELECT COUNT(ICVEREQUISITO) AS CONT FROM TRAREGREQXTRAM WHERE DTCOTEJO IS NULL"+
-							  " AND IEJERCICIO=" + vData.getInt("iEjercicio") +
-							  " AND INUMSOLICITUD=" + vData.getInt("iNumSolicitud");
-					
-			Vector vcNumReqSinCotejo = findByCustom("",cSQLCount);
-			
-			TVDinRep vNumReq;
-			vNumReq = (TVDinRep) vcNumReqSinCotejo.get(0);
-			
-			
-			if(vNumReq.getInt("CONT")==0){
-				
-			Vector vcDataMax = findByCustom(
-						""," select MAX(iOrden) AS iOrden"+ 
-			               " from TRARegEtapasXModTram " + 
-						   " where iEjercicio = " + vData.getInt("iEjercicio") + 
-						   " and iNumSolicitud = " + vData.getInt("iNumSolicitud"));
-				
-			if (vcDataMax.size() > 0) {
-					TVDinRep vUlt = (TVDinRep) vcDataMax.get(0);
-					vData.put("iOrden", vUlt.getInt("iOrden") + 1);
-				} else
-					vData.put("iOrden", 1);
-			
-			
-			 lSQL = " insert into TRARegEtapasXModTram  ( "
-						+ " iEjercicio, " + " iNumSolicitud, "
-						+ " iCveTramite, " + " iCveModalidad, "
-						+ " iCveEtapa, " + " iOrden, " + " iCveOficina, "
-						+ " iCveDepartamento, " + " iCveUsuario, "
-						+ " tsRegistro, " + " lAnexo) " + " values ("
-						+ vData.getInt("iEjercicio")
-						+ ","
-						+ vData.getInt("iNumSolicitud")
-						+ ","
-						+ vData.getInt("iCveTramite")
-						+ ","
-						+ vData.getInt("iCveModalidad")
-						+ ","
-						+ Integer.parseInt(vParametros.getPropEspecifica("EtapaCotejoDoc"))
-						+ ","
-						+ vData.getInt("iOrden")
-						+ ","
-                        + vData.getInt("iCveOficina")
-                        +","
-                        + vData.getInt("iCveDepartamento")
-						+ ","
-						+ vData.getInt("iCveUsuario")
-						+ ",'"
-						+ fecha.getThisTime()
-						+ "',0)"; //lanexo
-//						+ vData.getInt("lAnexo")
-//						+ ")";
-				lPStmt=null;
-				lPStmt = conn.prepareStatement(lSQL);
-				lPStmt.executeUpdate();
-				
-				TDTRARegEtapasXModTram obj = new TDTRARegEtapasXModTram();
-				
-				obj.upDateEstadoInformativoCISADV(Integer.parseInt(vData.getString("iEjercicio")), 
-						   Integer.parseInt(vData.getString("iNumSolicitud")), 
-						   Integer.parseInt(VParametros.getPropEspecifica("EtapaCotejoDocInt")), 
-						   "Se ha terminado de cotejar su documentación en el CSCT, su solicitud ha sido enviada a la D.G.D.C.", 
-						   conn);
-				
-				
-				
-
-				if(cnNested == null){
-		            conn.commit();
-		          }
-			}
-				
-
 } catch(Exception ex){
   warn("update",ex);
   ex.printStackTrace();
@@ -683,6 +733,9 @@ public class TDTRARegReqXTramb
 }
 }   /**/
 	
+	
+	
+	
 	public String buscaDocumentosEtapa(TVDinRep vData, Connection cnNested)
 			throws Exception {
 
@@ -699,25 +752,43 @@ public class TDTRARegReqXTramb
 				conn.setAutoCommit(false);
 				conn.setTransactionIsolation(2);
 			}
+			
+			String cSQL ="SELECT COUNT(ICONSECUTIVOPNC) ICUENTA FROM GRLREGISTROPNC WHERE IEJERCICIO ="+vData.getString("iEjercicio")+" AND INUMSOLICITUD = " + vData.getString("iNumSolicitud");
+			Vector vcDatos = findByCustom("",cSQL);
+			TVDinRep vDatos = new TVDinRep();
+		    vDatos = (TVDinRep) vcDatos.get(0);
+			Integer cuentaPNC = vDatos.getInt("ICUENTA");
+			
+			/** busco los dias de acuerdo a si tiene pnc o no **/
+			
+			if(cuentaPNC>0){
+				cSQL = "SELECT CCVESOFICIOSPNC as CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
+			}else{				
+				cSQL = "SELECT CCVESOFICIOS as CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
+			}
 					
 			//busco las claves de los oficios requeridos por etapa
-			String cSQl = "SELECT CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
-			Vector vecDatos = findByCustom("",cSQl);			
-			TVDinRep vDatos, vOficiosRequeridos;
+			Vector vecDatos = findByCustom("",cSQL);			
 			vDatos= (TVDinRep) vecDatos.get(0);
 			
 			String[] arrCvesOficios = vDatos.getString("CCVESOFICIOS").split(",");
 			Integer oficiosRequeridos = arrCvesOficios.length;
 			
 			//busco los registros de los oficios
-			cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+vDatos.getString("CCVESOFICIOS")+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud"); 
-			vecDatos = findByCustom("",cSQl);
+			cSQL = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+vDatos.getString("CCVESOFICIOS")+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud"); 
+			vecDatos = findByCustom("",cSQL);
 			
 			//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
 			if(vecDatos.size()<oficiosRequeridos){
-				cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+vDatos.getString("CCVESOFICIOS")+")";
-				vecDatos = findByCustom("",cSQl);
-				retMsg = "Debe asegurarse de que hayan sido subidos los oficios: \\n";
+				cSQL = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+vDatos.getString("CCVESOFICIOS")+")";
+				vecDatos = findByCustom("",cSQL);
+				
+				if(cuentaPNC>0)
+					retMsg = "Dado que la solicitud tiene un PNC, debe asegurarse de área correspondiente haya subido los oficios: \\n";
+				else
+					retMsg = "Debe asegurarse de que el área correspondiente haya subido los oficios: \\n";	
+
+				
 				for(int i=0; i<vecDatos.size();i++){
 					vDatos = (TVDinRep) vecDatos.get(i);
 					retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
@@ -754,7 +825,285 @@ public class TDTRARegReqXTramb
 }
 	}
 	
+	public String buscaDocumentosDAJLDGST(TVDinRep vData, Connection cnNested, String tipo)
+			throws Exception {
+
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+
+		String cErrorMsg = "";
+		boolean lSuccess = true;
+		String retMsg="";
+		try {
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			} 
+			
+			/** busco si tiene pnc **/
+			String cSQL ="SELECT COUNT(ICONSECUTIVOPNC) ICUENTA FROM GRLREGISTROPNC WHERE IEJERCICIO ="+vData.getString("iEjercicio")+" AND INUMSOLICITUD = " +  vData.getString("iNumSolicitud");
+			String cCvesOficios = "0";
+			Vector vcDatos = findByCustom("",cSQL);
+			
+			TVDinRep vDatos = new TVDinRep();
+		    
+			vDatos = (TVDinRep) vcDatos.get(0);
+			Integer cuentaPNC = vDatos.getInt("ICUENTA");
+			
+			/**los oficios de acuerdo a si tiene pnc o no **/
+			
+			Integer oficiosRequeridos = 1;
+			
+			if(tipo.equals("DGST")){
+				if(cuentaPNC>0){
+					cCvesOficios = "7"; //oficios por tipo de area y existencia de pnc
+				}else{
+					cCvesOficios = "6";
+				}			
+			}else if(tipo.equals("DAJL")){
+				if(cuentaPNC>0){
+					cCvesOficios = "9";
+				}else{
+					cCvesOficios = "8";
+				}	
+			}
+			
+			//busco los registros de las claves de los oficios requeridos
+			String cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+cCvesOficios+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud");
+			
+			Vector vecDatos = findByCustom("",cSQl);			
+			vecDatos = findByCustom("",cSQl);
+			
+			//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
+			if(vecDatos.size()<oficiosRequeridos){
+				cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+cCvesOficios+")";
+				vecDatos = findByCustom("",cSQl);
+				if(cuentaPNC>0)
+					retMsg = "Dado que la solicitud tiene un PNC, debe asegurarse de área correspondiente haya subido los oficios: \\n";
+				else
+					retMsg = "Debe asegurarse de que el área correspondiente haya subido los oficios: \\n";			
+				for(int i=0; i<vecDatos.size();i++){
+					vDatos = (TVDinRep) vecDatos.get(i);
+					retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
+				}
+			}
+			
+		}	 
+		catch(Exception ex){
+			ex.printStackTrace();
+		  if(cnNested == null){
+		    try{
+		      conn.rollback();
+		    } catch(Exception e){
+		      e.printStackTrace();
+		      fatal("update.rollback",e);
+		    }
+		  }
+		 lSuccess = false;
+		} 
+		finally{
+		  try{
+		    if(cnNested == null){
+		      if(conn != null){
+		        conn.close();
+		      }
+		      dbConn.closeConnection();
+		    }
+		  } catch(Exception ex2){
+		    warn("update.close",ex2);
+		  }
+	  if(lSuccess == false)
+	    throw new DAOException(cErrorMsg);
+
+  return retMsg;
+}
+	}
+
 	
+	
+public String registraRetraso(TVDinRep vData, Connection cnNested)
+			throws Exception {
+
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+		String resultado =  "";
+		String cErrorMsg = "";
+		boolean lSuccess = true;
+
+		try {
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			}
+			
+			Integer iDiasUltimaEtapa, iLimiteDias, iDiasRetraso, iEjercicio, iNumSolicitud,cuentaPNC=0, iCveEtapa, iCveUsuario;
+			iDiasUltimaEtapa = vData.getInt("iDiasUltimaEtapa");
+			iEjercicio =vData.getInt("iEjercicio");
+			iNumSolicitud =vData.getInt("iNumSolicitud");
+			iCveEtapa = vData.getInt("iCveEtapa");
+			iCveUsuario = vData.getInt("iCveUsuario");
+			
+			
+			/** busco si tiene pnc **/
+			String cSQL ="SELECT COUNT(ICONSECUTIVOPNC) ICUENTA FROM GRLREGISTROPNC WHERE IEJERCICIO ="+iEjercicio+" AND INUMSOLICITUD = " + iNumSolicitud;
+			Vector vcDatos = findByCustom("",cSQL);
+			TVDinRep vDatos = new TVDinRep();
+		    vDatos = (TVDinRep) vcDatos.get(0);
+			cuentaPNC = vDatos.getInt("ICUENTA");
+			
+			/** busco los dias de acuerdo a si tiene pnc o no **/
+			
+			if(cuentaPNC>0){
+				cSQL= "SELECT IDIASLIMITEPNC IDIAS FROM TRAETAPA WHERE ICVEETAPA ="+ iCveEtapa;
+			}else{
+				cSQL= "SELECT IDIASLIMITE IDIAS FROM TRAETAPA WHERE ICVEETAPA ="+ iCveEtapa;
+			}
+			
+			 vcDatos = findByCustom("",cSQL);
+			 vDatos = (TVDinRep) vcDatos.get(0);
+			 iLimiteDias = vDatos.getInt("IDIAS");
+			 		
+			if(iDiasUltimaEtapa > iLimiteDias){
+				iDiasRetraso = iDiasUltimaEtapa - iLimiteDias;
+				cSQL = "INSERT INTO TRAREGRETRASO (IEJERCICIO, INUMSOLICITUD, INUMDIAS, ICVEUSUARIO, TSREGISTRO) VALUES (?,?,?,?,CURRENT_TIMESTAMP)";
+				
+				  PreparedStatement lPStmt = conn.prepareStatement(cSQL);
+		            lPStmt.setInt(1,iEjercicio);
+		            lPStmt.setInt(2,iNumSolicitud);
+		            lPStmt.setInt(3,iDiasRetraso);
+		            lPStmt.setInt(4,iCveUsuario);
+		            lPStmt.executeUpdate();
+		            
+		            resultado = iDiasRetraso.toString();
+			}
+			
+			if(cnNested==null){
+				conn.commit();
+			}
+
+		}	 
+		catch(Exception ex){
+			ex.printStackTrace();
+		  if(cnNested == null){
+		    try{
+		      conn.rollback();
+		    } catch(Exception e){
+		      e.printStackTrace();
+		      fatal("update.rollback",e);
+		    }
+		  }
+		 lSuccess = false;
+		} 
+		finally{
+		  try{
+		    if(cnNested == null){
+		      if(conn != null){
+		        conn.close();
+		      }
+		      dbConn.closeConnection();
+		    }
+		  } catch(Exception ex2){
+		    warn("update.close",ex2);
+		  }
+
+		  if(lSuccess == false)
+		    throw new DAOException(cErrorMsg);
+
+	  	  return resultado;
+		}
+}
+
+public String registraRetrasoDAJLDGST(TVDinRep vData, Connection cnNested)
+		throws Exception {
+
+	DbConnection dbConn = null;
+	Connection conn = cnNested;
+	String resultado =  "";
+	String cErrorMsg = "";
+	boolean lSuccess = true;
+//	ya que dajl y dgst no insertan etapa se utiliza este metodo
+	try {
+		if (cnNested == null) {
+			dbConn = new DbConnection(dataSourceName);
+			conn = dbConn.getConnection();
+			conn.setAutoCommit(false);
+			conn.setTransactionIsolation(2);
+		}
+		
+		Integer iDiasUltimaEtapa, iLimiteDias, iDiasRetraso, iEjercicio, iNumSolicitud,cuentaPNC=0, iCveEtapa, iCveUsuario;
+		iDiasUltimaEtapa = vData.getInt("iDiasUltimaEtapa");
+		iEjercicio =vData.getInt("iEjercicio");
+		iNumSolicitud =vData.getInt("iNumSolicitud");
+		iCveUsuario = vData.getInt("iCveUsuario");
+		
+		
+		/** busco si tiene pnc **/
+		String cSQL ="SELECT COUNT(ICONSECUTIVOPNC) ICUENTA FROM GRLREGISTROPNC WHERE IEJERCICIO ="+iEjercicio+" AND INUMSOLICITUD = " + iNumSolicitud;
+		Vector vcDatos = findByCustom("",cSQL);
+		TVDinRep vDatos = new TVDinRep();
+	    vDatos = (TVDinRep) vcDatos.get(0);
+		cuentaPNC = vDatos.getInt("ICUENTA");
+		
+		/** los dias de acuerdo a si tiene pnc o no **/
+		if(cuentaPNC>0){
+			iLimiteDias = 3;	//definicion DGDC documento impreso con "CASO IDEAL" Y "CASO CON PNC"
+		}else{
+			iLimiteDias = 25; //definicion DGDC documento impreso con "CASO IDEAL" Y "CASO CON PNC"
+		}
+			
+		if(iDiasUltimaEtapa > iLimiteDias){
+			iDiasRetraso = iDiasUltimaEtapa - iLimiteDias;
+			cSQL = "INSERT INTO TRAREGRETRASO (IEJERCICIO, INUMSOLICITUD, INUMDIAS, ICVEUSUARIO, TSREGISTRO) VALUES (?,?,?,?,CURRENT_TIMESTAMP)";
+			
+			  PreparedStatement lPStmt = conn.prepareStatement(cSQL);
+	            lPStmt.setInt(1,iEjercicio);
+	            lPStmt.setInt(2,iNumSolicitud);
+	            lPStmt.setInt(3,iDiasRetraso);
+	            lPStmt.setInt(4,iCveUsuario);
+	            lPStmt.executeUpdate();
+	            
+	            resultado = iDiasRetraso.toString();
+		}
+		
+		if(cnNested==null){
+			conn.commit();
+		}
+
+	}	 
+	catch(Exception ex){
+		ex.printStackTrace();
+	  if(cnNested == null){
+	    try{
+	      conn.rollback();
+	    } catch(Exception e){
+	      e.printStackTrace();
+	      fatal("update.rollback",e);
+	    }
+	  }
+	 lSuccess = false;
+	} 
+	finally{
+	  try{
+	    if(cnNested == null){
+	      if(conn != null){
+	        conn.close();
+	      }
+	      dbConn.closeConnection();
+	    }
+	  } catch(Exception ex2){
+	    warn("update.close",ex2);
+	  }
+
+	  if(lSuccess == false)
+	    throw new DAOException(cErrorMsg);
+
+  	  return resultado;
+	}
+}
 
 
   public TVDinRep Cambia(TVDinRep vData,Connection cnNested) throws

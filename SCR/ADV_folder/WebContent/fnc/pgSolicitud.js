@@ -12,6 +12,7 @@ var cEtapasRestringidas = "";
 var aDocDig = new Array();
 var cPermisoPag;
 var tieneResolucion=false;
+var recargaEmergente = false;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgSolicitud.js";
@@ -231,7 +232,7 @@ function fDefPag() {
 	Hidden("hdBotonX", "");
 	Hidden("iCveDomicilio", "");
 	Hidden("iCveDomicilioRL", "");
-	Hidden("iCveUsuario", "");
+	Hidden("iCveUsuario", fGetIdUsrSesion());
 	Hidden("iCveTramite");
 	Hidden("iCveModalidad");
 	Hidden("hdFiltroUsrXDepto", "");
@@ -253,12 +254,15 @@ function fDefPag() {
 	Hidden("hdLlave");
 	Hidden("cUsuario");
 	Hidden("iCveEtapaVerif", 0);
-	Hidden("iCveEtapa",3);
+	Hidden("iCveEtapa",3);//verificacion de requisitos, hacer propiedad
 	Hidden("iCveDepartamento");
+	Hidden("iDiasUltimaEtapa",0);
 	Hidden("iCveOficina")
 	Hidden("lAnexo");
-	Hidden("cObservaciones", "");
+	Hidden("cObservaciones", ""); 	
 	Hidden("lOficinas", true);
+	Hidden("hdFiltroAux", true);
+
 	FTDTR();
 	FinTabla();
 	FTDTR();
@@ -473,7 +477,35 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 	  }else{
 	    tieneResolucion=false;
 	  }
+	    
+	    frm.hdFiltro.value = frm.hdFiltroAux.value;
+	    
+	    if(recargaEmergente==false)
+	    	fBuscaRetraso();
+	    else
+	    	recargaEmergente =false;
 	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "") {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(cEtapasRestringidas!="" && parseInt(cEtapasRestringidas)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+cEtapasRestringidas+ " días.");
+		
+		fValidaCampos();
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
 	
 	if(cId == "buscaDocumentosEtapa" && cError == ""){
 		if(cEtapasRestringidas!=""){
@@ -482,6 +514,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 			fVerifica();
 		}
 	}
+	
+	
 }
 // Busca oficina y departamento de etapa recepción en el área
 function fObtenOficDepto() {
@@ -577,6 +611,7 @@ function fModificar() {
 function fBuscaResolucion() {
 		frm.hdBoton.value = "";
 		frm.hdBotonAux.value = "";
+		frm.hdFiltroAux.value = frm.hdFiltro.value;
 		frm.hdFiltro.value = " IEJERCICIO = "+frm.iEjercicio.value+" AND INUMSOLICITUD= "+frm.iNumSolicitud.value;
 		fEngSubmite("pgTRAEvaluacionArea.jsp", "BuscaResolucion");
 }
@@ -754,8 +789,7 @@ function fSetSolicitud(iEjercicio, iNumSolicitud) {
 	fTraeUsrXDeptos();
 }
 function fTraeUsrXDeptos() {
-	if (top.fGetUsrID())
-		frm.iCveUsuario.value = top.fGetUsrID();
+	
 	frm.hdBoton.value = "Deptos1";
 	frm.hdNumReg.value = 1000;
 	frm.hdFiltro.value = " GRLUSUARIOXOFIC.ICVEUSUARIO = "
@@ -954,3 +988,6 @@ function getEjercicio() {
 	return frm.iEjercicio.value;
 };
 
+function fSetRecarga(value){
+	recargaEmergente = true;
+}

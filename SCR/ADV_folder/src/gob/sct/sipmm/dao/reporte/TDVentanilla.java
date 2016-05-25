@@ -5202,15 +5202,14 @@ public class TDVentanilla extends DAOBase {
 		hParametros.put("cSolicitud", cDatosFiltro[1]);
 		hParametros.put("cLeyendaEnc", VParametros.getPropEspecifica("LeyendaEnc"));
 		
-		TDTRARegSolicitud regSolicitud = new TDTRARegSolicitud();
-		
-		try {
-			regSolicitud.fechaImpresion(Integer.parseInt(cDatosFiltro[0]),
-					Integer.parseInt(cDatosFiltro[1]), conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+//		TDTRARegSolicitud regSolicitud = new TDTRARegSolicitud();	
+//		try {
+//			regSolicitud.fechaImpresion(Integer.parseInt(cDatosFiltro[0]),
+//					Integer.parseInt(cDatosFiltro[1]), conn);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
 
 		return hParametros;
 	}

@@ -92,9 +92,9 @@
   var cCapCondMet1 = "56,57,61,62,63,51,52,11,12,64,37,40,39";
   
   //Para el funcionamiento de elicencias
-// var cRutaProgMM = 'http://localhost:7001/SGADV/';
+ var cRutaProgMM = 'http://localhost:7001/SGADV/';
 //  var cRutaProgMM = 'http://aplicaciones6.sct.gob.mx/SGADV/';
-  var cRutaProgMM = 'http://app.sct.gob.mx/SGADV/'; 
+//  var cRutaProgMM = 'http://app.sct.gob.mx/SGADV/'; 
   var cRutaProgLic = 'http://aplicaciones1.sct.gob.mx/elic/';
 
 function fSetIntervalo(lReporte, iInter){ // Solo se debe usar bajo condiciones específicas
@@ -131,6 +131,23 @@ function fAbreSubWindowSinPermisos(cNomPag, cAncho, cAlto){
     cAlto = "600";
   fAbreSubWindow(true,cNomPag,"no","yes","yes","yes",cAncho,cAlto,"","");
 }
+
+/**** gestion retrasos **/
+
+function fDiasDesdeUltimaEtapa(){	  
+    fEngSubmite("pgGestionOficios.jsp","obtenerDiasDesdeUltimaEtapa");
+}
+
+function fBuscaRetraso(){	  
+    fEngSubmite("pgGestionOficios.jsp","buscaRetraso");
+}
+
+function fRegistraRetraso(){	  
+    fEngSubmite("pgGestionOficios.jsp","registraRetraso");
+}
+
+/**** gestion retrasos **/
+
 
 function fAbreSolicitante(){
   fAbreSubWindowPermisos("pg111010011","800","585");
@@ -561,6 +578,10 @@ function fCargaGrupoUsr(){
 	  
 	    fEngSubmite("pgConsulta.jsp","CIDGrupoXUsr");
 }
+
+
+
+
 
 function fResOficDeptoUsr(aRes,cId,cError,lTodas,lSeleccione){
   if(!lSeleccione)

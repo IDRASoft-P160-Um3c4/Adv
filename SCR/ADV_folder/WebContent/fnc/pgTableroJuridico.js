@@ -38,6 +38,9 @@ function fDefPag() {
 	Hidden("iNumSolicitud", "");
 	Hidden("iCveTramite", "");
 	Hidden("iCveModalidad", "");
+	Hidden("iDiasUltimaEtapa", 0);
+	Hidden("iCveUsuario", fGetIdUsrSesion());
+
 	 Hidden("hdOfic","");
 	    Hidden("hdDpto","");
 	FinTabla();
@@ -66,7 +69,7 @@ function fNavega() {
 }
 
 // RECEPCIÓN de Datos de provenientes del Servidor
-function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
+function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) {
 	if (cError == "Guardar")
 		fAlert("Existió un error en el Guardado!");
 	if (cError == "Borrar")
@@ -100,12 +103,32 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 		FRMListado.fSetLlave(cLlave);
 	}
 	
-	if (cId == "ValidaDocsEvaluacion" && cError == "") {
-//		if(aRes[0][0] == 0){ //descomentar para validación de documentos
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetrasoDAJLDGST" && cError == "" ) {
+		if(msgRetraso!="" && parseInt(msgRetraso)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgRetraso+ " días.");
+		fNavega();
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if(cId == "buscaDocumentosDAJL" && cError == ""){
+		if(msgRetraso!=""){
+			fAlert("No es posible realizar la acción. "+msgRetraso);
+		}else{
 			fAbreSubWindowSinPermisos("pgVerifSolNewB", "800", "460");
-//		}else{
-//			fAlert("\nNo es posible realizar la evaluación, los documentos no han sido cargados");
-//		}	
+			}
 	}
 
 	fResOficDeptoUsr(aRes, cId, cError);
@@ -121,6 +144,8 @@ function fSelReg(aDato, iCol) {
 	
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
+	
+	
 
 	if (iCol == 7){//click acciones
 		
@@ -128,22 +153,19 @@ function fSelReg(aDato, iCol) {
 			fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
 			return;
 		}else{
-			fValidaDocumentos();
+			fBuscaDocumentos();
 		}	
+	}else if (iCol == 6){//click acciones
+		fDocsTramite();
+	}else{
+		if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0)
+			fBuscaRetraso();
 	}
 	
-	if (iCol == 6){//click acciones
-		fDocsTramite();
-	}
+	
 }
 
-function fValidaDocumentos() {
-	//MANDAR PETICION PARA VERIFICAR LOS DOCUMENTOS CARGADOS
-	frm.hdFiltro.value = "";
-	frm.hdOrden.value = "";
-	frm.hdNumReg.value = 1000;
-	return fEngSubmite("pgTRAEvaluacionArea.jsp", "ValidaDocsEvaluacion");
-}
+
 
 
 
@@ -181,8 +203,7 @@ function fOficinaUsrOnChangeLocal() {
 }
 
 function fTerminaEvaluacion() {
-	
-	fNavega();
+	doRegistraRetraso();
 }
 
 function fBuscar() {
@@ -228,3 +249,19 @@ function getDpto(){
 	return frm.hdDpto.value;
 }
 
+function fBuscaDocumentos(){
+	
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0) {			
+		frm.hdBoton.value = "buscaDocumentosDAJL";
+		frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
+		
+	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosDAJL");
+	}
+}
+
+function doRegistraRetraso(){
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0) {	  
+		frm.hdBoton.value="";
+	    fEngSubmite("pgGestionOficios.jsp","registraRetrasoDAJLDGST");
+	}
+}

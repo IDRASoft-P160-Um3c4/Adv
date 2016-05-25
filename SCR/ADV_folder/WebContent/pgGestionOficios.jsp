@@ -55,6 +55,26 @@
 	    }
 	    oAccion.setBeanPK(vDinRep.getPK());
 	  }
+  
+  if(oAccion.getCAccion().equals("buscaDocumentosDAJL")){
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	    try{
+	    	strOficios = dTRARegReqXTram.buscaDocumentosDAJLDGST(vDinRep, null, "DAJL");
+	    }catch(Exception e){
+	      cError="Guardar";
+	    }
+	    oAccion.setBeanPK(vDinRep.getPK());
+	  }
+  
+  if(oAccion.getCAccion().equals("buscaDocumentosDGST")){
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	    try{
+	    	strOficios = dTRARegReqXTram.buscaDocumentosDAJLDGST(vDinRep, null, "DGST");
+	    }catch(Exception e){
+	      cError="Guardar";
+	    }
+	    oAccion.setBeanPK(vDinRep.getPK());
+	  }
  /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   
   String cSQL="";
@@ -92,7 +112,38 @@
 		        +" LEFT JOIN (SELECT ICVEOFICIOADV, IIDGESTORDOCUMENTO FROM TRAREGOFICIOADV REGOF "
 		        + oAccion.getCFiltro() +") REGOFF ON REGOFF.ICVEOFICIOADV = OFI.ICVEOFICIO "
 		        +" WHERE OFI.ICVEOFICIO ="+(String)request.getParameter("iCveOficio");
-  }
+  } else if(CID.equals("obtenerDiasDesdeUltimaEtapa")){
+	  
+	  vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	  
+	    String iEjercicio = vDinRep.getString("iEjercicio");
+		String iNumSolicitud = vDinRep.getString("iNumSolicitud");
+		
+		cSQL = "select (YEAR(current_date - date(TRE.tsregistro))*365 + MONTH(current_date - date(TRE.tsregistro))*30 + DAY(current_date - date(TRE.tsregistro))) AS DIASTRANS "
+					+"from TRAREGETAPASXMODTRAM TRE  "
+					+"where TRE.IORDEN = (SELECT MAX(TAB.IORDEN) FROM TRAREGETAPASXMODTRAM TAB WHERE TAB.IEJERCICIO = "+iEjercicio+" AND TAB.INUMSOLICITUD = "+iNumSolicitud+") " 
+					+"AND TRE.IEJERCICIO="+iEjercicio+" AND TRE.INUMSOLICITUD ="+iNumSolicitud;
+	 
+}	else if(CID.equals("registraRetraso")){
+	  vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iDiasUltimaEtapa,iCveEtapa,iCveUsuario");
+	  strOficios = dTRARegReqXTram.registraRetraso(vDinRep, null);
+}  else if(CID.equals("registraRetrasoDAJLDGST")){ 
+	//ya que ambos tienen el mismo tiempo para evaluar se ocupa el mismo metodo
+	  vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iDiasUltimaEtapa,iCveUsuario");
+	  strOficios = dTRARegReqXTram.registraRetrasoDAJLDGST(vDinRep, null);
+}  
+  
+else if(CID.equals("buscaRetraso")){
+	
+	vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	  
+    String iEjercicio = vDinRep.getString("iEjercicio");
+	String iNumSolicitud = vDinRep.getString("iNumSolicitud");
+	  
+	cSQL = "SELECT SUM(INUMDIAS) ISUMA FROM TRAREGRETRASO WHERE IEJERCICIO = "+ iEjercicio +" AND INUMSOLICITUD="+iNumSolicitud;
+}
+  
+  
 
  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
  Vector vcListado = null;

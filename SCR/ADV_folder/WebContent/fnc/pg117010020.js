@@ -31,6 +31,7 @@ var dictamen = false;
 var tieneDatosAfectacion = false;
 var subio = false;
 var cPermisoPag;
+var accionGuardar = false;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg117010020.js";
@@ -67,7 +68,7 @@ function fDefPag() {
 	TDEtiCampo(false, "EEtiqueta", 0, "No. Solicitud:", "iNumSolicitud", "", 6,
 			6, "Solicitud", "fMayus(this);");
 	ITD();
-	BtnImg("Buscar", "lupa", "fBuscaSol();");
+	BtnImg("Buscar", "lupa", "fNavegaDatosAfect();");
 	FTD();
 	FTR();
 	FinTabla();
@@ -156,6 +157,9 @@ function fDefPag() {
 	Hidden("iCveRequisito", "");
 	Hidden("lEntregado", "");
 	Hidden("iCveUsuRecibe", "");
+	Hidden("iDiasUltimaEtapa", 0);
+	Hidden("iCveEtapa", 27);//cotejo documentacion (hacer propiedad)
+	
 	Hidden("cConjunto");
 	Hidden("iLlave");
 	Hidden("hdLlave");
@@ -227,7 +231,7 @@ function fOnLoad() {
 // LLAMADO al JSP específico para la navegación de la página
 
 // RECEPCIÓN de Datos de provenientes del Servidor
-function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
+function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) {
 	if (cError == "Guardar") {
 		fAlert("Existió un error en el Guardado!");
 		return false;
@@ -257,7 +261,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 			tieneDatosAfectacion=false;
 		}
 		
-		//fNavega();
+		fBuscaSol();
 	}
 
 	if (cId == "Listado" && cError == "") {
@@ -289,14 +293,16 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 		fCancelar();
 
 		if (aRes.length == 0) {
-			fAlert("\n Se ha terminado de cotejar toda la documentación para ésta solicitud. Ahora es posible generar los formatos.");
-			dictamen = true;
+			
+			if(accionGuardar==true){
+				accionGuardar=false;
+				fRegistraRetraso();
+			}
+			
 		}else{
 			if(frm.hdBoton.value == "Cambia")
 				fAlert("\n Se guardo correctamente la información.");
 		}
-		
-		fNavegaDatosAfect();
 	}
 
 	if (cId == "ListadoA" && cError == "") {
@@ -416,7 +422,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 						FRMPanel.fHabilitaReporte(false);
 						fAbandonar();
 					} else {
-						fNavegaDatosAfect();
+						//fNavegaDatosAfect();
+						fBuscaRetraso();
 					}
 				} else {
 					fAlert("No es posible cotejar documentos para esta solicitud. No se ha notificado del PNC al promovente.");
@@ -434,8 +441,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 					FRMPanel.fHabilitaReporte(false);
 					fAbandonar();
 				} else {
-					fNavega();
-
+					fBuscaRetraso();
 				}
 			}
 
@@ -443,6 +449,10 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 			fAlert("\n La solicitud no existe o se encuentra en una etapa en la cual no es posible realizar esta operación.");
 		}
 
+	}
+	
+	if (cId == "etapaCotejo" && cError == "" ) {
+			fAlert("\n Se ha terminado de cotejar la documentación para esta solicitud. Ahora es posible generar los oficios.");
 	}
 
 	if (cId == "CIDOficinaDeptoXUsr") {
@@ -452,7 +462,35 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 		}
 	}
 
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+		fNavega();
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(msgRetraso!="" && parseInt(msgRetraso)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgRetraso+ " días.");
+		
+		fEtapaCotejo();
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
 	return true;
+}
+
+function fEtapaCotejo(){
+	frm.hdBoton.value = "etapaCotejo";
+	frm.hdFiltro.value = "";
+	fEngSubmite("pgTRACotejoDoc.jsp", "etapaCotejo");
 }
 
 function fBuscaSol() {
@@ -570,6 +608,7 @@ function fGuardarA() {
 	aRes = FRMListado.fGetARes();
 	lModificando = false;
 	frm.cConjunto.value = "";
+	accionGuardar =true;
 
 	for ( var aux = 0; aux < aCBox.length; aux++) {
 		// alert("aCBox[aux]----->"+aCBox[aux]);
@@ -593,17 +632,16 @@ function fGuardarA() {
 	lModifica = true;
 
 	if (frm.cConjunto.value == -1) {
-		fAlert("\n Debe marcar como cotejado al menos un requisito."); // o
-		// todos?!
+		fAlert("\n Debe marcar como cotejado al menos un requisito.");
 	} else {
 		if(tieneDatosAfectacion==false){
-			if (confirm("\n-Una vez cotejados los requisitos no podrá anexar más documentos asociados." +
+			if (confirm("\n-Una vez cotejados TODOS los requisitos no podrá anexar más documentos asociados a requisitos." +
 					    "\n-Se guardará la información de instalaciones, una vez guardada no podrá modificar la información." +
 					    "\n\n¿Desea continuar con la información en pantalla?")) {
 				fNavega();
 			}
 		}else{
-			if (confirm("\n-Una vez cotejados los requisitos no podrá anexar más documentos asociados.\n\n¿Desea continuar con la información en pantalla?")) {
+			if (confirm("\n-Una vez cotejados TODOS los requisitos no podrá anexar más documentos asociados a requisitos.\n\n¿Desea continuar con la información en pantalla?")) {
 				fNavega();
 			}
 		}
@@ -611,8 +649,8 @@ function fGuardarA() {
 }
 
 function fSelReg(aDato, iCol) {
-	frm.iCveTramite.value = aDato[0];
-	frm.iCveModalidad.value = aDato[1];
+//	frm.iCveTramite.value = aDato[0];
+//	frm.iCveModalidad.value = aDato[1];
 	frm.iCveRequisito.value = aDato[2];
 	frm.dtNotificacion.value = aDato[4];
 }
