@@ -921,6 +921,122 @@ public class TDTRARegReqXTramb
 }
 	}
 
+	public String buscaDocumentosDGDC(TVDinRep vData, Connection cnNested)
+			throws Exception {
+
+		DbConnection dbConn = null;
+		Connection conn = cnNested;
+
+		String cErrorMsg = "";
+		boolean lSuccess = true;
+		String retMsg="";
+		try {
+			if (cnNested == null) {
+				dbConn = new DbConnection(dataSourceName);
+				conn = dbConn.getConnection();
+				conn.setAutoCommit(false);
+				conn.setTransactionIsolation(2);
+			} 
+			
+			/** busco si tiene pnc **/
+			
+			/** busco si tiene pnc **/
+			Integer oficiosRequeridos=0; 
+			String cSQL ="SELECT COUNT(ICONSECUTIVOPNC) ICUENTA FROM GRLREGISTROPNC WHERE IEJERCICIO ="+vData.getString("iEjercicio")+" AND INUMSOLICITUD = " +  vData.getString("iNumSolicitud");
+			String cCvesOficios = "";
+			Vector vcDatos = findByCustom("",cSQL);
+			
+			TVDinRep vDatos = new TVDinRep();
+		    
+			vDatos = (TVDinRep) vcDatos.get(0);
+			Integer cuentaPNC = vDatos.getInt("ICUENTA");
+			
+			if(cuentaPNC>0){ //si tiene pnc busco a quien pertenecen los requsitos no validos para solicitar los oficios, dgst=100 dajl=102
+				
+				cSQL ="SELECT DISTINCT(REQ.ICVEDEPTOEVAL) ICVEDPTO, DEP.CDSCBREVE FROM TRAREGREQXTRAM REG "
+						+"INNER JOIN TRAREQUISITO REQ ON  REQ.ICVEREQUISITO = REG.ICVEREQUISITO "
+						+"INNER JOIN GRLDEPARTAMENTO DEP ON DEP.ICVEDEPARTAMENTO = REQ.ICVEDEPTOEVAL "
+						+"WHERE REG.IEJERCICIO ="+vData.getString("iEjercicio")+" AND REG.INUMSOLICITUD = "+vData.getString("iNumSolicitud")+" AND REG.LRECNOTIFICADO = 1";
+
+				vcDatos = findByCustom("",cSQL);		    
+				
+				for(int i=0; i<vcDatos.size();i++){
+					vDatos = (TVDinRep) vcDatos.get(i);
+					
+					//11 oficio pnc para DGST,
+					//13 oficio pnc para DAJL
+					
+					//se genera la cadena con los oficios a buscar para generar el mensaje, 
+					if(vDatos.getInt("ICVEDPTO") == 100)//DGST 
+						cCvesOficios+=cCvesOficios.equals("")?"11":",11";
+					else if(vDatos.getInt("ICVEDPTO") == 102)
+						cCvesOficios+=cCvesOficios.equals("")?"13":",13";
+					
+				}
+			}
+			else{//si no tiene pnc busco los oficios de acuerdo a la etapa 
+				cSQL = "SELECT CCVESOFICIOS as CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
+				
+				vcDatos = findByCustom("",cSQL);			
+				vDatos= (TVDinRep) vcDatos.get(0);
+				cCvesOficios = vDatos.getString("CCVESOFICIOS");
+			}
+			 
+			
+			String[] arrCvesOficios =cCvesOficios.split(",");
+			oficiosRequeridos = arrCvesOficios.length;
+			
+			
+			//busco los registros de las claves de los oficios requeridos
+			String cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+cCvesOficios+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud");
+			
+			Vector vecDatos = findByCustom("",cSQl);			
+			vecDatos = findByCustom("",cSQl);
+			
+			//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
+			if(vecDatos.size()<oficiosRequeridos){
+				cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+cCvesOficios+")";
+				vecDatos = findByCustom("",cSQl);
+				if(cuentaPNC>0)
+					retMsg = "Dado que la solicitud tiene un PNC, debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";
+				else
+					retMsg = "Debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";			
+				for(int i=0; i<vecDatos.size();i++){
+					vDatos = (TVDinRep) vecDatos.get(i);
+					retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
+				}
+			}
+			
+		}	 
+		catch(Exception ex){
+			ex.printStackTrace();
+		  if(cnNested == null){
+		    try{
+		      conn.rollback();
+		    } catch(Exception e){
+		      e.printStackTrace();
+		      fatal("update.rollback",e);
+		    }
+		  }
+		 lSuccess = false;
+		} 
+		finally{
+		  try{
+		    if(cnNested == null){
+		      if(conn != null){
+		        conn.close();
+		      }
+		      dbConn.closeConnection();
+		    }
+		  } catch(Exception ex2){
+		    warn("update.close",ex2);
+		  }
+	  if(lSuccess == false)
+	    throw new DAOException(cErrorMsg);
+
+  return retMsg;
+}
+	}
 	
 	
 public String registraRetraso(TVDinRep vData, Connection cnNested)

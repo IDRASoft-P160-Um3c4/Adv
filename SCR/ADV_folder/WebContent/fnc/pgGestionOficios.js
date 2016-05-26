@@ -242,7 +242,7 @@ function fSelReg(aDato, iCol) {
 	if(iCol==3){
 		frm.iCveOficioSel.value = aDato[0]; 
 		if(aDato[2]!==frm.iCveGrupoUsr.value){
-			fAlert("\n No tiene permisos para ver este documento.")
+			fAlert("\n No tiene permisos para operar este oficio.")
 		}else{
 			fAbreSubWindowSinPermisos("pgSubirOficiosADV_2016", "650", "400");
 		}
@@ -250,7 +250,7 @@ function fSelReg(aDato, iCol) {
 }
 
 function fBuscaSol() {
-	if (fSoloNumeros(frm.iEjercicio.value) && fSoloNumeros(frm.iNumSolicitud.value )) {
+	if (frm.iEjercicio.value>0&& frm.iNumSolicitud.value>0) {
 		
 		frm.hdBoton.value= "GetSolicitud";
 		frm.hdFiltro.value = "S.iEjercicio= " + frm.iEjercicio.value
@@ -259,7 +259,7 @@ function fBuscaSol() {
 		fEngSubmite("pgTRAModSolicitud.jsp", "cIdSolicitud");
 		
 	} else {
-		fAlert("Introduzca el Ejercicio y el Número de Solicitud para hacer la búsqueda");
+		fAlert("Introduzca el Ejercicio y el Número de Solicitud válidos para hacer la búsqueda");
 	}
 
 }

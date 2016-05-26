@@ -484,7 +484,27 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 	}
 	
 	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(msgRetraso!=""){
+			fAlert("No es posible realizar la acción. "+msgRetraso);
+		}else{
+			preparaCamposModificar();
+		}
+	}
+	
 	return true;
+}
+
+function fBuscaDocumentos(){
+	
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
+			
+		frm.hdBoton.value = "buscaDocumentosEtapa";
+		frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
+		
+	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+	}
 }
 
 function fEtapaCotejo(){
@@ -586,22 +606,33 @@ function fDesactiva() {
 }
 
 function fModificar() {
+	
+	if(tienePNC>0){
+		fBuscaDocumentos();
+	}
+	
+	// fValidaFechaNotif();
+}
+
+function preparaCamposModificar(){
 	lModificando = true;
 	FRMPanel.fSetTraStatus("UpdateBegin");
 	FRMPanel.fHabilitaReporte(false);
 	fDisabled(true);
-	
+
 	frm.HDcPropietario.disabled = false;
 	frm.HDcInstalacion.disabled = false;
-	
+
 	if(tieneDatosAfectacion==false){
 		frm.cPropietario.disabled = false;
 		frm.cInstalacion.disabled = false;
 	}
-	
-	FRMListado.fSetDisabled(false);
-	// fValidaFechaNotif();
+
+	FRMListado.fSetDisabled(false);	
 }
+
+
+
 function fGuardarA() {
 	// alert("fGuardarA");
 	aCBox = FRMListado.fGetObjs(0);

@@ -75,6 +75,16 @@
 	    }
 	    oAccion.setBeanPK(vDinRep.getPK());
 	  }
+  
+  if(oAccion.getCAccion().equals("buscaDocumentosDGDC")){
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	    try{
+	    	strOficios = dTRARegReqXTram.buscaDocumentosDGDC(vDinRep, null);
+	    }catch(Exception e){
+	      cError="Guardar";
+	    }
+	    oAccion.setBeanPK(vDinRep.getPK());
+	  }
  /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   
   String cSQL="";

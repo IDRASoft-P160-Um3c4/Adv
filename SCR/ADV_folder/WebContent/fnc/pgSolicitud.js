@@ -507,7 +507,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 	
 	/****MANEJO DE CONTROL DE TIEMPOS****/
 	
-	if(cId == "buscaDocumentosEtapa" && cError == ""){
+	if(cId == "buscaDocumentosDGDC" && cError == ""){
 		if(cEtapasRestringidas!=""){
 			fAlert("No es posible realizar la acción. "+cEtapasRestringidas); //cEtapasRestringidas, se ocupa para mostrar el mensaje de los oficios que faltan
 		}else{
@@ -662,8 +662,8 @@ function fVerifica() {
 
 function fBuscaDocumentos(){
 	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
-		frm.hdBoton.value = "buscaDocumentosEtapa";
-	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+		frm.hdBoton.value = "buscaDocumentosDGDC";
+	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosDGDC");
 	}
 }
 

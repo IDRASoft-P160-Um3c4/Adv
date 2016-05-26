@@ -5,6 +5,10 @@
  // Author: IJimenez
  var cTitulo = "";
  var FRMListado = "";
+ var FRMListadoA = "";
+ var FRMListadoB = "";
+ var FRMListadoC = "";
+ var FRMListadoD = "";
  var frm;
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
@@ -88,7 +92,7 @@
                   TextoSimple("Retrasos registrados");
                 FTDTR();
                 ITRTD("",0,"","","center");
-                  IFrame("IListado14aB","100%","120","Listado.js","yes",true);
+                  IFrame("IListado14D","100%","120","Listado.js","yes",true);
                 FTDTR();
               FinTabla();
            FinTabla();
@@ -114,23 +118,23 @@
    FRMListado.fSetControl(self);
    //FRMListado.fSetTitulo("Etapa,Oficina,Departamento,Usuario,Registro,Anexo,");
    //FRMListado.fSetCampos("7,0,1,2,5,6,");
-   FRMListado.fSetTitulo("Etapa,Oficina,Departamento,Usuario,Registro,");
-   FRMListado.fSetCampos("7,0,1,2,5,");
-
+   FRMListado.fSetTitulo("Etapa,Usuario,Registro,");
+   FRMListado.fSetCampos("3,0,1,");
+   FRMListado.fSetAlinea("center,center,center,");
+   FRMListado.fSetDespliega("texto,texto,texto,");
    
-   FRMListado.fSetAlinea("left,center,left,center,left,center,");
-   FRMListado.fSetDespliega("texto,texto,texto,texto,texto,logico,");
    FRMListadoA = fBuscaFrame("IListado14A");
    FRMListadoA.fSetControl(self);
    FRMListadoA.fSetTitulo("Fecha Cancelación, Usuario,Observación,");
    FRMListadoA.fSetCampos("0,1,4,");
    FRMListadoA.fSetAlinea("center,center,left,");
    FRMListadoA.fSetDespliega("texto,texto,texto,");
+   
    FRMListadoB = fBuscaFrame("IListado14B");
    FRMListadoB.fSetControl(self);
-   FRMListadoB.fSetTitulo("PNC ,Descripción de Causa,Área que ratifica,Fecha Notificación, Fecha de Resolución,");
-   FRMListadoB.fSetCampos("8,4,5,7,6,");
-   FRMListadoB.fSetAlinea("left,left,center,");
+   FRMListadoB.fSetTitulo("Folio PNC,Fecha Notificación, Fecha de Resolución,");
+   FRMListadoB.fSetCampos("0,1,2,");
+   FRMListadoB.fSetAlinea("center,center,center,");
    FRMListadoB.fSetDespliega("texto,texto,texto,");
    
    FRMListadoC = fBuscaFrame("IListado14C");
@@ -139,6 +143,13 @@
    FRMListadoC.fSetCampos("0,1,");
    FRMListadoC.fSetAlinea("left,center,");
    FRMListadoC.fSetDespliega("texto,texto,");
+   
+   FRMListadoD = fBuscaFrame("IListado14D");
+   FRMListadoD.fSetControl(self);
+   FRMListadoD.fSetTitulo("Usuario, Fecha registro, Días,");
+   FRMListadoD.fSetCampos("0,1,2,");
+   FRMListadoD.fSetAlinea("left,center,center,");
+   FRMListadoD.fSetDespliega("texto,texto,texto,");
    
    fDisabled(true);
    frm.hdBoton.value="Primero";
@@ -152,9 +163,7 @@
 
 
    if(cId == "Listado" && cError==""){
-      for (i=0;i<aRes.length;i++){
-        aRes[i][2]= aRes[i][2] + " " + aRes[i][3] + " " + aRes[i][4];
-      }
+      
      frm.hdRowPag.value = iRowPag;
      FRMListado.fSetListado(aRes);
      FRMListado.fShow();
@@ -187,7 +196,16 @@
        FRMListadoC.fSetListado(aRes);
        FRMListadoC.fShow();
        FRMListadoC.fSetLlave(cLlave);
+       fGetListadoD();
      }
+   
+   if(cId == "ListadoD" && cError==""){
+       frm.hdRowPag.value = iRowPag;
+       FRMListadoD.fSetListado(aRes);
+       FRMListadoD.fShow();
+       FRMListadoD.fSetLlave(cLlave);
+     }
+   
  }
  function fImprimir(){
     self.focus();
@@ -198,7 +216,8 @@
 
  function fGetListado(){
     frm.hdLlave.value = " iEjercicio,iNumSolicitud ";
-    frm.hdSelect.value = " SELECT GRLOficina.cDscOficina, GRLDepartamento.cDscDepartamento, SEGUsuario.cNombre,  SEGUsuario.cApPaterno, SEGUsuario.cApMaterno, TRARegEtapasXmodTram.tsRegistro, TRARegEtapasXmodTram.lAnexo, cDscEtapa "+
+    frm.hdSelect.value = " SELECT SEGUsuario.CNOMBRE||' '||SEGUsuario.CAPPATERNO||' '||SEGUsuario.CAPMATERNO||' ('|| GRLOficina.CDSCBREVE||' - '|| GRLDepartamento.CDSCBREVE||')' cnombre,  " +
+    					 " TRARegEtapasXmodTram.tsRegistro, TRARegEtapasXmodTram.lAnexo, cDscEtapa "+
                          " FROM  TRARegEtapasXmodTram "+
                          " JOIN GRLDepartamento ON GRLDepartamento.iCveDepartamento = TRARegEtapasXmodTram.iCveDepartamento "+
                          " JOIN GRLOficina ON GRLOficina.iCveOficina = TRARegEtapasXmodTram.iCveOficina "+
@@ -227,25 +246,30 @@
      frm.hdLlave.value = "";
      frm.hdSelect.value = "";
      frm.hdLlave.value = " iEjercicio,iNumSolicitud ";
-     frm.hdSelect.value = "SELECT"
-       +" PE.IEJERCICIO,"
-       +" 	PE.INUMSOLICITUD,"
-       +" 	PE.IEJERCICIOPNC,"
-       +" 	PE.ICONSECUTIVOPNC,"
-       +" 	CONCAT(SUBSTR(RC.CDSCOTRACAUSA,1,15),'...') as CDSCOTRACAUSA,"
-       +" 	O.CDSCBREVE || ' - ' || D.CDSCBREVE AS CAREA,"
-       +" RP.DTRESOLUCION,"
-       +" 	RP.DTNOTIFICACION"
-       +" FROM TRAREGPNCETAPA PE"
-       +" JOIN TRAETAPA E ON E.ICVEETAPA = PE.ICVEETAPA"
-       +" LEFT JOIN GRLREGISTROPNC RP ON RP.IEJERCICIO=PE.IEJERCICIOPNC"
-       +" AND RP.ICONSECUTIVOPNC = PE.ICONSECUTIVOPNC"
-       +" JOIN GRLREGCAUSAPNC RC ON RC.IEJERCICIO = PE.IEJERCICIOPNC"
-       +" AND RC.ICONSECUTIVOPNC = PE.ICONSECUTIVOPNC"
-       +" LEFT JOIN GRLOFICINA O ON O.ICVEOFICINA = RP.ICVEOFICINAASIGNADO"
-       +" LEFT JOIN GRLDEPARTAMENTO D ON D.ICVEDEPARTAMENTO = RP.ICVEDEPTOASIGNADO"
-                          " WHERE PE.IEJERCICIO = " +frm.iEjercicio.value+
-                          "  AND PE.INUMSOLICITUD = "+frm.iNumeroSolicitud.value;
+     
+     frm.hdSelect.value ="SELECT DAT.CFOLIOPNC,PNC.DTNOTIFICACION, PNC.DTRESOLUCION FROM GRLREGISTROPNC PNC "
+    	 				 +"INNER JOIN TRAREGDATOSADVXSOL DAT ON DAT.IEJERCICIO = PNC.IEJERCICIO AND DAT.INUMSOLICITUD = PNC.INUMSOLICITUD "
+    	 				 +"WHERE PNC.IEJERCICIO ="+frm.iEjercicio.value+" AND PNC.INUMSOLICITUD ="+frm.iNumeroSolicitud.value;
+
+//     frm.hdSelect.value = "SELECT"
+//       +" PE.IEJERCICIO,"
+//       +" 	PE.INUMSOLICITUD,"
+//       +" 	PE.IEJERCICIOPNC,"
+//       +" 	PE.ICONSECUTIVOPNC,"
+//       +" 	CONCAT(SUBSTR(RC.CDSCOTRACAUSA,1,15),'...') as CDSCOTRACAUSA,"
+//       +" 	O.CDSCBREVE || ' - ' || D.CDSCBREVE AS CAREA,"
+//       +" RP.DTRESOLUCION,"
+//       +" 	RP.DTNOTIFICACION"
+//       +" FROM TRAREGPNCETAPA PE"
+//       +" JOIN TRAETAPA E ON E.ICVEETAPA = PE.ICVEETAPA"
+//       +" LEFT JOIN GRLREGISTROPNC RP ON RP.IEJERCICIO=PE.IEJERCICIOPNC"
+//       +" AND RP.ICONSECUTIVOPNC = PE.ICONSECUTIVOPNC"
+//       +" JOIN GRLREGCAUSAPNC RC ON RC.IEJERCICIO = PE.IEJERCICIOPNC"
+//       +" AND RC.ICONSECUTIVOPNC = PE.ICONSECUTIVOPNC"
+//       +" LEFT JOIN GRLOFICINA O ON O.ICVEOFICINA = RP.ICVEOFICINAASIGNADO"
+//       +" LEFT JOIN GRLDEPARTAMENTO D ON D.ICVEDEPARTAMENTO = RP.ICVEDEPTOASIGNADO"
+//                          " WHERE PE.IEJERCICIO = " +frm.iEjercicio.value+
+//                          "  AND PE.INUMSOLICITUD = "+frm.iNumeroSolicitud.value;
      frm.hdNumReg.value =  50;
      return fEngSubmite("pgConsulta.jsp","ListadoB");     
  }
@@ -254,8 +278,8 @@
      frm.hdLlave.value = "";
      frm.hdSelect.value = "";
      frm.hdLlave.value = " iEjercicio,iNumSolicitud ";
-     frm.hdSelect.value = " SELECT USR.CNOMBRE||' '||USR.CAPPATERNO||' '||USR.CAPMATERNO||' - '|| DPT.CDSCBREVE AS CNOMBRE,"
-    	 +" (SELECT MAX(EVA2.DTEVALUACION) FROM TRAREGEVAREQXAREA EVA2 WHERE EVA2.ICVEUSUARIO = USR.ICVEUSUARIO AND EVA2.IEJERCICIO =2016 and EVA2.INUMSOLICITUD=1) AS ULTEVAL" 
+     frm.hdSelect.value = " SELECT USR.CNOMBRE||' '||USR.CAPPATERNO||' '||USR.CAPMATERNO||' ('|| OFI.CDSCBREVE||' - '|| DPT.CDSCBREVE||')' AS CNOMBRE,"
+    	 +" VARCHAR_FORMAT((SELECT MAX(EVA2.DTEVALUACION) FROM TRAREGEVAREQXAREA EVA2 WHERE EVA2.ICVEUSUARIO = USR.ICVEUSUARIO AND EVA2.IEJERCICIO ="+frm.iEjercicio.value+" and EVA2.INUMSOLICITUD="+frm.iNumeroSolicitud.value+"),'DD/MM/YYYY') AS ULTEVAL " 
     	 +" FROM SEGUSUARIO USR"
     	 +" JOIN GRLUSUARIOXOFIC REL ON USR.ICVEUSUARIO = REL.ICVEUSUARIO"
     	 +" JOIN GRLOFICINA OFI ON REL.ICVEOFICINA = OFI.ICVEOFICINA"
@@ -265,7 +289,20 @@
      return fEngSubmite("pgConsulta.jsp","ListadoC");     
  }
  
-
+ 
+ function fGetListadoD(){
+	 
+	 frm.hdLlave.value = "";
+     frm.hdSelect.value = "";
+     frm.hdLlave.value = " iEjercicio,iNumSolicitud ";
+     frm.hdSelect.value = "SELECT USR.CNOMBRE||' '||USR.CAPPATERNO||' '||USR.CAPMATERNO||' ('|| OFI.CDSCBREVE||' - '|| DEPT.CDSCBREVE||')' cusuario, VARCHAR_FORMAT(RET.TSREGISTRO, 'DD/MM/YYYY') cfecha, RET.INUMDIAS FROM TRAREGRETRASO RET  " 
+    	 +"INNER JOIN GRLUSUARIOXOFIC USRXOF ON USRXOF.ICVEUSUARIO = RET.ICVEUSUARIO "
+    	 +"INNER JOIN GRLOFICINA OFI ON OFI.ICVEOFICINA = USRXOF.ICVEOFICINA "
+    	 +"INNER JOIN GRLDEPARTAMENTO DEPT ON DEPT.ICVEDEPARTAMENTO = USRXOF.ICVEDEPARTAMENTO " 
+    	 +"INNER JOIN SEGUSUARIO USR ON USR.ICVEUSUARIO = USRXOF.ICVEUSUARIO "
+    	 +"WHERE RET.IEJERCICIO ="+frm.iEjercicio.value+" AND RET.INUMSOLICITUD ="+frm.iNumeroSolicitud.value;
+     return fEngSubmite("pgConsulta.jsp","ListadoD");     
+ }
  
  
  function fSetSolicitud(iEjercicio,iNumSolicitud, cTramite, cModalidad){

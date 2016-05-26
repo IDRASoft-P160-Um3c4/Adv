@@ -9,6 +9,7 @@
   
   var usrGpoId=-1; //se usa para guardar el id del perfil   
   var usrADVId=-1; //se usa para guardar el id de usuario
+  var strFecha="";
   
   var cGeneral;
   var FRMTitulo='';

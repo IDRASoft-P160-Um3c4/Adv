@@ -79,7 +79,8 @@ function fDefPag() {
 	TDEtiCampo(false, "EEtiqueta", 0, "No. Solicitud:", "iNumSolicitudFiltro",
 			"", 8, 8, "Núm. Solicitud", "fMayus(this);",
 			" onKeyPress='return fCheckForEnter(event, this, window);' ");
-
+	TDEtiCheckBox("EEtiqueta", 0, "Con Retraso:", "lRetrasoBOX", "0",
+			true, " Activo", "", "");
 	ITD("", 0, "", "", "Right", "Center");
 	BtnImg("Buscar", "lupa", "fBuscar();");
 	FTD();
@@ -165,18 +166,18 @@ function fOnLoad() {
 	// .fSetAlinea("center,center,center,center,center,center,center,center,left,center,center,center,center,center,center,center,center,center,center,");
 
 	FRMListado
-			.fSetTitulo("Ejercicio,Solicitud,F. Registro,Tipo Permiso,Promovente, Autopista, Cadenamientos y Sentidos, Justificación, Días Transcurridos,Estatus,Resolución V.T.,Eval. S. Técnicos,Eval. A. Jurídicos,Núm. Permiso,F. Impr. de Permiso,Unidad Administrativa,F. Visita Técnica,Tiene PNC,Georeferencia,");
+			.fSetTitulo("Ejercicio,Solicitud,F. Registro,Tipo Permiso,Promovente, Autopista, Cadenamientos y Sentidos, Justificación, Días Transcurridos,Estatus,Resolución V.T.,Eval. S. Técnicos,Eval. A. Jurídicos,Núm. Permiso,F. Impr. de Permiso,Unidad Administrativa,F. Visita Técnica,Tiene PNC, Tiene Retraso, Georeferencia,");
 	FRMListado
-			.fSetCampos("0,1,10,4,8,29,43,34,26,27,35,30,31,37,38,16,40,39,47,");
+			.fSetCampos("0,1,10,4,8,29,43,34,26,27,35,30,31,37,38,16,40,39,47,48,");
 
 	FRMListado
-			.fSetDespliega("texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,");
+			.fSetDespliega("texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,");
 	FRMListado
-			.fSetAlinea("center,center,center,center,center,center,center,center,left,center,center,center,center,center,center,center,center,center,center,");
+			.fSetAlinea("center,center,center,center,center,center,center,center,left,center,center,center,center,center,center,center,center,center,center,center,");
 	// fDisabled(true,"iCveTramiteFiltro,cRfc,iEjercicioFiltro,iNumSolicitudFiltro,");
 	fDisabled(
 			true,
-			"cCveTramite,iCveTramite,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaFiltro,");
+			"cCveTramite,iCveTramite,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaFiltro,lRetrasoBOX,");
 	frm.hdBoton.value = "Primero";
 	fTramite();
 	// fCargaTramite();
@@ -281,8 +282,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 					aRes[i][39] = 'SI';
 				} else
 					aRes[i][39] = 'NO';
+				
+				if (aRes[i][47] != "" && aRes[i][47] != "null"
+					&& aRes[i][47] > 0) {
+				aRes[i][47] = 'SI';
+			} else
+				aRes[i][47] = 'NO';
 
-				// alert(aRes[i][41]+"_"+aRes[i][41]);
+				
 				if (aRes[i][41] != "" && aRes[i][42] != "") {
 					aRes[i].push("<font color=blue>Ir..</font>");
 				} else {
@@ -420,6 +427,7 @@ function fImprimir() {
 }
 
 function fBuscar() {
+	
 	fNavega();
 }
 
@@ -626,6 +634,15 @@ function setFiltroConsulta() {
 			frm.hdFiltro.value = " GRLPERSONA.CRFC like '" + frm.cRfc.value
 					+ "%'";
 	}
+	
+	if (frm.lRetrasoBOX.checked) {
+		if (frm.hdFiltro.value != '')
+			frm.hdFiltro.value = frm.hdFiltro.value
+					+ " and (SELECT COUNT(ICVERETRASO) FROM TRAREGRETRASO WHERE IEJERCICIO = TRAREGSOLICITUD.IEJERCICIO AND INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD) >0 ";
+		else
+			frm.hdFiltro.value = " (SELECT COUNT(ICVERETRASO) FROM TRAREGRETRASO WHERE IEJERCICIO = TRAREGSOLICITUD.IEJERCICIO AND INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD) >0 ";
+	}
+	
 }
 
 function setOrdenConsulta() {

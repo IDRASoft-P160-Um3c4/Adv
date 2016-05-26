@@ -1,3 +1,4 @@
+<%@page import="com.micper.util.TFechas"%>
 <%@page import="com.micper.seguridad.PasswordHash"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.micper.ingsw.*"%>
@@ -16,6 +17,8 @@
   Vector vcMenuUsuario = new Vector();
   HashMap hmPUsuario = new HashMap();
   TVUsuario vUsuario;
+  TFechas tfSol = new TFechas("44");
+  String cDmy="";
   
   boolean lChPwd=false;
 
@@ -42,6 +45,9 @@
         	
         	usrGpo=vUsuario.getiCveGrupo();
         	usrADVId=vUsuario.getICveusuario();
+        	
+        	java.sql.Date dtHoy = new java.sql.Date(new java.util.Date().getTime());
+        	cDmy = tfSol.getFechaDDMMYYYY(dtHoy,"/");
             
             dPermisos.menuUsuario("44",vUsuario.getICveusuario());
             vcMenuUsuario = dPermisos.getVcMenuUsuario();
@@ -76,6 +82,7 @@
   aRes[0] = '<%=cError%>';
   
   top.usrGpoId= '<%=usrGpo%>';
+  top.strFecha= '<%=cDmy%>';
   
   <%
    String cNodo;

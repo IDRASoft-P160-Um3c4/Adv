@@ -144,7 +144,9 @@
      Hidden("hdSelect");
      Hidden("dtNotificacion");
      Hidden("dtfechaActual");
-     Hidden("iCveUsuario","");
+     Hidden("iCveUsuario",fGetIdUsrSesion());
+     Hidden("iCveEtapa",23);//cerrar pnc, hacer propiedad
+     Hidden("iDiasUltimaEtapa",0);
      
      Hidden("iCveOficinaU","");
      Hidden("iCveDepartamentoU","");
@@ -265,6 +267,7 @@
 		   frm.iConsecutivoPNC.value = aRes[0][8];
 	       fPNCOnChange();
 	   }
+	   
    }
    
    if(cId == "Listado" && cError==""){
@@ -341,6 +344,7 @@
          lCancelado = false;
 
       fDesactiva();
+      fBuscaRetraso();
    }
    if(cId == "Reporte" && cError==""){
      aResReporte = aRes;
@@ -388,9 +392,50 @@
 	       frm.iCveDepartamentoU.value = aRes[0][1];
 	    }
    }
+   
+   /****MANEJO DE CONTROL DE TIEMPOS****/
+	
+	if (cId == "buscaRetraso" && cError == "" ) {
+		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
+		fDiasDesdeUltimaEtapa();
+	}
+	
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(lValido!="" && parseInt(lValido)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+lValido+ " días.");
+		
+		doGuardar();
+	}
+	
+	/****MANEJO DE CONTROL DE TIEMPOS****/
+	
+
+	if(cId == "buscaDocumentosEtapa" && cError == ""){
+		if(lValido!=""){
+			fAlert("No es posible realizar la acción. "+lValido);
+		}else{
+			preparaCamposModificiar();
+		}
+	}
 	 
    return true;
  }
+ 
+ function fBuscaDocumentos(){
+		
+		if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
+					
+			frm.hdBoton.value = "buscaDocumentosEtapa";
+			frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
+			
+		  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+		}
+	}
  
  function fObtenOficDepto(){
 	  //alert("ObtenOficDepto");
@@ -536,21 +581,31 @@
     frm.hdNumReg.value = 1000;
     fEngSubmite("pgConsulta.jsp","idCancelado");
  }
+ 
  function fModificar(){
-	 //alert("fModificar");
-    if(lfaltaCotejo == false){
-		lModificando = true;
-	    FRMPanel.fSetTraStatus("UpdateBegin");
-	    fDisabled(true);
-	    frm.cObservacion.disabled = false;
-	    FRMListado.fSetDisabled(false);
-	   // fValidaFechaNotif();
-    }else
-    	fAlert("\nNo puede cerrrar el Producto No Conforme, no se ha terminado de cotejar la documentación faltante.");
-	    
+	 fBuscaDocumentos();
  }
- function fGuardarA(){
-	 //alert("fGuardarA");
+ 
+function preparaCamposModificiar(){
+	 if(lfaltaCotejo == false){
+			lModificando = true;
+		    FRMPanel.fSetTraStatus("UpdateBegin");
+		    fDisabled(true);
+		    frm.cObservacion.disabled = false;
+		    FRMListado.fSetDisabled(false);
+	    }else
+	    	fAlert("\nNo puede cerrrar el Producto No Conforme, no se ha terminado de cotejar la documentación faltante.");	
+}
+
+
+ 
+function fGuardarA(){
+	if(confirm("Se cerrará el producto no conforme. ¿Desea continuar con la información en pantalla?"))
+	  fRegistraRetraso();
+}
+ 
+ function doGuardar(){
+	//alert("fGuardarA");
      aCBox = FRMListado.fGetObjs(0);
      aRes = FRMListado.fGetARes();
      lModificando = false;
@@ -573,7 +628,8 @@
     frm.hdBoton.value = "Cambia";
     lModifica = true;
     fNavega();
-  }
+ }
+ 
  function fValidaFechaNotif(){
      frm.hdBoton.value = "ValidaNotif";
      frm.hdOrden.value = "";
