@@ -201,7 +201,6 @@ function fGuardarNuevo() {
 	
 	if(generaCadenaReqs()==true)
 		return;
-	
 
 	var resul = validaTodo();
 
@@ -209,15 +208,16 @@ function fGuardarNuevo() {
 		fAlert(resul);
 	} else {
 		
-		
-		frm.hdNumReg.value = 10000;
-		frm.hdBoton.value = "GuardarSolADV";
-		frm.hdOrden.value = "";
-		frm.hdFiltro.value = "";
-		fEnProceso(true);
-		setTimeout(function() {
-			fEngSubmite("pgINTTram1A.jsp", "IDTram");
-		}, 250);
+		if(confirm("¿Desea continuar con la información en pantalla?")){
+			frm.hdNumReg.value = 10000;
+			frm.hdBoton.value = "GuardarSolADV";
+			frm.hdOrden.value = "";
+			frm.hdFiltro.value = "";
+			fEnProceso(true);
+			setTimeout(function() {
+				fEngSubmite("pgINTTram1A.jsp", "IDTram");
+			}, 250);
+		}
 	}
 	
 	
@@ -737,27 +737,30 @@ function fLoadModalidad() {
 }
 
 function fSelReg(aDato, col) {
-	frm.iNumCita.value = aDato[0];
-	frm.cBusca.value = aDato[0];
-	frm.ICONSECUTIVO.value = aDato[1];
-	frm.CTIPOPERMISIONARIO.value = aDato[5];
-	frm.CDSCTIPOTRAMITE.value = aDato[6];
-	frm.iCveTramiteTmp.value = aDato[2];
-	frm.iCveModalidadTmp.value = aDato[3];
-	frm.ICVEDEPTO.value = aDato[8];
-	frm.LCONCLUIDO.value = aDato[11];
-	frm.iEjercicio.value = aDato[9];
-	frm.iNumSolicitud.value = aDato[10];
-	if (aDato[7] != "") {
-		// fGO("trTramiteButtons").innerHTML = "<td></td>";
-		frm.LFINALIZADO.value = 1;
-	} else {
-		frm.LFINALIZADO.value = 0;
-	}
-	if (col == 0) {
-		parent.setIREGISTRO(frm.ICONSECUTIVO.value);
-		parent.fPagFolder(2);
-	}
+	
+
+		frm.iNumCita.value = aDato[0];
+		frm.cBusca.value = aDato[0];
+		frm.ICONSECUTIVO.value = aDato[1];
+		frm.CTIPOPERMISIONARIO.value = aDato[5];
+		frm.CDSCTIPOTRAMITE.value = aDato[6];
+		frm.iCveTramiteTmp.value = aDato[2];
+		frm.iCveModalidadTmp.value = aDato[3];
+		frm.ICVEDEPTO.value = aDato[8];
+		frm.LCONCLUIDO.value = aDato[11];
+		frm.iEjercicio.value = aDato[9];
+		frm.iNumSolicitud.value = aDato[10];
+		if (aDato[7] != "") {
+			// fGO("trTramiteButtons").innerHTML = "<td></td>";
+			frm.LFINALIZADO.value = 1;
+		} else {
+			frm.LFINALIZADO.value = 0;
+		}
+		if (col == 0) {
+			parent.setIREGISTRO(frm.ICONSECUTIVO.value);
+			parent.fPagFolder(2);
+		}
+
 	/***************************************************************************
 	 * else if(col == 1){ if(getLFINALIZADO() == 0){ fBorrar(); }else{
 	 * fAlert("\n - Trámite finalizado. No se pueden modificar ni borrar

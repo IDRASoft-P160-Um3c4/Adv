@@ -81,9 +81,13 @@ function fDefPag() {
 	FTDTR();
 
 	ITRTD("EEtiquetaC", 0, "1%", "", "center", "top");
-	TextoSimple("Declaro bajo protesta de decir la verdad que la documentación presentada para acreditar el cumplimiento de todos y cada uno de los requisitos son auténticos y ciertas las características del vehículo que se describe, dejando a salvo la facultad de la Secretaría de Comunicaciones y Transportes para constatar lo manifestado, aceptando que de comprobarse lo contrario dará motivo a la revocación del permiso que en su caso se genere");
-	
+	TextoSimple("Declaro bajo protesta de decir la verdad que la documentación presentada para acreditar el cumplimiento de todos y cada uno de los requisitos son auténticos, dejando a salvo la facultad de la Secretaría de Comunicaciones y Transportes para constatar lo manifestado, aceptando que de comprobarse lo contrario dará motivo a la revocación del permiso que en su caso se genere");
 	FTDTR();
+	
+	ITRTD("EEtiquetaC", 0, "1%", "", "center", "top");
+	TextoSimple("NOTA: A FIN DE CONTINUAR CON EL TRÁMITE, DEBERÁ ACUDIR AL CENTRO SCT CUYA JURISDICCIÓN CORRESPONDA A LA UBICACIÓN DEL APROVECHAMIENTO SOLICITADO");
+	FTDTR();
+	
 	ITRTD();
 		InicioTabla("", 0, "90%", "", "center", "", 1);
 		FITD("EEtiquetaC", 0, "33%", "", "center", "top");
@@ -357,7 +361,6 @@ function fResultado(aRes, cId, cError, cNavStatus, cSol, aRes2, cOrigen,
 			if(existe==false){
 				fLoadEntidades();
 			}else{
-				fShowDatos();
 				llenaCampos();
 			}
 					
@@ -1638,5 +1641,5 @@ else {
 function simulaFirma(){
 	 cCadenaOriginal = cadDatosADV();
 	 cCadenaOriginal += fGetCadOriginal();	
-	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MAPJ8808156U6", "102030405060","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "iCveCertificado");
+	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MOR0000001O1", "12345","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "iCveCertificado");
 }

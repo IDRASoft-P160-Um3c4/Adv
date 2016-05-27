@@ -723,12 +723,7 @@ public class TDINTTRAMITES
       lPStmt.setInt(1,iEjercicio);
       lPStmt.setInt(2, ICVETRAMITE);
 
-      try{
-          lPStmt.executeUpdate();
-       //   lPStmt.close();
-        }catch(Exception e){
-          e.printStackTrace();
-        }
+      lPStmt.executeUpdate();
       
       
       /********INSERT INTTRAMITE***********/
@@ -744,12 +739,7 @@ public class TDINTTRAMITES
 	  lPStmt.setInt(3,vData.getInt("iCveTramite"));
 	  lPStmt.setInt(4,vData.getInt("iCveModalidad"));
 
-      try{
-          lPStmt.executeUpdate();
-       //   lPStmt.close();
-        }catch(Exception e){
-          e.printStackTrace();
-        }
+      lPStmt.executeUpdate();
       
       /*****************  INSERT SOLICITUD  **********/	  
 	  
@@ -815,30 +805,14 @@ public class TDINTTRAMITES
        lPStmt.setNull(40,Types.DATE); // dtResolTram
        lPStmt.setNull(41,Types.INTEGER); // lpermiso       
        
-       try{
+
          lPStmt.executeUpdate();
-        // lPStmt.close();
-       }catch(Exception e){
-         e.printStackTrace();
-       }
       
       /**************DATOS ADV****************/
       // INSERTA EN LA TABLA TRAREGDATOSADVXSOL  
       
-      String cMax = "SELECT MAX(ICVEDATOSADV) AS ICVEDATOSADV FROM TRAREGDATOSADVXSOL";
-
-      Vector vcData = this.findByCustom("", cMax);
-      
-      int consec;
-
-      if(vcData.size() > 0){
-   	   TVDinRep vUltimo = (TVDinRep) vcData.get(0);
-   	   consec = vUltimo.getInt("ICVEDATOSADV") + 1;
-      }else{
-   	   consec=1;
-      }
-      
-      String SqlADV= "INSERT INTO TRAREGDATOSADVXSOL (ICVEDATOSADV,IEJERCICIO,INUMSOLICITUD,CORGANO,CHECHOS,ICVECARRETERA,DTVISITA,CKMSENTIDO) VALUES (?,?,?,?,?,?,(CURRENT_DATE + 5 DAYS),?)";
+         
+      String SqlADV= "INSERT INTO TRAREGDATOSADVXSOL (IEJERCICIO,INUMSOLICITUD,CORGANO,CHECHOS,ICVECARRETERA,DTVISITA,CKMSENTIDO) VALUES (?,?,?,?,?,(CURRENT_DATE + 10 DAYS),?)";
       
       String sqlCveCarr = "SELECT ICVECARRETERA FROM TRACATCARRETERA WHERE CDSCARRETERA ='"+vData.getString("hdNomAuto")+"'"+
     		  			  " AND ICVEOFICINA ="+vData.getString("iCveOficina");
@@ -867,19 +841,15 @@ public class TDINTTRAMITES
       lPStmt = null; 
       lPStmt = conn.prepareStatement(SqlADV);
              
-      lPStmt.setInt(1,consec);
-      lPStmt.setInt(2, iEjercicio);
-      lPStmt.setInt(3 ,iNumSolicitud);
-      lPStmt.setString(4, orga);
-      lPStmt.setString(5, vData.getString("cHechos"));
-      lPStmt.setInt(6, cveAuto);
-      lPStmt.setString(7, vData.getString("cKmSentido"));
+      lPStmt.setInt(1, iEjercicio);
+      lPStmt.setInt(2 ,iNumSolicitud);
+      lPStmt.setString(3, orga);
+      lPStmt.setString(4, vData.getString("cHechos"));
+      lPStmt.setInt(5, cveAuto);
+      lPStmt.setString(6, vData.getString("cKmSentido"));
       
-      try{
-          lPStmt.executeUpdate();
-        }catch(Exception e){
-          e.printStackTrace();
-        }
+
+      lPStmt.executeUpdate();
              
 
        /***********inserta el registro para la asignacion de folios********/
@@ -910,7 +880,7 @@ public class TDINTTRAMITES
 
 		for (int j = 0; j < vRequisitos.size(); j++) {
 
-			try{
+			
 				TVDinRep vDRequisitos = new TVDinRep();
 				
 				vDRequisitos=(TVDinRep)vRequisitos.get(j);
@@ -931,17 +901,11 @@ public class TDINTTRAMITES
 				lPStmt2.setNull(8, Types.INTEGER);
 				lPStmt2.setNull(9, Types.DATE);
 				
-				try {
+
 					lPStmt2.executeUpdate();
 					lPStmt2.close();
 					conn.commit();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			
 		}
 		
 		/**PARA SABER QUE REQUISITOS SE ENTREGARAN COMO FISICOS PARA SOLICITARLOS EN LA SEGUNDA PESTANA DE TRAMITE POR INTERNET**/
@@ -956,21 +920,14 @@ public class TDINTTRAMITES
 			lPStmt2 = conn.prepareStatement(sqlInsReqFis);
 			for (int j = 0; j < arrReqsFisicos.length; j++) {
 	
-				try{
 					
 					lPStmt2.setInt(1,iEjercicio);
 					lPStmt2.setInt(2,iNumSolicitud);					
 					lPStmt2.setInt(3,Integer.parseInt(arrReqsFisicos[j]));
 					
-					try {
+				
 						lPStmt2.executeUpdate();
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-				}catch(Exception e){
-					e.printStackTrace();
-				}
+				
 			}
 		}
        

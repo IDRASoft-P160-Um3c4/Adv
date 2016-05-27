@@ -188,6 +188,9 @@ function fGetRFCRep(){
     return cRFC;
 }
 
+function fGetModoInt(){
+    return modoInt;
+}
 
  function fGetTituloPagina(cNombreM){
      cAyuda=cNombreM;

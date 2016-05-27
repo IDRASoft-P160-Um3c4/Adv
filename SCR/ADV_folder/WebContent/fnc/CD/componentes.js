@@ -1449,7 +1449,7 @@ function fPagADVError(cError){
 	  }
 
 	  if(fDefPag){
-	     fDefPag();
+	     fDefPag(cError);
 	  }
 	  if(fPagExe){
 	     fPagExe();

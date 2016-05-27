@@ -208,7 +208,7 @@ function fShow(){
      fSetDisabled(false);
    }
    
-   fSelReg(aListado[0]);
+   fSelReg(0);
 }
 function fDrawObj(aTOCL,h,iRw){
   if(aTOCL[1]=="Boton")

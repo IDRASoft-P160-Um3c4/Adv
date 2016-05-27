@@ -9,8 +9,10 @@ var FRMTramites;
 var FRMAsignacion;
 var IREGISTRO = 0;
 var entrar = 0;
-var cRFCRep = "";
+var cRFCRep = window.parent.fGetRFCRep();
 var existeSolicitante=false;
+var modoInt=window.parent.fGetModoInt();;
+
 
 fWrite(JSSource("Carpetas.js"));
 function fBefLoad(){
@@ -40,7 +42,7 @@ function fDefPag(){ // Define la página a ser mostrada
          FITD("ESUP",0,"350");
           TextoSimple("DIRECCIÓN GENERAL DE DESARROLLO CARRETERO <BR> SOLICITUD DE TRÁMITES POR INTERNET");
          FITD("ESUP",0,"126");
-          //Liga("<BR><BR>[Guía Rápida]","fOpenHelp();","Guía Rápida");
+          //
        FTDTR();
        ITRTD("",3,"100%","38","center");
          InicioTabla("",0,"100%","38","center","sctgris.jpg",".1",".1","WHITE");
@@ -51,26 +53,54 @@ function fDefPag(){ // Define la página a ser mostrada
        FTDTR();
        FinTabla();
      FTDTR();  
+     
      ITRTD("",0,"100%","100%","center","middle");
-        InicioTabla("",0,"976","100%","center","",".1",".1","WHITE");
-        ITRTD("EEtiquetaC",0,"100%","100%");
-           //fDefCarpeta("Tipo de Trámite|Registro|" ,"pgINTSol01FIEL.js|pgINTSol02FIEL.js|" , "INT" , "99%" , "99%", false);
-           fDefCarpeta( "Tipo de Trámite|Registro|",
-        	   "pgINTSol01FIEL.js|pgINTSol02FIEL.js|",
-        	   "INT" , "99%" , "99%", false);
-        FTDTR();
-        FinTabla();
+	     if(modoInt==""){
+		        InicioTabla("",0,"976","100%","center","",".1",".1","WHITE");
+		        ITRTD("EEtiquetaC",0,"100%","100%");
+		           //fDefCarpeta("Tipo de Trámite|Registro|" ,"pgINTSol01FIEL.js|pgINTSol02FIEL.js|" , "INT" , "99%" , "99%", false);
+		           fDefCarpeta( "Tipo de Trámite|Registro|",
+		        	   "pgINTSol01FIEL.js|pgINTSol02FIEL.js|",
+		        	   "INT" , "99%" , "99%", false);
+		        FTDTR();
+		        FinTabla();
+		      
+			     Hidden("ICVETRAMITE","");
+			     Hidden("ICONSECUTIVO","");
+	     }else if(modoInt=="rfcRepetido"){
+	    	 InicioTabla("",0,"976","100%","center","",".1",".1","WHITE");
+	    	 ITRTD("ESUP2", 0, "", "", "center", "middle");
+	    		TextoSimple('<B>ATENCIÓN !<B/> <BR/>');
+	    		TextoSimple("Existe más de un registro de persona con el mismo RFC: "+cRFCRep+". <BR/> Debe acudir al Centro SCT más cercano para registrar su solicitud.");
+		     TextoSimple("<br/> Para más información consulte:");
+	    		Liga("DIRECCION GENERAL DE DESARROLLO CARRETERO","irGOBMX();","");
+	    		FTDTR();   		
+		     FTDTR();
+		        FinTabla();
+	    	 
+	     }else if(modoInt=="error"){
+	    	 InicioTabla("",0,"976","100%","center","",".1",".1","WHITE");
+	    	 ITRTD("ESUP2", 0, "", "", "center", "middle");
+	    		TextoSimple('<B>Error !<B/>');
+	    		TextoSimple("<br>Existió un error al procesar la petición, intente más tarde.<B/>");
+		     FTDTR();
+		        FinTabla();
+	     }
+     
      FTDTR();
-     FinTabla(); 
-     Hidden("ICVETRAMITE","");
-     Hidden("ICONSECUTIVO","");
+     FinTabla();     
+     
   fFinPagina();  
+}
+
+function irGOBMX(){
+	window.open("http://www.sct.gob.mx/carreteras/direccion-general-de-desarrollo-carretero/");
 }
 
 function fOnLoad(){ // Carga información al mostrar la página.
   frm = document.forms[0];
-  cRFCRep = window.parent.fGetRFCRep();
-  fPagFolder(1);
+  if(modoInt=="")
+	  fPagFolder(1);
 
 }
 
