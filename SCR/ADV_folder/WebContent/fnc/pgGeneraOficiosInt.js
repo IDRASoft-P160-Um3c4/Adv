@@ -8,7 +8,7 @@ var cPermisoPag;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgTableroJuridico.js";
-	cTitulo = "ÉVALUACIÓN DE DOCUMENTOS JURÍDICOS Y LEGALES";
+	cTitulo = "OFICIOS INICIALES PARA SOLICITUDES POR INTERNET";
 	cPermisoPag = fGetPermisos(cPaginaWebJS);
 	fSetWindowTitle();
 }
@@ -39,6 +39,7 @@ function fDefPag() {
 	Hidden("iCveTramite", "");
 	Hidden("iCveModalidad", "");
 	Hidden("iDiasUltimaEtapa", 0);
+	Hidden("iCveOficina",0);
 	Hidden("iCveUsuario", fGetIdUsrSesion());
 
 	 Hidden("hdOfic","");
@@ -53,19 +54,21 @@ function fOnLoad() {
 	frm = document.forms[0];
 	FRMListado = fBuscaFrame("IListado");
 	FRMListado.fSetControl(self);
-	FRMListado.fSetTitulo("Ejercicio, Núm. Solicitud, Solicitante, Trámite, Oficina de Origen, Tiene PNC, Requisitos, Evaluación,");
-	FRMListado.fSetCampos("0,1,2,3,4,5,6,7,");
-	FRMListado.fSetAlinea("center,center,center,center,center,center,center,center,");
+	FRMListado.fSetTitulo("Ejercicio, Núm. Solicitud, Solicitante, Trámite, Oficina de Origen, Fecha de Registro, Oficios,");
+	FRMListado.fSetCampos("0,1,2,3,4,5,6,");
+	FRMListado.fSetAlinea("center,center,center,center,center,center,center,");
 	frm.hdBoton.value = "Primero";
 	fCargaOficDeptoUsr(false);
 }
 
 // LLAMADO al JSP específico para la navegación de la página
 function fNavega() {
+	
+	frm.hdBoton.value="ListadoInternet";
 	frm.hdFiltro.value = "";
 	frm.hdOrden.value = "iEjercicio,iNumSolicitud";
 	frm.hdNumReg.value = 1000;
-	return fEngSubmite("pgTRAEvaluacionArea.jsp", "ListadoJuridico");
+	return fEngSubmite("pg111020015ADV.jsp", "ListadoInternet");
 }
 
 // RECEPCIÓN de Datos de provenientes del Servidor
@@ -83,55 +86,21 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 		return;
 	}
 
-	if (cId == "ListadoJuridico" && cError == "") {
+	if (cId == "ListadoInternet" && cError == "") {
+	
 		if (aRes.length > 0) {
-			
 			for ( var o = 0; o < aRes.length; o++) {
-				if(aRes[o][5]>0){
-					aRes[o][5]="Si";
-				}else{
-					aRes[o][5]="";
+				aRes[o].push("<font color=blue>GENERAR OFICIOS</font>");
 				}
-				aRes[o].push("<font color=blue>VER REQUSITOS</font>");
-				aRes[o].push("<font color=blue>EVALUACIÓN DE REQUISITOS</font>");
-			}
 		}
+	
 		frm.hdRowPag.value = iRowPag;
 		FRMListado.fSetListado(aRes);
-
 		FRMListado.fShow();
 		FRMListado.fSetLlave(cLlave);
 	}
 	
-	/****MANEJO DE CONTROL DE TIEMPOS****/
-	
-	if (cId == "buscaRetraso" && cError == "" ) {
-		if(aRes.length>0&&parseInt(aRes[0][0])>0)
-			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
-		fDiasDesdeUltimaEtapa();
-	}
-	
-	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
-		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
-	}
-	
-	if (cId == "registraRetrasoDAJLDGST" && cError == "" ) {
-		if(msgRetraso!="" && parseInt(msgRetraso)>0)
-			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgRetraso+ " días.");
-		fNavega();
-	}
-	
-	/****MANEJO DE CONTROL DE TIEMPOS****/
-	
-	if(cId == "buscaDocumentosDAJL" && cError == ""){
-		if(msgRetraso!=""){
-			fAlert("No es posible realizar la acción. "+msgRetraso);
-		}else{
-			fAbreSubWindowSinPermisos("pgVerifSolNewB", "800", "460");
-			}
-	}
-
-	fResOficDeptoUsr(aRes, cId, cError);
+	 fResOficDeptoUsr(aRes, cId, cError);
 }
 
 // LLAMADO desde el Panel cada vez que se presiona al botón Cancelar
@@ -145,28 +114,11 @@ function fSelReg(aDato, iCol) {
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
 	
-	if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0)
-		fBuscaRetraso();
-	
-	setTimeout(function (){
-		if (iCol == 7){//click acciones
-			
-			if(aDato[5]=="Si"){
-				fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
-				return;
-			}else{
-				fBuscaDocumentos();
-			}	
-		}else if (iCol == 6){//click acciones
-			fDocsTramite();
-		}
-	},250);
+	if(aDato!=null && iCol==6){
+		fOficiosIniciales();
+	}
 	
 }
-
-
-
-
 
 // FUNCIÓN donde se generan las validaciones de los datos ingresados
 function fValidaTodo() {
@@ -198,69 +150,22 @@ function fDefOficXUsr() {
 }
 
 function fOficinaUsrOnChangeLocal() {
+	frm.iCveOficina.value = frm.iCveOficinaUsr.value;
 	fBuscar();
 }
 
-function fTerminaEvaluacion() {
-	doRegistraRetraso();
-}
-
-function fBuscar() {
+function fBuscar(){
+	frm.iCveOficina.value = frm.iCveOficinaUsr.value;
 	fNavega();
 }
 
-function fGetiEjercicio() {
-	return frm.iEjercicio.value;
-}
-function fGetiNumSolicitud() {
-	return frm.iNumSolicitud.value;
-}
-function fDocsTramite(){
-	if (frm.iEjercicio.value != 0 && frm.iEjercicio.value != '' &&
-		       frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != ''){
-			   if(fSoloNumeros(frm.iEjercicio.value) && fSoloNumeros(frm.iNumSolicitud.value)){
-				   
-				   fAbreSubWindow(false,"pgVerDocsCotejo","no","yes","yes","yes","800","600",50,50);
-				   
-			   }else{
-				   fAlert("\n Debe proporcionar un Ejercicio y Número de Solicitud válidos.");
-			   }
-	   }else{
-		   fAlert("\n Debe proporcionar un Ejercicio y Número de Solicitud válidos.");
-	   }
-}
-
-function getNumSol(){
-	return frm.iNumSolicitud.value;
-}
-
-function getEjercicio(){
-	return frm.iEjercicio.value;
-};
-
-
-function getOfic(){
-	return frm.hdOfic.value;
-    
-}
-
-function getDpto(){
-	return frm.hdDpto.value;
-}
-
-function fBuscaDocumentos(){
-	
-	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0) {			
-		frm.hdBoton.value = "buscaDocumentosDAJL";
-		frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
-		
-	  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosDAJL");
-	}
-}
-
-function doRegistraRetraso(){
-	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0) {	  
-		frm.hdBoton.value="";
-	    fEngSubmite("pgGestionOficios.jsp","registraRetrasoDAJLDGST");
+function fOficiosIniciales(){
+	if( frm.iEjercicio.value >0 && frm.iNumSolicitud.value>0){
+	 cClavesModulo="3,";
+	 cNumerosRep="76,";
+	 cFiltrosRep=  frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
+	 fReportes();
+	}else{
+		fAlert("\n-Debe seleccionar un trámite para poder imprimir el acuse de recibo");
 	}
 }

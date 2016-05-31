@@ -133,7 +133,7 @@ public class TDINTSolicitud extends DAOBase {
             	tramite = vSolicitud.getInt("ICVETRAMITECIS");
             	
             	vSolicitud.put("cRequisitos", vData.getString("cRequisitos"));
-            	dReq.insertInt(vSolicitud, conn);
+            	//dReq.insertInt(vSolicitud, conn);
             	
             	String cArea = "SELECT ICVEOFICINARESUELVE,ICVEDEPTORESUELVE FROM TRATRAMITEXOFIC " +
             			       "where icveoficina=  and ICVETRAMITE="+vSolicitud.getInt("iCveTramite");
@@ -500,7 +500,6 @@ public class TDINTSolicitud extends DAOBase {
 		lPStmt.setString(5, vData.getString("CCAMPO"));
 		lPStmt.setInt(6, vData.getInt("iEjercicio"));
 		lPStmt.setInt(7, vData.getInt("iNumSolicitud"));
-				
 		lPStmt.setInt(8, vData.getInt("ICVEREQUISITO"));
 
 		lPStmt.executeUpdate();

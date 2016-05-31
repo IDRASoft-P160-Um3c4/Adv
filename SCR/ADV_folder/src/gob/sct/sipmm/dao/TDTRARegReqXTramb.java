@@ -654,9 +654,11 @@ public class TDTRARegReqXTramb
 						 " AND ICVEREQUISITO= "+ cRequisito.get(ij);
 				
 				Vector vecDtRecepcion = findByCustom("",cBuscaRecepcion);
+				TVDinRep vDt =(TVDinRep) vecDtRecepcion.get(0);
+				
 				
 				String cSQLUpdDtCotejo = "UPDATE TRAREGREQXTRAM SET DTCOTEJO = CURRENT_DATE ";
-				if(vecDtRecepcion.size()==0){//si no tiene fecha de recepcion se setea 
+				if(vDt.getDate("DTRECEPCION")==null){//si no tiene fecha de recepcion se setea 
 					cSQLUpdDtCotejo += ", DTRECEPCION = CURRENT_DATE "; 
 				}
 				cSQLUpdDtCotejo += " WHERE IEJERCICIO = "+ vData.getInt("iEjercicio") +
@@ -971,8 +973,8 @@ public class TDTRARegReqXTramb
 						cCvesOficios+=cCvesOficios.equals("")?"11":",11";
 					else if(vDatos.getInt("ICVEDPTO") == 102)
 						cCvesOficios+=cCvesOficios.equals("")?"13":",13";
-					
 				}
+				
 			}
 			else{//si no tiene pnc busco los oficios de acuerdo a la etapa 
 				cSQL = "SELECT CCVESOFICIOS as CCVESOFICIOS FROM TRAETAPA WHERE ICVEETAPA = "+ vData.getString("iCveEtapa");
@@ -982,28 +984,36 @@ public class TDTRARegReqXTramb
 				cCvesOficios = vDatos.getString("CCVESOFICIOS");
 			}
 			 
+			if(cCvesOficios.equals("")){
+				if(cuentaPNC>0){
+					retMsg = "Debe realizar la notificación del PNC";
+				}else{
+					retMsg = "Error al buscar los documentos. Intente nuevamente.";
+				}
+			}else{
 			
-			String[] arrCvesOficios =cCvesOficios.split(",");
-			oficiosRequeridos = arrCvesOficios.length;
-			
-			
-			//busco los registros de las claves de los oficios requeridos
-			String cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+cCvesOficios+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud");
-			
-			Vector vecDatos = findByCustom("",cSQl);			
-			vecDatos = findByCustom("",cSQl);
-			
-			//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
-			if(vecDatos.size()<oficiosRequeridos){
-				cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+cCvesOficios+")";
+				String[] arrCvesOficios =cCvesOficios.split(",");
+				oficiosRequeridos = arrCvesOficios.length;
+				
+				
+				//busco los registros de las claves de los oficios requeridos
+				String cSQl = "SELECT ICVEOFICIOADV FROM TRAREGOFICIOADV where ICVEOFICIOADV in ("+cCvesOficios+") and IEJERCICIO = "+vData.getString("iEjercicio") +" and INUMSOLICITUD ="+ vData.getString("iNumSolicitud");
+				
+				Vector vecDatos = findByCustom("",cSQl);			
 				vecDatos = findByCustom("",cSQl);
-				if(cuentaPNC>0)
-					retMsg = "Dado que la solicitud tiene un PNC, debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";
-				else
-					retMsg = "Debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";			
-				for(int i=0; i<vecDatos.size();i++){
-					vDatos = (TVDinRep) vecDatos.get(i);
-					retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
+				
+				//si los registros econtrados son menos que el numero de oficios requeridos se realiza la busqueda para generar el mensaje
+				if(vecDatos.size()<oficiosRequeridos){
+					cSQl = "SELECT CDSCOFICIO FROM GRLOFICIOADV WHERE ICVEOFICIO IN ("+cCvesOficios+")";
+					vecDatos = findByCustom("",cSQl);
+					if(cuentaPNC>0)
+						retMsg = "Dado que la solicitud tiene un PNC, debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";
+					else
+						retMsg = "Debe asegurarse de que las áreas correspondientes hayan subido los oficios: \\n";			
+					for(int i=0; i<vecDatos.size();i++){
+						vDatos = (TVDinRep) vecDatos.get(i);
+						retMsg+="\\n -"+ vDatos.getString("CDSCOFICIO");
+					}
 				}
 			}
 			

@@ -82,13 +82,13 @@ function fDefPag() {
 	InicioTabla("", 0, "100%", "", "center");
 	ITRTD("ESUP1", 0, "70%", "", "center", "");
 	TextoSimple('"En caso de Dudas o Aclaraciones enviar correo electrónico a:"');
-	cGPD += '<a href="mailto:cheredia@sct.gob.mx">cheredia@sct.gob.mx</a>';
+	cGPD += '<a href="mailto:mibolano@sct.gob.mx">mibolano@sct.gob.mx</a>';
 	// TextoSimple('<BR>"Si su trámite es del interior de la República enviar
 	// correo electrónico a:"');
 	// cGPD+='<a href="mailto:cheredia@sct.gob.mx">cheredia@sct.gob.mx</a>';
 	FTDTR();
 	ITRTD("ESUP2", 0, "", "", "center", "middle");
-	TextoSimple('<BR>Recuerde que sus documentos digitalizados deben ir en formato PDF no mayor a 2MB.');
+	TextoSimple('<BR>Recuerde que sus documentos digitalizados deben ir en formato PDF no mayor a 8MB por archivo y no mayor a 50MB en conjunto.');
 	TextoSimple('<BR>Deberá concluir la <B>Declaración de características</B> para que su solicitud sea procesada en ventanilla.');
 	FTDTR();
 	FinTabla();

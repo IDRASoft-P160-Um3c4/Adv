@@ -96,14 +96,14 @@ function fDefPag() {
 	FITR();
 	TDEtiCampo(false, "EEtiqueta", 0, " R.F.C.:", "cRFC", "", 14, 13,
 			" R.F.C.", "fMayus(this);", "", "", false, "EEtiquetaL", 0);
-	TDEtiAreaTexto(false, "EEtiqueta \" rowspan=\"2", 0, "Observación:", 49, 4,
-			"cObsTramite", "", "Observaciones", "fMayus(this);", "", "", false,
-			false, false, "EEtiquetaL\" rowspan=\"3", 3);
-	FITR();
-	TDEtiCampo(false, "EEtiqueta", 0, " Autorizado a Recoger:",
-			"cNomAutorizaRecoger", "", 50, 100,
-			" Persona Autorizada a Recoger Trámite", "fMayus(this);", "", "",
-			false, "EEtiquetaL", 0);
+//	TDEtiAreaTexto(false, "EEtiqueta \" rowspan=\"2", 0, "Observación:", 49, 4,
+//			"cObsTramite", "", "Observaciones", "fMayus(this);", "", "", false,
+//			false, false, "EEtiquetaL\" rowspan=\"3", 3);
+//	FITR();
+//	TDEtiCampo(false, "EEtiqueta", 0, " Autorizado a Recoger:",
+//			"cNomAutorizaRecoger", "", 50, 100,
+//			" Persona Autorizada a Recoger Trámite", "fMayus(this);", "", "",
+//			false, "EEtiquetaL", 0);
 	FTR();
 	// Liga("Pagar varias solicitudes","fPagaSol();");
 	FinTabla();
@@ -117,6 +117,9 @@ function fDefPag() {
 	ITRTD("", 0, "", "40", "center", "bottom");
 	IFrame("IPanel13", "95%", "34", "Paneles.js");
 	FTDTR();
+	
+	Hidden("cNomAutorizaRecoger","");
+	Hidden("cObsTramite","");
 
 	Hidden("iCveTipoPersona");
 	Hidden("iCveSolicitante");
@@ -244,9 +247,9 @@ function fReporteEjecutado(theWindow, aRes, aDato, cFiltro, cId, cError) {
 		fEngSubmite("pgTRARegSolicitud2.jsp", "ImpresoActualizado");
 	}
 	
-	  if (theWindow){ theWindow.close(); }
-	 
-	lEjecutado = true;
+//	  if (theWindow){ theWindow.close(); }
+//	 
+//	lEjecutado = true;
 }
 
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
@@ -570,9 +573,10 @@ function fImprimir() {
 
 function fReporte(){
 	if( frm.iEjercicio.value >0 && frm.iNumSolicitud.value>0){
-	 cClavesModulo="3,";
-	 cNumerosRep="76,";
+	 cClavesModulo="3,3,";
+	 cNumerosRep="76,77,";
 	 cFiltrosRep=  frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
+	 cFiltrosRep+=cFiltrosRep;
 	 fReportes();
 	}else{
 		fAlert("\n-Debe seleccionar un trámite para poder imprimir el acuse de recibo");

@@ -71,7 +71,7 @@
            Hidden("cHoraEntrega","");
            Hidden("cUsuarioEntrega","");
 //           FITR();
-              TDEtiCampo(false,"EEtiqueta",2," Fecha estimada de entrega:","cFechaEntrega","",15,15," RFC ","fMayus(this);", "", "", "","EEtiquetaL","0");
+//              TDEtiCampo(false,"EEtiqueta",2," Fecha estimada de entrega:","cFechaEntrega","",15,15," RFC ","fMayus(this);", "", "", "","EEtiquetaL","0");
               TDEtiCheckBox("EEtiqueta",2,"Resolución positiva: ","lPositivaBOX","1",true,"Cumple con los Requisitos");
 //              TDEtiCampo(false,"EEtiqueta",2," Fecha límite de entrega de documentos:","cFechaLimite","",15,15," RFC ","fMayus(this);", "", "", "","EEtiquetaL","0");
               Hidden("cFechaLimite","");
@@ -104,6 +104,8 @@
          IFrame("IPanel12","95%","34","Paneles.js");
        FTDTR();
      FinTabla();
+     Hidden("cFechaEntrega");
+     
    fFinPagina();
  }
 

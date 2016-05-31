@@ -122,11 +122,11 @@
            FTDTR();
          FinTabla();
      ITRTD("",0,"95%","","center");
-         InicioTabla("ETablaInfo",0,"95%","","","",1);
-         	TDEtiAreaTexto(true, "EEtiqueta", 0, "Observaciones:", 50,
-			2, "cObservacion", "", "TooTip", "", "fMayus(this);",
-			'onkeydown="fMxTx(this,250);"', true, true, true, "",
-			10);
+//         InicioTabla("ETablaInfo",0,"95%","","","",1);
+//         	TDEtiAreaTexto(true, "EEtiqueta", 0, "Observaciones:", 50,
+//			2, "cObservacion", "", "TooTip", "", "fMayus(this);",
+//			'onkeydown="fMxTx(this,250);"', true, true, true, "",
+//			10);
          FinTabla();
      FTDTR();
        ITRTD("",0,"","40","center","bottom");
@@ -138,6 +138,7 @@
      Hidden("iCveRequisito","");
      Hidden("lEntregado","");
      Hidden("iCveUsuRecibe","");
+     Hidden("cObservacion","");
      Hidden("cConjunto");
      Hidden("iLlave");
      Hidden("hdLlave");

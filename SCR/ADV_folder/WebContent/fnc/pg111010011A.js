@@ -14,6 +14,7 @@ var personaBuscada = null;
 var buscarRepL = false;
 
 var iniciaTramite = false;
+var consultaSolicitud= false;
 var arrConsulta=undefined;
 
 
@@ -29,6 +30,7 @@ function fBefLoad(){
   if(window.parent){
 	  buscarRepL = window.parent.getBuscarRepL();
 	  iniciaTramite = window.parent.getIniciaTramite();
+	  consultaSolicitud = window.parent.getConsultaSol();
   }
   
 }
@@ -99,18 +101,23 @@ function fDefPag(){
 			        ITRTD("EEtiquetaC",8,"","","center");        
 			        BtnImgNombre("vgcerrar","aceptar","fRegresaDatos();","");
 			        FTDTR();
-		        }
-		        
+		        }else
 		        if(iniciaTramite){
 			        ITRTD("EEtiquetaC",8,"","","center");        
 			        BtnImgNombre("vgcerrar","aceptar","fRegresaDatosTramite();","");
+			        FTDTR();
+		        }
+		        else
+		        if(consultaSolicitud){
+			        ITRTD("EEtiquetaC",8,"","","center");        
+			        BtnImgNombre("vgcerrar","aceptar","fRegresaDatosConsultaSol();","");
 			        FTDTR();
 		        }
 		        
 		    FinTabla();
 	    FTDTR();
 	    
-	    if(buscarRepL!=true&&iniciaTramite!=true){
+	    if(buscarRepL!=true&&iniciaTramite!=true&&consultaSolicitud!=true){
 		    ITRTD("",0,"","40","center","bottom");
 		      IFrame("IPanel1A","95%","34","Paneles.js");
 		    FTDTR();
@@ -129,7 +136,7 @@ function fDefPag(){
 function fOnLoad(){
   frm = document.forms[0];
   
-  if(buscarRepL!=true&&iniciaTramite!=true){
+  if(buscarRepL!=true&&iniciaTramite!=true&&consultaSolicitud!=true){
 	  FRMPanel = fBuscaFrame("IPanel1A");
 	  FRMPanel.fSetControl(self,cPaginaWebJS);
 	  FRMPanel.fShow("Tra,");
@@ -547,13 +554,18 @@ function fRegresaDatosTramite(){
 	}
 }
 
+function fRegresaDatosConsultaSol(){
+	if(top.opener.setDatosPersona){
+		var obj = {};
+		obj.cRFC = frm.cRFC.value;
+		obj.cNomRazonSocial = frm.cNomRazonSocial.value;
+		top.opener.setDatosPersona(obj);
+		top.close();
+	}
+}
+
 function returnPersonaParams(){
-	var obj = {};
-	obj.cRFC = frm.cRFC.value;
-	obj.cNomRazonSocial = frm.cNomRazonSocial.value;
-	obj.cApPaterno = frm.cApPaterno.value;
-	obj.cApMaterno = frm.cApMaterno.value;
-	obj.iTipo = fGetRadioValue(frm.iTipo);
+	
 	return obj;
 }
 

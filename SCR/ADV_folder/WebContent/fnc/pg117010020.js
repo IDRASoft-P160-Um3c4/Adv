@@ -94,15 +94,15 @@ function fDefPag() {
 	FITR();
 
 	ITR();
-	TDEtiCampo(false, "EEtiqueta", 0, " Autorizado a Recoger:",
-			"cNomAutorizaRecoger", "", 50, 100,
-			" Persona Autorizada a Recoger Trámite", "fMayus(this);", "", "",
-			false, "EEtiquetaL", 0);
-	ITD("", 0, "", "", "right");
-	Liga("*Anexar Documentos", "fSubirDocsADV()", "");
-	BR();
-	BR();
-	Liga("*Ver Documentos Anexos", "fVerDocsADV()", "");
+//	TDEtiCampo(false, "EEtiqueta", 0, " Autorizado a Recoger:",
+//			"cNomAutorizaRecoger", "", 50, 100,
+//			" Persona Autorizada a Recoger Trámite", "fMayus(this);", "", "",
+//			false, "EEtiquetaL", 0);
+	ITD("", 2, "", "", "center");
+	Liga("*Anexar Documentos      ", "fSubirDocsADV()", "");
+	FTD();
+	ITD("", 2, "", "", "center");
+	Liga("*Ver Documentos Anexos      ", "fVerDocsADV()", "");
 	FTD();
 
 	FITR();
@@ -147,7 +147,7 @@ function fDefPag() {
 			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "", 10);
 	FTDTR();
 	FinTabla();
-	Liga("*Generar Constancia de no Afectación y Dictamen de Factibiidad",
+	Liga("*Generar Constancia de no Afectación y  Dictamen de Factibiidad o Acuse de solventación de PNC",
 			"fCompruebaFolio()", "");
 		FTDTR();
 	ITRTD("", 0, "", "40", "center", "bottom");
@@ -166,6 +166,7 @@ function fDefPag() {
 	Hidden("hdSelect");
 	Hidden("dtNotificacion");
 	Hidden("dtfechaActual");
+	Hidden("cNomAutorizaRecoger","");	
 	Hidden("iCveUsuario", fGetIdUsrSesion());
 
 	Hidden("iCveTramite", "");
@@ -213,7 +214,7 @@ function fOnLoad() {
 	FRMListadoA.fSetControl(self);
 	FRMListadoA.fSetSelReg(2);
 
-	FRMListadoA.fSetTitulo("F. Entrega,Físico,F. Cotejo,Requisito,");
+	FRMListadoA.fSetTitulo("F. Entrega,Físico,Fecha. Cotejo,Requisito,");
 	FRMListadoA.fSetCampos("3,9,4,5,");
 	FRMListadoA.fSetDespliega("texto,texto,texto,texto,");
 	FRMListadoA.fSetAlinea("center,center,center,left,");
@@ -293,7 +294,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 		fCancelar();
 
 		if (aRes.length == 0) {
-			
+			dictamen = true;
 			if(accionGuardar==true){
 				accionGuardar=false;
 				fRegistraRetraso();
@@ -609,9 +610,10 @@ function fModificar() {
 	
 	if(tienePNC>0){
 		fBuscaDocumentos();
+	}else{
+		preparaCamposModificar();
 	}
 	
-	// fValidaFechaNotif();
 }
 
 function preparaCamposModificar(){
@@ -731,8 +733,6 @@ function fDictamenFactibilidad() {
 				+ "," + cSeparadorRep;
 		fReportes();
 	} else {
-		// fAlert("\n No es posible generar el Dictamen de Factibilidad debe
-		// cotejar todos los requisitos de la solicitud.");
 		fAlert("\n No es posible generar los formatos, debe cotejar todos los requisitos de la solicitud.");
 	}
 }
@@ -740,27 +740,18 @@ function fDictamenFactibilidad() {
 function fNoAfectacion() { // SE AGREGA EL DICTAMEN DE FACTIBILIDAD JUNTO CON
 	// EL DE NO AFECTACION
 
-	// ejer="2015";
-	// sol="4";
-	// cClavesModulo="3,3,";
-	// cNumerosRep="43,44,";
-	// cFiltrosRep= ejer+ "," + sol + "," + cSeparadorRep;
-	// cFiltrosRep +=cFiltrosRep;
-	// fReportes();
-
-//	 cClavesModulo="3,4,";
-//	 cNumerosRep="16,17,";
-//	 cClavesModulo="3,3,3,";
-//	 cNumerosRep="33,34,32,";
-//	 cFiltrosRep= frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," +
-//	 cSeparadorRep;
-//	 cFiltrosRep+=cFiltrosRep;
-	
-	cClavesModulo = "3,3,3,3,";
-	cNumerosRep = "42,45,43,44,";
-	cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
-			+ cSeparadorRep;
-	cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep;
+	if(tienePNC>0){
+		cClavesModulo = "3,";
+		cNumerosRep = "78,";
+		cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
+				+ cSeparadorRep;
+	}else{
+		cClavesModulo = "3,3,3,3,";
+		cNumerosRep = "42,45,43,44,";
+		cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
+				+ cSeparadorRep;
+		cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep;
+	}
 	
 	fReportes();
 }

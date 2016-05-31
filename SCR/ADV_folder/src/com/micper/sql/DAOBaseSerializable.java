@@ -109,7 +109,7 @@ public class DAOBaseSerializable{
       dbConn = new DbConnection(dataSourceName);
       conn = dbConn.getConnection();
       conn.setAutoCommit(false);
-      conn.setTransactionIsolation(8);
+      conn.setTransactionIsolation(2);
 
       pstmt = conn.prepareStatement(cSQL);
       rset = pstmt.executeQuery();
@@ -157,7 +157,7 @@ public class DAOBaseSerializable{
         dbConn = new DbConnection(dataSourceName);
         conn = dbConn.getConnection();
         conn.setAutoCommit(false);
-        conn.setTransactionIsolation(8);
+        conn.setTransactionIsolation(2);
       }
       String cSQL1 = cSQL.toUpperCase();
       cSQL1 = cSQL1.replaceAll("SELECT ","SELECT\n       ");

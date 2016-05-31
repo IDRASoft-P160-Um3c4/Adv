@@ -13,6 +13,8 @@ var aDocDig = new Array();
 var cPermisoPag;
 var tieneResolucion=false;
 var recargaEmergente = false;
+var tieneFolioPNC = false;
+
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgSolicitud.js";
@@ -456,13 +458,19 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 
 	if (cId == "cIdFolPNC" && cError == "") {
 		frm.cFolioPNC.value = aRes[0][0];
+		
+		if(frm.cFolioPNC.value=="")
+			tieneFolioPNC = true;
+		
 		fMuestraFolioPNC();
 		fBuscaResolucion();
 	}
 
 	if (cId == "saveIdFolPNC" && cError == "") {
 		frm.hdBotonAux.value = "";
-		fCancelar();
+		FRMPanel.fSetTraStatus("Disabled");
+		tieneFolioPNC = true;
+		fDisabled(true, "iEjercicio,iNumSolicitud,hdFiltroUsrXDepto,");
 	}
 
 	if (cId == "idFechaActual" && cError == "") {
@@ -580,7 +588,7 @@ function fValidaCampos() {
 }
 
 function fMuestraFolioPNC() {
-	if (lTienePNCNR == true) {
+	if (lTienePNCNR == true&&tieneFolioPNC) {
 		frm.cFolioPNC.disabled = false;
 		FRMPanel.fSetTraStatus("UpdateBegin");
 	}
@@ -620,18 +628,22 @@ function fBuscaResolucion() {
 function fGuardar() {
 
 	if (lTienePNCNR == true) {
-		frm.hdBoton.value = "saveFolioPNC";
-		frm.hdBotonAux.value = "folPNC";
-		fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
+		if(confirm("Se guardará el folio del oficio de PNC, una vez guardado no podrá modificarlo.\n¿Desea continuar con la información en pantalla?")){
+			frm.hdBoton.value = "saveFolioPNC";
+			frm.hdBotonAux.value = "folPNC";
+			fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
+		}
 	}
 
 }
 
 function fGuardarA() {
 	if (lTienePNCNR == true) {
-		frm.hdBoton.value = "saveFolioPNC";
-		frm.hdBotonAux.value = "folPNC";
-		fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
+		if(confirm("Se guardará el folio del oficio de PNC, una vez guardado no podrá modificarlo.\n¿Desea continuar con la información en pantalla?")){
+			frm.hdBoton.value = "saveFolioPNC";
+			frm.hdBotonAux.value = "folPNC";
+			fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
+		}
 	}
 }
 

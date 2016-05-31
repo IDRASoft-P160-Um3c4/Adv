@@ -541,20 +541,20 @@ function fVerificaFechas(){
     if( frm.lValido.value == 1 ) frm.lValidoBOX.checked = true;
     else frm.lValidoBOX.checked = false;
     
-    if(iCol==2){
-      if(aDato[13] != "NO"){
-         ClaveReqActual = aDato[9];
-         DescReqActual  = aDato[10];
-         fAbreValidaRequisito();
-      }
-    }
-    if(iCol == 1 && aDato[14] != "NO"){
-      cPosicionaReq = aDato[9];
-      fRegDocumentos();
-    }
-    if(iCol == 5 && aDato[13] != "0"){
-      fCargaPNCSolCom();
-    }
+//    if(iCol==2){
+//      if(aDato[13] != "NO"){
+//         ClaveReqActual = aDato[9];
+//         DescReqActual  = aDato[10];
+//         fAbreValidaRequisito();
+//      }
+//    }
+//    if(iCol == 1 && aDato[14] != "NO"){
+//      cPosicionaReq = aDato[9];
+//      fRegDocumentos();
+//    }
+//    if(iCol == 5 && aDato[13] != "0"){
+//      fCargaPNCSolCom();
+//    }
     frm.lRecNotificado.value = aDato[15];
     fHabDeshab();
 }

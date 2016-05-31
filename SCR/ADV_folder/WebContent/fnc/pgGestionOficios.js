@@ -179,9 +179,9 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 		if(aRes.length>0){
 			for(var i =0; i<aRes.length;i++){
 				if(aRes[i][4]>0){
-					aRes[i].push("<font color=blue>VER OFICIO</font>");
+					aRes[i].push("<font color=blue>Ver documento...</font>");
 				}else{
-					aRes[i].push("<font color=blue>SUBIR OFICIO</font>");
+					aRes[i].push("<font color=blue>Subir documento...</font>");
 				}
 			}
 		}
@@ -233,6 +233,8 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, lValido) {
 			}
 		
 			fNavega(); //busca los documentos
+		}else{
+			fAlert("\n Solicitud no encontrada. Revise la información en intente nuevamente. ")
 		}
 	}
 }

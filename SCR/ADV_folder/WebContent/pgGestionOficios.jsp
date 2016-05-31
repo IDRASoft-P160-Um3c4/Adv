@@ -77,7 +77,7 @@
 	  }
   
   if(oAccion.getCAccion().equals("buscaDocumentosDGDC")){
-	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud");
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iCveEtapa");
 	    try{
 	    	strOficios = dTRARegReqXTram.buscaDocumentosDGDC(vDinRep, null);
 	    }catch(Exception e){

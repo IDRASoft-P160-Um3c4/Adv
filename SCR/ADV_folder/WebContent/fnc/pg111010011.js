@@ -14,6 +14,7 @@ var iCvePersonaSel = -1;
 var buscarRepl = false;
 var iCveRepresentado = -1;
 var iniciaTramite = false;
+var consultaSol = false;
 
 
 fWrite(JSSource("Carpetas.js"));
@@ -30,6 +31,9 @@ function fBefLoad() {
 		
 		if(top.opener.getIniciaTramite)
 			iniciaTramite =top.opener.getIniciaTramite();
+		
+		if(top.opener.fGetConsultaSolicitud)
+			consultaSol =top.opener.fGetConsultaSolicitud();
 	
 	}
 	if (top.fGetTituloPagina) 
@@ -47,7 +51,7 @@ function fDefPag() { // Define la página a ser mostrada
 	ITRTD("EEtiquetaC", 0, "", "100", "", "");
 		InicioTabla("ETablaInfo", 0, "0", "", "center", "", 1);
 			ITRTD("ETablaST", 16, "", "", "center");
-				TextoSimple("BÚSQUEDA DE SOLICITANTE");
+				TextoSimple("BÚSQUEDA DE PERSONA");
 			FTDTR();
 			ITR();
 				TDEtiCampo(false, "EEtiqueta", 0, "R.F.C.:", "cRFC", "", 14, 13, " R.F.C.",
@@ -88,7 +92,7 @@ function fDefPag() { // Define la página a ser mostrada
 		ITRTD("", 0, "100%", "100%", "center", "middle");
 			var cCadTitulos = "", cCadPaginas = "";
 			
-			if(buscarRepl!=true&&iniciaTramite!=true){
+			if(buscarRepl!=true&&iniciaTramite!=true&&consultaSol==true){
 				cCadTitulos += "Datos Generales<br>de la Persona|Representante<br>Legal|";
 				cCadPaginas += "pg111010011A.js|pg111010013.js|";
 			}else{
@@ -326,4 +330,9 @@ function cargaRepresentantesAsignados(){
 		FRMObj2.setICveRepresentado(iCvePersonaSel);
 		FRMObj2.fBuscaAsignados();
 	}
+}
+
+
+function getConsultaSol(){
+	return consultaSol;
 }

@@ -67,8 +67,8 @@ public class ConsultaExcel extends HttpServlet {
 				         "       TRAREGSOLICITUD.ICVEDEPARTAMENTO, " +//17
 				         "       GRLDEPARTAMENTO.CDSCBREVE AS CDSCBREVEDEPTO, " +//18
 				         "       TRAREGSOLICITUD.CDSCBIEN, " +//19
-				         "       TREXMT.ICVEETAPA AS ICVEETA, " +//20
-				         "       E.CDSCETAPA, " +//21
+				         "       0 AS ICVEETA, " +//20
+				         "       '' as CDSCETAPA, " +//21
 				         "       TRAREGSOLICITUD.DTENTREGA, " +//22
 				         "       O1.CDSCBREVE as COFIRESUELVE, " +//23
 				         "       D1.CDSCBREVE AS CDPTORESUELVE, " +//24
@@ -107,9 +107,9 @@ public class ConsultaExcel extends HttpServlet {
 				         "    AND TXO.ICVETRAMITE= TRAREGSOLICITUD.ICVETRAMITE " +
 				         "  JOIN GRLOFICINA O1 ON O1.ICVEOFICINA = txo.ICVEOFICINARESUELVE " +
 				         "  JOIN GRLDEPARTAMENTO D1 ON D1.ICVEDEPARTAMENTO = TXO.ICVEDEPTORESUELVE " +
-				         "  LEFT JOIN TRAREGETAPASXMODTRAM TREXMT ON TRAREGSOLICITUD.IEJERCICIO = TREXMT.IEJERCICIO " +
-				         "    AND TRAREGSOLICITUD.INUMSOLICITUD = TREXMT.INUMSOLICITUD" +
-				         "  JOIN TRAETAPA E ON E.ICVEETAPA = TREXMT.ICVEETAPA" +
+//				         "  LEFT JOIN TRAREGETAPASXMODTRAM TREXMT ON TRAREGSOLICITUD.IEJERCICIO = TREXMT.IEJERCICIO " +
+//				         "    AND TRAREGSOLICITUD.INUMSOLICITUD = TREXMT.INUMSOLICITUD" +
+//				         "  JOIN TRAETAPA E ON E.ICVEETAPA = TREXMT.ICVEETAPA" +
 				         "  LEFT JOIN TRAREGTRAMXSOL ON TRAREGSOLICITUD.IEJERCICIO = TRAREGTRAMXSOL.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRAREGTRAMXSOL.INUMSOLICITUD "+
 				         "  JOIN TRAREGDATOSADVXSOL DAT ON TRAREGSOLICITUD.IEJERCICIO = DAT.IEJERCICIO  AND TRAREGSOLICITUD.INUMSOLICITUD = DAT.INUMSOLICITUD "+
 				         "  JOIN TRACATCARRETERA CAR ON DAT.ICVECARRETERA = CAR.ICVECARRETERA "+ 
@@ -118,21 +118,24 @@ public class ConsultaExcel extends HttpServlet {
 				       	 "LEFT JOIN TRADATOSPERM FOL ON TRAREGSOLICITUD.IEJERCICIO=FOL.IEJERCICIO  "+
 				   		      "  AND TRAREGSOLICITUD.INUMSOLICITUD=FOL.INUMSOLICITUD     "+
 				         "where "+ filtro +
-				         " AND (SELECT COUNT(TRAREGETAPASXMODTRAM.IORDEN) FROM TRAREGETAPASXMODTRAM WHERE " +
-				         " TRAREGETAPASXMODTRAM.IEJERCICIO = TRAREGSOLICITUD.IEJERCICIO AND " +
-				         " TRAREGETAPASXMODTRAM.INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD AND " +
-				         " TRAREGETAPASXMODTRAM.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE AND " +
-				         " TRAREGETAPASXMODTRAM.ICVEMODALIDAD = TRAREGSOLICITUD.ICVEMODALIDAD) >= 1 " +
-				         " AND TREXMT.iOrden = " +
-				         " ( " +
-				         "   SELECT " + 
-				         "   MAX(EMT.iOrden) " +
-				         "   FROM TRARegEtapasXModTram EMT " +
-				         "   WHERE TRARegSolicitud.IEJERCICIO = EMT.IEJERCICIO " +
-				         "   AND TRARegSolicitud.INUMSOLICITUD = EMT.INUMSOLICITUD " +
-				         "   AND TRARegSolicitud.iCveTramite = EMT.iCveTramite " +
-				         "   AND TRARegSolicitud.iCveModalidad = EMT.iCveModalidad " +
-				         " ) order by " + orden;
+//				         " AND (" +
+//				         "SELECT COUNT(TRAREGETAPASXMODTRAM.IORDEN) FROM TRAREGETAPASXMODTRAM WHERE " +
+//				         " TRAREGETAPASXMODTRAM.IEJERCICIO = TRAREGSOLICITUD.IEJERCICIO AND " +
+//				         " TRAREGETAPASXMODTRAM.INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD AND " +
+//				         " TRAREGETAPASXMODTRAM.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE AND " +
+//				         " TRAREGETAPASXMODTRAM.ICVEMODALIDAD = TRAREGSOLICITUD.ICVEMODALIDAD" +
+//				         ") >= 1 " +
+//				         " AND TREXMT.iOrden = " +
+//				         " ( " +
+//				         "   SELECT " + 
+//				         "   MAX(EMT.iOrden) " +
+//				         "   FROM TRARegEtapasXModTram EMT " +
+//				         "   WHERE TRARegSolicitud.IEJERCICIO = EMT.IEJERCICIO " +
+//				         "   AND TRARegSolicitud.INUMSOLICITUD = EMT.INUMSOLICITUD " +
+//				         "   AND TRARegSolicitud.iCveTramite = EMT.iCveTramite " +
+//				         "   AND TRARegSolicitud.iCveModalidad = EMT.iCveModalidad" +
+//				         ")" +
+				         " order by " + orden;
 
 		TDTRARegSolicitud objSol = new TDTRARegSolicitud();
 

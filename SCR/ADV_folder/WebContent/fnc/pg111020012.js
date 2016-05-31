@@ -67,7 +67,7 @@ function fDefPag() {
 	ITR();
 	IFrame("IListadoModalidades", "100%", "120", "Listado.js", "yes", true);
 	FITR("ETablaST", 0, "100%", "", "center");
-	TextoSimple("Requisitos Entregados");
+	TextoSimple("Requisitos entregados de manera digital");
 	FITR();
 	IFrame("IListado12B", "100%", "130", "Listado.js", "yes", true);
 	FTR();
@@ -119,11 +119,11 @@ function fDefPag() {
 			"RepLegal_cDscDomicilio", "", "Domicilio", "fMayus(this);", "", "",
 			false, false, false, "EEtiquetaL", 0);
 	FITR();
-	TDEtiCampo(true, "EEtiqueta", 0, "Órgano Administrativo:",
-			"cOrganoAdminTxt", "", 50, 100,
-			" Organo Administrativo al que se Dirige", "fMayus(this);", "", "",
-			false, "EEtiquetaL", 0);
-	FITR();
+//	TDEtiCampo(true, "EEtiqueta", 0, "Órgano Administrativo:",
+//			"cOrganoAdminTxt", "", 50, 100,
+//			" Organo Administrativo al que se Dirige", "fMayus(this);", "", "",
+//			false, "EEtiquetaL", 0);
+//	FITR();
 	TDEtiCampo(true, "EEtiqueta", 0, " Fecha de la Visita Técnica:",
 			"dtVisita", "", 10, 10, " Fecha de la Visita Técnica",
 			"fMayus(this);", "", "", false, "", 0);
@@ -168,20 +168,20 @@ function fDefPag() {
 	TDEtiCampo(false, "EEtiqueta", 0, "Longitud:", "tLongitud", "", 50, 100,
 			" Longitud", "fMayus(this);", "", "", false, "EEtiquetaL", 0);
 	FITR();
-	TDEtiAreaTexto(
-			false,
-			"EEtiqueta",
-			1,
-			"Observaciones:",
-			49,
-			4,
-			"cObsTramite",
-			"",
-			"Observaciones",
-			"fMayus(this);",
-			"",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
-			true, true, true, "ECampo", 0);
+//	TDEtiAreaTexto(
+//			false,
+//			"EEtiqueta",
+//			1,
+//			"Observaciones:",
+//			49,
+//			4,
+//			"cObsTramite",
+//			"",
+//			"Observaciones",
+//			"fMayus(this);",
+//			"",
+//			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+//			true, true, true, "ECampo", 0);
 	FTR();
 	FinTabla();
 
@@ -195,6 +195,7 @@ function fDefPag() {
 	FinTabla();
 
 	Hidden("iCveOficina", "");
+	Hidden("cOrganoAdminTxt", "");
 	Hidden("cNomAutorizaRecoger", "");
 	Hidden("cEnviarResolucionA", "");
 	Hidden("cCveTramiteTEMP");
@@ -205,6 +206,8 @@ function fDefPag() {
 	Hidden("iCveRepLegal");
 	Hidden("iCveDomicilioRepLegal");
 	Hidden("iIdBien");
+	Hidden("cObsTramite","");
+	
 
 	if (top.fGetUsrID())
 		Hidden("iCveUsuario", top.fGetUsrID());

@@ -151,7 +151,11 @@ function fSelReg(aDato, iCol) {
 	
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
+	
+	if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0)
+		fBuscaRetraso();
 
+	setTimeout(function(){
 	if (iCol == 7){//click acciones
 		
 		if(aDato[5]=="Si"){
@@ -162,11 +166,9 @@ function fSelReg(aDato, iCol) {
 		}	
 	}else if (iCol == 6){//click acciones
 		fDocsTramite();
-	}else{
-		if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0)
-			fBuscaRetraso();
 	}
-
+	},250);
+	
 }
 
 function fValidaDocumentos() {

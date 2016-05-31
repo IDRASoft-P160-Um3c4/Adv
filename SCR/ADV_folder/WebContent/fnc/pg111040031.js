@@ -13,6 +13,7 @@ var iEtapaRecibeResolucion = 0;
 var iEtapaResEnviadaOficialia = 0;
 var isDGDCusr = false;
 var cPermisoPag;
+
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg111040031.js";
@@ -52,7 +53,7 @@ function fDefPag() {
 	Hidden("hdLlave");
 	ITRTD("", 0, "", "", "center");
 	InicioTabla("ETablaInfo1", 0, "", "", "center", "", "1");
-	TDEtiSelect("true", "EEtiqueta", 0, "Unidad Administrativa: ",
+	TDEtiSelect("true", "EEtiqueta", 0, "Centro SCT: ",
 			"iCveOficinaFiltro", "", "", 0);
 	FinTabla();
 
@@ -165,15 +166,23 @@ function fOnLoad() {
 	// FRMListado
 	// .fSetAlinea("center,center,center,center,center,center,center,center,left,center,center,center,center,center,center,center,center,center,center,");
 
-	FRMListado
-			.fSetTitulo("Ejercicio,Solicitud,F. Registro,Tipo Permiso,Promovente, Autopista, Cadenamientos y Sentidos, Justificación, Días Transcurridos,Estatus,Resolución V.T.,Eval. S. Técnicos,Eval. A. Jurídicos,Núm. Permiso,F. Impr. de Permiso,Unidad Administrativa,F. Visita Técnica,Tiene PNC, Tiene Retraso, Georeferencia,");
-	FRMListado
-			.fSetCampos("0,1,10,4,8,29,43,34,26,27,35,30,31,37,38,16,40,39,47,48,");
+//	FRMListado
+//			.fSetTitulo("Ejercicio,Solicitud,F. Registro,Tipo Permiso,Promovente, Autopista, Cadenamientos y Sentidos, Justificación, Días Transcurridos,Estatus,Resolución V.T.,Eval. S. Técnicos,Eval. A. Jurídicos,Núm. Permiso,F. Impr. de Permiso,Unidad Administrativa,F. Visita Técnica,Tiene PNC, Tiene Retraso, Georeferencia,");
+//	FRMListado
+//			.fSetCampos("0,1,10,4,8,29,43,34,26,27,35,30,31,37,38,16,40,39,47,48,");
+	
 
 	FRMListado
-			.fSetDespliega("texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,");
+	.fSetTitulo("Ejercicio, Solicitud, Fecha Registro, Promovente, Tipo Permiso, Unidad Administrativa, Autopista , Cadenamientos y Sentidos, " +
+			"Georeferencia, Destino, F. Visita Técnica, Resolución V.T., Eval. S. Técnicos,Eval. A. Jurídicos, Días Transcurridos, Estatus,Núm. Permiso,F. Impr. de Permiso,Tiene PNC, Tiene Retraso, ");
+	
 	FRMListado
-			.fSetAlinea("center,center,center,center,center,center,center,center,left,center,center,center,center,center,center,center,center,center,center,center,");
+	.fSetCampos("0,1,10,8,4,16,29,43,48,34,40,35,30,31,26,27,37,38,39,47,")
+
+	FRMListado
+			.fSetDespliega("texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,texto,");
+	FRMListado
+			.fSetAlinea("center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,center,");
 	// fDisabled(true,"iCveTramiteFiltro,cRfc,iEjercicioFiltro,iNumSolicitudFiltro,");
 	fDisabled(
 			true,
@@ -280,14 +289,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 				if (aRes[i][39] != "" && aRes[i][39] != "null"
 						&& aRes[i][39] > 0) {
 					aRes[i][39] = 'SI';
-				} else
-					aRes[i][39] = 'NO';
+				} //else
+					//aRes[i][39] = 'NO';
 				
 				if (aRes[i][47] != "" && aRes[i][47] != "null"
 					&& aRes[i][47] > 0) {
 				aRes[i][47] = 'SI';
-			} else
-				aRes[i][47] = 'NO';
+			} //else
+				//aRes[i][47] = 'NO';
 
 				
 				if (aRes[i][41] != "" && aRes[i][42] != "") {
@@ -398,16 +407,17 @@ function fBorrar() {
 
 // LLAMADO desde el Listado cada vez que se selecciona un renglon
 function fSelReg(aDato, iCol) {
+	
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
 	// frm.iCveTramiteA1.value = aDato[2];
 	frm.cDscTramite.value = aDato[4];
 	frm.cDscModalidad.value = aDato[6];
 	frm.cDscOficinaUsr.value = aDato[16];
-	if (iCol == 18 && aDato[41] != "" && aDato[42] != "")
+	
+	if (iCol == 8 && aDato[41] != "" && aDato[42] != "")
 		window.open("https://maps.google.com/maps?q=" + aDato[41] + ","
 				+ aDato[42]);
-	// alert(aDato[41]+","+aDato[42]);
 }
 
 // FUNCION donde se generan las validaciones de los datos ingresados
@@ -610,11 +620,11 @@ function setFiltroConsulta() {
 					+ frm.iNumSolicitudFiltro.value;
 	}
 
-	if (frm.hdFiltro.value != "")
-		frm.hdFiltro.value = frm.hdFiltro.value
-				+ " and TRARegSolicitud.lImpreso is not null ";
-	else
-		frm.hdFiltro.value = " TRARegSolicitud.lImpreso is not null ";
+//	if (frm.hdFiltro.value != "")
+//		frm.hdFiltro.value = frm.hdFiltro.value
+//				+ " and TRARegSolicitud.lImpreso is not null ";
+//	else
+//		frm.hdFiltro.value = " TRARegSolicitud.lImpreso is not null ";
 
 	if (frm.iCveTramiteA1.value != "" && frm.iCveTramiteA1.value != "-1") {
 		if (frm.hdFiltro.value != '')
@@ -659,4 +669,15 @@ function fShowIrregulares() {
 	} else {
 		fAbreSubWindowSinPermisos("pg117010050", "750", "425");
 	}
+}
+
+
+function fGetConsultaSolicitud(){
+	return true;
+}
+
+
+function setDatosPersona(obj){	
+	frm.cRfc.value = obj.cRFC;
+	frm.cNombre.value =obj.cNomRazonSocial
 }

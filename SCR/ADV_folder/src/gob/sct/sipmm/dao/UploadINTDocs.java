@@ -35,14 +35,14 @@ public class UploadINTDocs extends HttpServlet {
 
 		String dataSourceName = VParametros.getPropEspecifica("ConDBModulo");
 
-		DbConnection dbConn = null;
-		Connection conn = null;
-
 		DbConnection dbConnCM = null;
 		Connection connCM = null;
 
 		DbConnection dbConnFiles = null;
 		Connection connFiles = null;
+		
+		int maxSizeFiles = Integer.parseInt(VParametros.getPropEspecifica("maxSizeFiles"));
+		long maxSizeFile = Long.parseLong(VParametros.getPropEspecifica("maxSizeFile"));
 
 		PreparedStatement lPStmt = null, lpsfirma = null;
 
@@ -54,10 +54,6 @@ public class UploadINTDocs extends HttpServlet {
 		try {
 
 			// Generaciï¿½n de la Conexiï¿½n
-			dbConn = new DbConnection(dataSourceName);
-			conn = dbConn.getConnection();
-			conn.setAutoCommit(false);
-			conn.setTransactionIsolation(2);
 			
 			dbConnCM = new DbConnection(dataSourceName);
 			connCM  = dbConnCM.getConnection();
@@ -298,17 +294,18 @@ public class UploadINTDocs extends HttpServlet {
 
 			}
 
-			// /////ADV
-
-			// validacion de tamaño en conjunto y tamaño por archivo
-			long fileMaxSize = 1024 * 1024 * 5L;// 5 mb
-
 			Iterator iterValid = items.iterator();
-
+			
+			String modTramSql = "SELECT ICVETRAMITE iCOLA, ICVEMODALIDAD iCOLB FROM TRAREGSOLICITUD WHERE IEJERCICIO= "+cEjercicio+" AND INUMSOLICITUD="+cNumSolicitud;
+			Vector vec = dSolicitud.findByCustom("",modTramSql);
+			TVDinRep vdin = (TVDinRep) vec.get(0);
+			Integer tram =vdin.getInt("ICOLA");
+			Integer mod = vdin.getInt("ICOLB");
+			
 			while (iterValid.hasNext()) {
 				FileItem item = (FileItem) iterValid.next();
 
-				if (!item.isFormField() && item.getSize() > fileMaxSize) {
+				if (!item.isFormField() && item.getSize() > maxSizeFile* 1024 * 1024) {
 					nombre = item.getName();
 					index = nombre.lastIndexOf('\\');
 					index = index + 1;
@@ -317,20 +314,20 @@ public class UploadINTDocs extends HttpServlet {
 							response,
 							"El tamaño del archivo \""
 									+ nombre
-									+ "\" es mayor a 5mb. Revise el documento e intente nuevamente.");
+									+ "\" es mayor a "+maxSizeFile+"mb. Revise el documento e intente nuevamente.");
 					return;
 				}
 			}
+			
+			String sRequisitos = "";
 
 			if (lFiel.equals("1")) {
 
-				vDinRep = dSol.insert(vDinRep, conn); // rollback conn
+				vDinRep = dSol.insert(vDinRep, connFiles); // rollback conn
 				String lSQL = "update INTTRAMITES set lFIEL = 1 where iEjercicio = "
 						+ cEjercicio + " AND iNumSolicitud = " + cNumSolicitud;
-				lPStmt = conn.prepareStatement(lSQL);
+				lPStmt = connFiles.prepareStatement(lSQL);
 				lPStmt.executeUpdate();
-
-				String prefij = "cReq";
 
 				iter = items.iterator();
 				
@@ -344,39 +341,45 @@ public class UploadINTDocs extends HttpServlet {
 						.getPropEspecifica("entidadCM")
 						.toString();
 				
+				String prefijo = "cReq";
 				
 				while (iter.hasNext()) {
 					FileItem item = (FileItem) iter.next();
 					if (item.isFormField()) {
-
+						
+						System.out.println(item.getFieldName());
+						
 						if (item.getFieldName().length() > 10
 								&& item.getFieldName().substring(0, 10)
 										.equals("CDOCUMENTO"))
-							vData.put("CDOCUMENTO", item.getString());
+							vData.put("CDOCUMENTO", item.getFieldName().substring(0, 10));
 
 						if (item.getFieldName().length() > 6
 								&& item.getFieldName().substring(0, 6)
 										.equals("CCAMPO")) {
-							vData.put("CCAMPO", item.getString());
-							vData.put("ICVEREQUISITO", item.getString()
-									.substring(prefij.length()).trim());
+							
 						}
+					} 
+					else { // carga de archivos
+						
 
-					} else { // carga de archivos
-
-						k++;
 						vData = new TVDinRep();
 						vData.put("iEjercicio", cEjercicio);
 						vData.put("iNumSolicitud", cNumSolicitud);
-
+						
+						Integer cveReqAct = Integer.parseInt(item.getFieldName().substring(prefijo.length()));
+//
 						nombre = item.getName();
 						index = nombre.lastIndexOf('\\');
 						index = index + 1;
 						nombre = nombre.substring(index);
-
-						if (nombre.length() > 0) {
-
-							vData.put("CNOMARCHIVO", nombre);
+						
+						
+						System.out.println(item.getFieldName());
+						System.out.println(item.getFieldName().substring(0,prefijo.length()));
+						
+						
+						if (item.getFieldName().substring(0,prefijo.length()).equals(prefijo)&&nombre.length() > 0) {
 
 							String guid = UUID.randomUUID().toString();
 
@@ -406,17 +409,21 @@ public class UploadINTDocs extends HttpServlet {
 										IIDGESTORDOCUMENTO.toString() };
 								
 								if (cmImport1.connect(keys, values, item.get()).compareTo("0") == 0) {
+									vData.put("IIDGESTORDOCUMENTO",IIDGESTORDOCUMENTO);
+									vData.put("ICVEREQUISITO", cveReqAct);
+									dSol.insertDocto(vData, connFiles);
+																	
+									lPStmt = null;
+									
+									String cSQLReq = "UPDATE TRARegReqXTram SET dtRecepcion = CURRENT_DATE WHERE iEjercicio="+iEjercicio+" AND iNumSolicitud="+iNumSol+" AND iCveRequisito="+cveReqAct;
+									
+									System.out.println(cSQLReq);
 
-								vData.put("IIDGESTORDOCUMENTO",IIDGESTORDOCUMENTO);
-								dSol.insertDocto(vData, connFiles);
-
-								vData.put("ICVETRAMITE", vData.getInt("ICVETRAMITEINT"));
-								vData.put("IORDEN", iOrden++);
-			                    vData.put("cValor1", vData.getString("CDOCUMENTO"));
-			                    vData.put("cValor2", "DOC-"+vData.getString("ICVEDOCDIG"));
-			                    vData.put("ICONSECUTIVO",vData.getInt("ICVECONSECUTIVO"));                                   			                    
-								dSol.insertOneRecord(vData, conn);								
-								
+									lPStmt = connFiles.prepareStatement(cSQLReq);
+									
+									lPStmt.executeUpdate();
+									lPStmt.close();
+									
 								} else {
 									System.out
 											.println("el content regreso algo difernte de 0");
@@ -436,13 +443,13 @@ public class UploadINTDocs extends HttpServlet {
 						}
 					}			
 				}
-				connFiles.commit();
-				
+							
 				dSolicitud.updateFechaCompromiso(
 						iEjercicio,
-						Integer.valueOf(cNumSolicitud), conn);
-				lSQL = "INSERT INTO INTFIRMADO (ICVETRAMITE,ICONSECUTIVO,TSREGISTRO,CRFC,CCADORIGEN,CCADFIRMA,cFirmante,iCveCertificado) VALUES (?,?,{FN NOW()},?,?,?,?,?)";
-				lpsfirma = conn.prepareStatement(lSQL);
+						Integer.valueOf(cNumSolicitud), connFiles);
+				
+				lSQL = "INSERT INTO INTFIRMADO (ICVETRAMITE,TSREGISTRO,CRFC,CCADORIGEN,CCADFIRMA,cFirmante,iCveCertificado) VALUES (?,CURRENT_TIMESTAMP,?,?,?,?,?)";
+				lpsfirma = connFiles.prepareStatement(lSQL);
 
 				if (CCADORIGEN.length() > 4999)
 					CCADORIGEN = CCADORIGEN.substring(0, 4999);
@@ -454,23 +461,23 @@ public class UploadINTDocs extends HttpServlet {
 				}
 				BASE64Encoder b64 = new BASE64Encoder();
 				CCADFIRMA = b64.encode(aRestFirma);
-
+				
 				lpsfirma.setInt(1, vDinRep.getInt("iNumCita"));
-				lpsfirma.setInt(2, 1);
-				lpsfirma.setString(3, CRFCFirma);
-				lpsfirma.setString(4, CCADORIGEN);
-				lpsfirma.setString(5, CCADFIRMA);
-				lpsfirma.setString(6, cFirmante);
-				lpsfirma.setString(7, cCveCertificado);
+				lpsfirma.setString(2, CRFCFirma);
+				lpsfirma.setString(3, CCADORIGEN);
+				lpsfirma.setString(4, CCADFIRMA);
+				lpsfirma.setString(5, cFirmante);
+				lpsfirma.setInt(6, Integer.parseInt(cCveCertificado));
 				lpsfirma.executeUpdate();
-				conn.commit();
+				
+				connFiles.commit();
+				loadPag(VParametros, response, null);
 			}
 		}catch (FileUploadBase.SizeLimitExceededException se) {
 			se.printStackTrace();
-			loadPag(VParametros, response, "El conjunto de archivos excede el limite de 50 Mb. Revise los archivos e intente nuevamente.");
+			loadPag(VParametros, response, "El conjunto de archivos excede el limite de "+maxSizeFiles+"Mb. Revise los archivos e intente nuevamente.");
 		} catch (Exception e) {
 			try {
-				conn.rollback();
 				connFiles.rollback();
 			} catch (Exception ex) {
 				ex.printStackTrace();
@@ -485,11 +492,7 @@ public class UploadINTDocs extends HttpServlet {
 				if (lpsfirma != null) {
 					lpsfirma.close();
 				}
-				if (conn != null) {
-					conn.close();
-				}
-				dbConn.closeConnection();
-				
+							
 				if (connCM != null) {
 					connCM.close();
 				}

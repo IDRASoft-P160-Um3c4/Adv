@@ -42,6 +42,10 @@ public class UploadOficioADV2016 extends HttpServlet {
 
 		DbConnection dbConnCMFolio = null;
 		Connection connCMFolio = null;
+		
+		int maxSizeFiles = Integer.parseInt(VParametros.getPropEspecifica("maxSizeFiles"));
+		long maxSizeFile = Long.parseLong(VParametros.getPropEspecifica("maxSizeFile"));
+
 
 		PreparedStatement lPStmt = null, lpsfirma = null;
 
@@ -78,7 +82,7 @@ public class UploadOficioADV2016 extends HttpServlet {
 
 			// GeneraciÃ³n de la configuraciÃ³n
 			DiskFileItemFactory factory = new DiskFileItemFactory();
-			factory.setSizeThreshold(50 * 1024 * 1024); // limite de 50mb por
+			factory.setSizeThreshold(maxSizeFiles * 1024 * 1024); // limite de 50mb por
 														// conjunto
 			factory.setRepository(new File("."));
 			ServletFileUpload upload = new ServletFileUpload(factory);
@@ -94,13 +98,10 @@ public class UploadOficioADV2016 extends HttpServlet {
 
 			String prefijoFile = "fileButonADV";
 
-			// validacion de tamaño en conjunto y tamaño por archivo
-			long fileMaxSize = 1024 * 1024 * 5L;// 5 mb
-
 			while (iterValid.hasNext()) {
 				FileItem item = (FileItem) iterValid.next();
 
-				if (!item.isFormField() && item.getSize() > fileMaxSize) {
+				if (!item.isFormField() && item.getSize() > maxSizeFile* 1024 * 1024) {
 					nombre = item.getName();
 					index = nombre.lastIndexOf('\\');
 					index = index + 1;
@@ -109,7 +110,7 @@ public class UploadOficioADV2016 extends HttpServlet {
 							response,
 							"El tamaño del archivo \""
 									+ nombre
-									+ "\" es mayor a 5mb. Revise el documento e intente nuevamente.");
+									+ "\" es mayor a "+maxSizeFile+"b. Revise el documento e intente nuevamente.");
 					return;
 				}
 			}
@@ -293,7 +294,7 @@ public class UploadOficioADV2016 extends HttpServlet {
 			loadPag(VParametros, response, null);
 		} catch (FileUploadBase.SizeLimitExceededException se) {
 			se.printStackTrace();
-			loadPag(VParametros, response, "El conjunto de archivos excede el limite de 50 Mb. Revise los archivos e intente nuevamente.");
+			loadPag(VParametros, response, "El conjunto de archivos excede el limite de "+maxSizeFiles+"Mb. Revise los archivos e intente nuevamente.");
 		}
 		catch (Exception e) {
 			try {

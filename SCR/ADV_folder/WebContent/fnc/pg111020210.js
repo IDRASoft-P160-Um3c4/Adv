@@ -78,8 +78,8 @@
                ITRTD("",0,"","1","center");
                InicioTabla("",0,"100%","","","",1);
                   FITR();
-                    TDEtiCampo(true,"EEtiqueta",0,"Fecha de oficio Mayor o Igual a:","dtOficiio","",4,4,"Ejercicio de la solicitud registrada","fMayus(this);","","",true,"");
-                    TDEtiCampo(true,"EEtiqueta",0,"y menor o Igual a:","dtOficiio2","",4,4,"Ejercicio de la solicitud registrada","fMayus(this);","","",true,"");
+//                    TDEtiCampo(true,"EEtiqueta",0,"Fecha de oficio Mayor o Igual a:","dtOficiio","",4,4,"Ejercicio de la solicitud registrada","fMayus(this);","","",true,"");
+//                    TDEtiCampo(true,"EEtiqueta",0,"y menor o Igual a:","dtOficiio2","",4,4,"Ejercicio de la solicitud registrada","fMayus(this);","","",true,"");
                   FTDTR();
                FinTabla();
             FinTabla();
@@ -91,10 +91,7 @@
               FTDTR();
               ITR();
                 ITD("EEtiquetaC",0,"","","center");
-                  Liga("Registrar Notificación","fBuscaDocumentos(false);","Registrar Notificación");
-                  BR();BR();
-                  Liga("Registrar Notificación A Solicitud por Internet","fBuscaDocumentos(true);","Registrar Notificación");
-                  
+                  Liga("Registrar Notificación","fBuscaDocumentos();","Registrar Notificación"); 
                FTD();
               FTD();
            FinTabla();
@@ -102,6 +99,10 @@
        ITRTD("",0,"","40","center","bottom");
        FTDTR();
      FinTabla();
+     
+     Hidden("dtOficiio", "");
+     Hidden("dtOficiio2", "");
+     
    fFinPagina();
  }
  // SEGMENTO Después de Cargar la página (Definición Mandatoria)
@@ -206,7 +207,7 @@
 		if(msgOficios!=""){
 			fAlert("No es posible realizar la acción. "+msgOficios);
 		}else{
-			if(notifInternet==false)
+			if(isTramInt==false)
 				fVerifica();
 			else
 				fNotificaInt();
@@ -214,15 +215,15 @@
 	}
  }
  
- function fBuscaDocumentos(tipo){
-	 
-	 	notifInternet = tipo;
+ function fBuscaDocumentos(){
 		if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0 && frm.iCveEtapa.value>0) {		
 					
 			frm.hdBoton.value = "buscaDocumentosEtapa";
 			frm.hdFiltro.value = "IEJERCICIO ="+ frm.iEjercicio.value+ " AND INUMSOLICITUD = "+ frm.iNumSolicitud.value; 
 			
 		  fEngSubmite("pgGestionOficios.jsp","buscaDocumentosEtapa");
+		}else{
+			fAlert("Debe seleccionar una solicitud válida.");
 		}
 	}
 /*

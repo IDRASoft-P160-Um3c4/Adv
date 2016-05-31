@@ -76,7 +76,7 @@ public class TDTRAFoliosAdv extends DAOBaseSerializable {
 			dbConn = new DbConnection(dataSourceName);
 			conn = dbConn.getConnection();
 			conn.setAutoCommit(false);
-			conn.setTransactionIsolation(8); //serializable;
+			conn.setTransactionIsolation(2); //serializable;
 			
 			
 			Vector vcMaxFolio = new Vector();
@@ -215,7 +215,7 @@ public class TDTRAFoliosAdv extends DAOBaseSerializable {
 			dbConn = new DbConnection(dataSourceName);
 			conn = dbConn.getConnection();
 			conn.setAutoCommit(false);
-			conn.setTransactionIsolation(8); //serializable;
+			conn.setTransactionIsolation(2); //serializable;
 
 			String cSQL = "INSERT INTO GRLPERSONA (ICVEPERSONA,CRFC,CRPA,ITIPOPERSONA,CNOMRAZONSOCIAL,"+
 						  "CAPPATERNO,CAPMATERNO,CCORREOE,CPSEUDONIMOEMP,CCURP) VALUES (?,?,'',?,?,?,?,?,'','')";
@@ -357,7 +357,7 @@ public class TDTRAFoliosAdv extends DAOBaseSerializable {
 			dbConn = new DbConnection(dataSourceName);
 			conn = dbConn.getConnection();
 			conn.setAutoCommit(false);
-			conn.setTransactionIsolation(8); //serializable;
+			conn.setTransactionIsolation(2); //serializable;
 
 			if(!query.trim().equals("")){
 		    	lPStmt = conn.prepareStatement(query);

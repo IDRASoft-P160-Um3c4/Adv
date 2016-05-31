@@ -743,6 +743,8 @@
    else
 	   FRMPanel.fSetTraStatus("AddOnly");  //l aultima etapa debe ser la de verificacion de reqs y no debe tener productos no conformes.
    
+   fCompara();
+   
    if(permiso>0)
 		  FRMPanel.fSetTraStatus("Disabled");
  }
@@ -790,6 +792,7 @@
    } else {
 	   fSelectSetIndexFromValue(frm.lResolucion,-1);
 	   frm.lResolucion.disabled = true;
+	   frm.cObsCIS.disabled= true;
      //frm.lResolucionBOX.checked = false;
      //frm.lResolucionBOX.disabled = true;
      //frm.lResolucion.value = 0;

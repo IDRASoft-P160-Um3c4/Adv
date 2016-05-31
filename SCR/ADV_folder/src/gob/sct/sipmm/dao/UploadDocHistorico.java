@@ -7,6 +7,8 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import net.sf.jasperreports.engine.util.MaxFontSizeFinder;
+
 import org.apache.commons.fileupload.*;
 import org.apache.commons.fileupload.disk.*;
 import org.apache.commons.fileupload.servlet.*;
@@ -41,6 +43,9 @@ public class UploadDocHistorico extends HttpServlet {
 
 		DbConnection dbConnCMFolio = null;
 		Connection connCMFolio = null;
+		
+		int maxSizeFiles = Integer.parseInt(VParametros.getPropEspecifica("maxSizeFiles"));
+		long maxSizeFile = Long.parseLong(VParametros.getPropEspecifica("maxSizeFile"));
 
 		PreparedStatement lPStmt = null, lpsfirma = null;
 
@@ -94,13 +99,10 @@ public class UploadDocHistorico extends HttpServlet {
 
 			int index = 0;
 
-			// validacion de tamaño en conjunto y tamaño por archivo
-			long fileMaxSize = 1024 * 1024 * 5L;// 5 mb
-
 			while (iterValid.hasNext()) {
 				FileItem item = (FileItem) iterValid.next();
 
-				if (!item.isFormField() && item.getSize() > fileMaxSize) {
+				if (!item.isFormField() && item.getSize() > maxSizeFile* 1024 * 1024) {
 					nombre = item.getName();
 					index = nombre.lastIndexOf('\\');
 					index = index + 1;
@@ -109,7 +111,7 @@ public class UploadDocHistorico extends HttpServlet {
 							response,
 							"El tamaño del archivo \""
 									+ nombre
-									+ "\" es mayor a 5mb. Revise el documento e intente nuevamente.");
+									+ "\" es mayor a "+maxSizeFile+"mb. Revise el documento e intente nuevamente.");
 					return;
 				}
 			}
@@ -189,7 +191,7 @@ public class UploadDocHistorico extends HttpServlet {
 			loadPag(VParametros, response, null);
 		} catch (FileUploadBase.SizeLimitExceededException se) {
 			se.printStackTrace();
-			loadPag(VParametros, response, "El conjunto de archivos excede el limite de 50 Mb. Revise los archivos e intente nuevamente.");
+			loadPag(VParametros, response, "El conjunto de archivos excede el limite de "+maxSizeFiles+" Mb. Revise los archivos e intente nuevamente.");
 		}
 		catch (Exception e) {
 			try {

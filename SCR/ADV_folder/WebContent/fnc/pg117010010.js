@@ -173,20 +173,20 @@ function fDefPag() {
 			"fMayus(this);",
 			'onchange="fMxTx(this,750);" onkeydown="fMxTx(this,750);" onblur="fMxTx(this,750);"',
 			true, true, true, "ECampo", 4);
-	TDEtiAreaTexto(
-			false,
-			"EEtiqueta",
-			1,
-			"Observaciones:",
-			75,
-			4,
-			"cObs",
-			"",
-			"Observaciones:",
-			"",
-			"fMayus(this);",
-			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
-			true, true, true, "ECampo", 3);
+//	TDEtiAreaTexto(
+//			false,
+//			"EEtiqueta",
+//			1,
+//			"Observaciones:",
+//			75,
+//			4,
+//			"cObs",
+//			"",
+//			"Observaciones:",
+//			"",
+//			"fMayus(this);",
+//			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"',
+//			true, true, true, "ECampo", 3);
 	// TDEtiAreaTexto(false,"EEtiqueta",1,"Conclusiones:",75,4,"cConclusion","","Conclusiones:","","fMayus(this);",'onkeydown="fMxTx(this,750);"',true,true,true,"ECampo",3);
 	FTDTR();
 	// TDEtiAreaTexto(false,"EEtiqueta",1,"Acuerdos:",75,4,"cAcuerdo","","Acuerdos:","","fMayus(this);",'onkeydown="fMxTx(this,750);"',true,true,true,"ECampo",4);
@@ -215,6 +215,7 @@ function fDefPag() {
 	Hidden("iCveOfic");
 	Hidden("iCveDpto");
 	Hidden("iCveTram");
+	Hidden("cObs","");
 	Hidden("iCveMod");
 	Hidden("iCveEtapa",26);//ide etapa resolucion (hacer propiedad)
 	Hidden("cAcuerdos", "");

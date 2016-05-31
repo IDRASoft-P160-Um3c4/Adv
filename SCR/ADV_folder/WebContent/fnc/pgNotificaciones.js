@@ -10,11 +10,14 @@ var aUsrDepto;
 var ICVETRAMITE=top.opener.fGetiEjercicio()+" / "+top.opener.fGetiNumSolicitud();
 var aNotifica = new Array();
 var lFirst = true;
+var diasDesdeUltimaEtapa=0;
+var msgErr="";
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad(){ 
   cPaginaWebJS = "pgNotificaciones.js";
   //ICVETRAMITE = top.opener.fGetICVETRAMITE();
   aNotifica[0]=[15,'NOTIFICACIÓN'];
+  
 } 
 // SEGMENTO Definición de la página (Definición Mandatoria)
 function fDefPag(){ 
@@ -59,6 +62,10 @@ function fDefPag(){
     FinTabla(); 
     Hidden("INTDOCDIG","");
     Hidden("IID",""+top.fGetUsrID());
+    Hidden("iDiasUltimaEtapa",0);
+    Hidden("iCveEtapa",20);//notificacion, hacer propiedad
+    Hidden("iCveUsuario",fGetIdUsrSesion());
+    
     FTDTR(); 
     ITRTD("",0,"","40","center","bottom"); 
       IFrame("IPanel","95%","34","Paneles.js"); 
@@ -98,7 +105,7 @@ function fNavega(){
     }
 } 
 // RECEPCIÓN de Datos de provenientes del Servidor
-function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave){ 
+function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,msgRetraso){ 
   if(cError=="Guardar") 
     fAlert("Existió un error en el Guardado!"); 
   if(cError=="Borrar") 
@@ -118,24 +125,46 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave){
     if(aRes.length > 0){
     	refrescaOpener();
     	FRMPanel.fSetTraStatus("Disabled");
-    }
+    }else{
+    	fDiasDesdeUltimaEtapa();
+	}    
   } 
+  
+  /****MANEJO DE CONTROL DE TIEMPOS****/
+	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
+		alert("");
+		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
+	}
+	
+	if (cId == "registraRetraso" && cError == "" ) {
+		alert("aaa");
+		if(msgRetraso!="" && parseInt(msgRetraso)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgRetraso+ " días.");
+		doGuardar();
+	}
+
 }
+
 function fNuevo(){ 
-    FRMPanel.fSetTraStatus("UpdateBegin"); 
+	FRMPanel.fSetTraStatus("UpdateBegin"); 
     fBlanked(); 
     fDisabled(false); 
-    FRMListado.fSetDisabled(true); 
+    FRMListado.fSetDisabled(true);
+
  } 
+
+function doGuardar(){
+	 frm.CTIPODSC.value = frm.CTIPO.options[frm.CTIPO.selectedIndex].text; 
+	 frm.submit();
+}
+
  // LLAMADO desde el Panel cada vez que se presiona al botón Guardar
  function fGuardar(){ 
-     frm.CTIPODSC.value = frm.CTIPO.options[frm.CTIPO.selectedIndex].text;
-    if(fValidaTodo()==true){
-       if(confirm(cAlertMsgGen + "\n\n ¿Desea usted generar la notificación? \n\nUna vez generada ésta no podrá ser eliminada ni modificada.")){ 
-    	 frm.submit();
-       }
-    }
+	 if(fValidaTodo()==true&&confirm("¿Desea usted generar la notificación? \n\nUna vez generada ésta no podrá ser eliminada ni modificada.")){
+		 fRegistraRetraso();
+	 }
  } 
+ 
  // LLAMADO desde el Panel cada vez que se presiona al botón Cancelar
  function fCancelar(){ 
     lFirst = true;
@@ -167,15 +196,20 @@ function fNuevo(){
 	    FRMPanel.fSetTraStatus("AddOnly"); 
     }
  }
- function fValidaTodo(){ 
-    cMsg = fValElements(); 
  
-    if(cMsg != ""){ 
-       fAlert(cMsg); 
+ function fValidaTodo(){ 
+    msgErr = fValElements();
+    
+    validaAchivos();
+    
+    if(msgErr != ""){ 
+       fAlert(msgErr); 
        return false; 
     } 
+    
     return true; 
  }
+ 
  function fGetINTDOCDIG(){
 	return frm.INTDOCDIG.value;	
  }
@@ -197,3 +231,60 @@ function refrescaOpener(){
 		top.opener.fNavega();
 	
 }
+
+function validaArchVacios(arrayDocsName) {
+
+	for ( var ab = 0; ab < arrayDocsName.length; ab++) {
+
+		var nomDoc = arrayDocsName[ab][0];
+
+		if (nomDoc == "") {
+			msgErr += "\n- Debe subir todos los documentos para completar la operación.";
+			return true;
+		}
+	}
+	return false;
+
+}
+
+
+function validaAchivos() {
+	
+	msgErr="";
+
+	var valRet = false;
+	var arrayFilesNames = fGetFilesValues(frm);
+
+	if (validaArchVacios(arrayFilesNames) == true) {
+		valRet = true;
+	}
+
+	if (validaDocExt(arrayFilesNames) == true) {
+		valRet = true;
+	}
+
+	return valRet;
+
+}
+
+function validaDocExt(arrayDocsName) {
+	for ( var ab = 0; ab < arrayDocsName.length; ab++) {
+
+		var nomDoc = arrayDocsName[ab][0];
+
+		if (nomDoc != "") {
+
+			var arrNom = nomDoc.split('.');
+			var tam = arrNom.length;
+			var extDoc = arrNom[tam - 1];
+
+			if (extDoc.toUpperCase() != "PDF") {
+				msgErr += "\n- Existen documentos que no cumplen con el formato PDF. Favor de verificarlos.";
+				return true;
+			}
+
+		}
+	}
+	return false;
+}
+

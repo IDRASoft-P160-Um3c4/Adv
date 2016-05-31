@@ -199,7 +199,6 @@ function fOnLoad() { // Carga información al mostrar la página.
 	FRMPanel.fShow("Tra,");
 	guardado = 0;
 	frm.LFGA.value = "0";
-	frm.LFGA.value = "0";
 	fEnProceso(false);
 	fNewTram();
 }
@@ -253,7 +252,7 @@ function fNewTram() {
 				+ FRMTramites.getCTIPOPERMISIONARIO()
 				+ "<BR>Modalidad: "
 				+ FRMTramites.getCDSCTIPOTRAMITE()
-				+ "<BR><BR> Los documentos digitales que se anexen deberán encontrarse digitalizados bajo formato PDF,<BR>y no deberán de exceder de 2 MBytes por archivo."
+				+ "<BR><BR> Los documentos digitales que se anexen deberán encontrarse digitalizados bajo formato PDF,<BR>y no deberán de exceder de 8 MB por archivo y 50 MB en conjunto."
 				+ "<BR><BR>Deberá adjuntar los documentos que se indican como obligatorios (*), en caso de no adjuntar los<BR>documentos requeridos será sujeto a una notificación de prevención o rechazo.";
 		frm.iNumCita.value = FRMTramites.frm.iNumCita.value;
 		frm.iCveTramite.value = FRMTramites.frm.iCveTramiteTmp.value;
@@ -515,7 +514,7 @@ function fGenSol(aRes, cSol, aRes2, cOrigen, cFirma, cFirmante){
 			lFin = 0;
 
 		for (var i = 0; i < aRes.length; i++) {
-			
+						
 			if (aRes[i][10] == 0) {
 				if (cIntroTabla == '')
 					cTabla += ITR() + ITD("EEtiqueta")
@@ -538,7 +537,7 @@ function fGenSol(aRes, cSol, aRes2, cOrigen, cFirma, cFirmante){
 			}
 			iHdrAnt = aRes[i][10];
 		}
-
+		
 		if (cIntroTabla != '')
 			cTabla += ITRTD("", 20, "", "", "center")
 					+ InicioTabla("ETablaInfo", 0) + ITR() + cTitTabla + FTR()
@@ -650,7 +649,8 @@ function fGenSol(aRes, cSol, aRes2, cOrigen, cFirma, cFirmante){
 									// NO NI SE LLENAN LOS COMBOS
 			fLlenaCombos(aSelect[3]);
 		}
-		FRMPanel.fSetTraStatus("UpdateBegin");
+		
+		
 		if (aRes2.length > 0) {
 			if (frm.LFINALIZADO.value == 0) {
 				FRMPanel.fSetTraStatus(",");
@@ -729,108 +729,37 @@ function fSetField(aField, lEtiqueta, aRes2) {
 	cMan = '';
 	cCampo = '';
 	cAst = '';
-	if (aField[8] == 1) {
-		cMan = Hidden('HDMF-1-' + aField[1], aField[2]);
-		cAst = '*';
-	}
-	if (lEtiqueta == true && aField[4] != 7)
-		cCampo = ITD("EEtiqueta") + TextoSimple(cAst + aField[2] + ":" + SP())
-				+ FTD();
-
-	if (aField[4] == 0) { // Agrupador
-		cCampo = ITD("ESTitulo", 20) + aField[2] + FTD();
-	}
-	if (aField[4] == 1) { // AreaTexto
+		
+	if (aField[3] == 7) { // Adjuntar
 		cValor = '';
-		iSelRec = fGetValue(aRes2, aField[1]);
-		if (iSelRec != -1)
-			cValor = aRes2[iSelRec][3];
-		aAT[iAT++] = [ aField[1], cValor ];
-		cCampo += ITD()
-				+ cMan
-				+ AreaTexto(false, 40, 3, aField[1], "", aField[2], "",
-						"fMayus(this);", 'onkeydown="fMxTx(this,' + aField[3]
-								+ ');"') + FTD();
-	}
-	if (aField[4] == 2) { // Texto
-		cValor = '';
-		iSelRec = fGetValue(aRes2, aField[1]);
-		if (iSelRec != -1)
-			cValor = aRes2[iSelRec][3];
-		cCampo += ITD()
-				+ cMan
-				+ Text(false, aField[1], cValor, aField[3], aField[3],
-						aField[2], "fMayus(this);") + FTD();
-	}
-	if (aField[4] == 3) { // Select
-		cValor = '';
-		iSelRec = fGetValue(aRes2, aField[1]);
-		if (iSelRec != -1)
-			cValor = aRes2[iSelRec][3];
-		cCampo += ITD()
-				+ Select(aField[1], "fSetOnchange('" + aField[12] + "', '"
-						+ aField[6] + "', '" + aField[1] + "', '" + cValor
-						+ "');") + FTD();
-		aSelect[iSel] = [ aField[5], aField[6], aField[7], aField[1], cValor,
-				aField[12] ];
-		iSel++;
-	}
-	if (aField[4] == 4) { // Image
-		cCampo = ITD("EEtiquetaC", 20) + Img(aField[1], aField[2]) + FTD();
-	}
-	if (aField[4] == 5) { // CAMBIO DE RENGLÓN
-		cCampo = FITR();
-	}
-	if (aField[4] == 6) { // LIGA
-		iAdjuntar = 1;
-		cValor = '';
-		iSelRec = fGetValue(aRes2, aField[1]);
-		if (iSelRec != -1)
-			cValor = aRes2[iSelRec][3];
-		aAT[iAT++] = [ aField[1], cValor ];
-		cCampo += ITD()
-				+ Liga("[ADJUNTAR]", "fLiga1('" + aField[12] + "');",
-						"Integrar Trámite", "lnkinternet");
-	}
-	if (aField[4] == 7) { // Adjuntar
-		cValor = '';
-		iSelRec = fGetValue(aRes2, aField[1]);
-		if (iSelRec != -1)
-			cValor = aRes2[iSelRec][3];
-		if (lFin == 0) {
-			cCampo += ITD("EEtiquetaL", 0) + TextoSimple(aField[2] + ":")
-					+ FITD() + cMan
-					+ Hidden("CDOCUMENTO" + (iOrdHF++), aField[2])
-					+ Hidden("CCAMPO" + (iOrdHF++), aField[1])
-					+ '<input type="file" name="' + aField[1] + '" size="50">'
-					+ FTDTR();
-		} else {
-			try {
-				cLiga = aRes2[iSelRec][4];
-			} catch (e) {
-				cLiga = "";
-			}
-			if (cLiga.length > 4) {
-				existe=true;
-				cLiga = Liga("[Ver Documento]", "fShowIntDocDig("
-						+ cLiga.substring(4) + ");");
-
-			} else
-				cLiga = TextoSimple("No se digitalizó el documento.");
+		
+		if (aField[2] > 0) {
+			existe=true;
+			cLiga = Liga("[Ver Documento]", "fShowIntDocDig("+aField[2]+");");
 			cCampo += ITD() + ITRTD("EEtiqueta", 0, "", "20")
-					+ ITD("EEtiqueta", 0, "", "20") + TextoSimple(aField[2])
-					+ FITD("EEtiquetaC") + SP() + cLiga + FTDTR();
+			+ ITD("EEtiqueta", 0, "", "20") + TextoSimple(aField[14])
+			+ FITD("EEtiquetaC") + SP() + cLiga + FTDTR();
+			
+			FRMPanel.fSetTraStatus("Disabled");
+			
+		} else {
+			cCampo += ITD("EEtiquetaL", 0) + TextoSimple(aField[14] + ":")
+			+ FITD() + cMan
+			+ Hidden("CDOCUMENTO" + (iOrdHF++), aField[2])
+			+ Hidden("CCAMPO" + (iOrdHF++), aField[1])
+			+ '<input type="file" name="' + aField[1].trim() + '" size="50">'
+			+ FTDTR();
+			
+			FRMPanel.fSetTraStatus("UpdateBegin");
 		}
+		
 		aEtiqueta += "||" + aField[2];
 		aListado += "||" + aField[1];
 		aValor += "||" + cValor;
 		if (cValor != "")
 			lValores = true;
 	}
-	if (aField[13] != "") {
-		fScripts += aField[13];
-	}
-
+	
 	return cCampo;
 }
 
@@ -854,6 +783,7 @@ function fNuevo() {
 		fAlert("\n - No ha seleccionado él trámite a precapturar.");
 	}
 }
+
 function firmaSuccess(outputPaths, cCadFirmada, cNombre, cCURP, cRFC, cFirmNum,
 		cLocSerialNumber, cLocIssuerDN, cLocSubjectDN, iCveCertificado) {
 	
@@ -1641,5 +1571,5 @@ else {
 function simulaFirma(){
 	 cCadenaOriginal = cadDatosADV();
 	 cCadenaOriginal += fGetCadOriginal();	
-	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MOR0000001O1", "12345","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "iCveCertificado");
+	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MOR0000001O1", "12345","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "0");
 }

@@ -879,11 +879,31 @@ public class TDINTTRAMITES
 		
 
 		for (int j = 0; j < vRequisitos.size(); j++) {
-
 			
-				TVDinRep vDRequisitos = new TVDinRep();
+				String cSQLReq = "INSERT INTO TRARegReqXTram (iEjercicio,iNumSolicitud,iCveTramite,iCveModalidad,iCveRequisito,iEjercicioFormato,iCveFormatoReg,dtRecepcion,iCveUsuRecibe,dtNotificacion,cNumOficio,dtOficio,lValido,lFisico)"
+					+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				
+				TVDinRep vDRequisitos = new TVDinRep();
 				vDRequisitos=(TVDinRep)vRequisitos.get(j);
+				
+				lPStmt2 = conn.prepareStatement(cSQLReq);
+				lPStmt2.setInt(1, iEjercicio); // iEjercicio
+				lPStmt2.setInt(2, iNumSolicitud); // iNumSolicitud
+				lPStmt2.setInt(3,vData.getInt("iCveTramite"));
+				lPStmt2.setInt(4,vData.getInt("iCveModalidad"));
+				lPStmt2.setInt(5,vDRequisitos.getInt("ICVEREQUISITO")); // iCveRequisito
+				lPStmt2.setInt(6, 0); // iEjercicioFormato
+				lPStmt2.setInt(7, 0); // iCveFormatoReg
+				lPStmt2.setNull(8, Types.DATE); // dtRecepcion
+				lPStmt2.setInt(9, 0); // iCveUsuRecibe
+				lPStmt2.setNull(10, Types.DATE); // dtNotificacion
+				lPStmt2.setString(11, ""); // cNumOficio
+				lPStmt2.setNull(12, Types.DATE); // dtOficio
+				lPStmt2.setInt(13, 0); // lValido
+				lPStmt2.setInt(14, 0); // lFisico
+				
+				lPStmt2.executeUpdate();
+
 				
 				String sqlInsEv = "INSERT INTO TRAREGEVAREQXAREA (IEJERCICIO,INUMSOLICITUD,ICVETRAMITE,"+
 								  "ICVEMODALIDAD,ICVEREQUISITO,ICVEUSUARIO,LVALIDO,ICONSECUTIVOPNC,DTEVALUACION) "+
@@ -902,9 +922,7 @@ public class TDINTTRAMITES
 				lPStmt2.setNull(9, Types.DATE);
 				
 
-					lPStmt2.executeUpdate();
-					lPStmt2.close();
-					conn.commit();
+				lPStmt2.executeUpdate();
 			
 		}
 		

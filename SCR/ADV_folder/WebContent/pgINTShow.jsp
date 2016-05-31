@@ -119,14 +119,25 @@
 		//       " AND TRAREQDIGINT.IEJERCICIO ="+request.getParameter("iEjercicio")+" AND  TRAREQDIGINT.INUMSOLICITUD = "+request.getParameter("iNumSolicitud")+
 		 //      " ORDER BY iOrden ";
 		
-		cSql = " SELECT 0 as ICVECAMPO,'cReq'||char(r.ICVEREQUISITO) as col0 ,r.CDSCBREVE,0 as COLA,7 as COLB,'' as COLC,'' as COLD,'' as COLE,0 as COLD,0 as COLF,0 as COLG,0 as COLH,'' as COLI,'' as COLJ,500 as iCveRequisito,r.CDSCBREVE,(10000+mt.IORDEN) as iOrden " +
-			       " FROM TRAREQXMODTRAMITE MT " +
-			       " JOIN TRAREQUISITO R ON MT.ICVEREQUISITO=R.ICVEREQUISITO " +
-			       "JOIN TRAREQDIGINT on TRAREQDIGINT.ICVEREQUISITO = R.ICVEREQUISITO " +
-			       " where mt.ICVETRAMITE="+request.getParameter("iCveTramite")+" and mt.ICVEMODALIDAD= "+request.getParameter("iCveModalidad")+
-			       " AND TRAREQDIGINT.IEJERCICIO ="+request.getParameter("iEjercicio")+" AND  TRAREQDIGINT.INUMSOLICITUD = "+request.getParameter("iNumSolicitud")+
-			       " ORDER BY iOrden ";
-
+		cSql = "SELECT  0 AS ICVECAMPO, " 
+				+"'cReq'||CHAR(REQ.ICVEREQUISITO)||'' AS COL0, " 
+				+"INTDOCS.ICVEDOCDIG AS ICOLA,  "
+				+"7 AS COLB,  "
+				+"'' AS COLC,  "
+				+"'' AS COLD,  "
+				+"'' AS COLE,  "
+				+"0 AS COLD,  "
+				+"0 AS COLF,  "
+				+"0 AS COLG,  "
+				+"0 AS COLH,  "
+				+"'' AS COLI,  "
+				+"'' AS COLJ,  "
+				+"REQ.ICVEREQUISITO, " 
+				+"REQ.CDSCBREVE,  "
+				+"1000 AS IORDEN   "
+				+"FROM TRAREQUISITO REQ "
+				+"RIGHT JOIN (SELECT TRDI.ICVEREQUISITO FROM TRAREQDIGINT TRDI WHERE TRDI.IEJERCICIO = "+request.getParameter("iEjercicio")+" AND TRDI.INUMSOLICITUD = "+request.getParameter("iNumSolicitud")+") REGINT ON REQ.ICVEREQUISITO = REGINT.ICVEREQUISITO "
+				+"LEFT JOIN (SELECT ITD.ICVEREQUISITO, ITD.ICVEDOCDIG FROM INTTRAMITEDOCS ITD WHERE ITD.IEJERCICIO = "+request.getParameter("iEjercicio")+" AND ITD.INUMSOLICITUD = "+request.getParameter("iNumSolicitud")+") INTDOCS ON INTDOCS.ICVEREQUISITO = REQ.ICVEREQUISITO ";
 		
 		vcListado = dINTSolicitud.findByCustom("", cSql);
 		
