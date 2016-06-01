@@ -312,7 +312,7 @@ function fSelReg(aDato, iCol) {
 	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "")
 		fGetDatosEnvios();
 
-	if (iCol == 6 && frm.iEjercicio.value != ""
+	if (iCol == 5 && frm.iEjercicio.value != ""
 			&& frm.iNumSolicitud.value != "")
 		fCompruebaFolio(frm.iEjercicio.value, frm.iNumSolicitud.value);
 

@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+	<style 
+		name="BANDA"
+		isDefault="false"
+		mode="Opaque"
+		forecolor="#FFFFFF"
+		backcolor="#0099FF"
+		fill="Solid"
+		isStyledText="true"
+		fontSize="12"
+		isBold="true"
+		isBlankWhenNull="true"
+	/>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cLeyendaEnc" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" isForPrompting="true" class="java.lang.String">
+		<defaultValueExpression ><![CDATA[".\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT DISTINCT(PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO) as CSOL,
+      GRLDOMICILIO.CCALLE || ' Int. ' || GRLDOMICILIO.CNUMINTERIOR || ', Ext. ' || GRLDOMICILIO.CNUMEXTERIOR as CDOMSOL,
+      GRLDOMICILIO.CTELEFONO AS CTELSOL,
+      GRLDOMICILIO.CCOLONIA AS CCOLSOL,
+      GRLDOMICILIO.CCODPOSTAL CCPSOL,
+      GRLMUNICIPIO.CNOMBRE AS CMUNSOL,
+      GRLENTIDADFED.CNOMBRE AS CENTSOL,
+      PER.CCORREOE AS MAILSOL,
+      PER.CRFC CRFCSOL,
+      REP.ICVEPERSONA AS IDREP,
+      REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO as cRepLeg,
+      DOMREP.CCALLE || ' Int. ' || DOMREP.CNUMINTERIOR || ', Ext. ' || DOMREP.CNUMEXTERIOR as CDOMREP,
+      DOMREP.CTELEFONO AS CTELREP,
+      DOMREP.CCOLONIA AS CCOLREP,
+      DOMREP.CCODPOSTAL CCPREP,
+      REPMUN.CNOMBRE AS CMUNREP,
+      REPENT.CNOMBRE AS CENTREP,
+      REP.CCORREOE AS MAILREP,
+      REP.CRFC AS CRFCREP,
+      TRACATTRAMITE.CDSCBREVE as cTram,
+      TRAMODALIDAD.CDSCMODALIDAD as cModal,
+      TRACATTRAMITE.CCVEINTERNA AS HOMOCLAVE,
+      CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS DTREP,
+      ADV.CKMSENTIDO,
+      CARR.CDSCARRETERA,
+      VARCHAR_FORMAT(DATE(TRAREGSOLICITUD.TSREGISTRO), 'DD/MM/YYYY') AS DTSOL,
+      ENTOF.CNOMBRE AS NOMENT,
+      ADV.CHECHOS,
+      TRAREGSOLICITUD.CNOMAUTORIZARECOGER,
+      UPPER(GRLOFICINA.CTITULAR) CTITULAR
+      FROM TRAREGSOLICITUD
+      JOIN GRLPERSONA PER ON TRAREGSOLICITUD.ICVESOLICITANTE = PER.ICVEPERSONA
+      JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = PER.ICVEPERSONA
+      JOIN GRLMUNICIPIO ON GRLMUNICIPIO.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+       AND GRLMUNICIPIO.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED
+       AND GRLMUNICIPIO.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO
+      JOIN GRLENTIDADFED ON GRLENTIDADFED.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+       AND GRLENTIDADFED.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED
+      JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+      JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE
+      JOIN TRAMODALIDAD ON TRAMODALIDAD.ICVEMODALIDAD= TRAREGSOLICITUD.ICVEMODALIDAD      
+   LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL
+     LEFT JOIN GRLDOMICILIO  DOMREP ON DOMREP.ICVEPERSONA = REP.ICVEPERSONA
+     LEFT JOIN GRLMUNICIPIO REPMUN ON REPMUN.ICVEPAIS = DOMREP.ICVEPAIS
+       AND REPMUN.ICVEENTIDADFED = DOMREP.ICVEENTIDADFED
+       AND REPMUN.ICVEMUNICIPIO = DOMREP.ICVEMUNICIPIO
+      LEFT JOIN GRLENTIDADFED REPENT ON REPENT.ICVEPAIS = DOMREP.ICVEPAIS
+       AND REPENT.ICVEENTIDADFED = DOMREP.ICVEENTIDADFED
+      LEFT JOIN GRLPAIS REPPAIS ON GRLPAIS.ICVEPAIS = DOMREP.ICVEPAIS
+   JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD
+   JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA
+   JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA
+   JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = 1
+	 where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio} 
+	 and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOL" class="java.lang.String"/>
+	<field name="CDOMSOL" class="java.lang.String"/>
+	<field name="CTELSOL" class="java.lang.String"/>
+	<field name="CCOLSOL" class="java.lang.String"/>
+	<field name="CCPSOL" class="java.lang.String"/>
+	<field name="CMUNSOL" class="java.lang.String"/>
+	<field name="CENTSOL" class="java.lang.String"/>
+	<field name="MAILSOL" class="java.lang.String"/>
+	<field name="CRFCSOL" class="java.lang.String"/>
+	<field name="IDREP" class="java.lang.Long"/>
+	<field name="CREPLEG" class="java.lang.String"/>
+	<field name="CDOMREP" class="java.lang.String"/>
+	<field name="CTELREP" class="java.lang.String"/>
+	<field name="CCOLREP" class="java.lang.String"/>
+	<field name="CCPREP" class="java.lang.String"/>
+	<field name="CMUNREP" class="java.lang.String"/>
+	<field name="CENTREP" class="java.lang.String"/>
+	<field name="MAILREP" class="java.lang.String"/>
+	<field name="CRFCREP" class="java.lang.String"/>
+	<field name="CTRAM" class="java.lang.String"/>
+	<field name="CMODAL" class="java.lang.String"/>
+	<field name="HOMOCLAVE" class="java.lang.String"/>
+	<field name="DTREP" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CDSCARRETERA" class="java.lang.String"/>
+	<field name="DTSOL" class="java.lang.String"/>
+	<field name="NOMENT" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CNOMAUTORIZARECOGER" class="java.lang.String"/>
+	<field name="CTITULAR" class="java.lang.String"/>
+
+	<variable name="resol" class="java.lang.String" resetType="Report" calculation="Nothing">
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="90"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="179"
+						y="0"
+						width="181"
+						height="29"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" size="12" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["SOLICITUD PARA PERMISO"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="9"
+						y="40"
+						width="300"
+						height="50"
+						key="textField-13"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTITULAR}+"\nDIRECTOR GENERAL CENTRO " + $F{NOMENT} + "\nSECRETARÍA DE COMUNICACIONES Y TRANSPORTES \nPresente"]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="312"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="60"
+						width="360"
+						height="12"
+						key="textField-3"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CRFCSOL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="77"
+						width="360"
+						height="22"
+						key="textField-5"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDOMSOL}+", Col. "+$F{CCOLSOL}+", cp. "+ $F{CCPSOL} + ", "+$F{CENTSOL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="101"
+						width="361"
+						height="12"
+						key="textField-6"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{MAILSOL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="117"
+						width="361"
+						height="12"
+						key="textField-7"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTELSOL}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="65"
+						y="60"
+						width="100"
+						height="12"
+						key="staticText-164"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[RFC del promovente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="45"
+						y="77"
+						width="120"
+						height="12"
+						key="staticText-165"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Domicilio del promovente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="17"
+						y="116"
+						width="149"
+						height="12"
+						key="staticText-168"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Teléfono del Promovente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="16"
+						y="101"
+						width="151"
+						height="12"
+						key="staticText-171"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Correo Electrónico del promovente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="65"
+						y="44"
+						width="101"
+						height="12"
+						key="staticText-172"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Nombre del Promovente:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="9"
+						y="0"
+						width="530"
+						height="40"
+						key="textField-14"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified" verticalAlignment="Top">
+						<font pdfFontName="Helvetica" size="10" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Mediante la presente solicito permiso para ocupar y aprovechar el derecho de vía de la autopista " + $F{CDSCARRETERA}+ " , en el Km  "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+ $F{CHECHOS} +"\nPara lo cual mis datos generales son:"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="169"
+						y="44"
+						width="360"
+						height="12"
+						key="textField-15"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CSOL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="159"
+						width="360"
+						height="12"
+						key="textField-16"
+						isPrintRepeatedValues="false">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CRFCREP}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="170"
+						y="176"
+						width="360"
+						height="22"
+						key="textField-17"
+						isPrintRepeatedValues="false">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDOMREP}+", Col. "+$F{CCOLREP}+", cp. "+ $F{CCPREP} + ", "+$F{CENTREP}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="169"
+						y="201"
+						width="361"
+						height="12"
+						key="textField-18"
+						isPrintRepeatedValues="false">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{MAILREP}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="169"
+						y="217"
+						width="361"
+						height="12"
+						key="textField-19"
+						isPrintRepeatedValues="false">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTELREP}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="9"
+						y="159"
+						width="156"
+						height="12"
+						key="staticText-173">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[RFC del Representante legal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="9"
+						y="176"
+						width="156"
+						height="12"
+						key="staticText-174">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Domicilio del Representante legal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="9"
+						y="216"
+						width="156"
+						height="12"
+						key="staticText-175">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Teléfono del Representante legal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="9"
+						y="201"
+						width="157"
+						height="12"
+						key="staticText-176">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Correo Electrónico del Representante legal:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="9"
+						y="143"
+						width="157"
+						height="12"
+						key="staticText-177">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Representante legal del Prmovente:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Transparent"
+						x="169"
+						y="143"
+						width="360"
+						height="12"
+						key="textField-20"
+						isPrintRepeatedValues="false">
+							<printWhenExpression><![CDATA[new Boolean(!($F{IDREP} == (new Long(0L))))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CREPLEG}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="8"
+						y="240"
+						width="530"
+						height="30"
+						key="textField-21"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="10"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Asimismo, le anexo a la presente los documentos legales y técnicos cuyo contenido se apega a la ficha de trámite con homoclave número "+$F{HOMOCLAVE}+", el suscrito ha verificado que los documentos que a continuación se enlistan son los solicitados y están completos."]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="10"
+						y="280"
+						width="521"
+						height="22"
+						key="subreport-1"
+						stretchType="RelativeToTallestObject"
+						positionType="Float"/>
+					<subreportParameter  name="cEjercicio">
+						<subreportParameterExpression><![CDATA[$P{cEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="cSolicitud">
+						<subreportParameterExpression><![CDATA[$P{cSolicitud}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "subSolicitudCSCT.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="false" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="10"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="496"
+						y="0"
+						width="30"
+						height="10"
+						key="textField-22"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()+"/"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="528"
+						y="0"
+						width="22"
+						height="10"
+						key="textField-23"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="39"  isSplitAllowed="true" >
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="9"
+						y="6"
+						width="521"
+						height="29"
+						key="subreport-2"
+						stretchType="RelativeToTallestObject"/>
+					<subreportParameter  name="cEjercicio">
+						<subreportParameterExpression><![CDATA[$P{cEjercicio}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="cSolicitud">
+						<subreportParameterExpression><![CDATA[$P{cSolicitud}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="CSOL">
+						<subreportParameterExpression><![CDATA[$F{CSOL}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="CREPLEG">
+						<subreportParameterExpression><![CDATA[$F{CREPLEG}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="DTREP">
+						<subreportParameterExpression><![CDATA[$F{DTREP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "subSolicitudCSCTB.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</summary>
+</jasperReport>

@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="552"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+	<style 
+		name="BANDA"
+		isDefault="false"
+		mode="Opaque"
+		forecolor="#FFFFFF"
+		backcolor="#0099FF"
+		fill="Solid"
+		isStyledText="true"
+		fontSize="12"
+		isBold="true"
+		isBlankWhenNull="true"
+	/>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT 
+   RRT.iCveRequisito, 
+   VARCHAR_FORMAT(RRT.dtRecepcion,'DD/MM/YYYY') AS DTRECEPCION, 
+   R.cDscBreve,
+   CASE WHEN RRT.lFisico = 1
+   THEN 'Si' ELSE 'No'
+   END AS fisico
+ FROM TRARegReqXTram RRT
+ JOIN TRARequisito R ON R.iCveRequisito = RRT.iCveRequisito
+WHERE RRT.iEjercicio = $P{cEjercicio}
+AND RRT.iNumSolicitud = $P{cSolicitud}
+ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
+
+	<field name="ICVEREQUISITO" class="java.lang.Integer"/>
+	<field name="DTRECEPCION" class="java.lang.String"/>
+	<field name="CDSCBREVE" class="java.lang.String"/>
+	<field name="FISICO" class="java.lang.String"/>
+
+	<variable name="resol" class="java.lang.String" resetType="Report" calculation="Nothing">
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="28"  isSplitAllowed="false" >
+				<rectangle>
+					<reportElement
+						x="0"
+						y="0"
+						width="520"
+						height="14"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="200"
+						y="0"
+						width="121"
+						height="13"
+						key="staticText-94"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[REQUSITOS ENTREGADOS]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="14"
+						width="520"
+						height="13"
+						key="rectangle-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="26"
+						y="14"
+						width="50"
+						height="13"
+						key="staticText-95"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[RECIBIDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="113"
+						y="15"
+						width="34"
+						height="13"
+						key="staticText-96"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[FÍSICO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="305"
+						y="15"
+						width="70"
+						height="12"
+						key="staticText-97"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="95"
+						y="14"
+						width="0"
+						height="13"
+						key="line-4"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="163"
+						y="14"
+						width="0"
+						height="13"
+						key="line-6"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="21"  isSplitAllowed="false" >
+				<line direction="TopDown">
+					<reportElement
+						x="661"
+						y="-201"
+						width="536"
+						height="0"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="165"
+						y="0"
+						width="352"
+						height="21"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCBREVE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="99"
+						y="0"
+						width="57"
+						height="13"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{FISICO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="4"
+						y="0"
+						width="85"
+						height="14"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTRECEPCION}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="134"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						style="BANDA"
+						x="20"
+						y="11"
+						width="140"
+						height="11"
+						key="staticText-98"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[RECIBE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						style="BANDA"
+						x="350"
+						y="10"
+						width="140"
+						height="11"
+						key="staticText-99"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle" isStyledText="true">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[SELLO]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="51"
+						width="140"
+						height="30"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["VENTANILLA ÚNICA\nCENTRO SCT "]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="0"
+						y="85"
+						width="530"
+						height="49"
+						key="staticText-100"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font size="8"/>
+					</textElement>
+				<text><![CDATA[LAS AREAS QUE INTERVIENEN EN EL TRÁMITE REALIZARAN UNA EVALUACIÓN TÉCNICA Y LEGAL DE SU DOCUMENTACIÓN, SI NO CUMPLE CON LOS REQUISITOS APLICABLES SE LE OTORGARÁ EL PLAZO PREVISTO EN EL REGLAMENTO PARA EL APROVECHAMIENTO DEL DERECHO DE VIA DE LAS CARRETERAS FEDERALES Y ZONAS ALEDAÑAS PARA ATENDER EL INCUMPLIMIENTO;  EN TAL CASO, EL PLAZO ORIGINAL DE RESPUESTA SE SUSPENDERÁ Y SE REANUDARA EL CONTEO A PARTIR DEL DÍA HÁBIL SIGUIENTE A SU ATENCIÓN]]></text>
+				</staticText>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

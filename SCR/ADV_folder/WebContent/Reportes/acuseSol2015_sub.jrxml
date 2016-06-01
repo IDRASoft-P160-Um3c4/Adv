@@ -238,7 +238,7 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 			</band>
 		</pageFooter>
 		<lastPageFooter>
-			<band height="134"  isSplitAllowed="true" >
+			<band height="150"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						style="BANDA"
@@ -285,7 +285,7 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 						x="0"
 						y="85"
 						width="530"
-						height="49"
+						height="65"
 						key="staticText-100"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">

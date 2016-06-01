@@ -20,6 +20,7 @@ aEstado[1] = [ 1, "Pendientes Fuera de Tiempo" ];
 aEstado[2] = [ 2, "Terminadas" ];
 // aEstado[0] = [0,"Cambio reciente"];
 fWrite(JSSource("Carpetas.js"));
+
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pg1100009.js";
@@ -30,7 +31,7 @@ function fBefLoad() {
 	fSetWindowTitle();
 	idGpo = top.usrGpoId;
 	strFecha = top.strFecha;
-	
+
 }
 // SEGMENTO Definición de la página (Definición Mandatoria)
 function fDefPag() {
@@ -157,6 +158,12 @@ function fDefPag() {
 	Hidden("hdSelect");
 	Hidden("hdLlave");
 	Hidden("cSolicitante");
+	Hidden("iCveGrupoUsr",-1);
+	Hidden("iCveUsuario",fGetIdUsrSesion());
+	Hidden("iCveOficina",0);	
+	Hidden("cFiltroOficina","");
+	
+	
 	fFinPagina();
 }
 
@@ -169,7 +176,7 @@ function fOnLoad() {
 	FRMListado.fSetCampos("1,2,");
 	FRMListado.fSetDespliega("texto,texto,");
 	FRMListado.fSetAlinea(",center,center,");
-	fObtieneDatosTablero();
+	fCargaGrupoUsr();
 }
 
 function fSolicitudes() {
@@ -214,6 +221,32 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 		FRMListado.fSetLlave(cLlave);
 		FRMListado.fShow();
 	}
+	
+	
+	if (cId == "CIDOficinaDeptoXUsr") {
+		if (aRes.length > 0) {
+			frm.iCveOficina.value = aRes[0][1];
+			frm.cFiltroOficina.value = " AND SOL.ICVEOFICINA = "+ frm.iCveOficina.value; 
+		}
+		fObtieneDatosTablero();
+	}
+	
+	
+	
+	if (cId == "CIDGrupoXUsr" && cError == "") {
+		if (aRes.length > 0) {
+				frm.iCveGrupoUsr.value = aRes[0][0];
+		}
+			
+		if(frm.iCveGrupoUsr.value==2){//grupo centros sct
+			fCargaOficDeptoUsr(false);
+		}else{
+			fObtieneDatosTablero();
+		}	
+	}
+	
+	
+	
 }
 
 // LLAMADO desde el Listado cada vez que se selecciona un renglón

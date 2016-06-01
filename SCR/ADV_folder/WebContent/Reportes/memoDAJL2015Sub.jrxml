@@ -132,7 +132,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</title>
 		<pageHeader>
-			<band height="369"  isSplitAllowed="true" >
+			<band height="370"  isSplitAllowed="true" >
 				<rectangle>
 					<reportElement
 						x="0"
@@ -268,7 +268,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[PROMOVENTE]]></text>
 				</staticText>
@@ -281,7 +281,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[REPRESENTANTE LEGAL]]></text>
 				</staticText>
@@ -294,7 +294,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[APROVECHAMIENTO]]></text>
 				</staticText>
@@ -307,7 +307,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[DESTINO]]></text>
 				</staticText>
@@ -320,7 +320,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[AUTOPISTA]]></text>
 				</staticText>
@@ -333,7 +333,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[CADENAMIENTO(S) Y SENTIDO(S)]]></text>
 				</staticText>
@@ -346,7 +346,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[DOCUMENTOS]]></text>
 				</staticText>
@@ -359,7 +359,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[SOLICITUD]]></text>
 				</staticText>
@@ -372,7 +372,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[ACTA CONSTITUTIVA]]></text>
 				</staticText>
@@ -385,7 +385,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[REGISTRO FEDERAL DE CONTRIBUYENTES]]></text>
 				</staticText>
@@ -398,7 +398,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[PODER NOTARIAL]]></text>
 				</staticText>
@@ -411,7 +411,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-12"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[IDENTIFICACION OFICIAL]]></text>
 				</staticText>
@@ -424,7 +424,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-13"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[DOCUMENTO QUE ACREDITE LA PROPIEDAD O POSESIÓN DE LA SUPERFICIE O AUTORIZACIÓN PARA SU APROVECHAMIENTO]]></text>
 				</staticText>
@@ -437,7 +437,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-14"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[COMPROBANTE DE DOMICILIO]]></text>
 				</staticText>
@@ -450,7 +450,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-15"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[CONSTANCIA DE NO AFECTACIÓN A TERCEROS]]></text>
 				</staticText>
@@ -472,7 +472,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-16"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[CONTIENE]]></text>
 				</staticText>
@@ -485,7 +485,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CSOLICITANTE}]]></textFieldExpression>
 				</textField>
@@ -498,7 +498,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CREPL}]]></textFieldExpression>
 				</textField>
@@ -511,7 +511,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTRAMITE}]]></textFieldExpression>
 				</textField>
@@ -524,7 +524,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-4"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CKMSENTIDO}]]></textFieldExpression>
 				</textField>
@@ -537,7 +537,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CAUTOPISTA}]]></textFieldExpression>
 				</textField>
@@ -550,7 +550,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CHECHOS}]]></textFieldExpression>
 				</textField>
@@ -563,7 +563,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-17"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -576,7 +576,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-18"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -589,7 +589,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-19"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -602,7 +602,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-20"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -615,7 +615,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-21"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -628,7 +628,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-22"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -641,7 +641,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-23"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
@@ -654,22 +654,22 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						key="staticText-24"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[Sí]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="330"
+						y="328"
 						width="539"
-						height="39"
+						height="42"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement verticalAlignment="Top">
-						<font/>
+						<font size="9"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Aprovecho la ocasión para enviarle un cordial saludo.\n\nA t e n t a m e n t e"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Aprovecho la ocasión para enviarle un cordial saludo.\n\nA t e n t a m e n t e."]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageHeader>

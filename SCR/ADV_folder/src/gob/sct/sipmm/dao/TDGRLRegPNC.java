@@ -222,7 +222,7 @@ public class TDGRLRegPNC extends DAOBase{
        
        TVDinRep vDatosPrimeraCausaXPrimeraEval = new TVDinRep();
        
-       if(vcDatosEvalXArea.size() > 0)
+       if(vcCausasXEval.size() > 0)
     	   vDatosPrimeraCausaXPrimeraEval = (TVDinRep) vcCausasXEval.get(0); //obtengo la primera causa
        
        

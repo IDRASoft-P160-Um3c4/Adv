@@ -670,7 +670,7 @@ public class TDTRARegReqXTramb
 				lPStmt.executeUpdate();
 			}
 			
-			String lSQL = "SELECT AF.CPROPIETARIO, AF.CINSTALACION, AF.COBSERVACION FROM " +
+			String lSQL = "SELECT AF.CPROPIETARIO, AF.CINSTALACION, AF.CNOTDICT, AF.COBSERVACION FROM " +
 					"TRAREGSOLICITUD S " +
 					"JOIN TRADATOSNOAFEC AF ON AF.IEJERCICIO = S.IEJERCICIO AND AF.INUMSOL = S.INUMSOLICITUD " +
 					"WHERE S.IEJERCICIO="+ vData.getInt("iEjercicio") +" AND S.INUMSOLICITUD= "+vData.getInt("iNumSolicitud");
@@ -682,7 +682,7 @@ public class TDTRARegReqXTramb
 				lSQL = " insert into TRADATOSNOAFEC  ( "
 					+ " iEjercicio, " + " iNumSol, "
 					+ " cPropietario, " + " cInstalacion, "
-					+ " cObservacion) " + " values ("
+					+ " cObservacion,cnotdict) " + " values ("
 					+ vData.getInt("iEjercicio")
 					+ ","
 					+ vData.getInt("iNumSolicitud")
@@ -690,8 +690,8 @@ public class TDTRARegReqXTramb
 					+ vData.getString("HDcPropietario")
 					+ "','"
 					+ vData.getString("HDcInstalacion")
-					+ "','"
-					+ "Se guarda la informacion sobre las instalaciones encontradas."
+					+ "','Se guarda la información sobre las instalaciones encontradas.','"
+					+ vData.getString("HDcNotDict")
 					+ "')";
 			 						
 				lPStmt=null;
@@ -1381,7 +1381,7 @@ public String registraRetrasoDAJLDGST(TVDinRep vData, Connection cnNested)
           //     cConjunto = vData.getString("cConjunto").split(",");
           for(int tm = 0;tm < cReqValido.size();tm++){
 
-            String lSQL = "update TRARegReqXTram set  dtRecepcion=(CURRENT DATE), lValido=0, lRecNotificado=1, iCveUsuRecibe = ? where iEjercicio = ? AND iNumSolicitud = ? AND iCveTramite = ? AND iCveModalidad = ? AND iCveRequisito = ? ";
+            String lSQL = "update TRARegReqXTram set lValido=0, lRecNotificado=1, iCveUsuRecibe = ? where iEjercicio = ? AND iNumSolicitud = ? AND iCveTramite = ? AND iCveModalidad = ? AND iCveRequisito = ? ";
 
             lPStmt = conn.prepareStatement(lSQL);
             lPStmt.setInt(1,vData.getInt("iCveUsuario"));
@@ -1393,125 +1393,141 @@ public String registraRetrasoDAJLDGST(TVDinRep vData, Connection cnNested)
 
             lPStmt.executeUpdate();
           }
+
+          String sqlDatosPNC = "SELECT CFOLMEMOPNC, CFOLDGSTPNC, CREFDGSTPNC, DTDGSTPNC  FROM TRADATOSENVIOS WHERE IEJERCICIO = "+vData.getInt("iEjercicio")+" AND INUMSOLICITUD ="+vData.getInt("iNumSolicitud");
+          
+          vcData2 = findByCustom("", sqlDatosPNC);
+          
+          TVDinRep vDatosPNC= (TVDinRep) vcData2.get(0);
+                    
+          if(vDatosPNC.getString("CFOLMEMOPNC").equals("null")&&
+        		  vDatosPNC.getString("CFOLDGSTPNC").equals("null")&&
+        		  vDatosPNC.getString("CREFDGSTPNC").equals("null")&&
+        		  vDatosPNC.getDate("DTDGSTPNC")==null){//si no tiene datos los guardo
+        	  sqlDatosPNC = "UPDATE TRADATOSENVIOS SET CFOLMEMOPNC=?, CFOLDGSTPNC= ?, CREFDGSTPNC=?, DTDGSTPNC=? WHERE IEJERCICIO = "+vData.getInt("iEjercicio")+" AND INUMSOLICITUD ="+vData.getInt("iNumSolicitud");
+        	  lPStmt = conn.prepareStatement(sqlDatosPNC);
+              lPStmt.setString(1,vData.getString("hdFolMemoPNC"));
+              lPStmt.setString(2,vData.getString("hdFolDGSTPNC"));
+              lPStmt.setString(3,vData.getString("hdRefDGSTPNC"));
+              lPStmt.setDate(4,vData.getDate("hdDtDGSTPNC"));
+
+              lPStmt.executeUpdate();       	  
+          }          
+
+//          /*El siguiente query es para verificar si aun hay requisitos pendientes por entregar*/
+//          Vector vcData = findByCustom("",
+//                                       "SELECT " +
+//                                       "   count(REG.iCveRequisito) as iCveRequisito " +
+//                                       "FROM TRAREGREQXTRAM REG " +
+//                                       "JOIN TRAREQXMODTRAMITE REQ ON REQ.ICVETRAMITE=REG.ICVETRAMITE " +
+//                                       "    AND REQ.ICVEMODALIDAD=REG.ICVEMODALIDAD " +
+//                                       "    AND REQ.ICVEREQUISITO=REG.ICVEREQUISITO " +
+//                                       "  WHERE REG.IEJERCICIO = " +vData.getInt("iEjercicio")+
+//                                       "    AND REG.INUMSOLICITUD = " +vData.getInt("iNumSolicitud") +
+//                                       "    AND REG.DTRECEPCION IS NULL " +
+//                                       "    AND REG.DTNOTIFICACION is not null");
+//          TVDinRep vCount = (TVDinRep) vcData.get(0);
+//          lbandera = vCount.getInt("iCveRequisito");
+//          
+//          
+//          if(lbandera == 0){
+//            /*El siguiente query es para obtener los datos con los cuales vamos a calcular la fecha de entrega*/
+//            Vector vcData1 = findByCustom("","select DTINIVIGENCIA, iNumDiasResol, lDiasNaturalesResol from TRACONFIGURATRAMITE " +
+//                                          "where icvetramite = " +
+//                                          vData.getInt("iCveTramite") +
+//                                          " and icvemodalidad = " +
+//                                          vData.getInt("iCveModalidad") +
+//                                          " order by DTINIVIGENCIA desc");
+//
+//            TVDinRep vTRAConfiguraTra = (TVDinRep) vcData1.get(0);
+//
+//            Vector vcRegistro = findByCustom("","SELECT TSREGISTRO " +
+//                                                "FROM TRAREGSOLICITUD S " +
+//                                                "WHERE S.IEJERCICIO = "+vData.getInt("iEjercicio")+
+//                                                " AND S.INUMSOLICITUD = "+vData.getInt("iNumSolicitud"));
+//            java.sql.Date dtInicioSol = fecha.getDateSQL(((TVDinRep)vcRegistro.get(0)).getTimeStamp("TSREGISTRO"));
+//            java.sql.Date dtInicio = vTRAConfiguraTra.getDate("dtIniVigencia"); //Es la fecha de Inicio la cual se ocupará para reliazar el cálculo para la fecha de Entrega
+//            iNumDias = vTRAConfiguraTra.getInt("iNumDiasResol");
+//            lDiasNaturales = vTRAConfiguraTra.getInt("lDiasNaturalesResol");
+//
+//            if(lDiasNaturales == 1)
+//              lDias = true;
+//            else
+//              lDias = false;
+//            dtNotificacion = vNotificacion.getDate("dtNotificacion");
+//            iDias = fecha.getDaysBetweenDates(dtInicioSol,dtNotificacion); //Hace el calculo de dias
+//            iDiasASumar = iNumDias - iDias; //Resta los dias que transcurrieron para saber cuales se van a sumar en el nuevo calculo
+//
+//            /*El siguiente query se efectua para obtener la ultima fecha de recepcion*/
+//            Vector vcData3 = findByCustom("","SELECT DTRECEPCION " +
+//                                          "FROM TRAREGREQXTRAM " +
+//                                          "where INUMSOLICITUD = " +
+//                                          vData.getInt("iNumSolicitud") +
+//                                          " AND IEJERCICIO = "+vData.getInt("iEjercicio")+
+//                                          " AND DTRECEPCION IS NOT NULL "+
+//                                          " order by DTRECEPCION desc ");
+//
+//            TVDinRep vRecepcion = (TVDinRep) vcData3.get(0);
+//            java.sql.Date dtRecepcion = vRecepcion.getDate("dtRecepcion");
+//
+//            java.sql.Date dtEstimaEntrega = diaNoHabil.getFechaFinal(
+//                dtRecepcion,iDiasASumar,lDias); //Hace el estimado de la fecha de entrega
+//
+//            /*Update ya con los datos que hemos obtenido*/
+//            String lSQL1 = "update TRARegSolicitud set dtEstimadaEntrega = ? where iEjercicio = ? AND iNumSolicitud = ? ";
+//            lPStmt1 = conn.prepareStatement(lSQL1);
+//            if(iNumDias > -1)
+//              lPStmt1.setDate(1,dtEstimaEntrega);
+//            else
+//              lPStmt1.setNull(1,Types.DATE);
+//            lPStmt1.setInt(2,vData.getInt("iEjercicio"));
+//            lPStmt1.setInt(3,vData.getInt("iNumSolicitud"));
+//            lPStmt1.executeUpdate();
+//            conn.commit();
+//            lPStmt1.close();
+//
+//            Vector vcOficDep = this.findByCustom(""," SELECT iCveOficina,iCveDepartamento FROM TRAREGETAPASXMODTRAM "+
+//                                                    " where iejercicio = "+vData.getString("iEjercicio")+
+//                                                    " and inumsolicitud = "+vData.getString("iNumSolicitud"));
+//            TVDinRep vOficDep = new TVDinRep();
+//            if(vcOficDep.size()>0){
+//              vOficDep = (TVDinRep) vcOficDep.get(0);
+//            }
+//
+//
+//            TVDinRep vCambiaEtapa = new TVDinRep();
+//            
+//
+//            vCambiaEtapa.put("lResolucion",1);
+//            vCambiaEtapa.put("iEjercicio",vData.getString("iEjercicio"));
+//            vCambiaEtapa.put("iNumSolicitud",vData.getString("iNumSolicitud"));
+//            vCambiaEtapa.put("iCveTramite",vData.getString("iCveTramite"));
+//            vCambiaEtapa.put("iCveModalidad",vData.getString("iCveModalidad"));
+//            vCambiaEtapa.put("iCveEtapa",Integer.parseInt(VParametros.getPropEspecifica("EtapaModificarTramite")));
+//            
+//            //vCambiaEtapa.put("iCveOficina",vOficDep.getInt("iCveOficina"));
+//            //vCambiaEtapa.put("iCveDepartamento",vOficDep.getInt("iCveDepartamento"));
+//
+//            vCambiaEtapa.put("iCveOficina",vData.getInt("iCveOficinaU"));
+//            vCambiaEtapa.put("iCveDepartamento",vData.getInt("iCveDepartamentoU"));
+//            
+//            vCambiaEtapa.put("iCveUsuario",vData.getInt("iCveUsuario"));
+//            vCambiaEtapa.put("tsRegistro",fechas.getThisTime());
+//            vCambiaEtapa.put("lAnexo",1);
+//            try{
+//
+//            	TDTRARegEtapasXModTram etapa = new TDTRARegEtapasXModTram();
+//            	etapa.cambiarEtapa(vCambiaEtapa, false, "", false, conn);
+//            }catch(Exception ex){
+//              System.out.print("\n\n>>>  "+ex.getMessage()+"\n\n");
+//              cErrorMsg = ex.getMessage();
+//              ex.printStackTrace();
+//              throw new Exception(ex.getMessage());
+//            }
+//          }
+          
           if(cnNested == null){
-            conn.commit();
-          }
-
-
-          /*El siguiente query es para verificar si aun hay requisitos pendientes por entregar*/
-          Vector vcData = findByCustom("",
-                                       "SELECT " +
-                                       "   count(REG.iCveRequisito) as iCveRequisito " +
-                                       "FROM TRAREGREQXTRAM REG " +
-                                       "JOIN TRAREQXMODTRAMITE REQ ON REQ.ICVETRAMITE=REG.ICVETRAMITE " +
-                                       "    AND REQ.ICVEMODALIDAD=REG.ICVEMODALIDAD " +
-                                       "    AND REQ.ICVEREQUISITO=REG.ICVEREQUISITO " +
-                                       "  WHERE REG.IEJERCICIO = " +vData.getInt("iEjercicio")+
-                                       "    AND REG.INUMSOLICITUD = " +vData.getInt("iNumSolicitud") +
-                                       "    AND REG.DTRECEPCION IS NULL " +
-                                       "    AND REG.DTNOTIFICACION is not null");
-          TVDinRep vCount = (TVDinRep) vcData.get(0);
-          lbandera = vCount.getInt("iCveRequisito");
-          
-          
-          if(lbandera == 0){
-            /*El siguiente query es para obtener los datos con los cuales vamos a calcular la fecha de entrega*/
-            Vector vcData1 = findByCustom("","select DTINIVIGENCIA, iNumDiasResol, lDiasNaturalesResol from TRACONFIGURATRAMITE " +
-                                          "where icvetramite = " +
-                                          vData.getInt("iCveTramite") +
-                                          " and icvemodalidad = " +
-                                          vData.getInt("iCveModalidad") +
-                                          " order by DTINIVIGENCIA desc");
-
-            TVDinRep vTRAConfiguraTra = (TVDinRep) vcData1.get(0);
-
-            Vector vcRegistro = findByCustom("","SELECT TSREGISTRO " +
-                                                "FROM TRAREGSOLICITUD S " +
-                                                "WHERE S.IEJERCICIO = "+vData.getInt("iEjercicio")+
-                                                " AND S.INUMSOLICITUD = "+vData.getInt("iNumSolicitud"));
-            java.sql.Date dtInicioSol = fecha.getDateSQL(((TVDinRep)vcRegistro.get(0)).getTimeStamp("TSREGISTRO"));
-            java.sql.Date dtInicio = vTRAConfiguraTra.getDate("dtIniVigencia"); //Es la fecha de Inicio la cual se ocupará para reliazar el cálculo para la fecha de Entrega
-            iNumDias = vTRAConfiguraTra.getInt("iNumDiasResol");
-            lDiasNaturales = vTRAConfiguraTra.getInt("lDiasNaturalesResol");
-
-            if(lDiasNaturales == 1)
-              lDias = true;
-            else
-              lDias = false;
-            dtNotificacion = vNotificacion.getDate("dtNotificacion");
-            iDias = fecha.getDaysBetweenDates(dtInicioSol,dtNotificacion); //Hace el calculo de dias
-            iDiasASumar = iNumDias - iDias; //Resta los dias que transcurrieron para saber cuales se van a sumar en el nuevo calculo
-
-            /*El siguiente query se efectua para obtener la ultima fecha de recepcion*/
-            Vector vcData3 = findByCustom("","SELECT DTRECEPCION " +
-                                          "FROM TRAREGREQXTRAM " +
-                                          "where INUMSOLICITUD = " +
-                                          vData.getInt("iNumSolicitud") +
-                                          " AND IEJERCICIO = "+vData.getInt("iEjercicio")+
-                                          " AND DTRECEPCION IS NOT NULL "+
-                                          " order by DTRECEPCION desc ");
-
-            TVDinRep vRecepcion = (TVDinRep) vcData3.get(0);
-            java.sql.Date dtRecepcion = vRecepcion.getDate("dtRecepcion");
-
-            java.sql.Date dtEstimaEntrega = diaNoHabil.getFechaFinal(
-                dtRecepcion,iDiasASumar,lDias); //Hace el estimado de la fecha de entrega
-
-            /*Update ya con los datos que hemos obtenido*/
-            String lSQL1 = "update TRARegSolicitud set dtEstimadaEntrega = ? where iEjercicio = ? AND iNumSolicitud = ? ";
-            lPStmt1 = conn.prepareStatement(lSQL1);
-            if(iNumDias > -1)
-              lPStmt1.setDate(1,dtEstimaEntrega);
-            else
-              lPStmt1.setNull(1,Types.DATE);
-            lPStmt1.setInt(2,vData.getInt("iEjercicio"));
-            lPStmt1.setInt(3,vData.getInt("iNumSolicitud"));
-            lPStmt1.executeUpdate();
-            conn.commit();
-            lPStmt1.close();
-
-            Vector vcOficDep = this.findByCustom(""," SELECT iCveOficina,iCveDepartamento FROM TRAREGETAPASXMODTRAM "+
-                                                    " where iejercicio = "+vData.getString("iEjercicio")+
-                                                    " and inumsolicitud = "+vData.getString("iNumSolicitud"));
-            TVDinRep vOficDep = new TVDinRep();
-            if(vcOficDep.size()>0){
-              vOficDep = (TVDinRep) vcOficDep.get(0);
-            }
-
-
-            TVDinRep vCambiaEtapa = new TVDinRep();
-            
-
-            vCambiaEtapa.put("lResolucion",1);
-            vCambiaEtapa.put("iEjercicio",vData.getString("iEjercicio"));
-            vCambiaEtapa.put("iNumSolicitud",vData.getString("iNumSolicitud"));
-            vCambiaEtapa.put("iCveTramite",vData.getString("iCveTramite"));
-            vCambiaEtapa.put("iCveModalidad",vData.getString("iCveModalidad"));
-            vCambiaEtapa.put("iCveEtapa",Integer.parseInt(VParametros.getPropEspecifica("EtapaModificarTramite")));
-            
-            //vCambiaEtapa.put("iCveOficina",vOficDep.getInt("iCveOficina"));
-            //vCambiaEtapa.put("iCveDepartamento",vOficDep.getInt("iCveDepartamento"));
-
-            vCambiaEtapa.put("iCveOficina",vData.getInt("iCveOficinaU"));
-            vCambiaEtapa.put("iCveDepartamento",vData.getInt("iCveDepartamentoU"));
-            
-            vCambiaEtapa.put("iCveUsuario",vData.getInt("iCveUsuario"));
-            vCambiaEtapa.put("tsRegistro",fechas.getThisTime());
-            vCambiaEtapa.put("lAnexo",1);
-            try{
-
-            	TDTRARegEtapasXModTram etapa = new TDTRARegEtapasXModTram();
-            	etapa.cambiarEtapa(vCambiaEtapa, false, "", false, conn);
-            }catch(Exception ex){
-              System.out.print("\n\n>>>  "+ex.getMessage()+"\n\n");
-              cErrorMsg = ex.getMessage();
-              ex.printStackTrace();
-              throw new Exception(ex.getMessage());
-            }
-
-            if(cnNested == null){
               conn.commit();
-            }
           }
         }
       }
@@ -1550,6 +1566,210 @@ public String registraRetrasoDAJLDGST(TVDinRep vData, Connection cnNested)
       return vData;
     }
   }
+  
+  public TVDinRep etapaCerarPNC(TVDinRep vData,Connection cnNested) throws
+  Exception{
+DbConnection dbConn = null;
+Connection conn = cnNested;
+PreparedStatement lPStmt = null;
+PreparedStatement lPStmt1 = null;
+String[] cConjunto;
+
+String cErrorMsg = "";
+boolean lSuccess = true;
+TDGRLDiaNoHabil diaNoHabil = new TDGRLDiaNoHabil();
+TParametro  vParametros = new TParametro("44");
+TFechas fecha = new TFechas();
+java.sql.Date dtHoy = fecha.TodaySQL(); //ELEL Fecha actual
+int ja = 0;
+int lbandera = 0; // Para saber si existen aun requisitos sin entregar
+int iNumDias = 0;
+int iNumDiasRes = 0;
+int lDiasNaturales = 0;
+int iDias = 0;
+int iDiasASumar = 0;
+boolean lDias;
+int iDiasReEntrega = Integer.parseInt(vParametros.getPropEspecifica("cDiasRecReqNotificados"));
+
+Vector vDiasResolucion = this.findByCustom("","SELECT IDIASDESPUESNOTIF FROM TRACONFIGURATRAMITE where ICVETRAMITE="+vData.getInt("iCveTramite")+" and ICVEMODALIDAD="+vData.getInt("iCveModalidad"));
+if(vDiasResolucion.size()>0){
+  iDiasReEntrega = ((TVDinRep) vDiasResolucion.get(0)).getInt("IDIASDESPUESNOTIF");
+}
+Vector cRequisito = new Vector();
+Vector cReqValido = new Vector();
+Vector cReqCan = new Vector();
+TFechas fechas = new TFechas();
+try{
+  if(cnNested == null){
+    dbConn = new DbConnection(dataSourceName);
+    conn = dbConn.getConnection();
+    conn.setAutoCommit(false);
+    conn.setTransactionIsolation(2);
+  }
+
+  Vector vcData2 = findByCustom("","SELECT COALESCE (r.dtNotificacion,rp.DTNOTIFICACION) as DTNOTIFICACION FROM TRAREGSOLICITUD s " +
+          "left join TRAREGREQXTRAM r on r.IEJERCICIO=s.IEJERCICIO and r.INUMSOLICITUD=s.INUMSOLICITUD " +
+          "left join TRAREGPNCETAPA pe on pe.IEJERCICIO = s.IEJERCICIO and pe.INUMSOLICITUD = s.INUMSOLICITUD " +
+          "left join GRLREGISTROPNC rp on rp.IEJERCICIO=pe.IEJERCICIOPNC and rp.ICONSECUTIVOPNC=pe.ICONSECUTIVOPNC " +
+          "where s.INUMSOLICITUD = " + vData.getInt("iNumSolicitud") +
+          " and s.iEjercicio = " + vData.getInt("iEjercicio") +
+          " order by DTNOTIFICACION ");
+TVDinRep vNotificacion = (TVDinRep) vcData2.get(0);
+  
+      /*El siguiente query es para verificar si aun hay requisitos pendientes por entregar*/
+      Vector vcData = findByCustom("",
+                                   "SELECT " +
+                                   "   count(REG.iCveRequisito) as iCveRequisito " +
+                                   "FROM TRAREGREQXTRAM REG " +
+                                   "JOIN TRAREQXMODTRAMITE REQ ON REQ.ICVETRAMITE=REG.ICVETRAMITE " +
+                                   "    AND REQ.ICVEMODALIDAD=REG.ICVEMODALIDAD " +
+                                   "    AND REQ.ICVEREQUISITO=REG.ICVEREQUISITO " +
+                                   "  WHERE REG.IEJERCICIO = " +vData.getInt("iEjercicio")+
+                                   "    AND REG.INUMSOLICITUD = " +vData.getInt("iNumSolicitud") +
+                                   "    AND REG.DTRECEPCION IS NULL " +
+                                   "    AND REG.DTNOTIFICACION is not null");
+      TVDinRep vCount = (TVDinRep) vcData.get(0);
+      lbandera = vCount.getInt("iCveRequisito");
+      
+      
+      if(lbandera == 0){
+        /*El siguiente query es para obtener los datos con los cuales vamos a calcular la fecha de entrega*/
+        Vector vcData1 = findByCustom("","select DTINIVIGENCIA, iNumDiasResol, lDiasNaturalesResol from TRACONFIGURATRAMITE " +
+                                      "where icvetramite = " +
+                                      vData.getInt("iCveTramite") +
+                                      " and icvemodalidad = " +
+                                      vData.getInt("iCveModalidad") +
+                                      " order by DTINIVIGENCIA desc");
+
+        TVDinRep vTRAConfiguraTra = (TVDinRep) vcData1.get(0);
+
+        Vector vcRegistro = findByCustom("","SELECT TSREGISTRO " +
+                                            "FROM TRAREGSOLICITUD S " +
+                                            "WHERE S.IEJERCICIO = "+vData.getInt("iEjercicio")+
+                                            " AND S.INUMSOLICITUD = "+vData.getInt("iNumSolicitud"));
+        java.sql.Date dtInicioSol = fecha.getDateSQL(((TVDinRep)vcRegistro.get(0)).getTimeStamp("TSREGISTRO"));
+        java.sql.Date dtInicio = vTRAConfiguraTra.getDate("dtIniVigencia"); //Es la fecha de Inicio la cual se ocupará para reliazar el cálculo para la fecha de Entrega
+        iNumDias = vTRAConfiguraTra.getInt("iNumDiasResol");
+        lDiasNaturales = vTRAConfiguraTra.getInt("lDiasNaturalesResol");
+        
+        
+
+        if(lDiasNaturales == 1)
+          lDias = true;
+        else
+          lDias = false;
+        java.sql.Date dtNotificacion = vNotificacion.getDate("dtNotificacion");
+        iDias = fecha.getDaysBetweenDates(dtInicioSol,dtNotificacion); //Hace el calculo de dias
+        iDiasASumar = iNumDias - iDias; //Resta los dias que transcurrieron para saber cuales se van a sumar en el nuevo calculo
+
+        /*El siguiente query se efectua para obtener la ultima fecha de recepcion*/
+        Vector vcData3 = findByCustom("","SELECT DTRECEPCION " +
+                                      "FROM TRAREGREQXTRAM " +
+                                      "where INUMSOLICITUD = " +
+                                      vData.getInt("iNumSolicitud") +
+                                      " AND IEJERCICIO = "+vData.getInt("iEjercicio")+
+                                      " AND DTRECEPCION IS NOT NULL "+
+                                      " order by DTRECEPCION desc ");
+
+        TVDinRep vRecepcion = (TVDinRep) vcData3.get(0);
+        java.sql.Date dtRecepcion = vRecepcion.getDate("dtRecepcion");
+
+        java.sql.Date dtEstimaEntrega = diaNoHabil.getFechaFinal(
+            dtRecepcion,iDiasASumar,lDias); //Hace el estimado de la fecha de entrega
+
+        /*Update ya con los datos que hemos obtenido*/
+        String lSQL1 = "update TRARegSolicitud set dtEstimadaEntrega = ? where iEjercicio = ? AND iNumSolicitud = ? ";
+        lPStmt1 = conn.prepareStatement(lSQL1);
+        if(iNumDias > -1)
+          lPStmt1.setDate(1,dtEstimaEntrega);
+        else
+          lPStmt1.setNull(1,Types.DATE);
+        lPStmt1.setInt(2,vData.getInt("iEjercicio"));
+        lPStmt1.setInt(3,vData.getInt("iNumSolicitud"));
+        lPStmt1.executeUpdate();
+        conn.commit();
+        lPStmt1.close();
+
+        Vector vcOficDep = this.findByCustom(""," SELECT iCveOficina,iCveDepartamento FROM TRAREGETAPASXMODTRAM "+
+                                                " where iejercicio = "+vData.getString("iEjercicio")+
+                                                " and inumsolicitud = "+vData.getString("iNumSolicitud"));
+        TVDinRep vOficDep = new TVDinRep();
+        if(vcOficDep.size()>0){
+          vOficDep = (TVDinRep) vcOficDep.get(0);
+        }
+
+
+        TVDinRep vCambiaEtapa = new TVDinRep();
+        
+
+        vCambiaEtapa.put("lResolucion",1);
+        vCambiaEtapa.put("iEjercicio",vData.getString("iEjercicio"));
+        vCambiaEtapa.put("iNumSolicitud",vData.getString("iNumSolicitud"));
+        vCambiaEtapa.put("iCveTramite",vData.getString("iCveTramite"));
+        vCambiaEtapa.put("iCveModalidad",vData.getString("iCveModalidad"));
+        vCambiaEtapa.put("iCveEtapa",Integer.parseInt(VParametros.getPropEspecifica("EtapaModificarTramite")));
+        
+        //vCambiaEtapa.put("iCveOficina",vOficDep.getInt("iCveOficina"));
+        //vCambiaEtapa.put("iCveDepartamento",vOficDep.getInt("iCveDepartamento"));
+
+        vCambiaEtapa.put("iCveOficina",vData.getInt("iCveOficinaU"));
+        vCambiaEtapa.put("iCveDepartamento",vData.getInt("iCveDepartamentoU"));
+        
+        vCambiaEtapa.put("iCveUsuario",vData.getInt("iCveUsuario"));
+        vCambiaEtapa.put("tsRegistro",fechas.getThisTime());
+        vCambiaEtapa.put("lAnexo",1);
+        try{
+
+        	TDTRARegEtapasXModTram etapa = new TDTRARegEtapasXModTram();
+        	etapa.cambiarEtapa(vCambiaEtapa, false, "", false, conn);
+        }catch(Exception ex){
+          System.out.print("\n\n>>>  "+ex.getMessage()+"\n\n");
+          cErrorMsg = ex.getMessage();
+          ex.printStackTrace();
+          throw new Exception(ex.getMessage());
+        }
+        
+        if(cnNested == null){
+            conn.commit();
+        }
+      }
+
+} catch(Exception ex){
+  warn("update",ex);
+  ex.printStackTrace();
+  if(cnNested == null){
+    try{
+      conn.rollback();
+    } catch(Exception e){
+      e.printStackTrace();
+      fatal("update.rollback",e);
+    }
+  }
+  lSuccess = false;
+} finally{
+  try{
+    if(lPStmt != null){
+      lPStmt.close();
+    }
+    if(lPStmt1 != null){
+      lPStmt1.close();
+    }
+    if(cnNested == null){
+      if(conn != null){
+        conn.close();
+      }
+      dbConn.closeConnection();
+    }
+  } catch(Exception ex2){
+    warn("update.close",ex2);
+  }
+  if(lSuccess == false)
+    throw new DAOException(cErrorMsg);
+
+  return vData;
+}
+}
+  
 
   /*
       Datos requeridos que debe de tener vData para hacer esta actualizacion:

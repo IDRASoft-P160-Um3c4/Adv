@@ -130,7 +130,8 @@
    aSelect[1]=["1","Abandonadas"];
    aSelect[2]=["2","Canceladas"];
    aSelect[3]=["3","Otorgadas"];
-   fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,lMuestraDeptoBOX,");
+//   fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,lMuestraDeptoBOX,");
+   fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,");
    fFillSelect(frm.iCveEstado,aSelect,false,frm.iCveEstado.value,0,1);
    fCargaOficDeptoUsr();
    fCargaMotivos();
@@ -362,7 +363,8 @@
     else
       FRMPanel.fSetTraStatus("disabled");
       fDisabled(false);
-    fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,lMuestraDeptoBOX,");
+//    fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,lMuestraDeptoBOX,");
+    fDisabled(true,"iCveEstado,iEjercicioFiltro,iNumSolicitudFiltro,iCveOficinaUsr,iCveDeptoUsr,dtInicio,dtFin,");
     FRMListado.fSetDisabled(false);
     FRMListado.focus();
     //fFillSelect(frm.iCveMotivoCancela,aCompleto,true,frm.iCveMotivoCancela.value,0,1);
@@ -383,7 +385,6 @@
 	  cNumerosRep="12,";
 	  cFiltrosRep= frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
 	  fReportes();
-	 
  }
 
  // LLAMADO desde el Listado cada vez que se selecciona un renglón
@@ -483,21 +484,21 @@
       FinTabla();
     if(cPermisosPag == 1){
 
-     cTx += InicioTabla("",0,"","","center")+
-        ITR()+
-          TDEtiCheckBox("EEtiqueta",0," Mostrar todos los Departamentos:","lMuestraDeptoBOX","0",true,"Muestra todos los departamentos asignados a la oficina seleccionada","","onClick=fCargaDeptos();") +
-        FTR()+
-      FinTabla();
+//     cTx += InicioTabla("",0,"","","center")+
+//        ITR()+
+//          TDEtiCheckBox("EEtiqueta",0," Mostrar todos los Departamentos:","lMuestraDeptoBOX","0",true,"Muestra todos los departamentos asignados a la oficina seleccionada","","onClick=fCargaDeptos();") +
+//        FTR()+
+//      FinTabla();
     }
     cTx += FTDTR();
   return cTx;
 }
 function fCargaDeptos(){
-  if(frm.lMuestraDeptoBOX){
-    if(frm.lMuestraDeptoBOX.checked)
-      fCargaTodosDeptos();
-  }
-  else
+//  if(frm.lMuestraDeptoBOX){
+//    if(frm.lMuestraDeptoBOX.checked)
+//      fCargaTodosDeptos();
+//  }
+//  else
     fOficinaUsrOnChange(false,false);
 }
 function fCargaTodosDeptos(){

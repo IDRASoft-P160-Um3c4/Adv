@@ -137,7 +137,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						height="58"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Right">
+					<textElement textAlignment="Center">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["SECRETARÍA DE COMUNICACIONES Y TRANSPORTES\n"+"CENTRO SCT "+$F{CNOMENT}+ "\nUNIDAD GENERAL DE SERVICIOS TÉCNICOS"]]></textFieldExpression>
@@ -724,29 +724,16 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			<band height="11"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="499"
+						x="311"
 						y="1"
-						width="30"
+						width="240"
 						height="10"
 						key="textField-25"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="7"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()+"/"]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="530"
-						y="1"
-						width="22"
-						height="10"
-						key="textField-26"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Middle">
-						<font size="7"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Página "+$V{PAGE_NUMBER}.toString()+" de "+$V{PAGE_NUMBER}.toString()]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

@@ -187,7 +187,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</title>
 		<pageHeader>
-			<band height="500"  isSplitAllowed="true" >
+			<band height="491"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						x="140"
@@ -206,13 +206,13 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						x="20"
 						y="121"
 						width="510"
-						height="260"
+						height="370"
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+", mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el(los) cadenamientos(s) y sentido(s) : "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular comunico a usted que mediante inspección al lugar de referencia efectuada en la visita técnica de factibilidad por personal que participó en la visita antes mencionada, se detectó la existencia de "+$F{CINS} +" que puede(n) resultar afectada(s) por el aprovechamiento solicitado.\n\nDado lo anterior, y conforme a lo expresado en el(los) escrito(s) emitido(s) por "+ $F{CPROP} +", se concluye que la(s) obra(s) o instalación(es) solicitada(s) no afectará(n) la(s) obra(s) o instalación(es) existente(s) antes mencionada(s).\n\nSe extiende la presente constancia conforme a lo establecido en el artículo 6-A fracción I del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas a fin de continuar con el trámite de autorización del referido aprovechamiento."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+", mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el(los) cadenamientos(s) y sentido(s) : "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular comunico a usted que mediante inspección al lugar de referencia efectuada en la visita técnica de factibilidad por personal que participó en la visita antes mencionada, celebrada con fecha "+$F{CVISITAT}+" se detectó la existencia de "+$F{CINS} +" que puede(n) resultar afectada(s) por el aprovechamiento solicitado.\n\nDado lo anterior, y conforme a lo expresado en el(los) escrito(s) emitido(s) por "+ $F{CPROP} +", se concluye que la(s) obra(s) o instalación(es) solicitada(s) no afectará(n) la(s) obra(s) o instalación(es) existente(s) antes mencionada(s).\n\nAsimismo, con escrito anexo a la solicitud de permiso referida, se compromete a reparar cualquier daño en caso de existir instalaciones no visibles afectadas, conforme lo indique la dependencia o empresa correspondiente.\n\nSe extiende la presente constancia conforme a lo establecido en el artículo 6-A fracción I del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas a fin de continuar con el trámite de autorización del referido aprovechamiento.\n\nAtentamente:\n\n\n\n"+$F{CTECNICO}+"\nJefe de la Unidad General de Servicios Técnicos."]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -240,58 +240,6 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CREPL}==null?$F{CSOLICITANTE}:$F{CREPL}+"\n"+$F{REPTXT}+"\n"+$F{CSOLICITANTE}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement
-						x="20"
-						y="391"
-						width="110"
-						height="15"
-						key="staticText-30"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font pdfFontName="Helvetica" isBold="false"/>
-					</textElement>
-				<text><![CDATA[Atentamente:]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="20"
-						y="460"
-						width="281"
-						height="15"
-						key="staticText-31"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left">
-						<font pdfFontName="Helvetica" isBold="false"/>
-					</textElement>
-				<text><![CDATA[Jefe de la Unidad General de Servicios Técnicos]]></text>
-				</staticText>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="20"
-						y="440"
-						width="281"
-						height="20"
-						key="textField-10"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Bottom">
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTECNICO}]]></textFieldExpression>
-				</textField>
-				<staticText>
-					<reportElement
-						x="20"
-						y="480"
-						width="210"
-						height="20"
-						key="staticText-32"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font size="7"/>
-					</textElement>
-				<text><![CDATA[C.c.p. Director General de Desarrollo Carretero.- presente]]></text>
-				</staticText>
 			</band>
 		</pageHeader>
 		<columnHeader>
@@ -307,7 +255,20 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</columnFooter>
 		<pageFooter>
-			<band height="0"  isSplitAllowed="true" >
+			<band height="22"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="20"
+						y="2"
+						width="210"
+						height="20"
+						key="staticText-32"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="7"/>
+					</textElement>
+				<text><![CDATA[C.c.p. Director General de Desarrollo Carretero.- presente]]></text>
+				</staticText>
 			</band>
 		</pageFooter>
 		<summary>

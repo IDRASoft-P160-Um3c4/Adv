@@ -22,14 +22,14 @@
 	CFGAccion oAccion = new CFGAccion(pageContext.getRequest());
 	String iCveEtapa = "";
 	int iCveEtapaGuardar = 0;
-	if (!request.getParameter("hdEtapa").equalsIgnoreCase("null")
+	if (request.getParameter("hdEtapa")!=null&&!request.getParameter("hdEtapa").equalsIgnoreCase("null")
 			&& !request.getParameter("hdEtapa").equalsIgnoreCase(""))
 		iCveEtapa = vParametros.getPropEspecifica(request
 				.getParameter("hdEtapa"));
 	else
 		cError = "Los datos no fueron recibidos correctamente, favor de efectuar la búsqueda nuevamente.";
 
-	if (!request.getParameter("hdEtapaGuardar")
+	if (request.getParameter("hdEtapaGuardar")!=null&&!request.getParameter("hdEtapaGuardar")
 			.equalsIgnoreCase("null")
 			&& !request.getParameter("hdEtapaGuardar")
 					.equalsIgnoreCase(""))
@@ -162,6 +162,7 @@
 			sb.append("FROM  tradatosenvios DE ");
 			cFiltro = oAccion.getCFiltro().toUpperCase();
 		} else {
+		
 			sb.append("SELECT ");
 			sb.append("TRARegSolicitud.iEjercicio as iEjercicio, ");
 			sb.append("TRARegSolicitud.iNumSolicitud as iNumSolicitud, ");

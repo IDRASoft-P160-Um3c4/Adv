@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cLeyendaEnc" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
+case when REP.ICVEPERSONA is null THEN '' ELSE REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO || ' representante legal de ' 
+END as cRepL, 
+TRACATTRAMITE.CDSCBREVE as cTramite, 
+TRACATTRAMITE.CCVEINTERNA as cClaveT, 
+CASE MONTH(DTVISITA)
+	      WHEN 1 THEN DAY(DTVISITA) || ' de Enero de ' || YEAR(DTVISITA)
+	      WHEN 2 THEN DAY(DTVISITA) || ' de Febrero de ' || YEAR(DTVISITA)
+	      WHEN 3 THEN DAY(DTVISITA) || ' de Marzo de ' || YEAR(DTVISITA)
+	      WHEN 4 THEN DAY(DTVISITA) || ' de Abril de ' || YEAR(DTVISITA)
+	      WHEN 5 THEN DAY(DTVISITA) || ' de Mayo de ' || YEAR(DTVISITA)
+	      WHEN 6 THEN DAY(DTVISITA) || ' de Junio de ' || YEAR(DTVISITA)
+	      WHEN 7 THEN DAY(DTVISITA) || ' de Julio de ' || YEAR(DTVISITA)
+	      WHEN 8 THEN DAY(DTVISITA) || ' de Agosto de ' || YEAR(DTVISITA)
+	      WHEN 9 THEN DAY(DTVISITA) || ' de Septiembre de ' || YEAR(DTVISITA)
+	      WHEN 10 THEN DAY(DTVISITA) || ' de Octubre de ' || YEAR(DTVISITA)
+	      WHEN 11 THEN DAY(DTVISITA) || ' de Noviembre de ' || YEAR(DTVISITA)
+	      WHEN 12 THEN DAY(DTVISITA) || ' de Diciembre de ' || YEAR(DTVISITA)
+      END AS cVisitaT, 
+ADV.CKMSENTIDO, 
+ADV.CHECHOS as cHechos,  
+ADV.CORGANO as cOrgano, 
+CARR.CDSCARRETERA as cAutopista,  
+CARR.CCONSECIONARIO as CCONSECIONARIO,  
+ENTOF.CNOMBRE as NomEnt, 
+GRLOFICINA.CTITULARTEC as cTecnico,
+CASE MONTH(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 1 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Enero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 2 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Febrero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 3 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Marzo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 4 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Abril de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 5 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Mayo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 6 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Junio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 7 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Julio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 8 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Agosto de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 9 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Septiembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 10 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Octubre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 11 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Noviembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 12 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Diciembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+      END AS DTSOL,
+CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS DTREP,
+TRADATOSNOAFEC.CPROPIETARIO AS CPROP,
+TRADATOSNOAFEC.CINSTALACION AS CINS,
+TRADATOSNOAFEC.COBSERVACION AS COBS,
+CARR.CENCARGADO AS CPERSCON,
+CARR.CCARGO AS CCARGOCON,
+CARR.CCONSECIONARIO AS CCONCESIONARIO,
+TRAFOLENVIOS.CFOLCONCE AS CFOLECONC,
+TRADATOSPERM.CFOLPERMISO AS CFOLPERM
+FROM TRAREGSOLICITUD 
+JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE  
+JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE  
+JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE 
+LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL 
+JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD  
+JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA 
+JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA  
+JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRADATOSNOAFEC ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSNOAFEC.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSNOAFEC.INUMSOL
+JOIN TRAFOLENVIOS ON TRAFOLENVIOS.IEJERCICIO =  TRAREGSOLICITUD.IEJERCICIO AND TRAFOLENVIOS.INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD
+JOIN TRADATOSPERM ON TRADATOSPERM.IEJERCICIO =  TRAREGSOLICITUD.IEJERCICIO AND TRADATOSPERM.INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD
+where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio} 
+and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="CREPL" class="java.lang.String"/>
+	<field name="CTRAMITE" class="java.lang.String"/>
+	<field name="CCLAVET" class="java.lang.String"/>
+	<field name="CVISITAT" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CORGANO" class="java.lang.String"/>
+	<field name="CAUTOPISTA" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="NOMENT" class="java.lang.String"/>
+	<field name="CTECNICO" class="java.lang.String"/>
+	<field name="DTSOL" class="java.lang.String"/>
+	<field name="DTREP" class="java.lang.String"/>
+	<field name="CPROP" class="java.lang.String"/>
+	<field name="CINS" class="java.lang.String"/>
+	<field name="COBS" class="java.lang.String"/>
+	<field name="CPERSCON" class="java.lang.String"/>
+	<field name="CCARGOCON" class="java.lang.String"/>
+	<field name="CCONCESIONARIO" class="java.lang.String"/>
+	<field name="CFOLECONC" class="java.lang.String"/>
+	<field name="CFOLPERM" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="140"  isSplitAllowed="true" >
+				<image  evaluationTime="Page" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="9"
+						width="181"
+						height="93"
+						key="image-1"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{URLEstaticos} + "img/logoSCT_2012_12.jpg"]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="240"
+						y="10"
+						width="289"
+						height="79"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
+"DIRECCÓN GENERAL ADJUNTA DE SUPERVISION FÍSICA DE AUTOPISTAS\n"+
+"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS\n"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="239"
+						y="99"
+						width="291"
+						height="41"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLECONC}+"\n\nCiudad de Méxcio a "+$F{DTREP}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="411"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="80"
+						width="510"
+						height="331"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a la solicitud fecha "+$F{DTSOL}+" mediante el cual el "+ $F{CREPL}+$F{CSOLICITANTE} +" solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km: "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, hago de su conocimiento que el C. Director General de Desarrollo Carretero ha emitido su autorización para construir "+$F{CHECHOS}+" mencionado, en virtud de que esta Dirección General Adjunta resolvió favorablemente la continuación del trámite de la solicitud presentada, dado que la documentación suministrada cumple con la normatividad técnica y legal aplicable y que se han pagado los derechos correspondientes.\n\nPor tal razón, me permito enviarle anexo el permiso original autorizado No. "+$F{CFOLPERM} +", así como copia del(os) plano(s) del proyecto aprobado.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nAtentamente\nEl Director General Adjunto de\nSupervisión Física de Autopistas\n\n\n\nING. ROBERTO MAGALLANES GONZÁLES"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="1"
+						width="400"
+						height="69"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CPERSCON}.toUpperCase()+"\n"+$F{CCARGOCON}.toUpperCase()+"\n"+$F{CCONCESIONARIO}.toUpperCase()]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="130"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="50"
+						y="109"
+						width="446"
+						height="21"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
+Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
+]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="0"
+						width="510"
+						height="109"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: Permiso No."+ $F{CFOLPERM} +" y copia del(os) plano(s) del proyecto aprobado.\n\nC.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLECONC}+".DOC"]]></textFieldExpression>
+				</textField>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

@@ -39,15 +39,6 @@ AND INUMSOLICITUD = $P{cSolicitud}]]></queryString>
 		</background>
 		<title>
 			<band height="31"  isSplitAllowed="true" >
-				<rectangle>
-					<reportElement
-						x="0"
-						y="0"
-						width="489"
-						height="31"
-						key="rectangle-1"/>
-					<graphicElement stretchType="NoStretch"/>
-				</rectangle>
 				<staticText>
 					<reportElement
 						x="150"
@@ -89,20 +80,47 @@ AND INUMSOLICITUD = $P{cSolicitud}]]></queryString>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="0"
+						x="1"
 						y="15"
-						width="490"
+						width="488"
 						height="0"
 						key="line-23"/>
-					<graphicElement stretchType="NoStretch"/>
+					<graphicElement stretchType="NoStretch" pen="1Point"/>
 				</line>
 				<line direction="TopDown">
 					<reportElement
 						x="27"
-						y="0"
+						y="1"
 						width="0"
-						height="31"
+						height="30"
 						key="line-24"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="1"
+						width="0"
+						height="30"
+						key="line-26"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="1"
+						y="1"
+						width="488"
+						height="0"
+						key="line-27"/>
+					<graphicElement stretchType="NoStretch" pen="1Point"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="488"
+						y="1"
+						width="0"
+						height="30"
+						key="line-28"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
 			</band>

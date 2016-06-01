@@ -230,7 +230,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Con fundamento en el Artículo 7 fracción V del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas y trámite número "+$F{CCLAVET}+" de la Comisión Federal de Mejora Regulatoria (COFEMER), se elabora el presente dictamen bajo las siguientes consideraciones:"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Con fundamento en el Artículo 7 fracción V del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas y trámite número "+$F{CCLAVET}+" en la modalidad de " +$F{CTRAMITE}+ " de la Comisión Federal de Mejora Regulatoria (COFEMER), se elabora el presente dictamen bajo las siguientes consideraciones:"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

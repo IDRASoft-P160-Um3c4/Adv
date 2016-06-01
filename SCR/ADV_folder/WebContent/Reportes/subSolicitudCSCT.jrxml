@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="2"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="552"
+		 pageHeight="792"
+		 columnWidth="276"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+	<style 
+		name="BANDA"
+		isDefault="false"
+		mode="Opaque"
+		forecolor="#FFFFFF"
+		backcolor="#0099FF"
+		fill="Solid"
+		isStyledText="true"
+		fontSize="12"
+		isBold="true"
+		isBlankWhenNull="true"
+	/>
+
+	<subDataset name="DAJL" >
+
+		<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String"/>
+		<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String"/>
+		<queryString><![CDATA[SELECT 
+   RRT.iCveRequisito, 
+   VARCHAR_FORMAT(RRT.dtRecepcion,'DD/MM/YYYY') AS DTRECEPCION, 
+   R.cDscBreve,
+   CASE R.ICVEDEPTOEVAL
+   WHEN 100 THEN 'DGST'
+   WHEN 102 THEN 'DAJL'
+   ELSE ''
+   END AS CDPTO
+ FROM TRARegReqXTram RRT
+ JOIN TRARequisito R ON R.iCveRequisito = RRT.iCveRequisito
+WHERE RRT.iEjercicio = $P{cEjercicio}
+AND RRT.iNumSolicitud = $P{cSolicitud}
+AND RRT.dtRecepcion IS NOT NULL
+ORDER BY R.iCveRequisito]]></queryString>
+
+		<field name="ICVEREQUISITO" class="java.lang.Integer"/>
+		<field name="DTRECEPCION" class="java.lang.String"/>
+		<field name="CDSCBREVE" class="java.lang.String"/>
+		<field name="CDPTO" class="java.lang.String"/>
+
+		<filterExpression><![CDATA[new Boolean($F{CDPTO}.equals("DAJL"))]]></filterExpression>
+	</subDataset>
+
+	<subDataset name="DGST" >
+
+		<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String"/>
+		<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String"/>
+		<queryString><![CDATA[SELECT 
+   RRT.iCveRequisito, 
+   VARCHAR_FORMAT(RRT.dtRecepcion,'DD/MM/YYYY') AS DTRECEPCION, 
+   R.cDscBreve,
+   CASE R.ICVEDEPTOEVAL
+   WHEN 100 THEN 'DGST'
+   WHEN 102 THEN 'DAJL'
+   ELSE ''
+   END AS CDPTO
+ FROM TRARegReqXTram RRT
+ JOIN TRARequisito R ON R.iCveRequisito = RRT.iCveRequisito
+WHERE RRT.iEjercicio = $P{cEjercicio}
+AND RRT.iNumSolicitud = $P{cSolicitud}
+AND RRT.dtRecepcion IS NOT NULL
+ORDER BY R.iCveRequisito]]></queryString>
+
+		<field name="ICVEREQUISITO" class="java.lang.Integer"/>
+		<field name="DTRECEPCION" class="java.lang.String"/>
+		<field name="CDSCBREVE" class="java.lang.String"/>
+		<field name="CDPTO" class="java.lang.String"/>
+
+		<filterExpression><![CDATA[new Boolean($F{CDPTO}.equals("DGST"))]]></filterExpression>
+	</subDataset>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT IEJERCICIO
+ FROM TRAREGSOLICITUD SOL
+WHERE SOL.iEjercicio = $P{cEjercicio}
+AND SOL.iNumSolicitud = $P{cSolicitud}]]></queryString>
+
+	<field name="IEJERCICIO" class="java.lang.Integer"/>
+
+	<variable name="resol" class="java.lang.String" resetType="Report" calculation="Nothing">
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="false" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="46"  isSplitAllowed="false" >
+				<line direction="TopDown">
+					<reportElement
+						x="661"
+						y="-173"
+						width="536"
+						height="0"
+						key="line-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<crosstab >
+					<reportElement
+						x="0"
+						y="0"
+						width="270"
+						height="40"
+						key="crosstab-1"/>
+					<crosstabDataset>
+						<dataset >
+							<datasetRun subDataset="DAJL">
+								<datasetParameter  name="cEjercicio">
+									<datasetParameterExpression><![CDATA[$P{cEjercicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter  name="cSolicitud">
+									<datasetParameterExpression><![CDATA[$P{cSolicitud}]]></datasetParameterExpression>
+								</datasetParameter>
+								<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+							</datasetRun>
+						</dataset>
+					</crosstabDataset>
+					<crosstabHeaderCell>						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabHeaderCell>					<rowGroup name="ICVEREQUISITO" width="0">
+						<bucket>
+							<bucketExpression class="java.lang.Integer"><![CDATA[$F{ICVEREQUISITO}]]></bucketExpression>
+						</bucket>
+					</rowGroup>
+					<columnGroup name="CDPTO" height="25" headerPosition="Center">
+						<bucket>
+							<bucketExpression class="java.lang.String"><![CDATA[$F{CDPTO}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
+						width="206"
+						height="24"
+						key="staticText-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[EXPEDIENTE LEGAL]]></text>
+				</staticText>
+						</cellContents>
+						</crosstabColumnHeader>
+					</columnGroup>
+
+					<measure name="CDSCBREVE_First" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{CDSCBREVE}]]></measureExpression>
+					</measure>
+					<crosstabCell width="207" height="30">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="206"
+						height="30"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{CDSCBREVE_First}]]></textFieldExpression>
+				</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="0" height="30" columnTotalGroup="CDPTO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="207" height="0" rowTotalGroup="ICVEREQUISITO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="0" height="0" rowTotalGroup="ICVEREQUISITO" columnTotalGroup="CDPTO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<whenNoDataCell>						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</whenNoDataCell>					</crosstab>
+				<crosstab >
+					<reportElement
+						x="290"
+						y="0"
+						width="250"
+						height="40"
+						key="crosstab-2"/>
+					<crosstabDataset>
+						<dataset >
+							<datasetRun subDataset="DGST">
+								<datasetParameter  name="cEjercicio">
+									<datasetParameterExpression><![CDATA[$P{cEjercicio}]]></datasetParameterExpression>
+								</datasetParameter>
+								<datasetParameter  name="cSolicitud">
+									<datasetParameterExpression><![CDATA[$P{cSolicitud}]]></datasetParameterExpression>
+								</datasetParameter>
+								<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+							</datasetRun>
+						</dataset>
+					</crosstabDataset>
+					<crosstabHeaderCell>						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabHeaderCell>					<rowGroup name="ICVEREQUISITO" width="0">
+						<bucket>
+							<bucketExpression class="java.lang.Integer"><![CDATA[$F{ICVEREQUISITO}]]></bucketExpression>
+						</bucket>
+					</rowGroup>
+					<columnGroup name="CDPTO" height="25" headerPosition="Center">
+						<bucket>
+							<bucketExpression class="java.lang.String"><![CDATA[$F{CDPTO}]]></bucketExpression>
+						</bucket>
+						<crosstabColumnHeader>
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+				<staticText>
+					<reportElement
+						x="0"
+						y="0"
+						width="203"
+						height="24"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<text><![CDATA[EXPEDIENTE TÉCNICO]]></text>
+				</staticText>
+						</cellContents>
+						</crosstabColumnHeader>
+					</columnGroup>
+
+					<measure name="CDSCBREVE_First" class="java.lang.String" calculation="First">
+						<measureExpression><![CDATA[$F{CDSCBREVE}]]></measureExpression>
+					</measure>
+					<crosstabCell width="203" height="30">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="202"
+						height="30"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{CDSCBREVE_First}]]></textFieldExpression>
+				</textField>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="0" height="30" columnTotalGroup="CDPTO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="203" height="0" rowTotalGroup="ICVEREQUISITO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<crosstabCell width="0" height="0" rowTotalGroup="ICVEREQUISITO" columnTotalGroup="CDPTO">
+						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</crosstabCell>
+					<whenNoDataCell>						<cellContents mode="Transparent">
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+						</cellContents>
+					</whenNoDataCell>					</crosstab>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

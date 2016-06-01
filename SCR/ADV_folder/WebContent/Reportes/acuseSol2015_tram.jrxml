@@ -34,7 +34,8 @@
       VARCHAR_FORMAT(DATE(TRAREGSOLICITUD.TSREGISTRO), 'DD/MM/YYYY') AS DTSOL,
       ENTOF.CNOMBRE AS NOMENT,
       ADV.CHECHOS,
-      TRAREGSOLICITUD.CNOMAUTORIZARECOGER
+      TRAREGSOLICITUD.CNOMAUTORIZARECOGER,
+      VARCHAR_FORMAT(ADV.DTVISITA, 'DD/MM/YYYY') AS CDTVISITA
       FROM TRAREGSOLICITUD
       JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE
       JOIN TRAMODALIDAD ON TRAMODALIDAD.ICVEMODALIDAD= TRAREGSOLICITUD.ICVEMODALIDAD      
@@ -42,7 +43,7 @@
    JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA
    JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA
    JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = 1
- where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio} 
+ where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio}
 	 and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 
 	<field name="CTRAM" class="java.lang.String"/>
@@ -55,6 +56,7 @@
 	<field name="NOMENT" class="java.lang.String"/>
 	<field name="CHECHOS" class="java.lang.String"/>
 	<field name="CNOMAUTORIZARECOGER" class="java.lang.String"/>
+	<field name="CDTVISITA" class="java.lang.String"/>
 
 		<background>
 			<band height="0"  isSplitAllowed="true" >
@@ -73,7 +75,7 @@
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="118"  isSplitAllowed="true" >
+			<band height="151"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						mode="Opaque"
@@ -294,7 +296,7 @@
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Top">
-						<font size="9"/>
+						<font pdfFontName="Helvetica" size="8" isBold="false"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$P{cSolicitud}]]></textFieldExpression>
 				</textField>
@@ -320,7 +322,7 @@
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Top">
-						<font size="9"/>
+						<font pdfFontName="Helvetica" size="8" isBold="false"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{DTSOL}]]></textFieldExpression>
 				</textField>
@@ -349,6 +351,32 @@
 						<font size="8"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{NOMENT}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="0"
+						y="120"
+						width="120"
+						height="12"
+						key="staticText-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-Bold" size="8" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Fecha de visita tecnica :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="120"
+						width="68"
+						height="12"
+						key="textField-11"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Top">
+						<font pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDTVISITA}]]></textFieldExpression>
 				</textField>
 			</band>
 		</detail>

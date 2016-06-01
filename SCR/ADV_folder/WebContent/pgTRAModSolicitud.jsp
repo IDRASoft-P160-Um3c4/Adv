@@ -62,29 +62,18 @@
   }
  /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   if(oAccion.getCAccion().equals("Cambia")){
-    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveModalidad,iCveTramite,iCveRequisito,iCveUsuario,iCveOficinaU,iCveDepartamentoU");
+    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveModalidad,iCveTramite,iCveRequisito,iCveUsuario,iCveOficinaU,iCveDepartamentoU,,hdFolMemoPNC,hdFolDGSTPNC,hdRefDGSTPNC,hdDtDGSTPNC");
     
     
     TVDinRep vPNC = oAccion.setInputs("iEjercicio,iNumSolicitud,iConsecutivoPNC,cObservacion");
     Vector vcPNC = pais.findByCustom("","SELECT p.IEJERCICIO,p.ICONSECUTIVOPNC,p.ICVEOFICINAASIGNADO,p.ICVEDEPTOASIGNADO " +
     																		"FROM GRLREGISTROPNC P " +
     																		"WHERE P.IEJERCICIO="+vPNC.getInt("iEjercicio")+" and P.ICONSECUTIVOPNC="+vPNC.getInt("iConsecutivoPNC"));
-    
      try{
       vDinRep.put("iCveUsuRecibe",iCveUsuario);
       dTRARegReqXTram.Cambia(vDinRep,null);
-      for(int i=0;i<vcPNC.size();i++){
-    	  TVDinRep vPNC1 = (TVDinRep) vcPNC.get(i);
-    	  vPNC1.put("cComentarios",vPNC.getString("cObservacion"));
-    	  vPNC1.put("iCveUsuRegistra",iCveUsuario);
-    	  vPNC1.put("iCveUsuCorrige",iCveUsuario);
-    	  dGRLSeguimientoPNC.insert(vPNC1,null);
-    	  vPNC.remove("iConsecutivoPNC");
-        vPNC.put("iConsecutivoPNC",vPNC1.getInt("ICONSECUTIVOPNC"));
-      }
-	  regCausa.resolver(vPNC,null);
-      dTRARegReqXTram.FinalizaPNC(vPNC);
-    }catch(Exception e){
+
+     }catch(Exception e){
     	//System.out.print("*************");
     	if(e.getMessage().substring(0,9).equals("El tiempo")){
         	//System.out.print(e.getMessage());
@@ -95,6 +84,41 @@
     }
     oAccion.setBeanPK(vDinRep.getPK());
   }
+ 
+ 
+  if(oAccion.getCAccion().equals("etapaCerrarPNC")){
+	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveModalidad,iCveTramite,iCveRequisito,iCveUsuario,iCveOficinaU,iCveDepartamentoU");
+	    
+	    dTRARegReqXTram.etapaCerarPNC(vDinRep, null);
+	    
+	    TVDinRep vPNC = oAccion.setInputs("iEjercicio,iNumSolicitud,iConsecutivoPNC,cObservacion");
+	    Vector vcPNC = pais.findByCustom("","SELECT p.IEJERCICIO,p.ICONSECUTIVOPNC,p.ICVEOFICINAASIGNADO,p.ICVEDEPTOASIGNADO " +
+	    																		"FROM GRLREGISTROPNC P " +
+	    																		"WHERE P.IEJERCICIO="+vPNC.getInt("iEjercicio")+" and P.ICONSECUTIVOPNC="+vPNC.getInt("iConsecutivoPNC"));	   
+	     try{
+	      for(int i=0;i<vcPNC.size();i++){
+	    	  TVDinRep vPNC1 = (TVDinRep) vcPNC.get(i);
+	    	  vPNC1.put("cComentarios",vPNC.getString("cObservacion"));
+	    	  vPNC1.put("iCveUsuRegistra",iCveUsuario);
+	    	  vPNC1.put("iCveUsuCorrige",iCveUsuario);
+	    	  dGRLSeguimientoPNC.insert(vPNC1,null);
+	    	  vPNC.remove("iConsecutivoPNC");
+	        vPNC.put("iConsecutivoPNC",vPNC1.getInt("ICONSECUTIVOPNC"));
+	      }
+		  regCausa.resolver(vPNC,null);
+	      dTRARegReqXTram.FinalizaPNC(vPNC);
+	    }catch(Exception e){
+	    	//System.out.print("*************");
+	    	if(e.getMessage().substring(0,9).equals("El tiempo")){
+	        	//System.out.print(e.getMessage());
+	        	cError = e.getMessage();
+	    	}
+	    	else
+	    	      cError="Guardar";
+	    }
+	    oAccion.setBeanPK(vDinRep.getPK());
+	  }
+ 
   /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   if(oAccion.getCAccion().equals("GuardarCambios")){
     TDTRARegSolicitud dTRARegSolicitud = new TDTRARegSolicitud();
@@ -162,6 +186,9 @@
 
   }
   String cSQL = "";
+  
+  
+  String CID = (String) request.getParameter("cId");
   
   if(oAccion.getCAccion().equals("GetSolicitud")){
 	    cSQL = "SELECT " +
@@ -247,7 +274,10 @@
 	  }
 	  
 	    
-	  }
+	  }else if(CID.equals("datosEnviosPNC")){
+			cSQL="SELECT DE.iejercicio,DE.inumsolicitud,DE.cfolmemopnc,DE.cfoldgstpnc, DE.CREFDGSTpnc, DE.dtDGSTpnc "
+			+" FROM  tradatosenvios DE "+ oAccion.getCFiltro().toUpperCase();
+		}	
   else {
 	    cSQL = "SELECT " +
 	           "       	DISTINCT(S.ICVETRAMITE),S.ICVEMODALIDAD, " +

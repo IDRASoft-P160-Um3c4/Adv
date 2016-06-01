@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="memoDAJL2015Sub"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="552"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String"/>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
+REP.ICVEPERSONA AS REPID,
+case (REP.ICVEPERSONA) 
+when NULL THEN '' 
+ELSE REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO
+END as cRepL, 
+TRACATTRAMITE.CDSCBREVE as cTramite, 
+TRACATTRAMITE.CCVEINTERNA as cClaveT, 
+CASE MONTH(DTVISITA)
+	      WHEN 1 THEN DAY(DTVISITA) || ' de Enero de ' || YEAR(DTVISITA)
+	      WHEN 2 THEN DAY(DTVISITA) || ' de Febrero de ' || YEAR(DTVISITA)
+	      WHEN 3 THEN DAY(DTVISITA) || ' de Marzo de ' || YEAR(DTVISITA)
+	      WHEN 4 THEN DAY(DTVISITA) || ' de Abril de ' || YEAR(DTVISITA)
+	      WHEN 5 THEN DAY(DTVISITA) || ' de Mayo de ' || YEAR(DTVISITA)
+	      WHEN 6 THEN DAY(DTVISITA) || ' de Junio de ' || YEAR(DTVISITA)
+	      WHEN 7 THEN DAY(DTVISITA) || ' de Julio de ' || YEAR(DTVISITA)
+	      WHEN 8 THEN DAY(DTVISITA) || ' de Agosto de ' || YEAR(DTVISITA)
+	      WHEN 9 THEN DAY(DTVISITA) || ' de Septiembre de ' || YEAR(DTVISITA)
+	      WHEN 10 THEN DAY(DTVISITA) || ' de Octubre de ' || YEAR(DTVISITA)
+	      WHEN 11 THEN DAY(DTVISITA) || ' de Noviembre de ' || YEAR(DTVISITA)
+	      WHEN 12 THEN DAY(DTVISITA) || ' de Diciembre de ' || YEAR(DTVISITA)
+      END AS cVisitaT, 
+ADV.CKMSENTIDO, 
+ADV.CHECHOS as cHechos,  
+ADV.CORGANO as cOrgano, 
+CARR.CDSCARRETERA as cAutopista,  
+CARR.CCONSECIONARIO as CCONSECIONARIO,  
+ENTOF.CNOMBRE as NomEnt, 
+GRLOFICINA.CTITULARTEC as cTecnico,
+CASE MONTH(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 1 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Enero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 2 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Febrero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 3 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Marzo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 4 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Abril de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 5 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Mayo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 6 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Junio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 7 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Julio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 8 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Agosto de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 9 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Septiembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 10 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Octubre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 11 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Noviembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 12 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Diciembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+      END AS DTSOL,
+CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS DTREP,
+TRADATOSNOAFEC.CPROPIETARIO AS CPROP,
+TRADATOSNOAFEC.CINSTALACION AS CINS,
+TRADATOSNOAFEC.COBSERVACION AS COBS,
+TRADATOSENVIOS.CFOLMEMO,
+TRADATOSENVIOS.CDIRDGAJL
+FROM TRAREGSOLICITUD 
+JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE  
+JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE  
+JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE 
+LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL 
+JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD  
+JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA 
+JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA  
+JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
+JOIN TRADATOSNOAFEC ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSNOAFEC.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSNOAFEC.INUMSOL 
+      JOIN TRADATOSENVIOS ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSENVIOS.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSENVIOS.INUMSOLICITUD 
+where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio}
+and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="REPID" class="java.lang.Long"/>
+	<field name="CREPL" class="java.lang.String"/>
+	<field name="CTRAMITE" class="java.lang.String"/>
+	<field name="CCLAVET" class="java.lang.String"/>
+	<field name="CVISITAT" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CORGANO" class="java.lang.String"/>
+	<field name="CAUTOPISTA" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="NOMENT" class="java.lang.String"/>
+	<field name="CTECNICO" class="java.lang.String"/>
+	<field name="DTSOL" class="java.lang.String"/>
+	<field name="DTREP" class="java.lang.String"/>
+	<field name="CPROP" class="java.lang.String"/>
+	<field name="CINS" class="java.lang.String"/>
+	<field name="COBS" class="java.lang.String"/>
+	<field name="CFOLMEMO" class="java.lang.String"/>
+	<field name="CDIRDGAJL" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</title>
+		<pageHeader>
+			<band height="172"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="0"
+						y="89"
+						width="516"
+						height="36"
+						key="rectangle-15"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="71"
+						width="516"
+						height="19"
+						key="rectangle-10"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="53"
+						width="516"
+						height="19"
+						key="rectangle-11"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="35"
+						width="516"
+						height="19"
+						key="rectangle-12"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="17"
+						width="516"
+						height="19"
+						key="rectangle-13"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="-1"
+						width="516"
+						height="19"
+						key="rectangle-14"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="5"
+						y="2"
+						width="126"
+						height="13"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[PROMOVENTE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="5"
+						y="19"
+						width="126"
+						height="13"
+						key="staticText-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[REPRESENTANTE LEGAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="5"
+						y="38"
+						width="126"
+						height="13"
+						key="staticText-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[APROVECHAMIENTO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="5"
+						y="57"
+						width="126"
+						height="13"
+						key="staticText-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DESTINO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="4"
+						y="74"
+						width="126"
+						height="13"
+						key="staticText-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[AUTOPISTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="100"
+						width="206"
+						height="18"
+						key="staticText-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[CADENAMIENTO(S) Y SENTIDO(S)]]></text>
+				</staticText>
+				<line direction="TopDown">
+					<reportElement
+						x="246"
+						y="-1"
+						width="0"
+						height="127"
+						key="line-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="251"
+						y="1"
+						width="261"
+						height="15"
+						key="textField-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CSOLICITANTE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="252"
+						y="20"
+						width="261"
+						height="15"
+						key="textField-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CREPL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="252"
+						y="38"
+						width="261"
+						height="15"
+						key="textField-3"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTRAMITE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="253"
+						y="93"
+						width="261"
+						height="30"
+						key="textField-4"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CKMSENTIDO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="253"
+						y="74"
+						width="261"
+						height="15"
+						key="textField-5"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CAUTOPISTA}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="252"
+						y="56"
+						width="261"
+						height="15"
+						key="textField-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CHECHOS}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="130"
+						width="539"
+						height="42"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Aprovecho la ocasión para enviarle un cordial saludo.\n\nA t e n t a m e n t e."]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

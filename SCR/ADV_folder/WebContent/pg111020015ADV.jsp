@@ -169,13 +169,16 @@
 		      +request.getParameter("cFiltroHist")+") ORDER BY COLD";
   }else if (oAccion.getCAccion().equals("tableroInicial")){
 	  
+	  String filtroOficina = "";
+	  filtroOficina = request.getParameter("cFiltroOficina");
 	  
 	  strQuery = "("//PENDIENTES DE RESOLUCION
 	  			+"SELECT 1 AS IORDEN, 'Solicitudes pendientes de resolución' as ctitulo ,COUNT(SOL.INUMSOLICITUD) as ccuenta FROM TRAREGSOLICITUD SOL "
 			  +"LEFT JOIN TRAREGTRAMXSOL CAN ON CAN.IEJERCICIO = SOL.IEJERCICIO AND CAN.INUMSOLICITUD = SOL.INUMSOLICITUD "
 			  +"WHERE SOL.DTRESOLTRAM IS NULL "
 			  +"AND SOL.LABANDONADA = 0 "
-			  +"AND CAN.DTCANCELACION IS NULL"
+			  +"AND CAN.DTCANCELACION IS NULL "
+			  +filtroOficina
 			  +") "
 	  +"UNION( " //SOLICITUDES CON RETRASO
 			  +"SELECT 2 AS IORDEN,'Solicitudes con retraso' as ctitulo ,COUNT(SOL.INUMSOLICITUD) as ccuenta FROM TRAREGSOLICITUD SOL "
@@ -184,6 +187,7 @@
 			  +"WHERE SOL.DTRESOLTRAM IS NULL "
 			  +"AND SOL.LABANDONADA = 0 "
 			  +"AND CAN.DTCANCELACION IS NULL "
+		      +filtroOficina
 	  		  +") "
 	  +"UNION ( "
 			  +"SELECT 3 AS IORDEN,'Solicitudes por internet pendientes de inicio' as ctitulo, COUNT(SOL.INUMSOLICITUD) FROM TRAREGSOLICITUD SOL "
@@ -193,7 +197,8 @@
 			  +"AND SOL.LABANDONADA = 0 "
 			  +"AND CAN.DTCANCELACION IS NULL "
 			  +"AND SOL.LTRAMINERNET = 1 "
-			  +"AND REGE.IEJEETAPA IS NULL AND  REGE.ISOLETAPA IS NULL "
+			  +"AND REGE.IEJEETAPA IS NULL AND  REGE.ISOLETAPA IS NULL " 
+			  +filtroOficina
 	  +") "
 	  +"ORDER BY IORDEN ";
 	  
@@ -250,7 +255,7 @@
 		         "       TRAREGSOLICITUD.LJURIDICO, " +//31
 		        "		 'CAD' AS KM, "+//32
 		        "		 'SEN' AS SEN, "+//33
-		         "		 DAT.CHECHOS, " +//34
+		         "		 DAT.CHECHOS, " +//34s
 		         "		 CASE VT.LPOSITIVA "+
 		         "	 	 WHEN 0 THEN 'NEGATIVO' " +
 		         "       WHEN 1 THEN 'POSITIVO' " +

@@ -114,8 +114,7 @@
            	   ITD();FTD();
            	ITD();Liga("*Ver Documentación Anexa al Trámite","verDocsTramite()","Buscar");FTD();
            	ITD();Liga("*Generar Oficios, Resolución, Permiso","fDocsFinales()","Buscar");FTD();
-	           ITD();Liga("*Generar hoja de ayuda ingresos","fBuscaDocumentos()","Buscar");FTD();
-	           
+	           ITD();Liga("*Generar hoja de ayuda ingresos","fBuscaDocumentos()","Buscar");FTD();           
            FTR();
            
            ITR("","","","","");
@@ -668,7 +667,7 @@
          }
        }              
     }else
-      fAlert("La solicitud tiene Productos No Conformes Pendientes \ny no puede cambiar de etapa");
+      fAlert("La solicitud tiene Productos No Conformes Pendientes \no no puede cambiar de etapa");
 
  }
  // LLAMADO desde el Panel cada vez que se presiona al botón GuardarA "Actualizar"

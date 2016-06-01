@@ -235,33 +235,33 @@ function fNavega(lMensaje) {
 		fAlert("\n- Debe proporcionar un usuario o bien ejercicio y solicitud específicos");
 }
 
-function fReporteEjecutado(theWindow, aRes, aDato, cFiltro, cId, cError) {
-	var aReportes = fCopiaArreglo(aRes);
-	var aDatoRep = fCopiaArreglo(aDato);
-	if (cError == "") {
-		frm.hdBoton.value = "";
-		frm.cFiltroImpreso.value = cFiltro;
-		frm.hdFiltro.value = " RS.iCveSolicitante = "
-				+ frm.iCveSolicitante.value + " AND RS.lImpreso = "
-				+ ((frm.lImpresasBOX.checked) ? "1" : "0") + " ";
-		fEngSubmite("pgTRARegSolicitud2.jsp", "ImpresoActualizado");
-	}
-	
-//	  if (theWindow){ theWindow.close(); }
-//	 
-//	lEjecutado = true;
-}
+//function fReporteEjecutado(theWindow, aRes, aDato, cFiltro, cId, cError) {
+//	var aReportes = fCopiaArreglo(aRes);
+//	var aDatoRep = fCopiaArreglo(aDato);
+//	if (cError == "") {
+//		frm.hdBoton.value = "";
+//		frm.cFiltroImpreso.value = cFiltro;
+//		frm.hdFiltro.value = " RS.iCveSolicitante = "
+//				+ frm.iCveSolicitante.value + " AND RS.lImpreso = "
+//				+ ((frm.lImpresasBOX.checked) ? "1" : "0") + " ";
+//		fEngSubmite("pgTRARegSolicitud2.jsp", "ImpresoActualizado");
+//	}
+//	
+////	  if (theWindow){ theWindow.close(); }
+////	 
+////	lEjecutado = true;
+//}
 
 function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave) {
 	if (cError != "") {
 		fAlert(cError);
 		FRMFiltro.fSetNavStatus("Record");
 	} else {
-		if (cId == "ImpresoActualizado"){
-			FRMListado.fSetListado(new Array());
-			FRMListado.fShow();
-			window.parent.blankCamposFrm();// fNavega();
-		}
+//		if (cId == "ImpresoActualizado"){
+//			FRMListado.fSetListado(new Array());
+//			FRMListado.fShow();
+//			window.parent.blankCamposFrm();// fNavega();
+//		}
 
 		if (cId == "MovimientoGenerado") {
 			fNavega();

@@ -1139,5 +1139,5 @@ function fVentanilla(){
 
 function reloadSol(){
 	top.opener.fSetRecarga(true);
-	top.opener.fRegsitraRetraso();
+	top.opener.fRegistraRet();
 }

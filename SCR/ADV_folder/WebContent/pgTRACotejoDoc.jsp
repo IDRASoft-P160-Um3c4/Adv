@@ -60,7 +60,7 @@
   }
  /** Verifica si la Acción a través de hdBotón es igual a "Cambia" (UpDate) */
   if(oAccion.getCAccion().equals("Cambia")){
-    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveUsuario,iCveOficina,iCveDepartamento,iCveTramite,iCveModalidad,HDcPropietario,HDcInstalacion");
+    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cConjunto,iCveUsuario,iCveOficina,iCveDepartamento,iCveTramite,iCveModalidad,HDcPropietario,HDcInstalacion,HDcNotDict");
  
     try{
 	     dTRARegReqXTram.cotejoDocs(vDinRep,null);
@@ -89,7 +89,8 @@
   cSQL="SELECT " +
 			"AF.CPROPIETARIO, " +
 			"AF.CINSTALACION, " +
-			"AF.COBSERVACION " +
+			"AF.COBSERVACION, " +
+			"AF.CNOTDICT " +
 			"FROM TRAREGSOLICITUD S  " +
 			"JOIN TRADATOSNOAFEC AF ON AF.IEJERCICIO = S.IEJERCICIO " +
 					"AND AF.INUMSOL = S.INUMSOLICITUD " +

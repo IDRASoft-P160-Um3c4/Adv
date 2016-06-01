@@ -161,14 +161,14 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</image>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="200"
+						x="259"
 						y="20"
-						width="330"
-						height="69"
+						width="271"
+						height="73"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Top">
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
 "DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS\n"+"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS"]]></textFieldExpression>
@@ -189,93 +189,107 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="20"
-						y="190"
+						y="199"
 						width="510"
-						height="79"
+						height="60"
 						key="textField-27"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">
-						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
+						<font pdfFontName="Helvetica" size="9" isBold="false" isStrikeThrough="false" />
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["Mediante el presente, envío para su atenta revisión, documentación legal de la solicitud de permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el(los) cadenamiento(s) y sentido(s) "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+", de acuerdo a los siguientes datos y documentos presentados por el promovente:"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
 						x="20"
-						y="117"
+						y="132"
 						width="37"
 						height="15"
 						key="staticText-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[PARA:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
 						x="20"
-						y="157"
+						y="169"
 						width="37"
 						height="15"
 						key="staticText-2"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[DE:]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="20"
-						y="97"
+						x="259"
+						y="96"
 						width="101"
 						height="15"
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
 				<text><![CDATA[MEMORANDUM No.]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="60"
-						y="117"
+						y="132"
 						width="250"
 						height="33"
 						key="textField-28"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDIRDGAJL}.toUpperCase()+"\nDirector(a) de Asuntos Jurídicos y Legales"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="60"
-						y="157"
-						width="248"
+						y="169"
+						width="250"
 						height="29"
 						key="textField-29"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["ING. BENJAMIN BARREDA AMIGÓN\nDirector de Permisos y Aprovechamientos"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["ING. ROBERTO MAGALLANES GONZÁLEZ\nDirector General Adjunto de Supervisión Física de Autopistas"
+]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="120"
-						y="97"
+						x="360"
+						y="96"
 						width="130"
 						height="15"
 						key="textField-30"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
-						<font/>
+						<font size="9"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CFOLMEMO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="260"
+						y="113"
+						width="229"
+						height="15"
+						key="textField-32"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Ciudad de México a "+$F{DTREP}+"."]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -334,7 +348,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: la documentación señalada\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$P{cSolicitud}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: la documentación señalada\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$F{CFOLMEMO}+".DOC"]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

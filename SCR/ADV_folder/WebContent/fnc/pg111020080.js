@@ -19,6 +19,8 @@
  var ClaveReqActual="";
  var lModifica = false;
  var lfaltaCotejo=false;
+ var lTieneDatosPNC=false;
+ var generaOficios = false;
  // SEGMENTO antes de cargar la página (Definición Mandatoria)
  function fBefLoad(){
    cPaginaWebJS = "pg111020080.js";
@@ -68,28 +70,11 @@
               TDEtiCampo(false,"EEtiqueta",0,"Trámite:","cDscTramite","",50,50,"Trámite","fMayus(this);");
               TDEtiCampo(false,"EEtiqueta",0,"Modalidad:","cDscModalidad","",50,50,"Modalidad","fMayus(this);");
              FITR();
-              //TDEtiCampo(false,"EEtiqueta",0," Autorizado a Recoger:","cNomAutorizaRecoger","",50,100," Persona Autorizada a Recoger Trámite","fMayus(this);","","",false,"EEtiquetaL",0);
-              //TDEtiSelect(true, "EEtiqueta", 0, "PNC:", "iConsecutivoPNC", "fCambiaPNC();");
               
               Hidden("iCveOficina",0);
               Hidden("cEnviarResolucionA","");
-//              Hidden("iConsecutivoPNC",0);
-              
-//              ITD("EEtiqueta",0,"0","","center","middle");
-//                TextoSimple("Enviar resolución a:");
-//              FITD("EEtiquetaL",0,"0","","center","middle");
-//                Select("iCveOficina","fChangeOficinaEnvio();");
-//              FTD();
-//              FITR();
-//                ITD("EEtiqueta",3,"0","","center","middle");
-//                  TextoSimple("");
-//                FITD("EEtiquetaL",2,"0","","center","middle");
-//                  Text(false,"cEnviarResolucionA","",40,40,"","fMayus(this);","","",false,true);
-//               FTD();
-//             FITR();
-//               TDEtiSelect(true, "EEtiqueta", 0, "PNC:", "iConsecutivoPNC", "fCambiaPNC();");
-               
-               ITR();
+
+              ITR();
                	ITD();
                		Liga("*Ver Documentos Anexos","fVerDocsADV()","");
                 FTD();
@@ -97,6 +82,7 @@
           		
          FinTabla();
        FTDTR();
+       
      ITRTD("",0,"95%","","center");
          InicioTabla("ETablaInfo",0,"95%","","","",1);
            ITRTD("ETablaST",5,"","","center");
@@ -106,10 +92,8 @@
              IFrame("IListadoA","100%","170","Listado.js","yes",true);
            FTDTR();
          FinTabla();
-         FTDTR();
+     FTDTR();
 
-         FITR();
-         FITR();
          ITRTD("",0,"95%","","center");
          InicioTabla("ETablaInfo",0,"95%","","","",1);
            ITRTD("ETablaST",5,"","","center");
@@ -121,17 +105,58 @@
              IFrame("IListado","100%","170","Listado.js","yes",true);
            FTDTR();
          FinTabla();
-     ITRTD("",0,"95%","","center");
-//         InicioTabla("ETablaInfo",0,"95%","","","",1);
-//         	TDEtiAreaTexto(true, "EEtiqueta", 0, "Observaciones:", 50,
-//			2, "cObservacion", "", "TooTip", "", "fMayus(this);",
-//			'onkeydown="fMxTx(this,250);"', true, true, true, "",
-//			10);
+         FITR();
+         
+         ITRTD("",0,"","40","center","bottom");
+         Liga("Generar oficios de envío por PNC", "fOficiosEnvioPNC();",
+			"Generar oficios de envío por PNC");
+         FTDTR();
+         
+         /*/*/
+         ITRTD("", 0, "", "10", "center", "top");
+      	InicioTabla("ETablaInfo", 0, "75%", "", "", "", 1);
+      	ITR();
+      	TextoSimple("NOTA: Antes de generar los oficios de envío requisite los siguientes campos para cada solicitud.");
+      	FTR();
+      	ITR();
+      	TDEtiCampo(true, "EEtiqueta", 0, "Folio Memo DGAJL:", "cFolMemoPNC", "", 30,
+      			50, "Trámite", "fMayus(this);");
+      	FTD();
+      	TDEtiCampo(true, "EEtiqueta", 0, "Folio DGST:", "cFolDGSTPNC", "", 30, 50,
+      			"Trámite", "fMayus(this);");
+      	FTD();
+      	TDEtiCampo(true, "EEtiqueta", 0, "Referencia CSCT:", "cRefDGSTPNC", "", 30,
+      			50, "Trámite", "fMayus(this);");
+      	FTD();
+      	TDEtiCampo(true, "EEtiqueta", 0, "Fecha Referencia CSCT:", "dtDGSTPNC", "",
+      			50, 10, "Fecha Referencia CSCT", "fMayus(this);", "", "", false,
+      			"", 0);
+      	FTD();
+      	FTR();
+      	FTDTR();
+      	
+      	 
+         
+         /*/*/
+         
          FinTabla();
+        
+     	FinTabla();
      FTDTR();
-       ITRTD("",0,"","40","center","bottom");
+       
+    
+    
+     
+     
+ 	
+     
+     ITRTD("",0,"","40","center","bottom");
          IFrame("IPanel","95%","34","Paneles.js");
        FTDTR();
+       
+    
+       
+       
      FinTabla();
      Hidden("iCveTramite","");
      Hidden("iCveModalidad","");
@@ -147,6 +172,15 @@
      Hidden("dtfechaActual");
      Hidden("iCveUsuario",fGetIdUsrSesion());
      Hidden("iCveEtapa",23);//cerrar pnc, hacer propiedad
+     Hidden("iDiasUltimaEtapa",0);
+     
+     Hidden("hdFolMemoPNC","");
+     Hidden("hdFolDGSTPNC","");
+     Hidden("hdRefDGSTPNC","");
+     Hidden("hdDtDGSTPNC","");
+     Hidden("hdEtapaGuardar","0");
+     Hidden("hdEtapa","0");
+     
      Hidden("iDiasUltimaEtapa",0);
      
      Hidden("iCveOficinaU","");
@@ -273,24 +307,34 @@
    
    if(cId == "Listado" && cError==""){
      frm.hdRowPag.value = iRowPag;
-     if(lModifica == true) {
-	 fAlert("Se ha cerrado el Producto No Conforme");
-	 lModifica = false;
+     
+     for (var i=0;i<aRes.length;i++){
+         if (aRes[i][5]!="" && aRes[i][4]=="") 
+         	aRes[i][8]=1;
+         else 
+         	aRes[i][8]=0;
+         
+         if(aRes[i][13]=="")
+         	lfaltaCotejo=true;
+      }
+     
+     if(aRes.length==0&&lModifica == true){
+		 fAlert("Se ha cerrado el Producto No Conforme. Ahora es posible generar los oficios.");
+		 lModifica = false;
+		 generaOficios = true;
+		 fEtapaCerarPNC();
+     }else{
+    	 aArreglo = fCopiaArregloBidim(aRes);
+         FRMListado.fSetListado(aRes);
+         FRMListado.fShow();
+         FRMListado.fSetLlave(cLlave);
+         FRMListado.fSetDefaultValues(0,0);
+         fNavega1();	 
      }
-     for (i=0;aRes[i];i++){
-        if (aRes[i][5]!="" && aRes[i][4]=="") aRes[i][8]=1
-        else aRes[i][8]=0;
-        
-        if(aRes[i][13]=="")
-        	lfaltaCotejo=true;
-
-     }
-     aArreglo = fCopiaArregloBidim(aRes);
-     FRMListado.fSetListado(aRes);
-     FRMListado.fShow();
-     FRMListado.fSetLlave(cLlave);
-     FRMListado.fSetDefaultValues(0,0);
-     fNavega1();
+     
+     
+     
+     
    }
 
    if(cId == "Cambia" && cError==""){
@@ -345,8 +389,35 @@
          lCancelado = false;
 
       fDesactiva();
-      fBuscaRetraso();
+      fBuscaDatosEnviosPNC();
    }
+   
+   if(cId == "datosEnviosPNC" && cError == ""){
+	   	   
+	   if(aRes.length>0){
+		   
+		     frm.cFolMemoPNC.value = aRes[0][2];
+			 frm.cFolDGSTPNC.value = aRes[0][3];
+			 frm.cRefDGSTPNC.value = aRes[0][4];
+			 frm.dtDGSTPNC.value = aRes[0][5];
+			 
+			 if(frm.cFolMemoPNC.value != ""&&frm.cFolDGSTPNC.value !=""&&frm.cRefDGSTPNC.value !=""&&frm.dtDGSTPNC.value != ""){
+				 lTieneDatosPNC=true;
+				 frm.cFolMemoPNC.disabled =true;
+				 frm.cFolDGSTPNC.disabled =true;
+				 frm.cRefDGSTPNC.disabled =true;
+				 frm.dtDGSTPNC.disabled =true;
+			 }  
+	   }
+	   fBuscaRetraso();
+   }   
+   
+   if(cId == "etapaCerrarPNC" && cError == ""){
+	   alert("asdasdas");
+	   fBuscaSol();
+   }
+   
+   
    if(cId == "Reporte" && cError==""){
      aResReporte = aRes;
    }
@@ -426,6 +497,20 @@
 	 
    return true;
  }
+ 
+function fBuscaDatosEnviosPNC(){
+
+	frm.hdFiltro.value = " DE.IEJERCICIO=" + frm.iEjercicio.value
+	+ " AND DE.INUMSOLICITUD=" + frm.iNumSolicitud.value;
+frm.hdNumReg.value = 10000;
+fEngSubmite("pgTRAModSolicitud.jsp", "datosEnviosPNC");
+}
+
+function fEtapaCerarPNC(){
+frm.hdBoton.value="etapaCerrarPNC";
+frm.hdNumReg.value = 10000;
+fEngSubmite("pgTRAModSolicitud.jsp", "etapaCerrarPNC");
+}
  
  function fBuscaDocumentos(){
 		
@@ -589,11 +674,25 @@
  
 function preparaCamposModificiar(){
 	 if(lfaltaCotejo == false){
-			lModificando = true;
-		    FRMPanel.fSetTraStatus("UpdateBegin");
-		    fDisabled(true);
-		    frm.cObservacion.disabled = false;
-		    FRMListado.fSetDisabled(false);
+		 
+		lModificando = true;
+	    FRMPanel.fSetTraStatus("UpdateBegin");
+	    fDisabled(true);
+	    frm.cObservacion.disabled = false;
+	    FRMListado.fSetDisabled(false);
+		    
+		 if(lTieneDatosPNC==true){
+			  frm.cFolMemoPNC.disabled =true;
+				 frm.cFolDGSTPNC.disabled =true;
+				 frm.cRefDGSTPNC.disabled =true;
+				 frm.dtDGSTPNC.disabled =true;
+		 }else{
+			 frm.cFolMemoPNC.disabled =false;
+			 frm.cFolDGSTPNC.disabled =false;
+			 frm.cRefDGSTPNC.disabled =false;
+			 frm.dtDGSTPNC.disabled =false;
+		 }
+			
 	    }else
 	    	fAlert("\nNo puede cerrrar el Producto No Conforme, no se ha terminado de cotejar la documentación faltante.");	
 }
@@ -601,7 +700,15 @@ function preparaCamposModificiar(){
 
  
 function fGuardarA(){
-	if(confirm("Se cerrará el producto no conforme. ¿Desea continuar con la información en pantalla?"))
+	//TODO HACER MENSAJE CUANDO TENGA DATOS DE PNC Y CUANDO NO
+	var cMsg = "";
+	
+	if(lTieneDatosPNC==true)
+		cMsg="Cuando termine de recibir todos los requisitos pendientes se cerrará el PNC. \n¿Desea continuar con la información en pantalla?";
+	else
+		cMsg="Se guardará la información de los oficios, una vez guardada la información no será posible modificarla.\n\nCuando termine de recibir todos los requisitos pendientes se cerrará el PNC.\n\n¿Desea continuar con la información en pantalla?";
+	
+	if(confirm(cMsg))
 	  fRegistraRetraso();
 }
  
@@ -624,6 +731,17 @@ function fGuardarA(){
        }
 
      }
+     
+     frm.hdFolMemoPNC.value = frm.cFolMemoPNC.value;
+     frm.hdFolDGSTPNC.value = frm.cFolDGSTPNC.value;
+     frm.hdRefDGSTPNC.value = frm.cRefDGSTPNC.value;
+     frm.hdDtDGSTPNC.value = frm.dtDGSTPNC.value;
+     
+     if(frm.cConjunto.value==""){
+    	 fAlert("Debe seleccionar al menos un requisito");
+    	return;
+     }
+     
     if (frm.iLlave.value == 0)
       frm.cConjunto.value = -1;
     frm.hdBoton.value = "Cambia";
@@ -866,7 +984,21 @@ function fGetPNC(){
   fEngSubmite("pgConsulta.jsp","cIdPNC")
 }*/
   
-  
+  function fOficiosEnvioPNC(){
+	if(frm.iEjercicio.value > 0 && frm.iNumSolicitud.value > 0){
+		if(generaOficios==true){
+			cClavesModulo = "3,3,";
+			cNumerosRep = "79,80,";
+			cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
+			cFiltrosRep += cFiltrosRep;
+			fReportes();
+		}else{
+			fAlert("\nNo es posible genrar los oficios, el PNC no ha sido cerrado.")
+		}
+	}else{
+		fAlert("\nDebe seleccionar una solicitud válida.")
+	}
+  }
 
   function fVerDocsADV(){
   	 if (frm.iEjercicio.value != 0 && frm.iEjercicio.value != '' &&

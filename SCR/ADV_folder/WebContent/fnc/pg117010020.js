@@ -145,9 +145,11 @@ function fDefPag() {
 	TDEtiAreaTexto(false, "EEtiqueta", 0, "Instalaciones:", 50, 2,
 			"cInstalacion", "", "TooTip", "", "fMayus(this);",
 			'onchange="fMxTx(this,250);" onkeydown="fMxTx(this,250);" onblur="fMxTx(this,250);"', true, true, true, "", 10);
+	TDEtiCampo(false, "EEtiqueta", 0, "Folio Notificación Dictamen:", "cNotDict", "", 50,
+			50, "Folio", "fMayus(this);");
 	FTDTR();
 	FinTabla();
-	Liga("*Generar Constancia de no Afectación y  Dictamen de Factibiidad o Acuse de solventación de PNC",
+	Liga("*Generar Constancia de no Afectación y  Dictamen de Factibiidad",
 			"fCompruebaFolio()", "");
 		FTDTR();
 	ITRTD("", 0, "", "40", "center", "bottom");
@@ -181,6 +183,7 @@ function fDefPag() {
 	Hidden("iNumCopias", 1);
 	Hidden("HDcPropietario");
 	Hidden("HDcInstalacion");
+	Hidden("HDcNotDict");
 	Hidden("lMostrarAplicacion", true);
 	Hidden("cArchivoOrig", "");
 	Hidden("cNomDestino", "");
@@ -255,10 +258,13 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 		if (aRes.length > 0) {
 			frm.cPropietario.value = aRes[0][0];
 			frm.cInstalacion.value = aRes[0][1];
+			frm.cNotDict.value = aRes[0][3];
+			
 			tieneDatosAfectacion=true;
 		}else{
 			frm.cPropietario.value = "";
 			frm.cInstalacion.value = "";
+			frm.cNotDict.value = "";
 			tieneDatosAfectacion=false;
 		}
 		
@@ -624,10 +630,12 @@ function preparaCamposModificar(){
 
 	frm.HDcPropietario.disabled = false;
 	frm.HDcInstalacion.disabled = false;
+	frm.HDcNotDict.disabled =false;
 
 	if(tieneDatosAfectacion==false){
 		frm.cPropietario.disabled = false;
 		frm.cInstalacion.disabled = false;
+		frm.cNotDict.disabled =false;
 	}
 
 	FRMListado.fSetDisabled(false);	
@@ -658,6 +666,7 @@ function fGuardarA() {
 
 	frm.HDcPropietario.value = frm.cPropietario.value;
 	frm.HDcInstalacion.value = frm.cInstalacion.value;
+	frm.HDcNotDict.value =frm.cNotDict.value;
 
 	if (frm.iLlave.value == 0)
 		frm.cConjunto.value = -1;
@@ -740,18 +749,18 @@ function fDictamenFactibilidad() {
 function fNoAfectacion() { // SE AGREGA EL DICTAMEN DE FACTIBILIDAD JUNTO CON
 	// EL DE NO AFECTACION
 
-	if(tienePNC>0){
-		cClavesModulo = "3,";
-		cNumerosRep = "78,";
+//	if(tienePNC>0){ por si solicitan el acuse de solventacion
+//		cClavesModulo = "3,";
+//		cNumerosRep = "78,";
+//		cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
+//				+ cSeparadorRep;
+//	}else{
+		cClavesModulo = "3,3,3,3,3,";
+		cNumerosRep = "42,45,43,44,81,";
 		cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
 				+ cSeparadorRep;
-	}else{
-		cClavesModulo = "3,3,3,3,";
-		cNumerosRep = "42,45,43,44,";
-		cFiltrosRep = frm.iEjercicio.value + "," + frm.iNumSolicitud.value + ","
-				+ cSeparadorRep;
-		cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep;
-	}
+		cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep+ cFiltrosRep;
+//	}
 	
 	fReportes();
 }

@@ -92,7 +92,7 @@ function fDefPag() { // Define la página a ser mostrada
 		ITRTD("", 0, "100%", "100%", "center", "middle");
 			var cCadTitulos = "", cCadPaginas = "";
 			
-			if(buscarRepl!=true&&iniciaTramite!=true&&consultaSol==true){
+			if(buscarRepl!=true&&iniciaTramite!=true&&consultaSol!=true){
 				cCadTitulos += "Datos Generales<br>de la Persona|Representante<br>Legal|";
 				cCadPaginas += "pg111010011A.js|pg111010013.js|";
 			}else{

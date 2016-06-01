@@ -245,10 +245,16 @@ function fOficiosEnvio(){
 //	 	  cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep + cFiltrosRep+ cFiltrosRep+ cFiltrosRep; 
 //	 	  fReportes();
 	 	  
-	 	 cClavesModulo="3,3,3,3,3,3,";
-		  cNumerosRep="27,49,50,51,52,56,";
+//	 	 cClavesModulo="3,3,3,3,3,3,";
+//		  cNumerosRep="27,49,50,51,52,56,";
+//	 	  cFiltrosRep= frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
+//	 	  cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep + cFiltrosRep+ cFiltrosRep; 
+//	 	  fReportes();
+		
+		cClavesModulo="3,3,3,3,";
+		  cNumerosRep="49,50,51,56,";
 	 	  cFiltrosRep= frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
-	 	  cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep + cFiltrosRep+ cFiltrosRep; 
+	 	  cFiltrosRep += cFiltrosRep + cFiltrosRep + cFiltrosRep; 
 	 	  fReportes();
 	}else{
 		fAlert('\nDebe buscar una solicitud existente.');

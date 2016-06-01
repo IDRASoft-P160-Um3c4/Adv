@@ -166,13 +166,13 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</image>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="210"
+						x="239"
 						y="25"
-						width="318"
+						width="289"
 						height="79"
 						key="textField-10"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
@@ -181,29 +181,16 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="229"
+						x="240"
 						y="105"
-						width="302"
+						width="291"
 						height="44"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLEPERM}+"\n\nMéxico, D.F., a  "+$F{DTREP}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						x="20"
-						y="0"
-						width="509"
-						height="19"
-						key="textField-11"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center" verticalAlignment="Top">
-						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["\""+$P{cLeyendaEnc}+"\""]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLEPERM}+"\n\nCiudad de México a  "+$F{DTREP}]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -227,9 +214,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						stretchType="RelativeToTallestObject"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">
-						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
+						<font pdfFontName="Helvetica" size="10" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+" mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km: "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, hago de su conocimiento que el C. Director General de Desarrollo Carretero ha emitido su autorización para construir el aprovechamiento mencionado, en virtud de que ésta Dirección resolvió favorablemente la continuación del trámite de la solicitud presentada, dado que la documentación suministrada cumple con la normatividad técnica y legal aplicable y que se han pagado los derechos correspondientes.\n\nPor tal razón, me permito enviarle anexo el permiso original autorizado No. "+$F{CFOLPERM}+" , así como copia del(os) plano(s) del proyecto aprobado.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nA t e n t a m e n t e\nEl Director de Permisos y Aprovechamientos\n\n\n\n\nING. BENJAMIN BARREDA AMIGÓN"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+" mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km: "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, hago de su conocimiento que el C. Director General de Desarrollo Carretero ha emitido su autorización para construir el(la) "+$F{CTRAMITE}+" mencionado, en virtud de que ésta Dirección resolvió favorablemente la continuación del trámite de la solicitud presentada, dado que la documentación suministrada cumple con la normatividad técnica y legal aplicable y que se han pagado los derechos correspondientes.\n\nPor tal razón, me permito enviarle anexo el permiso original autorizado No. "+$F{CFOLPERM}+" , así como copia del(os) plano(s) del proyecto aprobado.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nAtentamente\nEl Director General Adjunto de\nSupervisión Física de Autopistas\n\n\n\n\nING. ROBERTO MAGALLANES GONZÁLEZ"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

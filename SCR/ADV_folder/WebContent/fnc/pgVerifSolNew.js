@@ -117,8 +117,11 @@ function fOnLoad() {
 	FRMPanel.fSetTraStatus("Sav,");
 	FRMListado = fBuscaFrame("IListado01A");
 	FRMListado.fSetControl(self);
-	FRMListado.fSetTitulo("Requisitos,Entregado,Físico,Válido,");
-	FRMListado.fSetDespliega("texto,texto,texto,texto,");
+//	FRMListado.fSetTitulo("Requisitos,Entregado,Físico,Válido,");
+//	FRMListado.fSetDespliega("texto,texto,texto,texto,");
+	
+	FRMListado.fSetTitulo("Requisitos,Entregado,Válido,");
+	FRMListado.fSetDespliega("texto,texto,texto,");
 	FRMListado.fSetCampos("10,4,22,5,");
 	FRMListado.fSetAlinea("left,center,center,center,");
 

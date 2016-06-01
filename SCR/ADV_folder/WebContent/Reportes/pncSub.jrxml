@@ -185,7 +185,7 @@ and GRLREGCAUSAPNC.ICONSECUTIVOPNC = ( SELECT max(ICONSECUTIVOPNC) FROM TRAREGPN
 					<textElement>
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["A t e n t a m e n t e\nEl Director de Permisos y Aprovechamientos\n\n\n\nING. BENJAMIN BARREDA AMIGÓN"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["El Director General Adjunto de\nSupervisión Física de Autopistas\n\n\n\nING. ROBERTO MAGALLANES GONZÁLEZ"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -219,7 +219,7 @@ Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
 					<textElement textAlignment="Justified">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Por lo que con fundamento en el artículo 32 de la Ley Federal de Procedimiento Administrativo, y 7 fracción VI del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas, se le otorga un plazo improrrogable de 10 días hábiles contados a partir del día siguiente en que reciba el oficio de mérito, para que acuda al Centro SCT "+$P{cNomEntidad}+", y presente los documentos que solventen las citadas observaciones."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Por lo que con fundamento en el artículo 32 de Ley Federal de Procedimiento Administrativo, y 7 fracción VI del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas, se le otorga un plazo improrrogable de 10 días hábiles contados a partir del día siguiente en que reciba el oficio de mérito, para que acuda al Centro SCT "+$P{cNomEntidad}+", y presente los documentos que solventen las citadas observaciones."]]></textFieldExpression>
 				</textField>
 			</band>
 		</summary>

@@ -1003,3 +1003,7 @@ function getEjercicio() {
 function fSetRecarga(value){
 	recargaEmergente = true;
 }
+
+function fRegistraRet(){
+	fRegistraRetraso();
+}
