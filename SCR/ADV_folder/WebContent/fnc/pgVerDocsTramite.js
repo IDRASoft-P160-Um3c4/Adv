@@ -142,7 +142,7 @@ function fNavegaB() {
 	
 	if(	frm.iNumSolicitud.value != 0 && frm.iNumSolicitud.value != '' ){
 		
-		frm.hdBoton.value = "verDocsOficios";//"verDocsOficios";
+		frm.hdBoton.value = "verDocsOficios2016";//"verDocsOficios";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";
 		frm.hdNumReg.value = "1000";
@@ -283,12 +283,12 @@ function fShowDatosOficios(aRes) {
 		tRw = tBarraWizardB.insertRow();
 		tCell = tRw.insertCell();
 		
-		tCell.innerHTML = aRes[t][1]+": ";
+		tCell.innerHTML = aRes[t][0]+": ";
 		tCell.className = "EEtiqueta";
 		tCell = tRw.insertCell();
 		
 		if(aRes[t][2]!=""){
-			tCell.innerHTML = Liga("[Ver Documento]", "fShowIntDocDig("+aRes[t][2]+");");
+			tCell.innerHTML = Liga("[Ver Documento]", "fShowIntDocDig("+aRes[t][1]+");");
 		}
 			
 	}

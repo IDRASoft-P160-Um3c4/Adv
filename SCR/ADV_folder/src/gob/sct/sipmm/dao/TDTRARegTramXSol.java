@@ -63,7 +63,7 @@ public class TDTRARegTramXSol extends DAOBase{
           "dtCancelacion, " +
           "iCveMotivoCancela, " +
           "iCveUsuario, " +
-          "cObs) values (?,?,(current date),?,?,?)";
+          "cObs, cFolCancela) values (?,?,(current date),?,?,?,?)";
 
       vData.addPK(vData.getString("iEjercicio"));
       vData.addPK(vData.getString("iNumSolicitud"));
@@ -74,6 +74,7 @@ public class TDTRARegTramXSol extends DAOBase{
       lPStmt.setInt(3,vData.getInt("iCveMotivoCancela"));
       lPStmt.setInt(4,vData.getInt("iCveUsuario"));
       lPStmt.setString(5,vData.getString("cObs"));
+      lPStmt.setString(6,vData.getString("cFolCancela"));
       lPStmt.executeUpdate();  //inserta la cancelacion
       
       String sqlOficDptoUsr = "SELECT GRLUSUARIOXOFIC.ICVEOFICINA, GRLUSUARIOXOFIC.ICVEDEPARTAMENTO FROM GRLUSUARIOXOFIC"+ 

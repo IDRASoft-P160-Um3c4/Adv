@@ -111,7 +111,7 @@
 
  /** Verifica si la Acción a través de hdBotón es igual a "GuardarA" (Actualizar) */
   if(oAccion.getCAccion().equals("GuardarA")){
-    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iCveMotivoCancela,iCveUsuario,cObs");
+    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iCveMotivoCancela,iCveUsuario,cObs,cFolCancela");
     String cSQLSearchRel = "SELECT SR.iEjercicio, SR.iNumSolicitudPrinc, SR.iNumSolicitudRel "+
                            "FROM TRASolicitudRel SR "+
                            "WHERE SR.iEjercicio = " + vDinRep.getString("iEjercicio") + " "+
@@ -188,7 +188,8 @@
   "TRARegTramXSol.iCveMotivoCancela, " +		//10
   "'OfiResuelve.cDscOficina' as cOfiResuelve, " +		//11
   "'DeptoResuelve.cDscDepartamento' as cDeptoResuelve, " +	//12
-  "TRAREGSOLICITUD.TSREGISTRO "+
+  "TRAREGSOLICITUD.TSREGISTRO, "+
+  "TRARegTramXSol.cFolCancela "+
   "from TRARegSolicitud " +
   "left join TRARegTramXSol on TRARegTramXSol.iEjercicio = TRARegSolicitud.iEjercicio " +
   "and TRARegTramXSol.iNumSolicitud = TRARegSolicitud.iNumSolicitud " +

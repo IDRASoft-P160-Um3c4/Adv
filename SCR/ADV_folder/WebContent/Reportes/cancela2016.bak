@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Untitled_report_1"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="612"
+		 pageHeight="792"
+		 columnWidth="552"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<style 
+		name="CABEZERA"
+		isDefault="false"
+		forecolor="#999999"
+		hAlign="Right"
+		fontSize="12"
+		isBold="true"
+	/>
+
+	<parameter name="cEjercicio" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cSolicitud" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["0"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="URLEstaticos" isForPrompting="false" class="java.lang.String">
+		<defaultValueExpression ><![CDATA["http://aplicaciones3.sct.gob.mx/imagenes/Nuevosipymm/wwwrooting/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cLeyendaEnc" isForPrompting="false" class="java.lang.String"/>
+	<queryString><![CDATA[SELECT PER.CNOMRAZONSOCIAL || ' ' || PER.CAPPATERNO || ' ' || PER.CAPMATERNO as cSolicitante,  
+REP.ICVEPERSONA AS REPID,
+case WHEN REP.ICVEPERSONA IS NULL THEN '' ELSE REP.CNOMRAZONSOCIAL || ' ' || REP.CAPPATERNO || ' ' || REP.CAPMATERNO
+END as cRepL, 
+'Representante legal de' as reptxt,
+TRACATTRAMITE.CDSCBREVE as cTramite, 
+TRACATTRAMITE.CCVEINTERNA as cClaveT, 
+CASE MONTH(DTVISITA)
+	      WHEN 1 THEN DAY(DTVISITA) || ' de Enero de ' || YEAR(DTVISITA)
+	      WHEN 2 THEN DAY(DTVISITA) || ' de Febrero de ' || YEAR(DTVISITA)
+	      WHEN 3 THEN DAY(DTVISITA) || ' de Marzo de ' || YEAR(DTVISITA)
+	      WHEN 4 THEN DAY(DTVISITA) || ' de Abril de ' || YEAR(DTVISITA)
+	      WHEN 5 THEN DAY(DTVISITA) || ' de Mayo de ' || YEAR(DTVISITA)
+	      WHEN 6 THEN DAY(DTVISITA) || ' de Junio de ' || YEAR(DTVISITA)
+	      WHEN 7 THEN DAY(DTVISITA) || ' de Julio de ' || YEAR(DTVISITA)
+	      WHEN 8 THEN DAY(DTVISITA) || ' de Agosto de ' || YEAR(DTVISITA)
+	      WHEN 9 THEN DAY(DTVISITA) || ' de Septiembre de ' || YEAR(DTVISITA)
+	      WHEN 10 THEN DAY(DTVISITA) || ' de Octubre de ' || YEAR(DTVISITA)
+	      WHEN 11 THEN DAY(DTVISITA) || ' de Noviembre de ' || YEAR(DTVISITA)
+	      WHEN 12 THEN DAY(DTVISITA) || ' de Diciembre de ' || YEAR(DTVISITA)
+      END AS cVisitaT, 
+ADV.CKMSENTIDO, 
+ADV.CHECHOS as cHechos,  
+ADV.CORGANO as cOrgano, 
+CARR.CDSCARRETERA as cAutopista,  
+CARR.CCONSECIONARIO as CCONSECIONARIO,  
+ENTOF.CNOMBRE as NomEnt, 
+GRLOFICINA.CTITULARTEC as cTecnico,
+CASE MONTH(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 1 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Enero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 2 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Febrero de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 3 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Marzo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 4 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Abril de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 5 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Mayo de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 6 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Junio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 7 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Julio de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 8 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Agosto de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 9 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Septiembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 10 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Octubre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 11 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Noviembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+	      WHEN 12 THEN DAY(TRAREGSOLICITUD.TSREGISTRO) || ' de Diciembre de ' || YEAR(TRAREGSOLICITUD.TSREGISTRO)
+      END AS DTSOL,
+ CASE MONTH(CURRENT_DATE)
+	      WHEN 1 THEN DAY(CURRENT_DATE) || ' de Enero de ' || YEAR(CURRENT_DATE)
+	      WHEN 2 THEN DAY(CURRENT_DATE) || ' de Febrero de ' || YEAR(CURRENT_DATE)
+	      WHEN 3 THEN DAY(CURRENT_DATE) || ' de Marzo de ' || YEAR(CURRENT_DATE)
+	      WHEN 4 THEN DAY(CURRENT_DATE) || ' de Abril de ' || YEAR(CURRENT_DATE)
+	      WHEN 5 THEN DAY(CURRENT_DATE) || ' de Mayo de ' || YEAR(CURRENT_DATE)
+	      WHEN 6 THEN DAY(CURRENT_DATE) || ' de Junio de ' || YEAR(CURRENT_DATE)
+	      WHEN 7 THEN DAY(CURRENT_DATE) || ' de Julio de ' || YEAR(CURRENT_DATE)
+	      WHEN 8 THEN DAY(CURRENT_DATE) || ' de Agosto de ' || YEAR(CURRENT_DATE)
+	      WHEN 9 THEN DAY(CURRENT_DATE) || ' de Septiembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 10 THEN DAY(CURRENT_DATE) || ' de Octubre de ' || YEAR(CURRENT_DATE)
+	      WHEN 11 THEN DAY(CURRENT_DATE) || ' de Noviembre de ' || YEAR(CURRENT_DATE)
+	      WHEN 12 THEN DAY(CURRENT_DATE) || ' de Diciembre de ' || YEAR(CURRENT_DATE)
+      END AS DTREP,
+'Calle: ' || GRLDOMICILIO.CCALLE||', Ext. '|| GRLDOMICILIO.CNUMEXTERIOR||', Int. '|| GRLDOMICILIO.CNUMEXTERIOR||', Col. '|| GRLDOMICILIO.CCOLONIA|| ', ' || MUNDOM.CNOMBRE||', '|| ENTDOM.CNOMBRE||'.' as cdomicilio,
+TRAREGTRAMXSOL.CFOLCANCELA, 
+GRLMOTIVOCANCELA.CDSCMOTIVO 
+FROM TRAREGSOLICITUD 
+JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE
+JOIN GRLENTIDADFED ENTDOM ON ENTDOM.ICVEPAIS = GRLDOMICILIO.ICVEPAIS AND ENTDOM.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED
+JOIN GRLMUNICIPIO MUNDOM ON MUNDOM.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO AND MUNDOM.ICVEENTIDADFED =  ENTDOM.ICVEENTIDADFED AND MUNDOM.ICVEPAIS = GRLDOMICILIO.ICVEPAIS
+JOIN GRLLOCALIDAD LOCDOM ON LOCDOM.ICVELOCALIDAD = GRLDOMICILIO.ICVELOCALIDAD AND LOCDOM.ICVEMUNICIPIO = GRLDOMICILIO.ICVEMUNICIPIO AND LOCDOM.ICVEENTIDADFED = GRLDOMICILIO.ICVEENTIDADFED AND LOCDOM.ICVEPAIS = GRLDOMICILIO.ICVEPAIS   
+JOIN GRLPAIS ON GRLPAIS.ICVEPAIS = 1
+JOIN TRACATTRAMITE ON TRACATTRAMITE.ICVETRAMITE = TRAREGSOLICITUD.ICVETRAMITE  
+JOIN GRLPERSONA PER ON PER.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE 
+LEFT JOIN GRLPERSONA REP ON REP.ICVEPERSONA = TRAREGSOLICITUD.ICVEREPLEGAL 
+JOIN TRAREGDATOSADVXSOL ADV ON TRAREGSOLICITUD.IEJERCICIO = ADV.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = ADV.INUMSOLICITUD  
+JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA 
+JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA  
+JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = 1
+JOIN TRAREGTRAMXSOL ON TRAREGTRAMXSOL.IEJERCICIO = TRAREGSOLICITUD.IEJERCICIO AND TRAREGTRAMXSOL.INUMSOLICITUD = TRAREGSOLICITUD.INUMSOLICITUD
+JOIN GRLMOTIVOCANCELA ON GRLMOTIVOCANCELA.ICVEMOTIVOCANCELA = TRAREGTRAMXSOL.ICVEMOTIVOCANCELA
+where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio}
+and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
+
+	<field name="CSOLICITANTE" class="java.lang.String"/>
+	<field name="REPID" class="java.lang.Long"/>
+	<field name="CREPL" class="java.lang.String"/>
+	<field name="REPTXT" class="java.lang.String"/>
+	<field name="CTRAMITE" class="java.lang.String"/>
+	<field name="CCLAVET" class="java.lang.String"/>
+	<field name="CVISITAT" class="java.lang.String"/>
+	<field name="CKMSENTIDO" class="java.lang.String"/>
+	<field name="CHECHOS" class="java.lang.String"/>
+	<field name="CORGANO" class="java.lang.String"/>
+	<field name="CAUTOPISTA" class="java.lang.String"/>
+	<field name="CCONSECIONARIO" class="java.lang.String"/>
+	<field name="NOMENT" class="java.lang.String"/>
+	<field name="CTECNICO" class="java.lang.String"/>
+	<field name="DTSOL" class="java.lang.String"/>
+	<field name="DTREP" class="java.lang.String"/>
+	<field name="CDOMICILIO" class="java.lang.String"/>
+	<field name="CFOLCANCELA" class="java.lang.String"/>
+	<field name="CDSCMOTIVO" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="149"  isSplitAllowed="true" >
+				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="20"
+						width="177"
+						height="90"
+						key="image-1"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.lang.String"><![CDATA[$P{URLEstaticos} + "img/logoSCT_2012_12.jpg"]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="239"
+						y="25"
+						width="289"
+						height="79"
+						key="textField-10"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica-Bold" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n\n"+
+"DIRECCÓN GENERAL ADJUNTA DE SUPERVISION FÍSICA DE AUTOPISTAS"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="240"
+						y="105"
+						width="291"
+						height="44"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLCANCELA}+"\n\nCiudad de México a  "+$F{DTREP}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="441"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="100"
+						width="511"
+						height="70"
+						key="textField-2"
+						stretchType="RelativeToTallestObject"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" size="10" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+" mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km: "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, hago de su conocimiento que derivado al(os) motivo(s) siguiente(s):"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="20"
+						y="21"
+						width="290"
+						height="69"
+						key="textField-12"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font pdfFontName="Helvetica-Bold" isBold="true" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{REPID}==null?$F{CSOLICITANTE}+"\n"+$F{CDOMICILIO}:$F{CREPL}+"\n"+$F{REPTXT}+"\n"+$F{CSOLICITANTE}+"\n"+$F{CDOMICILIO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="40"
+						y="176"
+						width="9"
+						height="20"
+						key="staticText-2"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font/>
+					</textElement>
+				<text><![CDATA[•
+]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="50"
+						y="177"
+						width="479"
+						height="30"
+						key="textField-13"
+						stretchType="RelativeToTallestObject"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" size="10" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CDSCMOTIVO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="210"
+						width="511"
+						height="170"
+						key="textField-14"
+						stretchType="RelativeToTallestObject"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Justified">
+						<font pdfFontName="Helvetica" size="10" isBold="false" isStrikeThrough="false" />
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Al respecto, a efecto de concluir con el procedimiento respectivo, con fundamento en el artículo 32 de la Ley Federal de Procedimiento Administrativo, y 7 fracción VI del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas, se cancela la solicitud antes mencionada.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nEl Director General Adjunto de\nSupervisión Física de Autopistas\n\n\n\nING. ROBERTO MAGALLANES GONZÁLEZ"]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="125"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="50"
+						y="104"
+						width="446"
+						height="21"
+						key="staticText-1"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font size="8"/>
+					</textElement>
+				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
+Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
+]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="0"
+						width="511"
+						height="102"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["C.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLCANCELA}+".DOC"]]></textFieldExpression>
+				</textField>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

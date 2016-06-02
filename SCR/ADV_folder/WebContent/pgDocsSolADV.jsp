@@ -220,15 +220,13 @@
 		  " and ICVEOFICINAEVAL = "+ request.getParameter("iCveOficina") +" and ICVEDEPTOEVAL= "+request.getParameter("iCveDpto")+
 		  "  AND INTTRAMITEDOCS.ICVEESTATUS = 38 ORDER BY TRAREGREQXTRAM.ICVEREQUISITO";
 }else 
-	if(oAccion.getCAccion().equals("verDocsOficiosXX")){
-		 queryADV= "SELECT "+
-				    " GRLOFICIOADV.ICVEOFICIO as cola, "+
-				    " GRLOFICIOADV.CDSCOFICIO as colb, "+
-		  			" INTTRAMITEDOCS.ICVEDOCDIG as colc "+
-					" FROM INTTRAMITEDOCS"+
-					" JOIN GRLOFICIOADV ON GRLOFICIOADV.ICVEOFICIO = INTTRAMITEDOCS.ICVEOFICIO"+
-					//" WHERE INTTRAMITEDOCS.IEJERCICIO ="+year+ " AND INTTRAMITEDOCS.INUMSOLICITUD ="+request.getParameter("iNumSolicitud"); //
-					" WHERE INTTRAMITEDOCS.IEJERCICIO ="+request.getParameter("iEjercicio")+ " AND INTTRAMITEDOCS.INUMSOLICITUD ="+request.getParameter("iNumSolicitud"); //
+	if(oAccion.getCAccion().equals("verDocsOficios2016")){
+		 queryADV= "SELECT "
+				 +"OFI.CDSCOFICIO as colA, " 
+				 +"REGOF.IIDGESTORDOCUMENTO as colB " 
+				 +"FROM TRAREGOFICIOADV REGOF "
+				 +"JOIN GRLOFICIOADV OFI ON OFI.ICVEOFICIO = REGOF.ICVEOFICIOADV "
+				 +"WHERE REGOF.IEJERCICIO = "+request.getParameter("iEjercicio")+ " AND REGOF.INUMSOLICITUD = "+request.getParameter("iNumSolicitud"); //
 }else 
 	if(oAccion.getCAccion().equals("verDocsOficios")){
 	 queryADV= "SELECT "+

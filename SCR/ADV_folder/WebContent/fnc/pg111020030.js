@@ -76,11 +76,12 @@
            ITR();
               TDEtiCampo(false,"EEtiqueta",0," Ejercicio:","iEjercicio","",4,4," Ejercicio","fMayus(this);");
            FITR();
-              TDEtiCampo(false,"EEtiqueta",0," No. Solicitud:","iNumSolicitud","",8,8," Núm. Solicitud","fMayus(this);","","","","","");
+              TDEtiCampo(false,"EEtiqueta",0," No. Solicitud:","iNumSolicitud","",8,8," Núm. Solcitud","fMayus(this);","","","","","");
            FITR();
                TDEtiSelect(true,"EEtiqueta",0," Motivo de Cancelación:","iCveMotivoCancela","");
            FITR();
-              TDEtiAreaTexto(false,"EEtiqueta",0," Observaciones:",50,2,"cObs",""," Usuario que Cancela","","fMayus(this);",'onkeydown="fMxTx(this,2000);"');
+//              TDEtiAreaTexto(false,"EEtiqueta",0," Observaciones:",50,2,"cObs",""," Usuario que Cancela","","fMayus(this);",'onkeydown="fMxTx(this,2000);"');
+           		TDEtiCampo(true,"EEtiqueta",0," Folio cancelación:","cFolCancela","",60,50," Folio","fMayus(this);","","","","","");
            FITR();
 
          FinTabla();
@@ -94,6 +95,7 @@
        Hidden("iCveModalidad");
        Hidden("iCveFormatoReg");
        Hidden("iCveUsuario");
+       Hidden("cObs","Se cancela el trámite"); 
        Hidden("hdLlave","");
        Hidden("hdSelect","");
        Hidden("hdCancela");
@@ -325,7 +327,7 @@
 }*/
  // LLAMADO desde el Panel cada vez que se presiona al botón GuardarA "Actualizar"
  function fGuardarA(){
-  if(frm.iEjercicio.value != "" && frm.iNumSolicitud.value != 0 && frm.iCveMotivoCancela.value > 0){
+  if(frm.iEjercicio.value != "" && frm.iNumSolicitud.value != 0 && frm.iCveMotivoCancela.value > 0 && frm.cFolCancela.value !=""){
      if(confirm("¿Desea usted cancelar la solicitud " + frm.iNumSolicitud.value + " del ejercicio " + frm.iEjercicio.value+"?")){ //" y todas las solicitudes relacionadas a esta?")){
        if(fValidaTodo()==true){
           fNavega();
@@ -335,7 +337,7 @@
        }
      } else return;
   }else{
-    fAlert("\n-Seleccione una Solicitud para cancelar, además de indicar el motivo de cancelación.");
+    fAlert("\n-Seleccione una Solicitud para cancelar, además de indicar el motivo de cancelación y el folio.");
   }
  }
  // LLAMADO desde el Panel cada vez que se presiona al botón Modificar
@@ -381,8 +383,8 @@
  }
  
  function fEjecutaReporte(){
-	  cClavesModulo="2,";
-	  cNumerosRep="12,";
+	  cClavesModulo="3,";
+	  cNumerosRep="82,";
 	  cFiltrosRep= frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
 	  fReportes();
  }
@@ -397,6 +399,7 @@
        frm.iNumSolicitud.value = aDato[1];
        frm.cObs.value = aDato[9];
        frm.hdCancela.value = aDato[10];
+       frm.cFolCancela.value = aDato[14];
 //     fSelectSetIndexFromValue(frm.iCveMotivoCancela, aDato[10]);
 
        if (frm.hdCancela.value > 0)
