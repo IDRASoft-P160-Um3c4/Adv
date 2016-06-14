@@ -167,7 +167,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["SECRETARIA DE COMUNICACIONES Y TRANSPORTES\n"+
-"CENTRO SCT " +$F{NOMENT}+"\n"+
+"CENTRO SCT " +$F{NOMENT}.toUpperCase()+"\n"+
 "UNIDAD GENERAL DE SERVICIOS TÉCNICOS\n"+
 "UNIDAD DE ESTUDIOS\n"]]></textFieldExpression>
 				</textField>
@@ -177,7 +177,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="511"
 						height="19"
-						key="textField-13"/>
+						key="textField-13">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null && !$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>

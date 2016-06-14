@@ -178,8 +178,8 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Left">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
-"DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS\n"+"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n\n"+
+"DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -187,7 +187,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="510"
 						height="19"
-						key="textField-11"/>
+						key="textField-11">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null &&!$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
@@ -209,20 +211,20 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTECNICO}+"\nDIRECTOR GENERAL DE SERVICIOS TÉCNICOS\nSECRETARÍA DE COMUNICACIONES Y TRANSPORTES\nPresente"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CTECNICO}.toUpperCase()+"\nDIRECTOR GENERAL DE SERVICIOS TÉCNICOS\nSECRETARÍA DE COMUNICACIONES Y TRANSPORTES\nPresente"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="262"
+						x="259"
 						y="0"
-						width="257"
+						width="270"
 						height="46"
 						key="textField-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Right">
+					<textElement textAlignment="Left">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm. 3.4.-"+$F{CFOLDGSTPNC}+"\n\nCiudad de México a "+$F{DTREP}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm. 3.4.3-"+$F{CFOLDGSTPNC}+"\n\nCiudad de México a "+$F{DTREP}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -235,7 +237,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero al oficio número "+$F{CREFDGSTPNC}+" de fecha " + $F{DTDGSTPNC} +", mediante el cual el Director General del Centro SCT "+ $F{NOMENT} +" envía la solventación a las observaciones atendidas proyecto ejecutivo presentado por el(la) " + $F{CREPL}+$F{CSOLICITANTE}+" para ocupar y aprovechar el derecho de vía de la autopista " + $F{CAUTOPISTA}+", en el(los) cadenamiento(s) y sentido(s) " + $F{CKMSENTIDO} + ", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, solicito a usted, si para ello no existe inconveniente, tenga a bien emitir la opinión técnica que permita a esta Dirección General determinar la procedencia para la autorización del permiso de construcción correspondiente, para lo cual adjunto al presente los documentos anexos por el promovente.\n\nLo anterior, de conformidad con lo dispuesto en el artículo 19, fracciones VII y XXVII del Reglamento Interior de la Secretaría de Comunicaciones y Transportes.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nAtentamente\nEl Director General Adjunto de \nSupervisión Física de Autopistas\n\n\n\nING. ROBERTO MAGALLANES GONZÁLEZ"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero al oficio número "+$F{CREFDGSTPNC}+" de fecha "+$F{DTDGSTPNC}+", mediante el cual el Director General del Centro SCT "+$F{NOMENT}+" envía la solventación a las observaciones atendidas por "+$F{CREPL}+$F{CSOLICITANTE}+" para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular, solicito a usted, si para ello no existe inconveniente, tenga a bien emitir la opinión técnica que permita a la Dirección General de Desarrollo Carretero determinar la procedencia para la autorización del permiso de construcción correspondiente, para lo cual adjunto al presente los documentos anexos ingresados por el promovente.\n\nLo anterior, de conformidad con lo dispuesto en el artículo 19, fracciones VII y XXVII del Reglamento Interior de la Secretaría de Comunicaciones y Transportes.\n\nSin otro particular, aprovecho la ocasión para enviarle un cordial saludo.\n\nA t e n t a m e n t e\nEl Director General Adjunto de\nSupervisión Física de Autopistas\n\n\n\nING. ROBERTO MAGALLANES GONZÁLEZ"]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageHeader>
@@ -268,7 +270,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement verticalAlignment="Bottom">
 						<font size="7"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: documentos ingresados por el promovente.\n\nC.c.p.	Director General Adjunto de Supervisión Física de Autopistas.-presente\n	Director General del Centro SCT "+$F{NOMENT}+".-presente\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLDGSTPNC}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: documentos ingresados por el promovente.\nC.c.p. Director General de Desarrollo Carretero\nDirector General del Centro SCT "+$F{NOMENT}+".-presente\nNúmero de solicitud: "+$P{cSolicitud}+"\n\nOF"+$P{cEjercicio}+"-"+$F{CFOLDGSTPNC}+".DOC"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -282,7 +284,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font size="7"/>
 					</textElement>
 				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
-Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
+Tel. 01 (55) 54824378 Conmutador 54824200 Ext. 16032
 ]]></text>
 				</staticText>
 			</band>

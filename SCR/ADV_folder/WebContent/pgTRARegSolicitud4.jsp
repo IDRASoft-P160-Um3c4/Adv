@@ -45,7 +45,7 @@
 
  /** Verifica si la Acción a través de hdBotón es igual a "GuardarA" (Actualizar) */
   if(oAccion.getCAccion().equals("GuardarA")){
-    //System.out.print("   dentro del guardar del JSP");
+    System.out.println("   dentro del guardar del JSP");
     vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,iCveTramite,iCveModalidad,iCveSolicitante,iCveRepLegal,cNomAutorizaRecoger,iCveUsuRegistra,tsRegistro,dtLimiteEntregaDocs,dtEstimadaEntrega,lPagado,dtEntrega,iCveUsuEntrega,lResolucionPositiva,lDatosPreregistro,iIdBien,iCveOficina,iCveDepartamento,iEjercicioCita,iIdCita,iCveForma,lPrincipal");
     try{
       vDinRep = dTRARegSolicitud.update(vDinRep,null);

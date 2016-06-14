@@ -167,7 +167,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
 				<textFieldExpression   class="java.lang.String"><![CDATA["SECRETARIA DE COMUNICACIONES Y TRANSPORTES\n"+
-"CENTRO SCT " +$F{NOMENT}+"\n"+
+"CENTRO SCT " +$F{NOMENT}.toUpperCase()+"\n"+
 "UNIDAD GENERAL DE SERVICIOS TÉCNICOS\n"+
 "UNIDAD DE ESTUDIOS\n"]]></textFieldExpression>
 				</textField>
@@ -177,7 +177,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="511"
 						height="19"
-						key="textField-13"/>
+						key="textField-13">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null && !$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
@@ -212,7 +214,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+", mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el(los) cadenamiento(s) y sentido(s): "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular comunico a usted que mediante inspección al lugar de referencia efectuada en la visita técnica de factibilidad por personal que participó en la visita antes mencionada, celebrada con fecha "+$F{CVISITAT}+" se detectó que en la zona del proyecto no existen instalaciones y obras establecidas visibles que puedan verse afectadas por la obra solicitada. Asimismo, con escrito anexo a la solicitud de permiso referida, se compromete a reparar cualquier daño en caso de existir instalaciones no visibles afectadas, conforme lo indique la dependencia o empresa correspondiente.\n\nPor lo anterior, y conforme a lo establecido en el artículo 6-A fracción I del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas se extiende la presente constancia de no afectación a terceros a fin de continuar con el trámite de autorización del aprovechamiento antes mencionado.\n\nAtentamente.\n\n\n\n"+$F{CTECNICO}+"\nJefe de la Unidad General de Servicios Técnicos"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Me refiero a su escrito de fecha "+$F{DTSOL}+", mediante el cual solicitó a la Secretaría permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km "+$F{CKMSENTIDO}+" a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+".\n\nSobre el particular comunico a usted que mediante inspección al lugar de referencia efectuada en la visita técnica de factibilidad por personal que participó en la visita antes mencionada, celebrada con fecha "+$F{CVISITAT}+" se detectó que en la zona del proyecto no existen instalaciones y obras establecidas visibles que puedan verse afectadas por la obra solicitada. Asimismo, con escrito anexo a la solicitud de permiso referida, se compromete a reparar cualquier daño en caso de existir instalaciones no visibles afectadas, conforme lo indique la dependencia o empresa correspondiente.\n\nPor lo anterior, y conforme a lo establecido en el artículo 6-A fracción I del Reglamento para el Aprovechamiento del Derecho de Vía de las Carreteras Federales y Zonas Aledañas se extiende la presente constancia de no afectación a terceros a fin de continuar con el trámite de autorización del aprovechamiento antes mencionado.\n\nAtentamente.\n\n\n\n"+$F{CTECNICO}+"\nJefe de la Unidad General de Servicios Técnicos"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

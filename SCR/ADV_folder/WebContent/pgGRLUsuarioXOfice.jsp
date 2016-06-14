@@ -76,7 +76,7 @@ syst<%@ page import="java.util.*" %>
      if(vcTemp != null && vcTemp.size()>0){
        boolean lAgregar = true;
        for(int j=0; j<vcListado.size();j++){
-         //System.out.print(((TVDinRep)vcListado.get(j)).getInt("ICVEDEPARTAMENTO") + "==" + ((TVDinRep)vcTemp.get(0)).getInt("ICVEDEPARTAMENTO"));
+         System.out.println(((TVDinRep)vcListado.get(j)).getInt("ICVEDEPARTAMENTO") + "==" + ((TVDinRep)vcTemp.get(0)).getInt("ICVEDEPARTAMENTO"));
          if(((TVDinRep)vcListado.get(j)).getInt("ICVEDEPARTAMENTO") == ((TVDinRep)vcTemp.get(0)).getInt("ICVEDEPARTAMENTO")){
            lAgregar = false;
            j = vcListado.size();

@@ -2016,7 +2016,7 @@ public class TDVentanilla
         .append("[cEntidad]|[cMunicipio]|[numDiasNot]|[iConsecutivoPNC]|[iEjercicioPNC]|[cModalidad]|[cOficina]|[cDepto]|")
         ;
         
-        //System.out.print("ejer-> "+ String.valueOf(iEjercicioSolicitud)+ "sol-> "+String.valueOf(iNumSolicitud));
+        System.out.println("ejer-> "+ String.valueOf(iEjercicioSolicitud)+ "sol-> "+String.valueOf(iNumSolicitud));
         
         sbReemplazaAdic.append(String.valueOf(iEjercicioSolicitud) + "|" + (String.valueOf(iNumSolicitud)) + "|")
         .append(cdtOficioSol + "|" + cTramite + "|" + cDscBien + "|" + cSolicitante + "|" + "Notificación" + "|" + cCalle + "|" + cNumExt + "|" + cNumInt + "|" + cColonia + "|")
@@ -2313,7 +2313,7 @@ public class TDVentanilla
             }
             cSolicitudes += "," + ( (TVDinRep) vRelacionadas.get(i)).getString("iNumSolicitudRel");
           }
-        //System.out.print("+++++++cSolicitudes:"+cSolicitudes);
+        System.out.println("+++++++cSolicitudes:"+cSolicitudes);
         /*if(!cSolicitudes.equals(""))
           cSolicitudes = cSolicitudes.substring(0,cSolicitudes.length() - 1);*/
       } catch(Exception e){

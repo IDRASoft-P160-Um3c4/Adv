@@ -82,11 +82,15 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 			</band>
 		</title>
 		<pageHeader>
-			<band height="28"  isSplitAllowed="false" >
+			<band height="0"  isSplitAllowed="false" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="30"  isSplitAllowed="true" >
 				<rectangle>
 					<reportElement
-						x="0"
-						y="0"
+						x="1"
+						y="2"
 						width="520"
 						height="14"
 						key="rectangle-1"/>
@@ -94,11 +98,11 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</rectangle>
 				<staticText>
 					<reportElement
-						x="200"
-						y="0"
+						x="201"
+						y="2"
 						width="121"
 						height="13"
-						key="staticText-94"/>
+						key="staticText-101"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
@@ -107,8 +111,8 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</staticText>
 				<rectangle>
 					<reportElement
-						x="0"
-						y="14"
+						x="1"
+						y="16"
 						width="520"
 						height="13"
 						key="rectangle-2"/>
@@ -116,11 +120,11 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</rectangle>
 				<staticText>
 					<reportElement
-						x="26"
-						y="14"
+						x="27"
+						y="16"
 						width="50"
 						height="13"
-						key="staticText-95"/>
+						key="staticText-102"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
@@ -129,24 +133,11 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="113"
-						y="15"
-						width="34"
-						height="13"
-						key="staticText-96"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement>
-						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
-					</textElement>
-				<text><![CDATA[FÍSICO]]></text>
-				</staticText>
-				<staticText>
-					<reportElement
-						x="305"
-						y="15"
+						x="242"
+						y="17"
 						width="70"
 						height="12"
-						key="staticText-97"/>
+						key="staticText-103"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
@@ -155,26 +146,13 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</staticText>
 				<line direction="TopDown">
 					<reportElement
-						x="95"
-						y="14"
+						x="96"
+						y="16"
 						width="0"
 						height="13"
-						key="line-4"/>
+						key="line-3"/>
 					<graphicElement stretchType="NoStretch"/>
 				</line>
-				<line direction="TopDown">
-					<reportElement
-						x="163"
-						y="14"
-						width="0"
-						height="13"
-						key="line-6"/>
-					<graphicElement stretchType="NoStretch"/>
-				</line>
-			</band>
-		</pageHeader>
-		<columnHeader>
-			<band height="0"  isSplitAllowed="true" >
 			</band>
 		</columnHeader>
 		<detail>
@@ -182,7 +160,7 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				<line direction="TopDown">
 					<reportElement
 						x="661"
-						y="-201"
+						y="-203"
 						width="536"
 						height="0"
 						key="line-2"/>
@@ -190,9 +168,9 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</line>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="165"
+						x="99"
 						y="0"
-						width="352"
+						width="418"
 						height="21"
 						key="textField"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -203,24 +181,13 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="99"
-						y="0"
-						width="57"
-						height="13"
-						key="textField"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font size="8"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA[$F{FISICO}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
 						x="4"
 						y="0"
 						width="85"
 						height="14"
-						key="textField-2"/>
+						key="textField-2">
+							<printWhenExpression><![CDATA[new Boolean($F{DTRECEPCION}!=null)]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center">
 						<font size="8"/>
@@ -238,7 +205,7 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 			</band>
 		</pageFooter>
 		<lastPageFooter>
-			<band height="134"  isSplitAllowed="true" >
+			<band height="150"  isSplitAllowed="true" >
 				<staticText>
 					<reportElement
 						style="BANDA"
@@ -285,7 +252,7 @@ ORDER BY RRT.dtRecepcion DESC, R.iCveRequisito]]></queryString>
 						x="0"
 						y="85"
 						width="530"
-						height="49"
+						height="65"
 						key="staticText-100"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">

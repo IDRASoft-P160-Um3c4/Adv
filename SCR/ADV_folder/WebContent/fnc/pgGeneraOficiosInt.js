@@ -161,9 +161,10 @@ function fBuscar(){
 
 function fOficiosIniciales(){
 	if( frm.iEjercicio.value >0 && frm.iNumSolicitud.value>0){
-	 cClavesModulo="3,";
-	 cNumerosRep="76,";
+	 cClavesModulo="3,3,";
+	 cNumerosRep="76,77,";
 	 cFiltrosRep=  frm.iEjercicio.value + "," + frm.iNumSolicitud.value + "," + cSeparadorRep;
+	 cFiltrosRep+=cFiltrosRep;
 	 fReportes();
 	}else{
 		fAlert("\n-Debe seleccionar un trámite para poder imprimir el acuse de recibo");

@@ -21,7 +21,7 @@
   TFechas fecha = new TFechas();
 
 
-  //System.out.print("*****     "+fecha.getThisTime());
+  System.out.println("*****     "+fecha.getThisTime());
   TDTRARegSolicitud dTRARegSolicitud = new TDTRARegSolicitud();
   String cError = "";
   CFGAccion oAccion = new CFGAccion(pageContext.getRequest());
@@ -144,8 +144,8 @@
   }*/
   cSQL +=oAccion.getCOrden();
   Vector vcListado = dTRARegSolicitud.findSolicitud("iEjercicio,iCveTramite", cSQL,iEjercicio,iNumSolicitud);
-  //System.out.print("*****     "+fecha.getThisTime());
-  //System.out.print("*****     ");
+  System.out.println("*****     "+fecha.getThisTime());
+  System.out.println("*****     ");
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();
 %>

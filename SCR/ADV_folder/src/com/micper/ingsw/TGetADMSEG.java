@@ -54,7 +54,7 @@ public class TGetADMSEG {
       cValor = vPropiedades.getProperty(cProp);
     }catch(Exception e){
       e.printStackTrace();
-//      //System.out.print("TGetADMSEG.La Propiedad Específica: " + cProp + " No Fue Encontrada!");
+//      System.out.println("TGetADMSEG.La Propiedad Específica: " + cProp + " No Fue Encontrada!");
     }
     return cValor;
   }

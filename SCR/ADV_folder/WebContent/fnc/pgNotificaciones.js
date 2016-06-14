@@ -84,8 +84,11 @@ function fOnLoad(){
   FRMPanel.fShow("Tra,"); 
   FRMListado = fBuscaFrame("IListado"); 
   FRMListado.fSetControl(self); 
-  FRMListado.fSetTitulo("--,Registro,Documento Anexado,Id Documento,Usuario,Tipo de Notificación,Observación,"); 
-  FRMListado.fSetCampos("8,5,2,11,13,10,");
+//  FRMListado.fSetTitulo("--,Registro,Documento Anexado,Id Documento,Usuario,Tipo de Notificación,Observación,"); 
+//  FRMListado.fSetCampos("8,5,2,11,13,10,");
+  
+  FRMListado.fSetTitulo("--,Registro,Documento Anexado,Id Documento,Observación,"); 
+FRMListado.fSetCampos("8,5,2,10,");
   FRMListado.fSetObjs(0,"Liga",{label:"[Mostrar]", toolTip: "", style: "color:RED;text-decoration:none;font-weight:Bold;"});
   fFillSelect(frm.CTIPO,aNotifica,false,0,0,1);
   fDisabled(true,"iEjercicio,iNumSolicitud,"); 
@@ -132,12 +135,10 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,msgRetraso){
   
   /****MANEJO DE CONTROL DE TIEMPOS****/
 	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
-		alert("");
 		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
 	}
 	
 	if (cId == "registraRetraso" && cError == "" ) {
-		alert("aaa");
 		if(msgRetraso!="" && parseInt(msgRetraso)>0)
 			fAlert("\n Se ha registrado un retraso para esta solicitud de "+msgRetraso+ " días.");
 		doGuardar();

@@ -65,20 +65,20 @@
 	
 	if((vParametro.getString("cDAOEjecutar").equals(".reporte.TDCapacidadJuridica"))&&(vParametro.getString("cMetodoTemp").equals("WordOficio"))){  //Reportes de Word XML...
 		
-		//System.out.print("param1--> "+vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"));
+		System.out.println("param1--> "+vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"));
 		
-		//System.out.print("param2--> "+vParametro.getString("cMetodoTemp"));
+		System.out.println("param2--> "+vParametro.getString("cMetodoTemp"));
 		
-		//System.out.print("param3--> "+"Par1^" + vParametro.getString("hdFiltrosRep") +"," + vParametro.getString("cArchivoOrig") + "$"+par2+par3+par4+par5);
+		System.out.println("param3--> "+"Par1^" + vParametro.getString("hdFiltrosRep") +"," + vParametro.getString("cArchivoOrig") + "$"+par2+par3+par4+par5);
 		
 		oDatos = (Object)tEjecuta.runMethodInClass(vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"),vParametro.getString("cMetodoTemp"), "Par1^" + vParametro.getString("hdFiltrosRep") +"," + vParametro.getString("cArchivoOrig") + "$"+par2+par3+par4+par5);
 	}       
 	else{  // Reportes Tradicionales
-		//System.out.print("param1--> "+ vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"));
+		System.out.println("param1--> "+ vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"));
 	
-		//System.out.print("param2--> "+ vParametro.getString("cMetodoTemp"));
+		System.out.println("param2--> "+ vParametro.getString("cMetodoTemp"));
 		
-		//System.out.print("param3--> "+ "Par1^" + vParametro.getString("hdFiltrosRep") + "$"+par2+par3+par4+par5);
+		System.out.println("param3--> "+ "Par1^" + vParametro.getString("hdFiltrosRep") + "$"+par2+par3+par4+par5);
 		
 		oDatos = (Object)tEjecuta.runMethodInClass(vParametros.getPropEspecifica("cRutaDAO")+ vParametro.getString("cDAOEjecutar"),vParametro.getString("cMetodoTemp"), "Par1^" + vParametro.getString("hdFiltrosRep") + "$"+par2+par3+par4+par5);
 	}
@@ -121,7 +121,7 @@
     //Genera el reporte en excel
     if(oAccion.getCAccion().equals("Excel")){
     	
-   	//System.out.print("lo que regresan las consultas"+sbResultado);
+   	System.out.println("lo que regresan las consultas"+sbResultado);
       //sbObjeto = Reportes.creaExcelActiveX(vParametro.getString("cArchivoOrig"),vParametro.getString("cNomDestino"), lAutoImprimir, iNumCopias, iPausaEntreCopias, lCerrarAlFinal, lMostrarAplicacion, sbResultado);
       sbObjeto = Reportes.creaExcelActiveX(vParametro.getString("cArchivoOrig"),vParametro.getString("cNomDestino"), false, 1, iPausaEntreCopias, false, true, sbResultado);
     }
@@ -129,8 +129,8 @@
     //Cuando iNumSolicitud y iEjercicioSol traigan valor, quiere decir que se va a realizar una copia de la plantilla en el directorio NAS
     if(oAccion.getCAccion().equals("Word")){
     	String cNombreTemp = "";
-    	 //System.out.print(">>>>>>>sbResultado:"+sbResultado);
-    	 //System.out.print(">>>>>>>vDatosAdicionales:"+vDatosAdicionales);
+    	 System.out.println(">>>>>>>sbResultado:"+sbResultado);
+    	 System.out.println(">>>>>>>vDatosAdicionales:"+vDatosAdicionales);
     	//sbObjeto= Reportes.creaWordActiveX(vParametro.getString("cArchivoOrig"), vParametro.getString("cNomDestino"), lAutoImprimir, iNumCopias, lMostrarAplicacion, sbResultado, vDatosAdicionales );
     	 sbObjeto= Reportes.creaWordActiveX(vParametro.getString("cArchivoOrig"), vParametro.getString("cNomDestino"), false, 1, true, sbResultado, vDatosAdicionales );
     }
@@ -153,13 +153,13 @@
     }
     
     if(oAccion.getCAccion().equals("PDF")){
-    		//System.out.print(">>>>>>>>>>>>>cNombreReporte:"+vParametro.getString("cArchivoOrig"));
-    		//System.out.print(">>>>>>>>>>>>>parametros:"+hParametros.toString());
+    		System.out.println(">>>>>>>>>>>>>cNombreReporte:"+vParametro.getString("cArchivoOrig"));
+    		System.out.println(">>>>>>>>>>>>>parametros:"+hParametros.toString());
     		 request.getSession().removeAttribute("cNombreReporte");
     	      request.getSession().removeAttribute("hashParametros");
       request.getSession().setAttribute("cNombreReporte",vParametro.getString("cArchivoOrig"));
       request.getSession().setAttribute("hashParametros", hParametros);
-      //System.out.print("holaaaaaa tembloooo1111");
+      System.out.println("holaaaaaa tembloooo1111");
       	
       try{
       	sbObjeto = Reportes.creaPDFObject();
@@ -168,7 +168,7 @@
       }
       
       
-      //System.out.print("holaaaaaa tembloooo2222|:" + sbObjeto +":");
+      System.out.println("holaaaaaa tembloooo2222|:" + sbObjeto +":");
     }
   }
   Vector vcListado = new Vector();

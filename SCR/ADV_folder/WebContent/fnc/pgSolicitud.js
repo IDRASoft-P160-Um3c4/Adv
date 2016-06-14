@@ -14,6 +14,8 @@ var cPermisoPag;
 var tieneResolucion=false;
 var recargaEmergente = false;
 var tieneFolioPNC = false;
+var mostrarAlert =true;
+var mostrarMensaje =true;
 
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
@@ -94,7 +96,7 @@ function fDefPag() {
 			"", 5, 5, " Solicitud ", "fMayus(this);",
 			" onKeyPress='return fCheckForEnter(event, this, window);' ");
 	ITD("EEtiquetaL", 2, "", "", "left", "");
-	BtnImg("Buscar", "lupa", "fValidaCampos();");
+	BtnImg("Buscar", "lupa", "fLocBuscaRetraso(true);");
 	// BtnImg("Restaurar","restaura","fBlanked();");
 	FTD();
 	FTR();
@@ -288,7 +290,9 @@ function fOnLoad() {
 
 }
 // LLAMADO al JSP específico para la navegación de la página
-function fNavega() {
+function fNavega(valor) {
+	
+	mostrarMensaje = valor;
 	var cTramites = "";
 	if (inTramites != "")
 		cTramites = " AND TRARegSolicitud.iCveTramite IN (" + inTramites + ") ";
@@ -453,13 +457,12 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 			lTienePNCNR = false;
 
 		fBuscaFolioPNC();
-
 	}
 
 	if (cId == "cIdFolPNC" && cError == "") {
 		frm.cFolioPNC.value = aRes[0][0];
 		
-		if(frm.cFolioPNC.value=="")
+		if(frm.cFolioPNC.value!="")
 			tieneFolioPNC = true;
 		
 		fMuestraFolioPNC();
@@ -471,6 +474,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 		FRMPanel.fSetTraStatus("Disabled");
 		tieneFolioPNC = true;
 		fDisabled(true, "iEjercicio,iNumSolicitud,hdFiltroUsrXDepto,");
+		fAlert("\nAhora puede generar el oficio de PNC.");
 	}
 
 	if (cId == "idFechaActual" && cError == "") {
@@ -486,33 +490,27 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave,
 	    tieneResolucion=false;
 	  }
 	    
-	    frm.hdFiltro.value = frm.hdFiltroAux.value;
+//	    frm.hdFiltro.value = frm.hdFiltroAux.value;
 	    
-	    if(recargaEmergente==false)
-	    	fBuscaRetraso();
-	    else
-	    	recargaEmergente =false;
+//	    if(recargaEmergente==false)
+//	    	fBuscaRetraso();
+//	    else
+//	    	recargaEmergente =false;
 	}
 	
 	/****MANEJO DE CONTROL DE TIEMPOS****/
 	
 	if (cId == "buscaRetraso" && cError == "") {
-		if(aRes.length>0&&parseInt(aRes[0][0])>0)
+		if(aRes.length>0&&parseInt(aRes[0][0])>0&&mostrarMensaje==true)
 			fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
 		fDiasDesdeUltimaEtapa();
 	}
 	
 	if (cId == "obtenerDiasDesdeUltimaEtapa" && cError == "") {
 		frm.iDiasUltimaEtapa.value = parseInt(aRes[0][0]);
-	}
-	
-	if (cId == "registraRetraso" && cError == "" ) {
-		if(cEtapasRestringidas!="" && parseInt(cEtapasRestringidas)>0)
-			fAlert("\n Se ha registrado un retraso para esta solicitud de "+cEtapasRestringidas+ " días.");
-		
 		fValidaCampos();
 	}
-	
+		
 	/****MANEJO DE CONTROL DE TIEMPOS****/
 	
 	if(cId == "buscaDocumentosDGDC" && cError == ""){
@@ -588,7 +586,8 @@ function fValidaCampos() {
 }
 
 function fMuestraFolioPNC() {
-	if (lTienePNCNR == true&&tieneFolioPNC) {
+	
+	if (lTienePNCNR == true&&tieneFolioPNC==false) {
 		frm.cFolioPNC.disabled = false;
 		FRMPanel.fSetTraStatus("UpdateBegin");
 	}
@@ -631,6 +630,7 @@ function fGuardar() {
 		if(confirm("Se guardará el folio del oficio de PNC, una vez guardado no podrá modificarlo.\n¿Desea continuar con la información en pantalla?")){
 			frm.hdBoton.value = "saveFolioPNC";
 			frm.hdBotonAux.value = "folPNC";
+			frm.hdFiltro.value = "";
 			fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
 		}
 	}
@@ -642,6 +642,7 @@ function fGuardarA() {
 		if(confirm("Se guardará el folio del oficio de PNC, una vez guardado no podrá modificarlo.\n¿Desea continuar con la información en pantalla?")){
 			frm.hdBoton.value = "saveFolioPNC";
 			frm.hdBotonAux.value = "folPNC";
+			frm.hdFiltro.value = "";
 			fEngSubmite("pgVerificacion.jsp", "saveIdFolPNC");
 		}
 	}
@@ -1004,6 +1005,21 @@ function fSetRecarga(value){
 	recargaEmergente = true;
 }
 
-function fRegistraRet(){
-	fRegistraRetraso();
+function fGetDiasUltimaEtapa(){
+	return frm.iDiasUltimaEtapa.value;
+}
+
+function fGetEtapaVerifVal(){
+	return frm.iCveEtapa.value;
+}
+ 
+
+function fLocBuscaRetraso(val){
+	if (frm.iEjercicio.value > 0 && frm.iNumSolicitud.value > 0) {
+		mostrarMensaje = val;
+		fBuscaRetraso();
+	}else{
+		fAlert("\n Debe proporcionar un Ejercicio y Número de Solicitud válidos.");
+	}
+	
 }

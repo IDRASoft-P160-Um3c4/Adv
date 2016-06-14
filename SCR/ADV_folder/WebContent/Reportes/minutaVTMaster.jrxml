@@ -140,21 +140,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Center">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["SECRETARÍA DE COMUNICACIONES Y TRANSPORTES\n"+"CENTRO SCT "+$F{CNOMENT}+ "\nUNIDAD GENERAL DE SERVICIOS TÉCNICOS"]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
-					<reportElement
-						mode="Transparent"
-						x="27"
-						y="0"
-						width="500"
-						height="20"
-						key="textField-17"/>
-					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Center">
-						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
-					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["\""+$P{cLeyendaEnc}+"\""]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["SECRETARÍA DE COMUNICACIONES Y TRANSPORTES\n"+"CENTRO SCT "+$F{CNOMENT}.toUpperCase()+ "\nUNIDAD GENERAL DE SERVICIOS TÉCNICOS"]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageHeader>

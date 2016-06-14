@@ -367,14 +367,14 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<reportElement
 						x="4"
 						y="164"
-						width="126"
+						width="236"
 						height="13"
 						key="staticText-9"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
-				<text><![CDATA[ACTA CONSTITUTIVA]]></text>
+				<text><![CDATA[ACTA CONSTITUTIVA O DOCUMENTO EQUIVALENTE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement
@@ -393,14 +393,14 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<reportElement
 						x="4"
 						y="201"
-						width="126"
+						width="235"
 						height="13"
 						key="staticText-11"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement>
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
-				<text><![CDATA[PODER NOTARIAL]]></text>
+				<text><![CDATA[PODER NOTARIAL O DOCUMENTO EQUIVALENTE]]></text>
 				</staticText>
 				<staticText>
 					<reportElement

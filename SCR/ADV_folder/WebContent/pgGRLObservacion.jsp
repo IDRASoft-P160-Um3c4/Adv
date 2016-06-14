@@ -32,7 +32,7 @@
 
     vDinRep = oAccion.setInputs("cObsRegistrada,iEjercicio,iNumSolicitud,iCveTramite,iCveModalidad,iCveFormatoReg,iCveMotivoCancela");
     vDinRep.put("iCveUsuario",vUsuario.getICveusuario());
-    //System.out.print("Usuario " +vUsuario.getICveusuario());
+    System.out.println("Usuario " +vUsuario.getICveusuario());
     try{
 
       String cSql2 = "SELECT * FROM TRAREGTRAMXSOL " +

@@ -4,7 +4,7 @@ var frm;
 var aResTemp = new Array();
 var iCveEtapa = 0;
 var cPermisoPag;
-
+var mostrarMensaje = true;
 // SEGMENTO antes de cargar la página (Definición Mandatoria)
 function fBefLoad() {
 	cPaginaWebJS = "pgTableroTecnico.js";
@@ -54,7 +54,7 @@ function fOnLoad() {
 	FRMListado = fBuscaFrame("IListado");
 	FRMListado.fSetControl(self);
 	FRMListado.fSetTitulo("Ejercicio, Núm. Solicitud, Solicitante, Trámite, Oficina de Origen, Tiene PNC, Requisitos, Evaluación,");
-	FRMListado.fSetCampos("0,1,2,3,4,5,6,7,");
+	FRMListado.fSetCampos("0,1,2,3,4,6,7,8,");
 	FRMListado.fSetAlinea("center,center,center,center,center,center,center,center,");
 	frm.hdBoton.value = "Primero";
 	fCargaOficDeptoUsr(false);
@@ -92,6 +92,12 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 				}else{
 					aRes[o][5]="";
 				}
+				
+				if(aRes[o][6]>0){
+					aRes[o][6]="Si";
+				}else{
+					aRes[o][6]="";
+				}
 				aRes[o].push("<font color=blue>VER REQUISITOS</font>");
 				aRes[o].push("<font color=blue>EVALUACIÓN DE REQUISITOS</font>");
 			}
@@ -113,7 +119,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 	/****MANEJO DE CONTROL DE TIEMPOS****/
 		
 		if (cId == "buscaRetraso" && cError == "" ) {
-			if(aRes.length>0&&parseInt(aRes[0][0])>0)
+			if(aRes.length>0&&parseInt(aRes[0][0])>0&&mostrarMensaje==true)
 				fAlert("\nLa solicitud tiene un retraso en etapas anteriores de "+aRes[0][0]+" días.");
 			fDiasDesdeUltimaEtapa();
 		}
@@ -152,22 +158,28 @@ function fSelReg(aDato, iCol) {
 	frm.iEjercicio.value = aDato[0];
 	frm.iNumSolicitud.value = aDato[1];
 	
-	if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0)
-		fBuscaRetraso();
-
-	setTimeout(function(){
+	if(frm.iEjercicio.value > 0 &&  frm.iNumSolicitud.value >0){
+	
 	if (iCol == 7){//click acciones
 		
 		if(aDato[5]=="Si"){
 			fAlert("\nNo es posible realizar la evaluación, la solcitud tiene un PNC que no ha sido cerrado.");
 			return;
 		}else{
-			fBuscaDocumentos();
+			mostrarMensaje =false;
+			fBuscaRetraso(); //
+			
+			setTimeout(function (){			
+				fBuscaDocumentos();
+			},300);
 		}	
 	}else if (iCol == 6){//click acciones
 		fDocsTramite();
+	}else{
+		mostrarMensaje =true;
+		fBuscaRetraso(); 
 	}
-	},250);
+	}
 	
 }
 

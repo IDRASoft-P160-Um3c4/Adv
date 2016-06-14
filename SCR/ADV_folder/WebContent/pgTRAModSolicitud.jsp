@@ -74,9 +74,9 @@
       dTRARegReqXTram.Cambia(vDinRep,null);
 
      }catch(Exception e){
-    	//System.out.print("*************");
+    	System.out.println("*************");
     	if(e.getMessage().substring(0,9).equals("El tiempo")){
-        	//System.out.print(e.getMessage());
+        	System.out.println(e.getMessage());
         	cError = e.getMessage();
     	}
     	else
@@ -108,9 +108,9 @@
 		  regCausa.resolver(vPNC,null);
 	      dTRARegReqXTram.FinalizaPNC(vPNC);
 	    }catch(Exception e){
-	    	//System.out.print("*************");
+	    	System.out.println("*************");
 	    	if(e.getMessage().substring(0,9).equals("El tiempo")){
-	        	//System.out.print(e.getMessage());
+	        	System.out.println(e.getMessage());
 	        	cError = e.getMessage();
 	    	}
 	    	else
@@ -226,7 +226,7 @@
 		           "T.ICVETRAMITE,"+
 		           "M.ICVEMODALIDAD,"+
 				   "RT.LTIENEPNC, "+
-		           "(SELECT year(Current_date - dtregistro)*365 + month(Current_date - dtregistro)*30 + day(Current_date - dtregistro) FROM TRAREGRESOLVTECXSOL where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud") +") AS DIASTRANS, "+
+		           "(SELECT (DAYS(Current_date) - DAYS(dtregistro)) FROM TRAREGRESOLVTECXSOL where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud") +") AS DIASTRANS, "+
 		           "CT.INUMDIASCUBRIRREQ, "+
 		           "(SELECT COUNT(0) FROM TRAREGREQXTRAM where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud")+") AS NUMREQ, "+
 		           "(SELECT COUNT(DTRECEPCION) FROM TRAREGREQXTRAM where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud")+" AND DTCOTEJO IS NOT NULL) AS REQENT, "+
@@ -256,8 +256,8 @@
 		           "T.ICVETRAMITE,"+
 		           "M.ICVEMODALIDAD,"+
 				   "RT.LTIENEPNC, "+
-		           "(SELECT year(Current_date - DTNOTIFICACION)*365 + month(Current_date - DTNOTIFICACION)*30 + day(Current_date - DTNOTIFICACION) FROM GRLREGISTROPNC where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud")+ " AND ICONSECUTIVOPNC= (SELECT MAX(ICONSECUTIVOPNC) FROM GRLREGISTROPNC WHERE IEJERCICIO ="+ request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+ request.getParameter("iNumSolicitud") +" )) AS DIASTRANS,"+
-		           "CT.INUMDIASCUBRIRREQ, "+
+		           "(SELECT (DAYS(Current_date) - DAYS(DTNOTIFICACION)) FROM GRLREGISTROPNC where IEJERCICIO ="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud")+ " AND ICONSECUTIVOPNC= (SELECT MAX(ICONSECUTIVOPNC) FROM GRLREGISTROPNC WHERE IEJERCICIO ="+ request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+ request.getParameter("iNumSolicitud") +" )) AS DIASTRANS,"+
+		           "CT.IDIASDESPUESNOTIF AS CDIASNOTIF, "+
 		       	   "(SELECT count(DTNOHABIL) FROM GRLDIANOHABIL where DTNOHABIL < current_date and  DTNOHABIL > (select date(DTNOTIFICACION) from GRLREGISTROPNC where IEJERCICIO="+request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+request.getParameter("iNumSolicitud")+ " AND ICONSECUTIVOPNC= (SELECT MAX(ICONSECUTIVOPNC) FROM GRLREGISTROPNC WHERE IEJERCICIO ="+ request.getParameter("iEjercicio") +" AND INUMSOLICITUD ="+ request.getParameter("iNumSolicitud") +" ))) AS DIASNOHABTRANS," +
 				   "PNC.DTNOTIFICACION " +
 		       	   "FROM TRAREGSOLICITUD S " +

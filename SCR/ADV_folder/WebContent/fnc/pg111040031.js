@@ -289,14 +289,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, cEtapas) {
 				if (aRes[i][39] != "" && aRes[i][39] != "null"
 						&& aRes[i][39] > 0) {
 					aRes[i][39] = 'SI';
-				} //else
-					//aRes[i][39] = 'NO';
+				} else
+					aRes[i][39] = '';
 				
 				if (aRes[i][47] != "" && aRes[i][47] != "null"
 					&& aRes[i][47] > 0) {
 				aRes[i][47] = 'SI';
-			} //else
-				//aRes[i][47] = 'NO';
+			} else
+				aRes[i][47] = '';
 
 				
 				if (aRes[i][41] != "" && aRes[i][42] != "") {

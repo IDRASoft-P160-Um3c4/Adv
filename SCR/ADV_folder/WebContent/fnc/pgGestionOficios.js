@@ -77,8 +77,8 @@ function fDefPag() {
 				ITRTD("ETablaST", 5, "", "", "center");
 					InicioTabla("", 0, "95%", "", "", "", 1);
 						ITD("ETablaST");
-							TextoSimple("OFICIOS DE PNC");
-						FITD()
+							TextoSimple("OFICIOS DE LA SOLICITUD");
+						FITD();
 					FinTabla();
 				FTDTR();
 				ITRTD("", 0, "", "", "center");
@@ -94,7 +94,7 @@ function fDefPag() {
 			ITRTD("", 0, "95%", "", "center");
 			InicioTabla("ETablaInfo", 0, "95%", "", "", "", 1);
 			ITRTD("ETablaST", 5, "", "", "center");
-				TextoSimple("OFICIOS DE LA SOLICITUD");
+				TextoSimple("OFICIOS DE PNC");
 			FTDTR();
 			ITRTD("", 0, "", "", "center");
 				IFrame("IListadoA", "100%", "170", "Listado.js", "yes", true);

@@ -178,7 +178,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Con fecha "+$F{DTSOL}+", el promovente denominado "+$F{CSOLICITANTE}+", ingresó solicitud de permiso para ocupar y aprovechar el derecho de vía de la autopista " +$F{CAUTOPISTA}+", en el(los) cadenamiento(s) y sentido(s) "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+", "+$F{CHECHOS}+", anexando tanto el expediente legal como técnico."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Con fecha "+$F{DTSOL}+", el promovente denominado "+$F{CSOLICITANTE}+", ingresó solicitud de permiso para ocupar y aprovechar el derecho de vía de la autopista " +$F{CAUTOPISTA}+", en Km  "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+", "+$F{CHECHOS}+", anexando tanto el expediente legal como técnico."]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -221,9 +221,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="9"
+						x="0"
 						y="169"
-						width="519"
+						width="528"
 						height="49"
 						key="textField-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -263,20 +263,20 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						x="29"
 						y="309"
 						width="501"
-						height="49"
+						height="50"
 						key="textField-6"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified" verticalAlignment="Top">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Los documentos técnicos se encuentran completos y los documentos legales originales presentados por el promovente han sido cotejados por este Centro SCT con la copia simple, determinándose que la solicitud se encuentra completa conforme a lo requerido en el trámite número: " +$F{CCLAVET}+"."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Los documentos técnicos se encuentran completos y los documentos legales originales presentados por el promovente han sido cotejados por este Centro SCT con la copia simple, determinándose que la solicitud se encuentra completa conforme a lo requerido en el trámite número: " +$F{CCLAVET}+en la modalidad de " +$F{CTRAMITE}+"."]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
-						y="369"
+						y="368"
 						width="529"
-						height="61"
+						height="62"
 						key="textField-7"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified" verticalAlignment="Top">

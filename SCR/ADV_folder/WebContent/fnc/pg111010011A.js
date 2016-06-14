@@ -565,7 +565,12 @@ function fRegresaDatosConsultaSol(){
 }
 
 function returnPersonaParams(){
-	
+	var obj = {};
+	obj.cRFC = frm.cRFC.value;
+	obj.cNomRazonSocial = frm.cNomRazonSocial.value;
+	obj.cApPaterno = frm.cApPaterno.value;
+	obj.cApMaterno = frm.cApMaterno.value;
+	obj.iTipo = fGetRadioValue(frm.iTipo);
 	return obj;
 }
 

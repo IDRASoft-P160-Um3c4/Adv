@@ -56,7 +56,7 @@
      if(oAccion.getCAccion().equals("Show")){
          String cError = "", cNavStatus = "", cSQL = "";
          HashMap hmNotifica = (HashMap) request.getSession(true).getAttribute("Notifica");
-             //System.out.print(""+hmNotifica);
+             System.out.println(""+hmNotifica);
              cSQL =
       			" SELECT " +
       			  "TD.iEjercicio,"+
@@ -81,7 +81,7 @@
       			//" and cOBSERVACION like '%" + hmNotifica.get("ICVEDOCDIG") + "%'";
       		   // " and ICVEDOCDIG like '%" + hmNotifica.get("ICVEDOCDIG") + "%'";
 
-             //System.out.print(cSQL);
+             System.out.println(cSQL);
              
              Vector vcListado = dVerNotifica.findByCustom("",cSQL);
              TVDinRep vList = new TVDinRep();

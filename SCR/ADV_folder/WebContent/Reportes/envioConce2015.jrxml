@@ -148,11 +148,11 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</background>
 		<title>
-			<band height="140"  isSplitAllowed="true" >
+			<band height="147"  isSplitAllowed="true" >
 				<image  evaluationTime="Page" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="19"
-						y="9"
+						x="20"
+						y="19"
 						width="181"
 						height="93"
 						key="image-1"
@@ -164,30 +164,43 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="240"
-						y="10"
+						y="19"
 						width="289"
-						height="79"
+						height="71"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica-Bold" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
-"DIRECCÓN GENERAL ADJUNTA DE SUPERVISION FÍSICA DE AUTOPISTAS\n"+
-"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS\n"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n\nDIRECCÓN GENERAL ADJUNTA DE SUPERVISION FÍSICA DE AUTOPISTAS"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="239"
-						y="99"
+						y="89"
 						width="291"
-						height="41"
+						height="58"
 						key="textField-8"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
-					<textElement textAlignment="Left" verticalAlignment="Top">
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLECONC}+"\n\nCiudad de Méxcio a "+$F{DTREP}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.-"+ $F{CFOLECONC}+"\n\nCiudad de Méxcio a "+$F{DTREP}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="19"
+						y="0"
+						width="511"
+						height="19"
+						key="textField-10">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null &&!$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["\""+$P{cLeyendaEnc}+"\""]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -251,8 +264,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font size="8"/>
 					</textElement>
 				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
-Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
-]]></text>
+Tel. 01 (55) 54824378 Conmutador 54824200 Ext. 16032]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -265,7 +277,7 @@ Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: Permiso No."+ $F{CFOLPERM} +" y copia del(os) plano(s) del proyecto aprobado.\n\nC.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLECONC}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: Permiso No."+ $F{CFOLPERM} +" y copia del(os) plano(s) del proyecto aprobado.\n\nC.c.p. Director General de Desarrollo Carretero.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLECONC}]]></textFieldExpression>
 				</textField>
 			</band>
 		</lastPageFooter>

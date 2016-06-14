@@ -112,7 +112,7 @@
     String cSql = "";
     
     
-    //System.out.print(" tram-> "+ request.getParameter("iCveTramite") +" mod-> "+ request.getParameter("iCveModalidad") +" pagoAnt-> "+ request.getParameter("lPagoAnticipado") +" ejer -> "+ request.getParameter("iEjercicio") +"solic->"+request.getParameter("iNumSolicitud"));
+    System.out.println(" tram-> "+ request.getParameter("iCveTramite") +" mod-> "+ request.getParameter("iCveModalidad") +" pagoAnt-> "+ request.getParameter("lPagoAnticipado") +" ejer -> "+ request.getParameter("iEjercicio") +"solic->"+request.getParameter("iNumSolicitud"));
     
     int iCveTramite = new Integer(request.getParameter("iCveTramite")).intValue();
     int iCveModalidad = new Integer(request.getParameter("iCveModalidad")).intValue();

@@ -182,7 +182,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font pdfFontName="Helvetica" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.2.4.-"+ $F{CFOLCANCELA}+"\n\nCiudad de México a  "+$F{DTREP}]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Oficio núm 3.4.3.-"+ $F{CFOLCANCELA}+"\n\nCiudad de México a  "+$F{DTREP}]]></textFieldExpression>
 				</textField>
 			</band>
 		</title>
@@ -225,7 +225,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</textField>
 				<staticText>
 					<reportElement
-						x="40"
+						x="41"
 						y="176"
 						width="9"
 						height="20"
@@ -239,9 +239,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="50"
-						y="177"
-						width="479"
+						x="52"
+						y="176"
+						width="459"
 						height="30"
 						key="textField-13"
 						stretchType="RelativeToTallestObject"/>
@@ -256,7 +256,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						x="19"
 						y="210"
 						width="511"
-						height="170"
+						height="231"
 						key="textField-14"
 						stretchType="RelativeToTallestObject"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -289,7 +289,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						<font size="8"/>
 					</textElement>
 				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
-Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
+Tel. 01 (55) 54824378 Conmutador 54824200 Ext. 16032
 ]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
@@ -303,7 +303,7 @@ Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["C.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLCANCELA}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["C.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CFOLCANCELA}]]></textFieldExpression>
 				</textField>
 			</band>
 		</lastPageFooter>

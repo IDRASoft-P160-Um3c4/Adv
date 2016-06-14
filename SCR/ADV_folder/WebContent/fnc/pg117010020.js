@@ -206,21 +206,31 @@ function fOnLoad() {
 	FRMListado = fBuscaFrame("IListado");
 	FRMListado.fSetControl(self);
 
-	FRMListado.fSetTitulo("Cotejado,Físico,Requisito,");
-	FRMListado.fSetCampos("9,5,");
-	FRMListado.fSetDespliega("texto,texto,texto,");
+//	FRMListado.fSetTitulo("Cotejado,Físico,Requisito,");
+//	FRMListado.fSetCampos("9,5,");
+//	FRMListado.fSetDespliega("texto,texto,texto,");
+	
+	FRMListado.fSetTitulo("Cotejado,Requisito,");
+	FRMListado.fSetCampos("5,");
+	FRMListado.fSetDespliega("texto,texto,");
 
-	FRMListado.fSetAlinea("center,center,left,");
+	FRMListado.fSetAlinea("center,left,");
 	FRMListado.fSetObjs(0, "Caja");
 
 	FRMListadoA = fBuscaFrame("IListadoA");
 	FRMListadoA.fSetControl(self);
 	FRMListadoA.fSetSelReg(2);
 
-	FRMListadoA.fSetTitulo("F. Entrega,Físico,Fecha. Cotejo,Requisito,");
-	FRMListadoA.fSetCampos("3,9,4,5,");
-	FRMListadoA.fSetDespliega("texto,texto,texto,texto,");
-	FRMListadoA.fSetAlinea("center,center,center,left,");
+//	FRMListadoA.fSetTitulo("F. Entrega,Físico,Fecha. Cotejo,Requisito,");
+//	FRMListadoA.fSetCampos("3,9,4,5,");
+//	FRMListadoA.fSetDespliega("texto,texto,texto,texto,");
+//	FRMListadoA.fSetAlinea("center,center,center,left,");
+	
+	FRMListadoA.fSetTitulo("Fecha de Entrega,Fecha de Cotejo,Requisito,");
+	FRMListadoA.fSetCampos("3,4,5,");
+	FRMListadoA.fSetDespliega("textotexto,texto,");
+	FRMListadoA.fSetAlinea("center,center,left,");
+
 
 	fDisabled(true, "iEjercicio,iNumSolicitud,");
 	frm.hdBoton.value = "Primero";
@@ -423,6 +433,7 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 				if (dtNotif != "-1") {
 
 					//if (((diasTrans - diasNohabTrans) > diasEntReq)) {//descomentar para que sean dias naturales, es necesaria la gestion de dias no habiles en las pantallas del administrador
+					
 					if (diasTrans > diasEntReq) {
 						// fAlert("El tiempo para entregar requisitos ha
 						// terminado. La solicitud ha sido abandonada.");

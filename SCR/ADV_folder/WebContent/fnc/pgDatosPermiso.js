@@ -37,7 +37,8 @@ function fDefPag(){
          
          ITR();
          	TDEtiCampo(false,"EEtiqueta",0,"Folio oficio Centro SCT:","cFolSCT","",18,20,"Folio oficio Centro SCT","fMayus(this)","","",true,"",0);
-         	TDEtiCampo(false,"EEtiqueta",0,"Nombre Director General Centro SCT:","cNomDGSCT","",18,50,"Nombre Director General Centro SCT","fMayus(this)","","",true,"",0);
+         	//TDEtiCampo(false,"EEtiqueta",0,"Nombre Director General Centro SCT:","cNomDGSCT","",18,50,"Nombre Director General Centro SCT","fMayus(this)","","",true,"",0);
+         	Hidden("cNomDGSCT","");
          FTR();
          
      	 ITRTD("ETablaST",6,"100%","","center");
@@ -48,16 +49,18 @@ function fDefPag(){
          	TDEtiCampo(false,"EEtiqueta",0,"Folio oficio permisionario:","cFolPerm","",18,20,"Folio oficio permisionario","fMayus(this)","","",true,"",0);
          FTR();
 
-     	 ITRTD("ETablaST",6,"100%","","center");
-       		TextoSimple("DATOS PARA OFICIO PERMISIONARIO - CENTRO SCT");
-         FTDTR();
-	       
-         ITR();
-         	TDEtiCampo(false,"EEtiqueta",0,"Folio oficio permisionario - Centro SCT:","cFolSCTPerm","",18,20,"Folio oficio permisionario - Centro SCT","fMayus(this)","","",true,"",0);
-         	TDEtiCampo(false,"EEtiqueta",0,"Nombre Director General Centro SCT:","cNomDGSCTPerm","",18,50,"ombre Director General Centro SCT","fMayus(this)","","",true,"",0);
-         FTR();
+//     	 ITRTD("ETablaST",6,"100%","","center");
+//       		TextoSimple("DATOS PARA OFICIO PERMISIONARIO - CENTRO SCT");
+//         FTDTR();
+//	       
+//         ITR();
+//         	TDEtiCampo(false,"EEtiqueta",0,"Folio oficio permisionario - Centro SCT:","cFolSCTPerm","",18,20,"Folio oficio permisionario - Centro SCT","fMayus(this)","","",true,"",0);
+//         	TDEtiCampo(false,"EEtiqueta",0,"Nombre Director General Centro SCT:","cNomDGSCTPerm","",18,50,"ombre Director General Centro SCT","fMayus(this)","","",true,"",0);
+//         FTR();
 
      	 ITRTD("ETablaST",6,"100%","","center");
+     	Hidden("cFolSCTPerm","");
+     	Hidden("cNomDGSCTPerm","");
        		TextoSimple("DATOS PARA PERMISO");
          FTDTR();
          

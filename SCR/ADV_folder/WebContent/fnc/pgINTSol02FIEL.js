@@ -104,7 +104,10 @@ function fDefPag() {
 	
 	ITRTD("", "", "", "40", "center");
 	IFrame("IPanel", "515", "34", "Paneles.js");
-    Liga("Simular firma de documentos.","simulaFirma();");
+//    Liga("Simular firma de documentos.","simulaFirma();");
+	FTDTR();
+	ITRTD("", "", "", "40", "center");
+    Liga("Salir de registro.","cerrarVentana();");
 	FTDTR();
 	FinTabla();
 	FTDTR();
@@ -1572,4 +1575,9 @@ function simulaFirma(){
 	 cCadenaOriginal = cadDatosADV();
 	 cCadenaOriginal += fGetCadOriginal();	
 	 firmaSuccess("outputPaths", "cadFRIMADA", "cNOMBRE", "cCURP", "MOR0000001O1", "12345","cLocSerialNumber", "cLocIssuerDN", "cLocSubjectDN", "0");
+}
+
+function cerrarVentana(){
+	if(top)
+		top.close();
 }

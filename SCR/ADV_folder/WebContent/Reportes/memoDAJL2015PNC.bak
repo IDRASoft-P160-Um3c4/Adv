@@ -146,7 +146,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</background>
 		<title>
-			<band height="283"  isSplitAllowed="true" >
+			<band height="260"  isSplitAllowed="true" >
 				<image  evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="20"
@@ -179,7 +179,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="511"
 						height="19"
-						key="textField-26"/>
+						key="textField-26">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null &&!$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
@@ -191,7 +193,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						x="20"
 						y="199"
 						width="510"
-						height="81"
+						height="61"
 						key="textField-27"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified">
@@ -337,7 +339,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: documentación ingresados por el promovente\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$F{CFOLMEMOPNC}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: documentación ingresados por el promovente\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$F{CFOLMEMOPNC}]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

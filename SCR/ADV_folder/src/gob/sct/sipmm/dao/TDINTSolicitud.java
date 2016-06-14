@@ -151,37 +151,37 @@ public class TDINTSolicitud extends DAOBase {
             	
             	
 
-            	if(vcArea.size()>0){
-            		TVDinRep vArea = (TVDinRep) vcArea.get(0); 
-	                vEtapas.put("iEjercicio",vSolicitud.getInt("iEjercicio"));
-	                vEtapas.put("iNumSolicitud",vSolicitud.getInt("iNumSolicitud"));
-	                vEtapas.put("iCveTramite",vSolicitud.getInt("iCveTramite"));
-	                vEtapas.put("iCveModalidad",vSolicitud.getInt("iCveModalidad"));
-	                
-	                vEtapas.put("iCveOficina",vArea.getInt("ICVEOFICINA"));
-	                vEtapas.put("iCveDepartamento",vArea.getInt("ICVEDEPARTAMENTO"));
-	                
-	                vEtapas.put("iCveUsuario",0);
-	                vEtapas.put("tsRegistro", fecha.getThisTime());
-	                vEtapas.put("iCveEtapa",1);
-	                vEtapas.put("iOrden",1);
-	                dEtapas.insertEtapa(vEtapas,conn, false);
-	                
-	                TVDinRep vDatosEtapa = new TVDinRep();
-	                vDatosEtapa.put("iEjercicio", vSolicitud.getInt("iEjercicio"));
-	                vDatosEtapa.put("iNumSolicitud",vSolicitud.getInt("iNumSolicitud"));
-	                vDatosEtapa.put("iCveTram", vSolicitud.getInt("iCveTramite"));
-	                vDatosEtapa.put("iCveMod", vSolicitud.getInt("iCveModalidad"));
-	                vDatosEtapa.put("iCveEtapa", VParametros.getPropEspecifica("EtapaVisita"));
-	                vDatosEtapa.put("iCveOfic",vArea.getInt("ICVEOFICINA"));
-	                vDatosEtapa.put("iCveDpto", vArea.getInt("ICVEDEPARTAMENTO"));
-	                vDatosEtapa.put("iCveUsuario", 0);
-	                vDatosEtapa.put("lAnexo", 0);
-	                vDatosEtapa.put("Observacion", "");
-	                
-	                dEtapas.cambiaEtapaADV(vDatosEtapa, conn);
-	                
-            	}
+//            	if(vcArea.size()>0){
+//            		TVDinRep vArea = (TVDinRep) vcArea.get(0); 
+//	                vEtapas.put("iEjercicio",vSolicitud.getInt("iEjercicio"));
+//	                vEtapas.put("iNumSolicitud",vSolicitud.getInt("iNumSolicitud"));
+//	                vEtapas.put("iCveTramite",vSolicitud.getInt("iCveTramite"));
+//	                vEtapas.put("iCveModalidad",vSolicitud.getInt("iCveModalidad"));
+//	                
+//	                vEtapas.put("iCveOficina",vArea.getInt("ICVEOFICINA"));
+//	                vEtapas.put("iCveDepartamento",vArea.getInt("ICVEDEPARTAMENTO"));
+//	                
+//	                vEtapas.put("iCveUsuario",0);
+//	                vEtapas.put("tsRegistro", fecha.getThisTime());
+//	                vEtapas.put("iCveEtapa",1);
+//	                vEtapas.put("iOrden",1);
+//	                dEtapas.insertEtapa(vEtapas,conn, false);
+//	                
+//	                TVDinRep vDatosEtapa = new TVDinRep();
+//	                vDatosEtapa.put("iEjercicio", vSolicitud.getInt("iEjercicio"));
+//	                vDatosEtapa.put("iNumSolicitud",vSolicitud.getInt("iNumSolicitud"));
+//	                vDatosEtapa.put("iCveTram", vSolicitud.getInt("iCveTramite"));
+//	                vDatosEtapa.put("iCveMod", vSolicitud.getInt("iCveModalidad"));
+//	                vDatosEtapa.put("iCveEtapa", VParametros.getPropEspecifica("EtapaVisita"));
+//	                vDatosEtapa.put("iCveOfic",vArea.getInt("ICVEOFICINA"));
+//	                vDatosEtapa.put("iCveDpto", vArea.getInt("ICVEDEPARTAMENTO"));
+//	                vDatosEtapa.put("iCveUsuario", 0);
+//	                vDatosEtapa.put("lAnexo", 0);
+//	                vDatosEtapa.put("Observacion", "");
+//	                
+//	                dEtapas.cambiaEtapaADV(vDatosEtapa, conn);
+//	                
+//            	}
             	
             	//this.updateFechaEntrega(vSolicitud.getInt("iEjercicio"),vSolicitud.getInt("iNumSolicitud"),null);
             	

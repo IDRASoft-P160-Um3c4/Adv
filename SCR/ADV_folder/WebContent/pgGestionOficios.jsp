@@ -129,7 +129,7 @@
 	    String iEjercicio = vDinRep.getString("iEjercicio");
 		String iNumSolicitud = vDinRep.getString("iNumSolicitud");
 		
-		cSQL = "select (YEAR(current_date - date(TRE.tsregistro))*365 + MONTH(current_date - date(TRE.tsregistro))*30 + DAY(current_date - date(TRE.tsregistro))) AS DIASTRANS "
+		cSQL = "select (DAYS(current_date) - DAYS(date(TRE.tsregistro))) AS DIASTRANS "
 					+"from TRAREGETAPASXMODTRAM TRE  "
 					+"where TRE.IORDEN = (SELECT MAX(TAB.IORDEN) FROM TRAREGETAPASXMODTRAM TAB WHERE TAB.IEJERCICIO = "+iEjercicio+" AND TAB.INUMSOLICITUD = "+iNumSolicitud+") " 
 					+"AND TRE.IEJERCICIO="+iEjercicio+" AND TRE.INUMSOLICITUD ="+iNumSolicitud;

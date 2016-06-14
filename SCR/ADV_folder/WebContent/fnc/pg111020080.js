@@ -413,7 +413,6 @@
    }   
    
    if(cId == "etapaCerrarPNC" && cError == ""){
-	   alert("asdasdas");
 	   fBuscaSol();
    }
    

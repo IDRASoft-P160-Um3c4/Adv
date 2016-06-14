@@ -165,14 +165,14 @@ and GRLREGCAUSAPNC.ICONSECUTIVOPNC = ( SELECT max(ICONSECUTIVOPNC) FROM TRAREGPN
 					<reportElement
 						x="2"
 						y="160"
-						width="360"
+						width="507"
 						height="70"
 						key="textField-5"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement verticalAlignment="Bottom">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["C.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$P{cNomEntidad}+" - presente\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$P{cFolioPNC}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["C.c.p. Director General de Desarrollo Carretero.- presente\nDirector General del Centro SCT " +$P{cNomEntidad}+" - presente\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$P{cFolioPNC}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -199,7 +199,7 @@ and GRLREGCAUSAPNC.ICONSECUTIVOPNC = ( SELECT max(ICONSECUTIVOPNC) FROM TRAREGPN
 						<font size="8"/>
 					</textElement>
 				<text><![CDATA[Insurgentes Sur 1089, Piso 11, Ala Poniente, Col. Noche Buena, México, D. F., C.P. 03720
-Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
+Tel. 01 (55) 54824378 Conmutador 54824200 Ext. 16032
 ]]></text>
 				</staticText>
 			</band>

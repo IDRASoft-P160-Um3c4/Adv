@@ -96,7 +96,7 @@
          "       O1.CDSCBREVE as COFIRESUELVE, " +
          "       D1.CDSCBREVE AS CDPTORESUELVE, " +
          "       TRAREGSOLICITUD.CENVIARRESOLUCIONA, "+
-         " 		 (YEAR(current_date - date(TRAREGSOLICITUD.tsregistro))*365 + MONTH(current_date - date(TRAREGSOLICITUD.tsregistro))*30 + DAY(current_date - date(TRAREGSOLICITUD.tsregistro))) AS DIASTRANS, "+
+         " 		 (DAYS(current_date) - DAYS(date(TRAREGSOLICITUD.tsregistro))) AS DIASTRANS, "+
          "       TRAREGSOLICITUD.LABANDONADA, " +
          "       TRAREGTRAMXSOL.DTCANCELACION, " +
          "		 CAR.CDSCARRETERA, "+

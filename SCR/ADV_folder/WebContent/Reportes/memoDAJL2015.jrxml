@@ -170,8 +170,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Left" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n"+
-"DIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS\n"+"DIRECCIÓN DE PERMISOS Y APROVECHAMIENTOS"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["DIRECCIÓN GENERAL DE DESARROLLO CARRETERO\n\nDIRECCIÓN GENERAL ADJUNTA DE SUPERVISIÓN FÍSICA DE AUTOPISTAS"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
@@ -179,7 +178,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="511"
 						height="19"
-						key="textField-26"/>
+						key="textField-26">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null &&!$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
@@ -197,7 +198,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified">
 						<font pdfFontName="Helvetica" size="9" isBold="false" isStrikeThrough="false" />
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Mediante el presente, envío para su atenta revisión, documentación legal de la solicitud de permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el(los) cadenamiento(s) y sentido(s) "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+", de acuerdo a los siguientes datos y documentos presentados por el promovente:"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Mediante el presente, envío para su atenta revisión, documentación legal de la solicitud de permiso para ocupar y aprovechar el derecho de vía de la autopista "+$F{CAUTOPISTA}+", en el Km "+$F{CKMSENTIDO}+", a fin de construir, operar y conservar la siguiente obra o instalación: "+$F{CHECHOS}+", de acuerdo a los siguientes datos y documentos presentados por el promovente:"]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
@@ -229,7 +230,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<reportElement
 						x="259"
 						y="96"
-						width="101"
+						width="90"
 						height="15"
 						key="staticText-3"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -262,14 +263,13 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement>
 						<font size="9"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["ING. ROBERTO MAGALLANES GONZÁLEZ\nDirector General Adjunto de Supervisión Física de Autopistas"
-]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["ING. ROBERTO MAGALLANES GONZÁLEZ\nDirector General Adjunto de Supervisión Física de Autopistas"]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="360"
+						x="347"
 						y="96"
-						width="130"
+						width="145"
 						height="15"
 						key="textField-30"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
@@ -348,7 +348,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement>
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: la documentación señalada\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$F{CFOLMEMO}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexo: la documentación señalada\n\nNúmero de solicitud: "+$P{cSolicitud}+"\nME"+$P{cEjercicio}+"-"+$F{CFOLMEMO}]]></textFieldExpression>
 				</textField>
 			</band>
 		</pageFooter>

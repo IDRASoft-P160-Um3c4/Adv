@@ -80,7 +80,7 @@ protected void doGet(HttpServletRequest request,HttpServletResponse response) th
     	  JasperRunManager.runReportToPdfStream(reportStream,servletOutputStream,parameterMap,conn);
         conn.close();
       }else{
-        //System.out.print("Conn es nula");
+        System.out.println("Conn es nula");
       }
       request.getSession().removeAttribute("cNombreReporte");
       request.getSession().removeAttribute("hashParametros");

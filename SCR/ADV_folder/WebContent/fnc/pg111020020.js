@@ -113,8 +113,8 @@
            
            	   ITD();FTD();
            	ITD();Liga("*Ver Documentación Anexa al Trámite","verDocsTramite()","Buscar");FTD();
-           	ITD();Liga("*Generar Oficios, Resolución, Permiso","fDocsFinales()","Buscar");FTD();
-	           ITD();Liga("*Generar hoja de ayuda ingresos","fBuscaDocumentos()","Buscar");FTD();           
+           	ITD();Liga("*Generar Oficios, Resolución, Permiso","fBuscaDocumentos()","Buscar");FTD();
+	           ITD();Liga("*Generar hoja de ayuda ingresos","validaUsrIng()","Buscar");FTD();           
            FTR();
            
            ITR("","","","","");
@@ -207,9 +207,9 @@
    FRMListado = fBuscaFrame("IListado");
    FRMListado.fSetControl(self);
    
-   FRMListado.fSetTitulo("Registro,Descripción,Fecha,Usuario,Oficina,");
-   FRMListado.fSetCampos("8,7,13,12,15,");
-   FRMListado.fSetAlinea("right,left,center,left,left,")
+   FRMListado.fSetTitulo("Registro,Descripción,Fecha,Usuario,");
+   FRMListado.fSetCampos("8,7,13,12,");
+   FRMListado.fSetAlinea("right,left,center,left,")
 
    
 //   FRMListado.fSetTitulo("Registro,Descripción,Fecha,Usuario,Oficina,Depto,");
@@ -330,7 +330,8 @@
 	     cError="";
 	     return;
 	   }
-   else if (cError != "")fAlert(cError);
+   else if (cError != "")
+	   fAlert(cError);
    
    if(cId == "cIdCompFol" && cError==""){
 	   fOficiosEnvio();
@@ -389,7 +390,7 @@
 		if(cEtapas!=""){
 			fAlert("No es posible realizar la acción. "+cEtapas); //se ocupa cetapas para mostrar el mensaje si faltan documentos
 		}else{
-			validaUsrIng();
+			fDocsFinales();
 		}
 	}
 
@@ -400,6 +401,11 @@
 	 
      aResTemp = fCopiaArregloBidim(aRes);
      frm.hdRowPag.value = iRowPag;
+     
+     for(var a = 0;a<aRes.length; a++){
+    	 aRes[a][12] += " ("+aRes[a][15]+")";
+     }
+
      FRMListado.fSetListado(aRes);
      FRMListado.fShow();
      FRMListado.fSetLlave(cLlave);
@@ -409,8 +415,6 @@
         lEncontre = false;
      else
         lEncontre = true;
-
-
      
      for(iPos=0; iPos < aResTemp.length; iPos++){    	 
     	    //7 y 8 Etapas de Conclusion en el Area y Entrega de Resolucion 
@@ -419,7 +423,9 @@
     	   valorResolucion = aResTemp[iPos][17];
     	   //alert("Existen Etapas Finales")
         }
+    	
      }
+     
      
      var tamAr = aRes.length;
           
@@ -571,10 +577,7 @@
 		else{
 			fAlert('\nDebe buscar una solicitud valida. La solicitud debe estar en la etapa \"Entrega de Permiso\".');
 		} 
-}
- 
- 
-	
+}	
 
  function fBuscarPNC(){
    frm.hdFiltro.value =  "";

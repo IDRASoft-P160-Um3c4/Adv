@@ -1097,6 +1097,9 @@ function validaTodo() {
 }
 
 function generaCadenaReqs(){
+	
+	frm.cCadReqs.value="";
+	
 	for(var o=0; o<arrReqs.length; o++){
 		if(arrReqs[o][0]==true)
 			addReq(o);

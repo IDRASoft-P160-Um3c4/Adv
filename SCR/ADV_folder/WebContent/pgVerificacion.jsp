@@ -86,7 +86,6 @@
   if(oAccion.getCAccion().equals("saveFolioPNC")){
 	    vDinRep = oAccion.setInputs("iEjercicio,iNumSolicitud,cFolioPNC");
 	    try{
-	      lPNC = true;
 	      vDinRep = dVerificacion.saveFolioPNC(vDinRep,null);
 	    }catch(Exception e){
 	      cError="Guardar";
@@ -104,7 +103,7 @@
   String cSQL = "";
   if(request.getParameter("hdBotonAux") != null){
     if(request.getParameter("hdBotonAux").equals("VERIFICACION") || lPNC ||
-      request.getParameter("hdBotonAux").equals("GOficio")){//System.out.print("VERIFICACION");
+      request.getParameter("hdBotonAux").equals("GOficio")){System.out.println("VERIFICACION");
 
       Vector vcVerPNC = dVerificacion.findByCustom("","SELECT count(1) as iCuenta FROM TRAREGPNCETAPA "+
     		                                              "where IEJERCICIO="+request.getParameter("iEjercicio")+
@@ -162,7 +161,7 @@
     cSQL += "JOIN GRLDEPARTAMENTO ON GRLDEPARTAMENTO.ICVEDEPARTAMENTO = TRAREQUISITO.ICVEDEPTOEVAL ";
     //cSQL += "LEFT JOIN TRAREGEVAREQXAREA ON TRAREGREQXTRAM.IEJERCICIO=TRAREGEVAREQXAREA.IEJERCICIO AND TRAREGREQXTRAM.INUMSOLICITUD=TRAREGEVAREQXAREA.INUMSOLICITUD AND TRAREGREQXTRAM.ICVEREQUISITO=TRAREGEVAREQXAREA.ICVEREQUISITO AND TRAREGEVAREQXAREA.ICONSECUTIVOPNC IS NULL";
     }
-    else if(request.getParameter("hdBotonAux").equals("CONCEPTOS")){//System.out.print("CONCEPTOS");
+    else if(request.getParameter("hdBotonAux").equals("CONCEPTOS")){System.out.println("CONCEPTOS");
     cSQL =
       " SELECT cv.cDscConcVerifica , pr.iCveProceso, pr.iCveProducto , cvxp.iCveConcVerifica, "+
       " vp.dtVerifica, vp.iEjercicio, vp.iNumVerifica, cxvp.lConcAprobado, cxvp.cObs, "+
@@ -185,7 +184,7 @@
     }
     else if(request.getParameter("hdBotonAux").equals("folPNC")){
         cSQL =
-          " SELECT ADV.CFOLIOPNC FROM TRAREGDATOSADVXSOL WHERE IEJERCICIO = "+ request.getParameter("iEjercicio") +" AND INUMSOLICITUD = "+request.getParameter("iNumSolicitud");
+          " SELECT ADV.CFOLIOPNC FROM TRAREGDATOSADVXSOL ADV WHERE IEJERCICIO = "+ request.getParameter("iEjercicio") +" AND INUMSOLICITUD = "+request.getParameter("iNumSolicitud");
         }
   }
 

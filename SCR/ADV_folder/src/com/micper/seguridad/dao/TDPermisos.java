@@ -380,6 +380,11 @@ public class TDPermisos extends DAOBase {
 						.append(usrData.get("CPWDSLT")).append(":")
 						.append(usrData.get("CPWDHSH"));
 				
+//				System.out.println(PasswordHash.createHash("Ofloresm11"));
+//				System.out.println(PasswordHash.createHash("Mibolano12"));
+//				System.out.println(PasswordHash.createHash("Gzaratet12"));
+//				System.out.println(PasswordHash.createHash("Bbarreda12"));
+				
 				return PasswordHash.validatePassword(cPassword,
 						builder.toString());
 			} else {

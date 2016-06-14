@@ -136,11 +136,15 @@ function fDefPag(){
       Hidden("iCveEtapa");
       Hidden("iCveOficina");
       Hidden("iCveDepartamento");
-      Hidden("iCveUsuario",idUser);
       Hidden("lAnexo",0);
       Hidden("cObservaciones","");
+      
+      Hidden("cObservaciones","");
+      Hidden("iDiasUltimaEtapa","");
+      
    //   Hidden("hdBoton");
       Hidden("iCveUsuRegistro",idUser);
+      Hidden("iCveUsuario",fGetIdUsrSesion());
       Hidden("iCveCausaPNC");
       Hidden("lResuelto");
       Hidden("dtResolucion");
@@ -169,11 +173,19 @@ function fOnLoad(){
 
   FRMListado = fBuscaFrame("IListado01A");
   FRMListado.fSetControl(self);
-  FRMListado.fSetTitulo("Dpto. Evaluador, Requisitos,Entregado,Físico,Válido,Evaluado,");
-  FRMListado.fSetDespliega("texto,texto,texto,texto,texto,texto,");
+  
+//  FRMListado.fSetTitulo("Dpto. Evaluador, Requisitos,Entregado,Físico,Válido,Evaluado,");
+//  FRMListado.fSetDespliega("texto,texto,texto,texto,texto,texto,");
+//  //FRMListado.fSetObjs(2,"Boton");
+//  FRMListado.fSetCampos("21,10,4,22,5,20,");
+//  FRMListado.fSetAlinea("left,left,center,center,center,center,");
+  
+  FRMListado.fSetTitulo("Dpto. Evaluador, Requisitos,Entregado,Válido,Evaluado,");
+  FRMListado.fSetDespliega("texto,texto,texto,texto,texto,");
   //FRMListado.fSetObjs(2,"Boton");
-  FRMListado.fSetCampos("21,10,4,22,5,20,");
-  FRMListado.fSetAlinea("left,left,center,center,center,center,");
+  FRMListado.fSetCampos("21,10,4,5,20,");
+  FRMListado.fSetAlinea("left,left,center,center,center,");
+
 
   fDisabled(true,"dtNotificacion,cObs,lConcAprobadoBOX,");
 
@@ -364,8 +376,6 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
   
   if(cId == "idCambiaEtapa" && cError==""){
     
-  
-    
     if(noValidos==true && faltaEvaluacion==false){
       fAlert("Existe uno ó más requisitos no válidos! \n Se generará un Producto No Conforme.");
       	frm.hdBoton.value = "GuardarTodos";
@@ -374,7 +384,7 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
     else if(noValidos==false&&faltaEvaluacion==false){
      fAlert("\nLa evaluación de requisitos por la D.G.D.C. ha concluido exitosamente. Ahora es posible dar una resolución al trámite.");
      if(top.opener){
-    	 top.opener.fNavega();
+    	 top.opener.fNavega(false);
 	 }
 	 top.close();
     }
@@ -384,9 +394,9 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
   if(cId == "idGuardoTodos" && cError == ""){
     fAlert("-Se ha generado un Producto No Conforme. Debe guardar el  folio que tendra el oficio de notificación.\n-Debe realizar la notificación del Producto No Conforme relacionado a la solicitud.");
     if(top.opener){
-    	reloadSol();
-   	 top.close();
-    }    
+   	 top.opener.fLocBuscaRetraso(false);
+	 }
+	 top.close();
   }
   
   
@@ -436,7 +446,9 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
 	    	fAlert("\n-Existe uno ó más requisitos no válidos y existe un PNC previamente registrado.\n-Se dará resolución negativa por PNC.");
 	    	fResolucionNegativaPNC();
 	    }else{
-		    fEtapaVerificacion();
+	    	preparaRetraso();
+	    	fRegistraRetraso();
+	    	//fEtapaVerificacion();
 	    }
 	  }
   
@@ -447,6 +459,12 @@ function fResultado(aRes,cId,cError,cNavStatus,iRowPag,cLlave,iEtapaVerifica,iEt
   		 }
   		 top.close();
 	  }
+  	
+	if (cId == "registraRetraso" && cError == "" ) {
+		if(iEtapaVerifica!="" && parseInt(iEtapaVerifica)>0)
+			fAlert("\n Se ha registrado un retraso para esta solicitud de "+iEtapaVerifica+ " días.");
+		fEtapaVerificacion();
+	}
   	
 }
 
@@ -1137,7 +1155,7 @@ function fVentanilla(){
     return true;
 }
 
-function reloadSol(){
-	top.opener.fSetRecarga(true);
-	top.opener.fRegistraRet();
+function preparaRetraso(){
+	frm.iDiasUltimaEtapa.value = top.opener.fGetDiasUltimaEtapa(); 
+	frm.iCveEtapa.value = top.opener.fGetEtapaVerifVal();
 }

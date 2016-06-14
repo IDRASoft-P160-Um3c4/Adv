@@ -27,7 +27,7 @@
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
     vDinRep = oAccion.setInputs("iEjercicio,iCveConcepto,dtIniVigenciaIzq,iCategoriaIngresos,iConceptoIngresos,iRefNumericaIngresos,lEsTarifaIzq,lEsPorcentajeIzq,dImporteSinAjusteIzq,dImporteAjustadoIzq,dtFinVigenciaIzq");
-    //System.out.print("****** Fecha inicio = "+vDinRep.getString("dtIniVigencia"));
+    System.out.println("****** Fecha inicio = "+vDinRep.getString("dtIniVigencia"));
     try{
       vDinRep = dTRAReferenciaConcepto.insert(vDinRep,null);
     }catch(Exception e){

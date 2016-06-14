@@ -26,7 +26,7 @@
   else{
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
-   // //System.out.print("error pais" + vDinRep.getInt("iCvePais"));
+   // System.out.println("error pais" + vDinRep.getInt("iCvePais"));
     vDinRep = oAccion.setInputs("iCvePersona,iCveDomicilio,iCveTipoDomicilio,cCalle,cNumExterior,cNumInterior,cColonia,cCodPostal,cTelefono,iCvePais,iCveEntidadFed,iCveMunicipio,iCveLocalidad,lPredeterminado");
 
     try{

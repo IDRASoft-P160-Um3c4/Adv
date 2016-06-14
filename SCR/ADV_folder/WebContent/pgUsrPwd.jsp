@@ -34,13 +34,13 @@
     if (request.getParameter("hdBoton").toUpperCase().compareTo("ACEPTAR") == 0){
       if (cUsuario != null && cContras != null){
          vUsuario = dPermisos.accesoUsuario(cUsuario, cContras, "44");
-         //TODO modificar el metodo accesoUsuario y agregar la oficina (entero) y guardar en variable usrOfc;          
+                   
          if(vUsuario != null){
         	lChPwd = dPermisos.islChgPwd();
         	
         	//comentar para omitir el cambio de contrasena si son iguales
-      // if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
-      // 		lChPwd = true;
+       if(vUsuario.getCUsuario().equals(vUsuario.getCPassword()))
+       		lChPwd = true;
             //comentar para omitir el cambio de contrasena si son iguales
         	
         	usrGpo=vUsuario.getiCveGrupo();

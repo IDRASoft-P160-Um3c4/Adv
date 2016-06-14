@@ -125,8 +125,8 @@
    
    FRMListadoA = fBuscaFrame("IListado14A");
    FRMListadoA.fSetControl(self);
-   FRMListadoA.fSetTitulo("Fecha Cancelación, Usuario,Observación,");
-   FRMListadoA.fSetCampos("0,1,4,");
+   FRMListadoA.fSetTitulo("Fecha Cancelación, Usuario,Motivo,");
+   FRMListadoA.fSetCampos("0,1,2,");
    FRMListadoA.fSetAlinea("center,center,left,");
    FRMListadoA.fSetDespliega("texto,texto,texto,");
    
@@ -172,9 +172,7 @@
    }
 
    if(cId == "ListadoA" && cError==""){
-     for (i=0;i<aRes.length;i++){
-        aRes[i][1]= aRes[i][1] + " " + aRes[i][2] + " " + aRes[i][3];
-     }
+     
      frm.hdRowPag.value = iRowPag;
      FRMListadoA.fSetListado(aRes);
      FRMListadoA.fShow();
@@ -233,10 +231,13 @@
     frm.hdLlave.value = "";
     frm.hdSelect.value = "";
     frm.hdLlave.value = " iEjercicio,iNumSolicitud ";
-    frm.hdSelect.value = " SELECT TraRegTramXSol.dtCancelacion, SEGUsuario.cNombre,  SEGUsuario.cApPaterno, SEGUsuario.cApMaterno,  TraRegTramXSol.cObs "+
+    frm.hdSelect.value = " SELECT TraRegTramXSol.dtCancelacion, SEGUsuario.CNOMBRE||' '||SEGUsuario.CAPPATERNO||' '||SEGUsuario.CAPMATERNO||' ('|| GRLOficina.CDSCBREVE||' - '|| GRLDepartamento.CDSCBREVE||')' cnombre,  GRLMotivoCancela.CDSCMOTIVO  "+
                          " FROM TraRegTramXSol "+
                          " JOIN SEGUsuario ON SEGUsuario.iCveUsuario = TraRegTramXSol.iCveUsuario "+
                          " JOIN GRLMotivoCancela ON GRLMotivoCancela.iCveMotivoCancela = TraRegTramXSol.iCveMotivoCancela "+
+                         " JOIN GRLUSUARIOXOFIC ON GRLUSUARIOXOFIC.icveusuario= SEGUsuario.iCveUsuario  "+
+                         " JOIN GRLoficina ON GRLoficina .icveoficina= GRLUSUARIOXOFIC.icveoficina  "+
+                         " JOIN GRLDepartamento ON GRLDepartamento.iCveDepartamento = GRLUSUARIOXOFIC.iCveDepartamento "+
                          " WHERE  TraRegTramXSol.iEjercicio = "+ frm.iEjercicio.value + " AND TraRegTramXSol.iNumSolicitud = " +frm.iNumeroSolicitud.value ;
     frm.hdNumReg.value =  50;
     return fEngSubmite("pgConsulta.jsp","ListadoA");

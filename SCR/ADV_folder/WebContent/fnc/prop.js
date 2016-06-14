@@ -46,7 +46,7 @@
   var cFondoCeldaISO      = "#31619C";
   
   //duración de la sesión en minutos
-  var iTiempoVerificacion = 15;
+  var iTiempoVerificacion = 20;
   
   var cExtensionAyuda     = '.pdf';
   var cColorGenJS         = 'E9E9E9'; //'cdcdcc';//b0cb52,c5d882
@@ -105,7 +105,7 @@ function fSetIntervalo(lReporte, iInter){ // Solo se debe usar bajo condiciones 
     if (top.FRMSI.fVerAnswer)
       top.FRMSI.iPID = setInterval('top.FRMSI.fVerAnswer();', iIntervalo);
 }
-
+	
 function fAbreSubWindowPermisos(cNomPag, cAncho, cAlto, lMenuBar){
   cMenuBar = 'no';
   if(lMenuBar)

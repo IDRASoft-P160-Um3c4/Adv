@@ -167,6 +167,12 @@ public class UploadNotifica extends HttpServlet {
 									dSol.insertDoctoADV(datos, false, connFiles);
 									
 					                String updDoc = "UPDATE INTTRAMITEDOCS SET TSREGNOTIFICA=CURRENT_TIMESTAMP WHERE ICVEDOCDIG = "+IIDGESTORDOCUMENTO;
+					                
+					                lPStmt = null;
+					                
+					                lPStmt = connFiles.prepareStatement(updDoc);
+					                lPStmt.executeUpdate();
+					                lPStmt.close();
 														
 									int iEtapa = Integer.parseInt(ICVEESTATUS);
 					                String cObsTablero=COBSERVACION;

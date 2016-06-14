@@ -308,9 +308,13 @@ function fSelReg(aDato, iCol) {
 	frm.iCveTramite.value = aDato[2];
 	frm.iCveModalidad.value = aDato[3];
 			frm.lAnexo.value = "0";
+			
+	fCancelar();
 
 	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "")
 		fGetDatosEnvios();
+	
+	
 
 	if (iCol == 5 && frm.iEjercicio.value != ""
 			&& frm.iNumSolicitud.value != "")
@@ -373,13 +377,15 @@ function fRecibeSolicitud() {
 		return;
 	}
 
-	if (confirm("¿Esta seguro que desea recibir el trámite?")) {
-		buscaDocumentos();
+	if (frm.iEjercicio.value>0 && frm.iNumSolicitud.value>0) {
+		if(confirm("¿Esta seguro que desea recibir el trámite?")){
+			buscaDocumentos();
+		}
 	}	else{
 		recibeDGDC = false;
+		fAlert("Debe seleccionar una solicitud válida.")
 		return;
 	} 
-
 }
 
 function buscaDocumentos(){
@@ -473,6 +479,7 @@ function fCancelar() {
 }
 
 function fModificar() {
+	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != ""){
 	lModificando = true;
 	FRMPanel.fSetTraStatus("UpdateBegin");
 	FRMPanel.fHabilitaReporte(false);
@@ -483,6 +490,10 @@ function fModificar() {
 	frm.cDirGen.disabled = false;
 	frm.dtDGST.disabled = false;
 	frm.cRefDGST.disabled = false;
+	}else{
+		fAlert("Debe seleccionar una solicitud válida");
+	}
+	
 }
 
 function fGuardarA() {
@@ -493,12 +504,15 @@ function fGuardarA() {
 		return;
 	}
 	
-	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != "" && 
-			confirm("Se guardará la información de los oficios de envío, una vez guardada no será posible modificarla.\n¿Desea continuar con la información en pantalla?")) {
+	if (frm.iEjercicio.value != "" && frm.iNumSolicitud.value != ""){
+			if(confirm("Se guardará la información de los oficios de envío, una vez guardada no será posible modificarla.\n¿Desea continuar con la información en pantalla?")) {
 		frm.hdBoton.value = "guardaDatosEnvios";
 		frm.hdFiltro.value = "";
 		frm.hdOrden.value = "";
 		frm.hdNumReg.value = 1000;
 		fEngSubmite("pgTRARecepcion.jsp", "guardaDatosEnvios");
+	}
+	}else{
+		fAlert("Debe seleccionar una solicitud válida");
 	}
 }

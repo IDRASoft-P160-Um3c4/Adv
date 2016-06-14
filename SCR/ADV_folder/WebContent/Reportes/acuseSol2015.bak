@@ -185,9 +185,7 @@
 						y="0"
 						width="511"
 						height="19"
-						key="textField">
-							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null && !$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
-						</reportElement>
+						key="textField"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>

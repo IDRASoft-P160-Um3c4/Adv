@@ -102,8 +102,6 @@ TRADATOSNOAFEC.CPROPIETARIO AS CPROP,
 TRADATOSNOAFEC.CINSTALACION AS CINS,
 TRADATOSNOAFEC.COBSERVACION AS COBS,
 TRADATOSNOAFEC.CNOTDICT,
-TRAFOLENVIOS.CFOLPERM AS CFOLEPERM,
-TRADATOSPERM.CFOLPERMISO AS CFOLPERM,
 'Calle: ' || GRLDOMICILIO.CCALLE||', Ext. '|| GRLDOMICILIO.CNUMEXTERIOR||', Int. '|| GRLDOMICILIO.CNUMEXTERIOR||', Col. '|| GRLDOMICILIO.CCOLONIA|| ', ' || MUNDOM.CNOMBRE||', '|| ENTDOM.CNOMBRE||'.' as cdomicilio
 FROM TRAREGSOLICITUD 
 JOIN GRLDOMICILIO ON GRLDOMICILIO.ICVEPERSONA = TRAREGSOLICITUD.ICVESOLICITANTE
@@ -119,8 +117,6 @@ JOIN TRACATCARRETERA CARR ON CARR.ICVECARRETERA = ADV.ICVECARRETERA
 JOIN GRLOFICINA ON TRAREGSOLICITUD.ICVEOFICINA = GRLOFICINA.ICVEOFICINA  
 JOIN GRLENTIDADFED ENTOF ON GRLOFICINA.ICVEENTIDADFED = ENTOF.ICVEENTIDADFED AND ENTOF.ICVEPAIS = GRLDOMICILIO.ICVEPAIS 
 JOIN TRADATOSNOAFEC ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSNOAFEC.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSNOAFEC.INUMSOL 
-JOIN TRAFOLENVIOS ON TRAREGSOLICITUD.IEJERCICIO = TRAFOLENVIOS.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRAFOLENVIOS.INUMSOLICITUD
-JOIN TRADATOSPERM ON TRAREGSOLICITUD.IEJERCICIO = TRADATOSPERM.IEJERCICIO AND TRAREGSOLICITUD.INUMSOLICITUD = TRADATOSPERM.INUMSOLICITUD
 where TRAREGSOLICITUD.IEJERCICIO= $P{cEjercicio}
 and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 
@@ -144,8 +140,6 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 	<field name="CINS" class="java.lang.String"/>
 	<field name="COBS" class="java.lang.String"/>
 	<field name="CNOTDICT" class="java.lang.String"/>
-	<field name="CFOLEPERM" class="java.lang.String"/>
-	<field name="CFOLPERM" class="java.lang.String"/>
 	<field name="CDOMICILIO" class="java.lang.String"/>
 
 		<background>
@@ -283,7 +277,7 @@ Tel. 01 (55) 54824362 Conmutador 54824200 Ext. 16014
 					<textElement textAlignment="Left" verticalAlignment="Bottom">
 						<font size="8"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: los que se indican.\n\nC.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CNOTDICT}+".DOC"]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Anexos: los que se indican.\n\nC.c.p. Director General de Desarrollo Carretero.- presente\nDirector General Adjunto de Supervisión Física de Autopistas.- presente\nDirector General del Centro SCT " +$F{NOMENT}+" - presente\n\nNúmero de solicitud:"+$P{cSolicitud}+"\nOF"+$P{cEjercicio}+"-"+$F{CNOTDICT}]]></textFieldExpression>
 				</textField>
 			</band>
 		</lastPageFooter>

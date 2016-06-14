@@ -140,25 +140,24 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 			</band>
 		</columnHeader>
 		<detail>
-			<band height="224"  isSplitAllowed="true" >
+			<band height="245"  isSplitAllowed="true" >
 				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
 						x="0"
 						y="0"
 						width="529"
-						height="130"
+						height="140"
 						key="textField-1"/>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Justified" verticalAlignment="Top">
 						<font pdfFontName="Helvetica" isBold="false"/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["Para el caso de accesos, se recomienda no tomar como base el presente dictamen para llevar a cabo las obras en su propiedad, a fin de que, en su caso, no se vean afectados patrimonialmente.\n\nLa verificación del cumplimiento de la normatividad de la documentación legal estará a cargo de la Dirección de Asuntos Jurídicos y Legales de la Dirección General de Desarrollo Carretero, y la resolución final de la solicitud a cargo de la mencionada Dirección General.\n\nEl presente Dictamen de Factibilidad se extiende el " + $F{DTREP}+ "."
-]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Para el caso de accesos, se recomienda no tomar como base el presente dictamen para llevar a cabo las obras en su propiedad, a fin de que, en su caso, no se vean afectados patrimonialmente.\n\nLa verificación del cumplimiento de la normatividad de la documentación técnica estará a cargo de la Dirección General de Servicios Ténicos y la legal de la Dirección de Asuntos Jurídicos y Legales de la Dirección General de Desarrollo Carretero, y la resolución final de la solicitud a cargo de la mencionada Dirección General.\n\nEl presente Dictamen de Factibilidad se extiende el " + $F{DTREP}+ "."]]></textFieldExpression>
 				</textField>
 				<staticText>
 					<reportElement
 						x="220"
-						y="129"
+						y="150"
 						width="110"
 						height="15"
 						key="staticText-1"/>
@@ -170,8 +169,8 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</staticText>
 				<staticText>
 					<reportElement
-						x="139"
-						y="209"
+						x="140"
+						y="230"
 						width="282"
 						height="15"
 						key="staticText-2"/>
@@ -183,8 +182,8 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 				</staticText>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement
-						x="129"
-						y="194"
+						x="130"
+						y="215"
 						width="302"
 						height="14"
 						key="textField-2"/>

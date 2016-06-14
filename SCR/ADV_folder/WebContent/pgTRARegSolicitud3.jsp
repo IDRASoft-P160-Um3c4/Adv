@@ -25,7 +25,7 @@
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   else{
      TVUsuario vUsuario = (TVUsuario)request.getSession(true).getAttribute("UsrID");
-     //System.out.print("CHALEEEEE " + vUsuario.getICveusuario());
+     System.out.println("CHALEEEEE " + vUsuario.getICveusuario());
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
     vDinRep = oAccion.setInputs("iCveTramite,iCveModalidad,iCveSolicitante,iCveRepLegal,cNomAutorizaRecoger,iCveUsuRegistra,tsRegistro,dtLimiteEntregaDocs,dtEstimadaEntrega,lPagado,dtEntrega,iCveUsuEntrega,lResolucionPositiva,lDatosPreregistro,iIdBien,iCveOficina,iCveDepartamento,iEjercicioCita,iIdCita,iCveForma");
@@ -140,7 +140,7 @@ if(oAccion.getCAccion().equals("FiltroSol")){
                 "where TRAREGTRAMXSOL.IEJERCICIO = " + vDinRep.getInt("iEjercicio") +
                 " and dtcancelacion is not null  ) ";
 
-      //System.out.print("" + cSql);
+      System.out.println("" + cSql);
       Vector vcListado = dTRARegSolicitud.findByCustom("iEjercicio,iNumSolicitud",cSql);
       oAccion.navega(vcListado);
       cNavStatus = oAccion.getCNavStatus();
@@ -169,7 +169,7 @@ if(oAccion.getCAccion().equals("FiltroEjercicio")){
                    "and traregtramxsol.INUMSOLICITUD = traregsolicitud.INUMSOLICITUD  "+
                    "where TRAREGTRAMXSOL.INUMSOLICITUD = "+vDinRep.getInt("iNumSolicitud") +
                     " and dtcancelacion is not null)";
-                    //System.out.print("" + cSql);
+                    System.out.println("" + cSql);
       Vector vcListado = dTRARegSolicitud.findByCustom("iEjercicio,iNumSolicitud",cSql);
       oAccion.navega(vcListado);
       cNavStatus = oAccion.getCNavStatus();

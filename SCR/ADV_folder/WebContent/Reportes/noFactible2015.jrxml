@@ -170,7 +170,9 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 						y="0"
 						width="520"
 						height="19"
-						key="textField-7"/>
+						key="textField-7">
+							<printWhenExpression><![CDATA[new Boolean($P{cLeyendaEnc}!=null && !$P{cLeyendaEnc}.trim().equals(""))]]></printWhenExpression>
+						</reportElement>
 					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Top">
 						<font pdfFontName="Helvetica-BoldOblique" size="8" isBold="true" isItalic="true"/>
@@ -270,7 +272,7 @@ and TRAREGSOLICITUD.INUMSOLICITUD= $P{cSolicitud}]]></queryString>
 					<textElement textAlignment="Justified" verticalAlignment="Middle">
 						<font/>
 					</textElement>
-				<textFieldExpression   class="java.lang.String"><![CDATA["•Del Centro SCT "+ $F{NOMENT} +"\n•Del concesionario "+ $F{CCONSECIONARIO}+"."]]></textFieldExpression>
+				<textFieldExpression   class="java.lang.String"><![CDATA["•Del Centro SCT "+ $F{NOMENT} +"\n•Del "+ $F{CCONSECIONARIO}+"."]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
 					<reportElement

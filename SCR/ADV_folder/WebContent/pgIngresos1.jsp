@@ -29,9 +29,9 @@
 
  // Vector vcListado = new Vector();
     vDinRep = oAccion.setInputs("iEjercicio,iCategoriaIngresos,iCveConcepto1,iTipoRef");
- //System.out.print(vDinRep.getInt("iEjercicio")+"  "+vDinRep.getInt("iNumSolicitud")+"  "+vDinRep.getInt("iCveConcepto")+"  "+vDinRep.getInt("iTipoRef"));
+ System.out.println(vDinRep.getInt("iEjercicio")+"  "+vDinRep.getInt("iNumSolicitud")+"  "+vDinRep.getInt("iCveConcepto")+"  "+vDinRep.getInt("iTipoRef"));
     Vector vcListado = dIngresos.findTarifaConcepto(vDinRep.getInt("iEjercicio"),vDinRep.getInt("iCategoriaIngresos"),vDinRep.getInt("iCveConcepto1"),vDinRep.getInt("iTipoRef"));
-    //System.out.print("*****     Ejercicio: "+vDinRep.getInt("iEjercicio")+"\n          Categoria: "+vDinRep.getInt("iCategoriaIngresos")+"\n          Concepto: "+vDinRep.getInt("iCveConcepto1")+"\n          TipoRef: "+vDinRep.getInt("iTipoRef"));
+    System.out.println("*****     Ejercicio: "+vDinRep.getInt("iEjercicio")+"\n          Categoria: "+vDinRep.getInt("iCategoriaIngresos")+"\n          Concepto: "+vDinRep.getInt("iCveConcepto1")+"\n          TipoRef: "+vDinRep.getInt("iTipoRef"));
 
   oAccion.navega(vcListado);
   String cNavStatus = oAccion.getCNavStatus();
@@ -39,7 +39,7 @@
 <SCRIPT LANGUAGE="JavaScript" SRC="<%=vParametros.getPropEspecifica("RutaFuncs")%>CD/ineng.js"></SCRIPT>
 <script language="JavaScript">
 <%
-   //System.out.print("**++++++++oAccion.getArrayCD()..."+oAccion.getArrayCD());
+   System.out.println("**++++++++oAccion.getArrayCD()..."+oAccion.getArrayCD());
    out.print(oAccion.getArrayCD());
 %>
   fEngResultado('<%=request.getParameter("cNombreFRM")%>',

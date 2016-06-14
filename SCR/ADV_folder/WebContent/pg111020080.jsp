@@ -24,9 +24,9 @@
   CFGAccion oAccion = new CFGAccion(pageContext.getRequest());
 
   //TVUsuario vUsuario = (TVUsuario)request.getSession(true).getAttribute("UsrID");
-  //System.out.print(">>> llega aqui sin error"); 
+  System.out.println(">>> llega aqui sin error"); 
   int iCveUsuario = Integer.parseInt(request.getParameter("iCveUsuario"));
-  //System.out.print(">>> llega aqui sin error");
+  System.out.println(">>> llega aqui sin error");
   int lValido = 1;
 
   out.write("Clave del usuario"+iCveUsuario);
