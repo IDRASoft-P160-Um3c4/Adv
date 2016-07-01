@@ -35,7 +35,7 @@ public class TDTitulos extends DAOBase{
        String CINCONFORMIDAD="",CFECHAREG="",CEXPEDIENTE= "",CSOL="",CACTORECLAMADO="",CAUTORIDADRESOLUTORIA="",
               CSOLICITASUSPENCION="",COBSINCONFORMIDAD="",CJUICIO="",CENTIDADFEDERAL="",CPAIS="",CMUNICIPIO="";
        String[] cParametros = cQuery.split(",");
-       System.out.print("*****  "+cQuery);
+       //System.out.print("*****  "+cQuery);
        java.sql.Date dtFechaApr=null,dtFechaVal=null;
        
        String cTitulos =   "SELECT " +

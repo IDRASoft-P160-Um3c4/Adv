@@ -41,9 +41,9 @@ public class TDESTUsoAtraque extends DAOBase{
    cError = "";
    try{
      String cSQL = cWhere;
-     System.out.print("*****  ");
-     System.out.print("*****  ");
-     System.out.print("*****  \n"+cSQL);
+     //System.out.print("*****  ");
+     //System.out.print("*****  ");
+     //System.out.print("*****  \n"+cSQL);
      vcRecords = this.FindByGeneric(cKey,cSQL,dataSourceName);
      if(vcRecords.size() > 0){
        for(int i=0; i<vcRecords.size();i++){

@@ -195,7 +195,7 @@ public class TDPlanTrabajo extends DAOBase{
         for (int j=0; j < regAct.size(); j++, cColAct++){
           cTitulo = (String)oTitulos[j];
 
-System.out.print("Valor del Titulo en la Primer Toma: " + cTitulo);
+//System.out.print("Valor del Titulo en la Primer Toma: " + cTitulo);
 
           cDato = regAct.get(cTitulo).toString();
           if (cTitulo.toUpperCase().startsWith("L"))
@@ -209,7 +209,7 @@ System.out.print("Valor del Titulo en la Primer Toma: " + cTitulo);
       for (int i = 0; i < oTitulos.length; i++, cColAct++){ // Despliegue de etiquetas, alineación de columnas
         sCol = String.valueOf(cColAct);
         cTitulo = (String)oTitulos[i];
-System.out.print("Valor del Titulo: " + cTitulo );
+//System.out.print("Valor del Titulo: " + cTitulo );
 
         if (lTitulos){
           rep.comDespliega(sCol,iRengIni,cTitulo);

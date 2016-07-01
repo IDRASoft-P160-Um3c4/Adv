@@ -202,7 +202,7 @@
 					.replaceAll("WHERE", " AND ");
 		}
 
-		System.out.println(sb.toString() + cFiltro);
+		//System.out.println(sb.toString() + cFiltro);
 		Vector vcListado = dTRARecepcion.findByCustom(
 				"iEjercicio,iNumSolicitud", sb.toString() + cFiltro
 						+ oAccion.getCOrden());

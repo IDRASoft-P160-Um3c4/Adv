@@ -58,7 +58,7 @@ public class TDGRLReporte1A extends DAOBase{
       }
       String lSQL =
           "insert into GRLReporte(iCveSistema,iCveModulo,iNumReporte,cNomReporte,lExcel,lWord,lPDF,lMultiPart,cPlantillaExcel,cPlantillaWord,cPlantillaPDF,cDAOEjecutar,cMetodoExcel,cMetodoWord,cMetodoPDF,iCveFormatoFiltro,lAutoImprimir,iNumCopias,lMostrarAplicacion,lParametroModificable,lRequiereFolio) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-System.out.print("hellooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+//System.out.print("hellooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
       //AGREGAR AL ULTIMO ...
       vData.put("iCveSistema",ICVESISTEMA);
       Vector vcData = findByCustom("","select MAX(iNumReporte) AS iNumReporte from GRLReporte where iCveSistema = "+vData.getInt("iCveSistema")+ " AND iCveModulo = "+vData.getInt("iCveModulo"));

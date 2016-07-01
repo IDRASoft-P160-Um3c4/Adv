@@ -99,7 +99,7 @@ public class TDPermisos extends DAOBase {
 						+ lRSet.getInt(3));
 			}
 		} catch (Exception ex) {
-			System.out.print("permisosUsuario");
+			//System.out.print("permisosUsuario");
 			ex.printStackTrace();
 		} finally {
 			try {
@@ -114,7 +114,7 @@ public class TDPermisos extends DAOBase {
 				}
 				dbConn.closeConnection();
 			} catch (Exception ex2) {
-				System.out.print("permisosUsuario.Close");
+				//System.out.print("permisosUsuario.Close");
 			}
 			return vPermisos;
 		}
@@ -193,7 +193,7 @@ public class TDPermisos extends DAOBase {
 
 			}
 		} catch (Exception ex) {
-			System.out.print("accesoUsuario");
+			//System.out.print("accesoUsuario");
 			ex.printStackTrace();
 		} finally {
 			try {
@@ -208,7 +208,7 @@ public class TDPermisos extends DAOBase {
 				}
 				dbConn.closeConnection();
 			} catch (Exception ex2) {
-				System.out.print("accesoUsuario.Close");
+				//System.out.print("accesoUsuario.Close");
 			}
 			return vUsuario;
 		}
@@ -238,7 +238,7 @@ public class TDPermisos extends DAOBase {
 			lPStmt.executeUpdate();
 		} catch (Exception ex) {
 			lSuccess = false;
-			System.out.print("cambioContrasenia");
+			//System.out.print("cambioContrasenia");
 			ex.printStackTrace();
 		} finally {
 			try {
@@ -253,7 +253,7 @@ public class TDPermisos extends DAOBase {
 				}
 				dbConn.closeConnection();
 			} catch (Exception ex2) {
-				System.out.print("accesoUsuario.Close");
+				//System.out.print("accesoUsuario.Close");
 			}
 			return lSuccess;
 		}
@@ -354,7 +354,7 @@ public class TDPermisos extends DAOBase {
 				}
 				dbConn.closeConnection();
 			} catch (Exception ex2) {
-				System.out.print("accesoUsuario.Close");
+				//System.out.print("accesoUsuario.Close");
 			}
 			return result;
 		}
@@ -380,10 +380,10 @@ public class TDPermisos extends DAOBase {
 						.append(usrData.get("CPWDSLT")).append(":")
 						.append(usrData.get("CPWDHSH"));
 				
-//				System.out.println(PasswordHash.createHash("Ofloresm11"));
-//				System.out.println(PasswordHash.createHash("Mibolano12"));
-//				System.out.println(PasswordHash.createHash("Gzaratet12"));
-//				System.out.println(PasswordHash.createHash("Bbarreda12"));
+//				//System.out.println(PasswordHash.createHash("Ofloresm11"));
+//				//System.out.println(PasswordHash.createHash("Mibolano12"));
+//				//System.out.println(PasswordHash.createHash("Gzaratet12"));
+//				//System.out.println(PasswordHash.createHash("Bbarreda12"));
 				
 				return PasswordHash.validatePassword(cPassword,
 						builder.toString());

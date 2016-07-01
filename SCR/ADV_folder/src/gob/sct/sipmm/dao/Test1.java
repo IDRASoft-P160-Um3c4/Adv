@@ -50,7 +50,7 @@ public class Test1 extends DAOBase{
        TVDinRep vPendiente = (TVDinRep) vcPendientes.get(i);
        int iEjercicio = vPendiente.getInt("IEJERCICIO");
        int iNumSolicitud = vPendiente.getInt("iNumSolicitud");
-       System.out.print("*****     "+i+"  Solicitudes a Cancelar: "+iEjercicio+"/"+iNumSolicitud);
+       //System.out.print("*****     "+i+"  Solicitudes a Cancelar: "+iEjercicio+"/"+iNumSolicitud);
        TVDinRep vDatosCanc = new TVDinRep();
        vDatosCanc.put("iEjercicio",iEjercicio);
        vDatosCanc.put("iNumSolicitud",iNumSolicitud);
@@ -63,7 +63,7 @@ public class Test1 extends DAOBase{
            TDCanc.insert(vDatosCanc,null);
          }catch(Exception e){
            e.printStackTrace();
-           System.out.print("*****     No se pudo guardar la solicitud");
+           //System.out.print("*****     No se pudo guardar la solicitud");
          }
          /***************/
        }

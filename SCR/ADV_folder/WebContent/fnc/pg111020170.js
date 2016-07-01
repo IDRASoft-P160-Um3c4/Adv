@@ -309,6 +309,7 @@ function fDefPag(){
    }
 
    if(cId == "Listado" && cError==""){
+	   
 	   FRMListado.fSetTitulo(",Descripción,Unidades,Importe,");
 	 FRMListado.fSetCampos("5,6,");
 	 FRMListado.fSetObjs(0,"Caja");

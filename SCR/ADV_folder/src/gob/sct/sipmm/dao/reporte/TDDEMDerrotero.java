@@ -44,9 +44,9 @@ public class TDDEMDerrotero extends DAOBase{
   public HashMap notaInformativaJasper(String cFiltro) throws Exception{
     HashMap hParametros = new HashMap();
     String[] cDatos = cFiltro.split(",");
-    System.out.print("*****     Ejercicio:     "+new Integer(cDatos[0]));
-    System.out.print("*****     NumNota:       "+new Integer(cDatos[1]));
-    System.out.print("*****     CveLitoral:    "+new Integer(cDatos[2]));
+    //System.out.print("*****     Ejercicio:     "+new Integer(cDatos[0]));
+    //System.out.print("*****     NumNota:       "+new Integer(cDatos[1]));
+    //System.out.print("*****     CveLitoral:    "+new Integer(cDatos[2]));
     hParametros.put("iEjercicio",new Integer(cDatos[0]));
     hParametros.put("iNumNota",new Integer(cDatos[1]));
     hParametros.put("iCveLitoral",new Integer(cDatos[2]));

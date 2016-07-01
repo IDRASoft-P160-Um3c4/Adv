@@ -192,12 +192,12 @@ public class TDCis extends DAOBase {
             //cObservacion = URLEncoder.encode(cObservacion,"UTF-8");
         }
         
-        System.out.print(">>>  Observacion:  "+cObservacion);
+        //System.out.print(">>>  Observacion:  "+cObservacion);
 
         lResultado = wsInsertaEstadoTramite.insertaEstadoTramite(Usuario,Contrasenia, iCveCita, iCveTramite, iNoTramite, iCveEstado, cObservacion,iCveAreaCis);
         
-        System.out.print(">>>  etapa:  "+ iCveEstado);
-        System.out.print(">>>  Resultado:  "+lResultado);
+        //System.out.print(">>>  etapa:  "+ iCveEstado);
+        //System.out.print(">>>  Resultado:  "+lResultado);
 
       }
       else {

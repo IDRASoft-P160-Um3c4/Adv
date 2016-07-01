@@ -152,7 +152,7 @@ public class TDNavegacion
         rep.comDespliega("G",11,vDatos1.get("cNombre").toString());
         rep.comDespliega("G",15,vDatos1.get("cCapitan").toString());
         //rep.comDespliega("A",18,"DSADFAFSDEFDa");
-        System.out.print("vDatos1.get(cCapitan).toString(): "+vDatos1.get("cCapitan").toString());
+        //System.out.print("vDatos1.get(cCapitan).toString(): "+vDatos1.get("cCapitan").toString());
         rep.comDespliega("A",19,vDatos1.get("cPuertoDestino").toString());
         rep.comDespliega("F",19,vDatos1.get("iNumTripulantes").toString());
         //rep.comDespliega("K",19,vDatos1.get("iNumPasajerosEmb").toString());
@@ -171,7 +171,7 @@ public class TDNavegacion
     }catch(Exception ex3){
       ex3.printStackTrace();
     }
-    System.out.print("-------*****rep.getSbDatos(): "+rep.getSbDatos().toString());
+    //System.out.print("-------*****rep.getSbDatos(): "+rep.getSbDatos().toString());
     return rep.getSbDatos();
   }
 
@@ -207,7 +207,7 @@ public class TDNavegacion
         rep.comDespliega("G",11,vDatos1.get("cNombre").toString());
         rep.comDespliega("G",15,vDatos1.get("cCapitan").toString());
         //rep.comDespliega("A",18,"DSADFAFSDEFDa");
-        System.out.print("vDatos1.get(cCapitan).toString(): "+vDatos1.get("cCapitan").toString());
+        //System.out.print("vDatos1.get(cCapitan).toString(): "+vDatos1.get("cCapitan").toString());
         //rep.comDespliega("A",19,vDatos1.get("cPuertoDestino").toString());
         rep.comDespliega("A",19,vDatos1.getString("CPERMISOPESCA"));
         rep.comDespliega("D",19,vDatos1.get("iNumTripulantes").toString());
@@ -227,7 +227,7 @@ public class TDNavegacion
     }catch(Exception ex3){
       ex3.printStackTrace();
     }
-    System.out.print("-------*****rep.getSbDatos(): "+rep.getSbDatos().toString());
+    //System.out.print("-------*****rep.getSbDatos(): "+rep.getSbDatos().toString());
     return rep.getSbDatos();
   }
 
@@ -652,7 +652,7 @@ public class TDNavegacion
              .append("[TitularDGMM]|[cDigitosDepto]|[Puertos]|[NumTripulantesMex]|[cDebera]|")
              .append("[cOficioConsulta]|[cOficialia]|[cFechaOficioConsulta]|[cOficioContestacion]|[cFechaContestacion]|[Expedicion]|[cTestNotarial]|[cObsPermiso]|")
              .append(sbBuscaTemp.toString());
-         System.out.print("*****    "+cValores[29]);
+         //System.out.print("*****    "+cValores[29]);
      sbReemplazaAdic.append(cTipoArtefacto+"|"+cPaisOrigenEmbarcacion+"|"+cValores[1]+"|"+cValores[2]+"|"+cValores[3]+"|")
                  .append(cValores[4]+"|"+cValores[5]+"|"+cValores[6]+"|"+cValores[7]+"|")
                  .append(tFecha.getDateSPN(tFecha.getDateSQL(cValores[9]))+"|"+tFecha.getDateSPN(tFecha.getDateSQL(cValores[10]))+"|"+tFecha.getDateSPN(tFecha.getDateSQL(cValores[11]))+"|")
@@ -701,10 +701,10 @@ public class TDNavegacion
 
     cValores = cValoresAdic.split("=");
 
-//    System.out.print("cValoresAdic   : "+cValoresAdic);
-    System.out.print("-....********************************Valores:      " );
+//    //System.out.print("cValoresAdic   : "+cValoresAdic);
+    //System.out.print("-....********************************Valores:      " );
 //    for (int inc = 0; inc < cValores.length ; inc ++)
-     // System.out.print("*****    Valores["+inc+"] = "+cValores[inc]);
+     // //System.out.print("*****    Valores["+inc+"] = "+cValores[inc]);
 
     int iCvePersona, iCveDomicilio;
     int iCveSubdireccion = Integer.parseInt(VParametros.getPropEspecifica("SubdirNavegacion"));
@@ -891,12 +891,12 @@ public Vector autorizacionArribo(String cDatos,String cNumFolio, String iCveOfic
               "WHERE e.ICVEVEHICULO =  "+cValores[1];
   vDatosEmb = super.FindByGeneric("",cSQL,dataSourceName);
   String cNombreBuque="",cEslora="",cCaladoMax="",cArqueoBruto="",cArqueoNeto="",cPaisAban="";
-  System.out.print("......vDatosEmb.size(): "+vDatosEmb.size());
+  //System.out.print("......vDatosEmb.size(): "+vDatosEmb.size());
   if(vDatosEmb.size()>0){
     TVDinRep vDinEmb = new TVDinRep();
     vDinEmb = (TVDinRep)vDatosEmb.get(0);
     if(vDinEmb.size()>0){
-      System.out.print("......................asigando valores de embarcacion");
+      //System.out.print("......................asigando valores de embarcacion");
       cNombreBuque = vDinEmb.getString("CNOMEMBARCACION");
       cEslora      = vDinEmb.getString("DESLORA");
       cCaladoMax   = vDinEmb.getString("DCALADOMAX");
@@ -1056,7 +1056,7 @@ public Vector autorizacionArribo(String cDatos,String cNumFolio, String iCveOfic
   }
   public Vector Navegacion(String cDatos, String cFolio, String cOficina, String cDepartamento) throws
         Exception{
-	  System.out.print("+++++++++++++++++ TDNavegación");
+	  //System.out.print("+++++++++++++++++ TDNavegación");
       TWord rep2 = new TWord();
       TFechas Fecha = new TFechas();
       rep2.iniciaReporte();
@@ -1099,14 +1099,14 @@ public Vector autorizacionArribo(String cDatos,String cNumFolio, String iCveOfic
       int max=0;
       st1=sb1.toString().split("|");
       st2=sb2.toString().split("|");
-      System.out.print("*****    "+sb1.toString());
-      System.out.print("*****    "+sb2.toString());
+      //System.out.print("*****    "+sb1.toString());
+      //System.out.print("*****    "+sb2.toString());
       if(st1.length==st2.length) max = st1.length;
       if(st1.length<st2.length) max = st1.length;
       if(st1.length>st2.length) max = st2.length;
-      System.out.print("***********     "+max+"     ***********");
+      //System.out.print("***********     "+max+"     ***********");
       for(int icount = 0; icount<max;icount++){
-        System.out.print("\n*****    "+st2+"\t"+st1);
+        //System.out.print("\n*****    "+st2+"\t"+st1);
       }
     }
 }

@@ -554,7 +554,7 @@ public class TDCYSOtorgamiento extends DAOBase{
     }
 
     for (int i = 0; i < listEjercicioNoPagadosTotales.size(); i++) {
-      System.out.print("FINAL EJERCICIO NO PAGADO: " + listEjercicioNoPagadosTotales.get(i));
+      //System.out.print("FINAL EJERCICIO NO PAGADO: " + listEjercicioNoPagadosTotales.get(i));
       TVDinRep bean = new TVDinRep();
       bean.put("iEjercicioNoPagado", ((Integer)listEjercicioNoPagadosTotales.get(i)).intValue());
       vcSitObligacion.add(bean);
@@ -562,13 +562,13 @@ public class TDCYSOtorgamiento extends DAOBase{
 
     /*
     for (int i = 0; i < listEjercicioPagados.size(); i++) {
-        System.out.print("EJERCICIO PAGADO: " + listEjercicioPagados.get(i));
+        //System.out.print("EJERCICIO PAGADO: " + listEjercicioPagados.get(i));
     }
     */
 
     /*
     for (int i = 0; i < listEjercicioNoPagados.size(); i++) {
-        System.out.print("EJERCICIO NO PAGADO: " + listEjercicioNoPagados.get(i));
+        //System.out.print("EJERCICIO NO PAGADO: " + listEjercicioNoPagados.get(i));
     }
      */
 
@@ -579,8 +579,8 @@ public class TDCYSOtorgamiento extends DAOBase{
     for (int i = 0; i < listPeriodoPagado.size(); i++) {
         for (int j = 0; j < listPeriodoNoPagado.size(); j++) {
           if (((String)listPeriodoPagado.get(i)).equals(((String)listPeriodoNoPagado.get(j)))) {
-                System.out.print("PAGADO A COMPARAR..." + listPeriodoPagado.get(i));
-                System.out.print("NO PAGADO A ELIMINAR..." + listPeriodoNoPagado.get(j));
+                //System.out.print("PAGADO A COMPARAR..." + listPeriodoPagado.get(i));
+                //System.out.print("NO PAGADO A ELIMINAR..." + listPeriodoNoPagado.get(j));
                 listPeriodoNoPagado.remove(j);
             }
         }
@@ -594,7 +594,7 @@ public class TDCYSOtorgamiento extends DAOBase{
     Iterator it = setPeriodoNoPagado.iterator();
 
     for (int i = 0; it.hasNext(); i++) {
-        System.out.print("PERIODO NO PAGADO: " + it.next());
+        //System.out.print("PERIODO NO PAGADO: " + it.next());
         TVDinRep bean = new TVDinRep();
         bean.put("cPeriodoNoPagado", (String)it.next());
         vcSitObligacion.add(bean);
@@ -603,13 +603,13 @@ public class TDCYSOtorgamiento extends DAOBase{
 
     /*
      *
-    System.out.print("SIZE...." + vcSitObligacion.size());
+    //System.out.print("SIZE...." + vcSitObligacion.size());
 
     for (int i = 0; i < vcSitObligacion.size(); i++) {
       TVDinRep x = new TVDinRep();
       x = (TVDinRep)vcSitObligacion.get(i);
-      System.out.print("Ej No Pag..." + x.getInt("iEjercicioNoPagado"));
-      System.out.print("Per No Pag..." + x.getString("cPeriodoNoPagado"));
+      //System.out.print("Ej No Pag..." + x.getInt("iEjercicioNoPagado"));
+      //System.out.print("Per No Pag..." + x.getString("cPeriodoNoPagado"));
     }
     * Con lo anterior recupero la informacion:
 

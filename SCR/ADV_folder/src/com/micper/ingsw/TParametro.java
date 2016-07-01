@@ -45,7 +45,7 @@ public class TParametro {
       hmPropiedades = tGetADMSEG.getPropiedades(iIdent, cDataSource);
     }
     catch (Exception e) {
-//      System.out.print("TParametro.setParametros");
+//      //System.out.print("TParametro.setParametros");
       e.printStackTrace();
     }
   }
@@ -61,7 +61,7 @@ public class TParametro {
       hmPropiedades = tGetADMSEG.getPropiedades(iIdent, cDataSource);
     }
     catch (Exception e) {
-//      System.out.print("TParametro.reload");
+//      //System.out.print("TParametro.reload");
       e.printStackTrace();
     }
   }
@@ -78,12 +78,12 @@ public class TParametro {
       cValor = ""+hmPropiedades.get(cProp);
       if(cValor.compareTo("null") == 0){
         cValor = "";
-//        System.out.print("TParametro.La Propiedad General: " + cProp +
+//        //System.out.print("TParametro.La Propiedad General: " + cProp +
 //                           " No Fue Encontrada!");
       }
     }
     catch (Exception e) {
-//      System.out.print("TParametro.getPropGeneral");
+//      //System.out.print("TParametro.getPropGeneral");
       e.printStackTrace();
     }
     return cValor;
@@ -102,14 +102,14 @@ public class TParametro {
       if(cValor.compareTo("null") == 0){
         cValor = "" + tGetADMSEG.getPropEspecifica(cProp);
         if(cValor.compareTo("null") == 0){
-//          System.out.print("TParametro.La Propiedad Específica: " + iIdent +
+//          //System.out.print("TParametro.La Propiedad Específica: " + iIdent +
 //                             "." + cProp +
 //                             " No Fue Encontrada!");
         }
       }
     }
     catch (Exception e) {
-//      System.out.print("TParametro.getPropEspecifica: " + cProp);
+//      //System.out.print("TParametro.getPropEspecifica: " + cProp);
       e.printStackTrace();
     }
     return cValor;

@@ -129,6 +129,14 @@ function fResultado(aRes, cId, cError, cNavStatus, iRowPag, cLlave, msgRetraso) 
 		fNavega();
 	}
 	
+	if(cId == "CIDOficinaDeptoXUsr"&&cError==""){
+		   if(aRes.length > 0){
+		     frm.hdOfic.value=aRes[0][1];
+		     frm.hdDpto.value=aRes[0][2];
+		   }
+	   }
+	
+	
 	/****MANEJO DE CONTROL DE TIEMPOS****/
 	
 	if(cId == "buscaDocumentosDAJL" && cError == ""){

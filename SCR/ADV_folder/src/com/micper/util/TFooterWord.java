@@ -75,7 +75,7 @@ public class TFooterWord {
         // Copy parameters to local variables. Get the set of keys backing the HashMap and open the file.
         this.replacementText = replacementText;
         this.keys = replacementText.keySet();
-        System.out.print(">>>>>>>>>>>>>>>>>> replacementText: "+replacementText);
+        //System.out.print(">>>>>>>>>>>>>>>>>> replacementText: "+replacementText);
         this.inputFile = new File(filename);
     }
     
@@ -102,23 +102,23 @@ public class TFooterWord {
             buffInputStream = new BufferedInputStream(fileInputStream);
             this.document = new HWPFDocument(new POIFSFileSystem(buffInputStream));
             
-            System.out.print("-------------paraText----");
+            //System.out.print("-------------paraText----");
             // Step through the paragraph text.
 
             HeaderStories hd = new HeaderStories(this.document);            
-            System.out.print("FirstFooter::" + hd.getOddFooter());
+            //System.out.print("FirstFooter::" + hd.getOddFooter());
                         
             rangeFoot = hd.getRange();                       
             
             int count=0;
             paraTextFoot = this.loadParagraphs(rangeFoot);
-            System.out.print("+++++++++++++paraTextFoot.length:"+paraTextFoot.length);
+            //System.out.print("+++++++++++++paraTextFoot.length:"+paraTextFoot.length);
             for(int x = 0; x < paraTextFoot.length; x++) {            
             	                       	
             	for (Iterator iterator = this.keys.iterator(); iterator.hasNext();) {
             		String key = (String) iterator.next();
                     if(paraTextFoot[x].getUpdatedText().contains(key)) {
-                    	System.out.print(">>>>>>>>>>>>key:"+key+"--"+"x:"+x+" (String) this.replacementText.get(key):"+(String) this.replacementText.get(key));
+                    	//System.out.print(">>>>>>>>>>>>key:"+key+"--"+"x:"+x+" (String) this.replacementText.get(key):"+(String) this.replacementText.get(key));
                     	paraTextFoot[x].updateText(
                             this.replacePlaceholders(
 								key, (String) this.replacementText.get(key),
@@ -128,7 +128,7 @@ public class TFooterWord {
             	               
                 if(paraTextFoot[x].isUpdated()) {
                 	count++;
-                	System.out.print("entro a reemplazar::" + count);
+                	//System.out.print("entro a reemplazar::" + count);
                 	rangeFoot.getParagraph(paraTextFoot[x].getParagraphNumber()).replaceText(paraTextFoot[x].getRawText(), paraTextFoot[x].getUpdatedText(), 0);
                 	                	
                 }   
@@ -140,9 +140,9 @@ public class TFooterWord {
              }           
         }
         catch(IOException ioEx) {
-            System.out.print("Caught an: " + ioEx.getClass().getName());
-            System.out.print("Message: " + ioEx.getMessage());
-            System.out.print("StackTrace follows:");
+            //System.out.print("Caught an: " + ioEx.getClass().getName());
+            //System.out.print("Message: " + ioEx.getMessage());
+            //System.out.print("StackTrace follows:");
             ioEx.printStackTrace(System.out);
         }
         finally {
@@ -189,7 +189,7 @@ public class TFooterWord {
         while((index = text.indexOf(key)) >= 0) {
             text = text.substring(0, index) + value + text.substring(index + key.length());
         }
-        System.out.print(">>>>>>>>>>>>>>*text:+"+text+"*<<<<<<<<<<<<<<");
+        //System.out.print(">>>>>>>>>>>>>>*text:+"+text+"*<<<<<<<<<<<<<<");
         return(text);
     }
     
@@ -224,7 +224,7 @@ public class TFooterWord {
                 paragraph = range.getParagraph(i);
                 readText = paragraph.text();               
 	                if(readText.endsWith("\n")) {
-	                	System.out.print(">>>>>>>>>>>>>>>>>>>>>readText:"+readText);
+	                	//System.out.print(">>>>>>>>>>>>>>>>>>>>>readText:"+readText);
 	                    //readText = readText + "\n";
 	                }
 	                paraText[i] = new ParagraphText(i, readText);
@@ -247,7 +247,7 @@ public class TFooterWord {
      *         very large - potentially - paragraph.
      */
     private ParagraphText getTextFromPieces() {
-    	System.out.print("--------------getTextFromPieces");
+    	//System.out.print("--------------getTextFromPieces");
         TextPiece piece = null;
         StringBuffer buffer = new StringBuffer();
         String text = null;
@@ -273,7 +273,7 @@ public class TFooterWord {
        	if(text.endsWith("\r")) {
        		text += "\n";
        	}
-       	System.out.print("+++++++++++++++text:"+text+"+++++++++");
+       	//System.out.print("+++++++++++++++text:"+text+"+++++++++");
       	return(new ParagraphText(0, text));
       }
     
@@ -290,9 +290,9 @@ public class TFooterWord {
             new TFooterWord("C:\\TEMP\\MYR\\AgenteNavPer_Moral97.doc", replacementText,"").processFile();
         }
         catch(Exception eEx) {
-            System.out.print("Caught an: " + eEx.getClass().getName());
-            System.out.print("Message: " + eEx.getMessage());
-            System.out.print("StackTrace follows:");
+            //System.out.print("Caught an: " + eEx.getClass().getName());
+            //System.out.print("Message: " + eEx.getMessage());
+            //System.out.print("StackTrace follows:");
             eEx.printStackTrace(System.out);
         }
     }

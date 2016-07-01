@@ -58,12 +58,12 @@ public class TDGRLObservacionA2 extends DAOBase{
       String lSQL =
           "insert into GRLObservacion(iEjercicio,iCveObservacion,cObsRegistrada) values (YEAR(CURRENT DATE),?,?)";
       /*
-      System.out.print("<---Debug--->");
-      System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
-      System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
-      System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
-      System.out.print(" SQL            :"+lSQL);
-      System.out.print("</---Debug--->");
+      //System.out.print("<---Debug--->");
+      //System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
+      //System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
+      //System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
+      //System.out.print(" SQL            :"+lSQL);
+      //System.out.print("</---Debug--->");
       */
       //AGREGAR AL ULTIMO ...
       Vector vcData = findByCustom("","select MAX(iCveObservacion) AS iCveObservacion from GRLObservacion where iEjercicio = year(current date)");
@@ -77,12 +77,12 @@ public class TDGRLObservacionA2 extends DAOBase{
        vData.addPK(vData.getString("iCveObservacion"));
       //...
       /*
-      System.out.print("<---Debug--->");
-      System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
-      System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
-      System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
-      System.out.print(" SQL            :"+lSQL);
-      System.out.print("</---Debug--->");
+      //System.out.print("<---Debug--->");
+      //System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
+      //System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
+      //System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
+      //System.out.print(" SQL            :"+lSQL);
+      //System.out.print("</---Debug--->");
       */
 
       lPStmt = conn.prepareStatement(lSQL);
@@ -217,12 +217,12 @@ public class TDGRLObservacionA2 extends DAOBase{
       vData.addPK(vData.getString("iEjercicio"));
       vData.addPK(vData.getString("iCveObservacion"));
 
-      System.out.print("<---Debug de Observaciones--->");
-      System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
-      System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
-      System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
-      System.out.print(" SQL            :"+lSQL);
-      System.out.print("</---Debug--->");
+      //System.out.print("<---Debug de Observaciones--->");
+      //System.out.print("iEjercicio      :"+vData.getInt("iEjercicio"));
+      //System.out.print("iCveObservacion :"+vData.getInt("iCveObservacion"));
+      //System.out.print("cObsRegistrada  :"+vData.getString("cObsRegistrada"));
+      //System.out.print(" SQL            :"+lSQL);
+      //System.out.print("</---Debug--->");
 
 
 

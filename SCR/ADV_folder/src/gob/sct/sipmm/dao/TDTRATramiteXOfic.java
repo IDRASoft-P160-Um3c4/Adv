@@ -127,7 +127,7 @@ public class TDTRATramiteXOfic extends DAOBase{
 //      String lSQL =
 //          "insert into TRATramiteXOfic(iCveOficina,iCveTramite) values (?,?)";
       String lSQL = "insert into TRATramiteXOfic(iCveOficina,iCveTramite,iCveOficinaResuelve,iCveDeptoResuelve) values (?,?,?,?)";
-      System.out.print(vData.getInt("iCveOficina1")+"  **********  "+vData.getInt("iCveTramite"));
+      //System.out.print(vData.getInt("iCveOficina1")+"  **********  "+vData.getInt("iCveTramite"));
 
 		/*SE SOLICITA PONER COMO DEFAULT OFICINA DGDC Y DPTO DPA*/
 		Integer iCveOficina=0, iCveDpto = 0;
@@ -141,8 +141,8 @@ public class TDTRATramiteXOfic extends DAOBase{
 		
 		iCveDpto= ((TVDinRep) findByCustom("ICVEDEPARTAMENTO",lSQLA).get(0)).getInt("ICVEDEPARTAMENTO");
 
-		System.out.print(vData.getInt("iCveOficina1"));
-		System.out.print(vData.getInt("iCveTramite"));
+		//System.out.print(vData.getInt("iCveOficina1"));
+		//System.out.print(vData.getInt("iCveTramite"));
 		
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iCveOficina1"));

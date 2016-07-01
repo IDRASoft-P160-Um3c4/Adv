@@ -58,7 +58,7 @@ public class TDGRLUsuarioXOficB1 extends DAOBase{
       String lSQL =
           "insert into GRLUsuarioXOfic(iCveOficina,iCveDepartamento,iCveUsuario,lFirmante) values (?,?,?,?)";
       lPStmt = conn.prepareStatement(lSQL);
-      System.out.print(vData.getInt("iCveOficina")+".."+vData.getInt("iCveDepartamento")+".."+vData.getInt("iCveUsuario"));
+      //System.out.print(vData.getInt("iCveOficina")+".."+vData.getInt("iCveDepartamento")+".."+vData.getInt("iCveUsuario"));
       lPStmt.setInt(1,vData.getInt("iCveOficina"));
       lPStmt.setInt(2,vData.getInt("iCveDepartamento"));
       lPStmt.setInt(3,vData.getInt("iCveUsuario1"));

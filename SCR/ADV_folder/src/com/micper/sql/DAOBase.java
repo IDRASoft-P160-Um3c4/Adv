@@ -102,7 +102,7 @@ public class DAOBase{
       cSQL1 = cSQL1.replaceAll(" ELSE ","\n          ELSE ");
       cSQL1 = cSQL1.replaceAll(" END "," END\n        ");
 
-      System.out.print("\n--------------------------------------------\nClase:  "+this.getClass().getName()+"\n"+cSQL1 + "\n--------------------------------------------\n");
+      //System.out.print("\n--------------------------------------------\nClase:  "+this.getClass().getName()+"\n"+cSQL1 + "\n--------------------------------------------\n");
     }
 
     try{
@@ -170,7 +170,7 @@ public class DAOBase{
       cSQL1 = cSQL1.replaceAll(" ORDER ","\n  ORDER ");
       cSQL1 = cSQL1.replaceAll(" AND ","\n    AND ");
       cSQL1 = cSQL1.replaceAll(" FROM ","\nFROM ");
-      System.out.print("\n============================================\n"+cSQL1 + "\n============================================\n");
+      //System.out.print("\n============================================\n"+cSQL1 + "\n============================================\n");
 
       pstmt = conn.prepareStatement(cSQL);
       rset = pstmt.executeQuery();
@@ -233,7 +233,7 @@ public class DAOBase{
       cSQL1 = cSQL1.replaceAll(" ORDER ","\n  ORDER ");
       cSQL1 = cSQL1.replaceAll(" AND ","\n    AND ");
       cSQL1 = cSQL1.replaceAll(" FROM ","\nFROM ");
-      System.out.print("\n--------------------------------------------\n"+cSQL1 + "\n--------------------------------------------\n");
+      //System.out.print("\n--------------------------------------------\n"+cSQL1 + "\n--------------------------------------------\n");
     }
 
     try{
@@ -304,7 +304,7 @@ public class DAOBase{
                 vDinRep.put(rsetMD.getColumnName(count),rset.getString(count));
                 break;
               case 3:
-            	  System.out.print(rsetMD.getColumnName(count));
+            	  //System.out.print(rsetMD.getColumnName(count));
                 vDinRep.put(rsetMD.getColumnName(count),rset.getDate(count));
                 break;
               case 4:

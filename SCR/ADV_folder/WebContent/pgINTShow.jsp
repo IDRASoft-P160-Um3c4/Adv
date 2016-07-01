@@ -87,20 +87,20 @@
 			
 			Vector vcFirma = dINTSolicitud.findByCustom("", cSql);
 			if(vcFirma.size() > 0){
-			    System.out.println(System.getProperty("os.name"));
+			    //System.out.println(System.getProperty("os.name"));
 			    cOs = System.getProperty("os.name");
 			    vFirma = (TVDinRep) vcFirma.get(0);
 			    //cCad = vFirma.getString("CCADFIRMA").replace("\r\n","~");
 			    //cCad = vFirma.getString("CCADFIRMA").replaceAll("\r", "~");
 			    
 			    if (cOs.startsWith("Windows")){
-			    	System.out.println(">>>>>>>>>Windows");
+			    	//System.out.println(">>>>>>>>>Windows");
                         cCad = vFirma.getString("CCADFIRMA").replaceAll("\r\n", "~"); //windows
 			    }else{
-			    	System.out.println(">>>>>>>>>Linux");
+			    	//System.out.println(">>>>>>>>>Linux");
 			      cCad = vFirma.getString("CCADFIRMA").replaceAll("\n", "~"); //linux
 			    }
-			    System.out.println(cCad);
+			    //System.out.println(cCad);
 
 			}
 		}
@@ -141,7 +141,7 @@
 		
 		vcListado = dINTSolicitud.findByCustom("", cSql);
 		
-		System.out.println("Pasa el Querie");
+		//System.out.println("Pasa el Querie");
 		oAccion.navega(vcListado);
 		String cNavStatus = oAccion.getCNavStatus();
 %>

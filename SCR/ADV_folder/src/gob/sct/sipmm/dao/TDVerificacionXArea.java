@@ -98,13 +98,13 @@ public class TDVerificacionXArea extends DAOBase{
               " values (?,?,?,?,?,?,?,?,?,(current_date))";
 	  */
       
-      System.out.println(vData.getInt("iCveUs"));
+      //System.out.println(vData.getInt("iCveUs"));
       
       String upRegEv = "UPDATE TRAREGEVAREQXAREA SET ICVEUSUARIO="+vData.getInt("iCveUs")+","+
       				   "LVALIDO="+vData.getInt("lValido")+", DTEVALUACION=CURRENT_DATE WHERE " +
       		           "IEJERCICIO="+vData.getInt("iEjercicio")+" AND INUMSOLICITUD="+vData.getInt("iNumSolicitud")+" AND ICVEREQUISITO="+vData.getInt("iCveRequisito");
       
-      System.out.println(upRegEv);
+      //System.out.println(upRegEv);
       
       lPStmt = conn.prepareStatement(upRegEv);
       /*
@@ -197,7 +197,7 @@ try{
  
   Integer icveRegEva=0;
   
-  System.out.println(vData.getInt("iEjer")+"-"+vData.getInt("iNumSol")+"-"+vData.getInt("iCveRequi"));
+  //System.out.println(vData.getInt("iEjer")+"-"+vData.getInt("iNumSol")+"-"+vData.getInt("iCveRequi"));
   
   Vector vCveRegEva= new Vector();
   vCveRegEva=findByCustom("", "select ICVEEVALXAREA from TRAREGEVAREQXAREA where iejercicio="+vData.getInt("iEjer")

@@ -74,10 +74,10 @@ public class TDGRLModulo extends DAOBase{
       lPStmt.setInt(2,vData.getInt("iCveModulo"));
       lPStmt.setString(3,vData.getString("cDscModulo"));
       lPStmt.setInt(4,vData.getInt("lActivo"));
-      /* System.out.print(vData.getInt("iCveSistema"));
-       System.out.print(vData.getInt("iCveModulo"));
-       System.out.print(vData.getString("cDscModulo"));
-       System.out.print(vData.getInt("lActivo"));*/
+      /* //System.out.print(vData.getInt("iCveSistema"));
+       //System.out.print(vData.getInt("iCveModulo"));
+       //System.out.print(vData.getString("cDscModulo"));
+       //System.out.print(vData.getInt("lActivo"));*/
       lPStmt.executeUpdate();
       if(cnNested == null){
         conn.commit();

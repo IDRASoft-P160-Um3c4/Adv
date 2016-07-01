@@ -76,13 +76,13 @@ public class TDSOCSupervisionInmueble extends DAOBase{
       lPStmt.setInt(2,vData.getInt("iCveSolicitudSupervision"));
       lPStmt.setInt(3,vData.getInt("iCveOficina"));
       lPStmt.setInt(4,vData.getInt("iCveInmueble"));
-      System.out.print("vData.getInt(lInmuebleEvaluado): "+vData.getInt("lInmuebleEvaluado"));
+      //System.out.print("vData.getInt(lInmuebleEvaluado): "+vData.getInt("lInmuebleEvaluado"));
       lPStmt.setInt(5,vData.getInt("lInmuebleEvaluado"));
       lPStmt.setInt(6,vData.getInt("lCondicionEvaluada"));
       lPStmt.setInt(7,vData.getInt("lPagoEvaluado"));
       lPStmt.setInt(8,vData.getInt("iNumHabitantes"));
       lPStmt.setString(9,vData.getString("cParentescoFuncionario"));
-    // System.out.print("vl"+vData.getString("cOtrosPagosServ"));
+    // //System.out.print("vl"+vData.getString("cOtrosPagosServ"));
     //  lPStmt.setString(9,vData.getString("cParentescoFuncionario"));
       if(vData.getString("cOtrosPagosServ")!=null)
           lPStmt.setString(10,vData.getString("cOtrosPagosServ"));

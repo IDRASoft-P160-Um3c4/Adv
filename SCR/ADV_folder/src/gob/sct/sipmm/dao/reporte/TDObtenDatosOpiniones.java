@@ -453,7 +453,7 @@ public class TDObtenDatosOpiniones{
     }
 
     public void setFiltroSegtoEnt(String Filtros){
-      System.out.print("*****    Filtros en setFiltro TDDatosSegtoEntidad  ");
+      //System.out.print("*****    Filtros en setFiltro TDDatosSegtoEntidad  ");
       String[] aFiltros = Filtros.split(",");
       iCveSegtoEntidad = Integer.parseInt(aFiltros[3],10);
 

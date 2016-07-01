@@ -76,7 +76,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
       iBaseGestor = 0;
       iTamanoArchivo = Integer.parseInt(vParametros.getPropEspecifica("TamArchivoDB").toString())*1024*1024;
     }
-    System.out.print("..............TamArchivoDB--->"+iTamanoArchivo);
+    //System.out.print("..............TamArchivoDB--->"+iTamanoArchivo);
     cUsrCM = vParametros.getPropEspecifica("usrCM").toString();
     cPwdCM = vParametros.getPropEspecifica("pwdCM").toString();
     cEntidadCM = vParametros.getPropEspecifica("entidadCM").toString();
@@ -129,7 +129,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
                 ParamPart pp = (ParamPart) p;
                 if (pp.getStringValue().compareTo("") != 0){
                   cMimeType = pp.getStringValue();
-                  System.out.print("----------------pp.getStringValue(): "+pp.getStringValue());
+                  //System.out.print("----------------pp.getStringValue(): "+pp.getStringValue());
                   vDinRep.put("cMimeType",pp.getStringValue());
                 }
             }
@@ -197,7 +197,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
 
                 //Adjuntar Documentos al Content Manager.
                 String [] keys = {"userid", "password", "entity", "mimeType", "lintiCveDocumen"};
-                System.out.print("++++++++++++---------String [] values: cMimeType: "+cMimeType);
+                //System.out.print("++++++++++++---------String [] values: cMimeType: "+cMimeType);
                 //String [] values = {cUsrCM, cPwdCM, cEntidadCM, cMimeType, cFolioGestor};
                 String [] values = {cUsrCM, cPwdCM, cEntidadCM, "application/octet-stream", cFolioGestor};
                 String [] operators = {"", "", "", "", "", "="};
@@ -220,7 +220,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
               } else {
 
                 String [] keys = {"userid", "password", "entity", "mimeType", "lintiCveDocumen"};
-                System.out.print("++++++++++++---------String [] values 2 ----: cMimeType: "+cMimeType);
+                //System.out.print("++++++++++++---------String [] values 2 ----: cMimeType: "+cMimeType);
                 //String [] values = {cUsrCM, cPwdCM, cEntidadCM, cMimeType, cFolioGestor };
                 String [] values = {cUsrCM, cPwdCM, cEntidadCM, "application/octet-stream", cFolioGestor };
                 String [] operators = {"", "", "", "", "", "="};
@@ -237,7 +237,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
               if (iUsoWebService == 0){
                 lBorrado = dGRLDocRegistrado.delete(vDinRep,null);
               } else {
-                System.out.print("Falta Agregar el Uso del Web Service para Borrar Doctos");
+                //System.out.print("Falta Agregar el Uso del Web Service para Borrar Doctos");
               }
             }
 
@@ -285,13 +285,13 @@ public class TSGRLDocRegistrado extends HttpServlet {
 
          CM_GetContent CM_GC = new CM_GetContent();
 
-         System.out.print("--------->cFolioGestor: "+cFolioGestor);
+         //System.out.print("--------->cFolioGestor: "+cFolioGestor);
          //Recuperar el Documento del Content Manager.
          String[] keys = {"userid", "password", "entity", "maxResults", "queryOP","lintiCveDocumen"};
          String[] values = {cUsrCM,cPwdCM,cEntidadCM,"1","true",cFolioGestor};
          String[] operators = {"","","","","","="};
          try{
-           System.out.print("---------------------> keys: "+keys.toString()+"    values: "+values.toString());
+           //System.out.print("---------------------> keys: "+keys.toString()+"    values: "+values.toString());
            btArchivo = CM_GC.connect(keys, values, operators);
          }catch(Exception e){
            e.printStackTrace();
@@ -303,7 +303,7 @@ public class TSGRLDocRegistrado extends HttpServlet {
 //    String cRutaFuncs = vParametros.getPropEspecifica("RutaFuncs");
 
     if (cAccion.compareTo("Consultar") == 0){
-      System.out.print("Archivo existe=" + ((btArchivo != null)?"SI":"NO") + " MimeType="+cMimeType);
+      //System.out.print("Archivo existe=" + ((btArchivo != null)?"SI":"NO") + " MimeType="+cMimeType);
        if (btArchivo != null){
          if(cMimeType.equals(""))
            cMimeType = "multipart/form-data";
@@ -358,11 +358,11 @@ public class TSGRLDocRegistrado extends HttpServlet {
 
   //Process the HTTP Delete request
   public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      System.out.print("Borrando el Servlet");
+      //System.out.print("Borrando el Servlet");
   }
 
   //Clean up resources
   public void destroy() {
-    System.out.print("Destruyendo el Servlet");
+    //System.out.print("Destruyendo el Servlet");
   }
 }

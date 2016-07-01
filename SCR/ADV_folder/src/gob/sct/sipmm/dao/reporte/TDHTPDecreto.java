@@ -104,11 +104,11 @@ public class TDHTPDecreto extends DAOBase{
     try{
       vRegs = super.FindByGeneric("", cQuery1, dataSourceName);
     }catch(SQLException ex){
-      System.out.print("" + ex.getMessage());
+      //System.out.print("" + ex.getMessage());
       ex.printStackTrace();
       cMensaje = ex.getMessage();
     }catch(Exception ex2){
-      System.out.print("" + ex2.getMessage());
+      //System.out.print("" + ex2.getMessage());
       ex2.printStackTrace();
       cMensaje += ex2.getMessage();
     }
@@ -128,11 +128,11 @@ public class TDHTPDecreto extends DAOBase{
     try{
       vRegsNav = super.FindByGeneric("", cQuery1, dataSourceName);
     }catch(SQLException ex){
-      System.out.print("" + ex.getMessage());
+      //System.out.print("" + ex.getMessage());
       ex.printStackTrace();
       cMensaje = ex.getMessage();
     }catch(Exception ex2){
-      System.out.print("" + ex2.getMessage());
+      //System.out.print("" + ex2.getMessage());
       ex2.printStackTrace();
       cMensaje += ex2.getMessage();
     }
@@ -157,11 +157,11 @@ public class TDHTPDecreto extends DAOBase{
     try{
       vRegsLoc = super.FindByGeneric("", cQuery1, dataSourceName);
     }catch(SQLException ex){
-      System.out.print("" + ex.getMessage());
+      //System.out.print("" + ex.getMessage());
       ex.printStackTrace();
       cMensaje = ex.getMessage();
     }catch(Exception ex2){
-      System.out.print("" + ex2.getMessage());
+      //System.out.print("" + ex2.getMessage());
       ex2.printStackTrace();
       cMensaje += ex2.getMessage();
     }
@@ -213,11 +213,11 @@ public class TDHTPDecreto extends DAOBase{
     try{
       vRegsIncRecinto = super.FindByGeneric("", cQuery1, dataSourceName);
     }catch(SQLException ex){
-      System.out.print("" + ex.getMessage());
+      //System.out.print("" + ex.getMessage());
       ex.printStackTrace();
       cMensaje = ex.getMessage();
     }catch(Exception ex2){
-      System.out.print("" + ex2.getMessage());
+      //System.out.print("" + ex2.getMessage());
       ex2.printStackTrace();
       cMensaje += ex2.getMessage();
     }
@@ -501,7 +501,7 @@ public class TDHTPDecreto extends DAOBase{
                       "" + tLetterNumberFormat.getCantidad((long) Fecha.getIntYear(Fecha.TodaySQL())) + ".");
 
     } else {
-      System.out.print("No Encontro Datos");
+      //System.out.print("No Encontro Datos");
     }
 
     if(!cMensaje.equals(""))

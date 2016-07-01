@@ -19,7 +19,7 @@
   
   String queryADV ="";
   
-  System.out.println(oAccion.getCAccion());
+  //System.out.println(oAccion.getCAccion());
   
   /** Verifica si existe una o más sesiones */
   if(!oAccion.unaSesion(vParametros,(CFGSesiones)application.getAttribute("Sesiones"),(TVUsuario)request.getSession(true).getAttribute("UsrID")))

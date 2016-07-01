@@ -94,7 +94,7 @@ public class TDZDPConvenio extends DAOBase{
       rep.comRemplaza("[nombreEstado]", this.minusculas(cEstado));
       rep.comRemplaza("[nombreGobernador]", cGobernador);
       rep.comRemplaza("[nombrePresidenteMunicipal]", cPresidenteM);
-//      System.out.print("\n\n\ncDirSEMARNAT: " + cDirSEMARNAT);
+//      //System.out.print("\n\n\ncDirSEMARNAT: " + cDirSEMARNAT);
  //     rep.comRemplaza("[domicilioSEMARNAT]",cDirSEMARNAT);
       rep.comRemplaza("[domicilioEstado]",this.minusculas(cDomEstado));
       rep.comRemplaza("[domicilioMunicipio]",this.minusculas(cDomMunicipio));

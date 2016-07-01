@@ -87,10 +87,10 @@
     try{
        dTRAEtapaXModTram.Eliminar(vDinRep,null);
     }catch(Exception ex){
-      System.out.println("*****    Error en jsp   =   "+ex.toString());
+      //System.out.println("*****    Error en jsp   =   "+ex.toString());
       if(ex.getMessage().equals("")==false){
         cError="Cascada";
-        System.out.println("*****    cError = "+cError);
+        //System.out.println("*****    cError = "+cError);
       }else
         cError="Borrar";
     }

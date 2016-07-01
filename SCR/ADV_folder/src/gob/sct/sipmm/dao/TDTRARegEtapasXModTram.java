@@ -532,15 +532,15 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 											.getInt("iNumSolicitud")) + " RFC "
 									+ RFCSolicitante);
 
-				System.out.println(vData.getInt("iEjercicio"));
-				System.out.println(vData.getInt("iNumSolicitud"));
-				System.out.println(vData.getInt("iCveTramite"));
-				System.out.println(vData.getInt("iCveModalidad"));
-				System.out.println(vData.getInt("iCveEtapa"));
-				System.out.println(vData.getInt("iOrden"));
-				System.out.println(vData.getInt("iCveOficina"));
-				System.out.println(vData.getInt("iCveDepartamento"));
-				System.out.println(vData.getInt("iCveUsuario"));
+				//System.out.println(vData.getInt("iEjercicio"));
+				//System.out.println(vData.getInt("iNumSolicitud"));
+				//System.out.println(vData.getInt("iCveTramite"));
+				//System.out.println(vData.getInt("iCveModalidad"));
+				//System.out.println(vData.getInt("iCveEtapa"));
+				//System.out.println(vData.getInt("iOrden"));
+				//System.out.println(vData.getInt("iCveOficina"));
+				//System.out.println(vData.getInt("iCveDepartamento"));
+				//System.out.println(vData.getInt("iCveUsuario"));
 
 				lPStmt.executeUpdate();
 				
@@ -626,7 +626,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 					if (vcOrdenDep.size() > 0) {
 						for (int iO = 0; iO < vcOrdenDep.size(); iO++) {
 							TVDinRep vOrden = (TVDinRep) vcOrdenDep.get(iO);
-//							System.out.print("****************ICVEETAPA:"
+//							//System.out.print("****************ICVEETAPA:"
 //									+ vOrden.getInt("ICVEETAPA")
 //									+ "  ***vVinculadas ICVEETAPA"
 //									+ vVinculadas.getInt("ICVEETAPA"));
@@ -1038,7 +1038,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 			
 			String insertAcuerdosVT = "INSERT INTO TRAACUERDOSVTADV (IEJERCICIO,INUMSOLICITUD,CACUERDO) VALUES (?,?,?)";
 			lPStmt = conn.prepareStatement(insertAcuerdosVT);
-			System.out.println(vData.getString("cAcuerdos"));
+			//System.out.println(vData.getString("cAcuerdos"));
 			String acuerdosArr[]=null;	
 			acuerdosArr=vData.getString("cAcuerdos").split("~");
 			
@@ -1439,7 +1439,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 										.getString("cObsEnviadaCIS") : ""/* observacion */,
 								vEstadoCis.getInt("ICVEOFICINACIS")/* area */);
 			} catch (Exception e) {
-				System.out.print(e);
+				//System.out.print(e);
 			} finally {
 			}
 		}
@@ -1486,7 +1486,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 										.getString("cObsEnviadaCIS") : ""/* observacion */,
 								vEstadoCis.getInt("ICVEOFICINACIS")/* area */);
 			} catch (Exception e) {
-				System.out.print(e);
+				//System.out.print(e);
 			} finally {
 			}
 		}
@@ -1543,7 +1543,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 								comen/* observacion */,
 								vEstadoCis.getInt("ICVEOFICINACIS")/* area */);
 			} catch (Exception e) {
-				System.out.print(e);
+				//System.out.print(e);
 			} finally {
 			}
 		}
@@ -1588,7 +1588,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 								comentario/* observacion */,
 								vEstadoCis.getInt("ICVEOFICINACIS")/* area */);
 			} catch (Exception e) {
-				System.out.print(e);
+				//System.out.print(e);
 			} finally {
 			}
 		}
@@ -1646,7 +1646,7 @@ public class TDTRARegEtapasXModTram extends DAOBase {
 	 * en el CIS try{
 	 * this.incertaEstadoCita(vData.getInt("iEjercicio"),vData.getInt
 	 * ("iNumSolicitud"),vData.getInt("iCveEtapa")); }catch(Exception e){
-	 * System.out.print("Error en la incercion de la etapa en el CIS"); } }
+	 * //System.out.print("Error en la incercion de la etapa en el CIS"); } }
 	 * 
 	 * } catch(SQLException se){ se.printStackTrace(); cMensaje =
 	 * super.getSQLMessages(se); if(cnNested == null){ try{ conn.rollback(); }

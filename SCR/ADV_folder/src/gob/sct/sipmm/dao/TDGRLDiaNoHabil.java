@@ -282,7 +282,7 @@ public class TDGRLDiaNoHabil extends DAOBase{
   * @return Date Fecha resultante de la fecha inicial mas el número de días a contar.
   */
  public java.sql.Date getFechaFinal(java.sql.Date dtIni,int iNumDias, boolean lNaturales){
-   System.out.print("Llamado con fecha=" + dtIni.toString() + " Num Dias=" + iNumDias + " Naturales=" + lNaturales);
+   //System.out.print("Llamado con fecha=" + dtIni.toString() + " Num Dias=" + iNumDias + " Naturales=" + lNaturales);
    java.sql.Date dtFin = dtIni;
    int iEjercicio = tFecha.getIntYear(dtIni);
    Vector vcTemp = new Vector();

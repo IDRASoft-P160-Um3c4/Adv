@@ -16,7 +16,7 @@
 	TLogger.setSistema("44");
 	TParametro vParametros = new TParametro("44");
 	
-	System.out.println("entra en pgINTTram1A");
+	//System.out.println("entra en pgINTTram1A");
 	
 	TVDinRep vDinRep = new TVDinRep(); 
 	TDINTTRAMITES dObjeto = new TDINTTRAMITES();
@@ -31,7 +31,7 @@
 				.getPropEspecifica("RutaFuncs")));
 	else
 	{
-		System.out.println(">>>>>>>>>>>oAccion.getCAccion(): "+oAccion.getCAccion());
+		//System.out.println(">>>>>>>>>>>oAccion.getCAccion(): "+oAccion.getCAccion());
 	  /** Se realiza la actualización de Datos a través de actualizar el vector con el Query */
 	  if(oAccion.getCAccion().equals("Guardar"))
 	  {
@@ -139,7 +139,7 @@
 			                "where s.IIdCita= "+
 			                (vDinRep.getInt("ID") > 0 ? vDinRep.getInt("ID") : vDinRep.getInt("iNumCita"))
 			                + oAccion.getCFiltro() + oAccion.getCOrden();
-			  System.out.println(">>>>>>>>>>>-----cSql: "+cSql);
+			  //System.out.println(">>>>>>>>>>>-----cSql: "+cSql);
 				vcListado = dObjeto.findByCustom("", cSql);
 				vcDetalle = null;
 				

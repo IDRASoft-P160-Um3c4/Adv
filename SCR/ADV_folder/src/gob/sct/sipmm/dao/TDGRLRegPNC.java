@@ -172,8 +172,8 @@ public class TDGRLRegPNC extends DAOBase{
     	iCveModalidad=vData.getInt("iCveModalidad");
     	iCveUsuario=vData.getInt("iCveUsuario");
     	
-    	System.out.print(vData.getInt("iCveOficina"));
-    	System.out.print(vData.getInt("iCveDepartamento"));
+    	//System.out.print(vData.getInt("iCveOficina"));
+    	//System.out.print(vData.getInt("iCveDepartamento"));
 
       if(cnNested == null){
         dbConn = new DbConnection(dataSourceName);
@@ -281,14 +281,14 @@ public class TDGRLRegPNC extends DAOBase{
         lPStmt.setInt(11,iNumSolicitud);
         lPStmt.setDate(12,new java.sql.Date(new Date().getTime()));//para actualizar dtoficio en el pnc para que aparezcan en la notificacion del pnc
         
-//        System.out.print("of---> "+vData.getInt("iCveOficina"));
-//        System.out.print("dpto---> "+vData.getInt("iCveDepartamento"));
+//        //System.out.print("of---> "+vData.getInt("iCveOficina"));
+//        //System.out.print("dpto---> "+vData.getInt("iCveDepartamento"));
 //        
-//        System.out.print("ejer---> "+vDatosFinalesPNC.getInt("iEjercicio"));
-//        System.out.print("PNC---> "+vDatosFinalesPNC.getInt("iConsecutivoPNC"));
-//        System.out.print("ofPROD---> "+vDatosFinalesPNC.getInt("iCveOficina"));
-//        System.out.print("dptoPROD---> "+vDatosFinalesPNC.getInt("iCveDepartamento"));
-//        System.out.print("proc- " + vDatosFinalesPNC.getInt("iCveProceso") + " prod- " + vDatosFinalesPNC.getInt("iCveProducto"));
+//        //System.out.print("ejer---> "+vDatosFinalesPNC.getInt("iEjercicio"));
+//        //System.out.print("PNC---> "+vDatosFinalesPNC.getInt("iConsecutivoPNC"));
+//        //System.out.print("ofPROD---> "+vDatosFinalesPNC.getInt("iCveOficina"));
+//        //System.out.print("dptoPROD---> "+vDatosFinalesPNC.getInt("iCveDepartamento"));
+//        //System.out.print("proc- " + vDatosFinalesPNC.getInt("iCveProceso") + " prod- " + vDatosFinalesPNC.getInt("iCveProducto"));
         
            lPStmt.executeUpdate();  //hago el registro en la tabla de GRLRegistroPNC
            
@@ -511,7 +511,7 @@ public class TDGRLRegPNC extends DAOBase{
     		     	  " AND ICVEMODALIDAD="+iCveModalidad +
     		     	  " AND ICVEREQUISITO="+vDatosItera.getInt("ICVEREQUISITO");
     	   
-    	   System.out.print("lrecnotificaado del requisito -->>> "+lSqLRecNotif);
+    	   //System.out.print("lrecnotificaado del requisito -->>> "+lSqLRecNotif);
     	   
     	   Vector vcLRecNotificadoXReq = this.findByCustom("", lSqLRecNotif);
     	   
@@ -713,9 +713,9 @@ public class TDGRLRegPNC extends DAOBase{
         lPStmt.setInt(12,vData.getInt("iCveProceso"));
         
 
-        System.out.print(">>>TDRELRegPNC  1:"+vData.getString("cObsLey1"));
-        System.out.print(">>>TDRELRegPNC  2:"+vData.getString("cObsLey2"));
-        System.out.print(">>>TDRELRegPNC  3:"+vData.getString("cObsLey3"));
+        //System.out.print(">>>TDRELRegPNC  1:"+vData.getString("cObsLey1"));
+        //System.out.print(">>>TDRELRegPNC  2:"+vData.getString("cObsLey2"));
+        //System.out.print(">>>TDRELRegPNC  3:"+vData.getString("cObsLey3"));
 
         if(lAgregarAPNC == false)
            lPStmt.executeUpdate();

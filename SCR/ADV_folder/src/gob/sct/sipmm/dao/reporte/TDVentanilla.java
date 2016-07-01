@@ -3234,7 +3234,7 @@ public class TDVentanilla extends DAOBase {
 
 						if (nomAct.equals(listaReq.get(cont2).getString(
 								"cRequisito"))) {
-//							System.out.print(listaReq.get(cont2).getString(
+//							//System.out.print(listaReq.get(cont2).getString(
 //									"cCausa"));
 							rep1.comDespliegaCelda("    -"
 									+ listaReq.get(cont2).getString("cCausa"));
@@ -3245,7 +3245,7 @@ public class TDVentanilla extends DAOBase {
 						}
 
 						if (paro == true) {
-							System.out.print(otraCausa);
+							//System.out.print(otraCausa);
 							rep1.comDespliegaCelda("    -" + otraCausa);
 							rep1.comDespliegaCelda("");
 							paro = false;
@@ -3253,7 +3253,7 @@ public class TDVentanilla extends DAOBase {
 						}
 
 						if ((cont2 + 1) >= listaReq.size() && paro == false) {
-							System.out.print(otraCausa);
+							//System.out.print(otraCausa);
 							rep1.comDespliegaCelda("    -" + otraCausa);
 							rep1.comDespliegaCelda("");
 						}
@@ -3345,7 +3345,7 @@ public class TDVentanilla extends DAOBase {
 
 		Vector vDatos = new Vector();
 
-		// System.out.print("el parametrooooooo-"+cFiltro);
+		// //System.out.print("el parametrooooooo-"+cFiltro);
 
 		try {
 
@@ -3619,7 +3619,7 @@ public class TDVentanilla extends DAOBase {
 
 		Vector vDatos = new Vector();
 
-		// System.out.print("el parametrooooooo-"+cFiltro);
+		// //System.out.print("el parametrooooooo-"+cFiltro);
 
 		try {
 
@@ -3704,7 +3704,7 @@ public class TDVentanilla extends DAOBase {
 
 		Vector vDatos = new Vector();
 
-		// System.out.print("el parametrooooooo-"+cFiltro);
+		// //System.out.print("el parametrooooooo-"+cFiltro);
 
 		try {
 
@@ -3788,7 +3788,7 @@ public class TDVentanilla extends DAOBase {
 
 		Vector vDatos = new Vector();
 
-		// System.out.print("el parametrooooooo-"+cFiltro);
+		// //System.out.print("el parametrooooooo-"+cFiltro);
 
 		try {
 
@@ -4364,7 +4364,7 @@ public class TDVentanilla extends DAOBase {
 								+ ((TVDinRep) vRelacionadas.get(i))
 										.getString("iNumSolicitudRel");
 					}
-				System.out.print("+++++++cSolicitudes:" + cSolicitudes);
+				//System.out.print("+++++++cSolicitudes:" + cSolicitudes);
 				/*
 				 * if(!cSolicitudes.equals("")) cSolicitudes =
 				 * cSolicitudes.substring(0,cSolicitudes.length() - 1);

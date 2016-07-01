@@ -49,7 +49,7 @@ public class TDDPOObservacionPoa extends DAOBase{
   }
 
     public StringBuffer fReporteEstatusPOAAnual(String iEjercicioSolicitud) throws Exception{
-    	System.out.print("*************** fReporteEstatusPOAAnual");
+    	//System.out.print("*************** fReporteEstatusPOAAnual");
         cError = "";
         TFechas dFechas = new TFechas();
         StringBuffer sbRetorno = new StringBuffer("");

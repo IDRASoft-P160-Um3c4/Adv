@@ -31,7 +31,7 @@ public class TDRAIAseguramiento extends DAOBase{
 		int iCveRegularizacion = Integer.parseInt(cParametros[0]);
 		iCveTitular = Integer.parseInt(cParametros[1]);
 
-		System.out.print("*****  "+cParametros[2]);
+		//System.out.print("*****  "+cParametros[2]);
 		//if(cParametros[2]!="")iCveDomicilio = Integer.parseInt(cParametros[2]);else iCveDomicilio = 1;
 		String cAsunto = "";
 		String cSql =

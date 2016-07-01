@@ -23,7 +23,7 @@ public class TDMenu {
       menuToHM(0, Integer.parseInt(cNumModulo,10), 0);
     }
     catch (Exception e) {
-      System.out.print("loadMenu");
+      //System.out.print("loadMenu");
     }
   }
 
@@ -87,7 +87,7 @@ private static void menuToHM(int iOpcPadre,
         dbConn.closeConnection();
       }
       catch (Exception ex2) {
-        System.out.print("menuToHM.Close:" + iNivel);
+        //System.out.print("menuToHM.Close:" + iNivel);
       }
 
       for (int i = 0; i < vActual.size(); i++) {
@@ -97,7 +97,7 @@ private static void menuToHM(int iOpcPadre,
       }
     }
     catch (Exception ex) {
-      System.out.print("menuToHM:" + iOpcPadre);
+      //System.out.print("menuToHM:" + iOpcPadre);
     }
     finally {
     }
@@ -157,7 +157,7 @@ private static void permisosUsuario(int iCveUsuario, int iCveSistema) {
       }
     }
     catch (Exception ex) {
-      System.out.print("permisosUsuario:");
+      //System.out.print("permisosUsuario:");
     }
     finally {
       try {
@@ -166,7 +166,7 @@ private static void permisosUsuario(int iCveUsuario, int iCveSistema) {
         }
       }
       catch (Exception ex2) {
-        System.out.print("permisosUsuario.Close");
+        //System.out.print("permisosUsuario.Close");
       }
     }
   }

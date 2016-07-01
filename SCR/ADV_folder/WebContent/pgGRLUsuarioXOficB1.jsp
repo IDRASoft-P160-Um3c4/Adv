@@ -26,7 +26,7 @@
   else{
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
-    System.out.println("Entro Guardar");
+    //System.out.println("Entro Guardar");
     vDinRep = oAccion.setInputs("iCveOficina,iCveDepartamento,iCveUsuario1,lFirmante");
     try{
       vDinRep = dGRLUsuarioXOficB1.insert(vDinRep,null);

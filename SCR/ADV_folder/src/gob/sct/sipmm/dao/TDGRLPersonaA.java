@@ -59,7 +59,7 @@ public class TDGRLPersonaA extends DAOBase{
           "insert into GRLPersona(iCvePersona,crfc,crpa,itipopersona,cnomrazonsocial,cappaterno,capmaterno,ccorreoe,cpseudonimoemp) values (?,?,?,?,?,?,?,?,?)";
 
       //AGREGAR AL ULTIMO ...
-        System.out.print("pseud" + vData.getString("cPseudonimoEmp"));
+        //System.out.print("pseud" + vData.getString("cPseudonimoEmp"));
       Vector vcData = findByCustom("","select MAX(iCvePersona) AS iCvePersona from GRLPersona");
       if(vcData.size() > 0){
          TVDinRep vUltimo = (TVDinRep) vcData.get(0);

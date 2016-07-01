@@ -54,7 +54,7 @@ public class ParagraphText {
      *         'placeholders' have been replaced.
      */
     public String getUpdatedText() {
-    	System.out.print("+++++++++++++++++this.updatedText:"+this.updatedText+"+++++++");
+    	//System.out.print("+++++++++++++++++this.updatedText:"+this.updatedText+"+++++++");
         return(this.updatedText);
     }
     

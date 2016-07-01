@@ -43,7 +43,7 @@
     // *"Par1^" + request.getParameter("hdFiltrosRep") + "¨"+par2...   - Contiene los parámetros q recibe el método a ejecutar
     // *request.getParameter("cMetodoTemp") - Contiene el nombre del método a ejecutar
     //En este caso recibe como resultado los datos con los que se va a armar el reporte o los que van a reemplazar etiquetas en un documento word
-//    System.out.println("--------request de hdFiltroRep-------->> "+request.getParameter("hdFiltrosRep"));
+//    //System.out.println("--------request de hdFiltroRep-------->> "+request.getParameter("hdFiltrosRep"));
     oDatos = (Object)tEjecuta.runMethodInClass(vParametros.getPropEspecifica("cRutaDAO")+ request.getParameter("cDAOEjecutar"),request.getParameter("cMetodoTemp"), "Par1^" + request.getParameter("hdFiltrosRep") + "$"+par2+par3+par4);
     if(oDatos instanceof Vector){
       sbResultado = (StringBuffer)((Vector)oDatos).get(0);

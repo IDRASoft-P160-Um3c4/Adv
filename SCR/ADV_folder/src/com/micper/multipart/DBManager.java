@@ -62,12 +62,12 @@ public class DBManager {
         query.append("?, ");
         query.append("?)");
         String instruccion = query.toString();
-        System.out.print("DBMANAGER, SAVEFILE, INSTRUCCION: "+instruccion);
+        //System.out.print("DBMANAGER, SAVEFILE, INSTRUCCION: "+instruccion);
 
         try{
             pstmt = conn.prepareStatement(instruccion);
 //            PreparedStatement pstmt = DBConn.prepareStatement(instruccion);
-            System.out.print("iNumDocto-"+iNumDocto);
+            //System.out.print("iNumDocto-"+iNumDocto);
             pstmt.setString(1, cExpediente);
             pstmt.setInt(2, iCveClasifExped);
             pstmt.setInt(3, iNumDocto);
@@ -95,11 +95,11 @@ public class DBManager {
         if (null == conn)
             throw new DBException("NO EXISTE CONEXION CON LA BASE DE DATOS");
         StringBuffer query = new StringBuffer("UPDATE RTVDOCTOSEXP ");
-        System.out.print("cExpediente--"+cExpediente);
-        System.out.print("iCveClasifExped--"+iCveClasifExped);
-        System.out.print("iNumDocto--"+iNumDocto);
-        System.out.print("iNumHojas--"+iNumHojas);
-        System.out.print("cRutaArchDig--"+cRutaArchDig);
+        //System.out.print("cExpediente--"+cExpediente);
+        //System.out.print("iCveClasifExped--"+iCveClasifExped);
+        //System.out.print("iNumDocto--"+iNumDocto);
+        //System.out.print("iNumHojas--"+iNumHojas);
+        //System.out.print("cRutaArchDig--"+cRutaArchDig);
 
         query.append(" SET INUMHOJAS = ?,");
         query.append(" DTARCHIVO = ?,");
@@ -115,7 +115,7 @@ public class DBManager {
         query.append(" AND ICVECLASIFEXPED = ? ");
         query.append(" AND INUMDOCTO = ? ");
         String instruccion = query.toString();
-        System.out.print("DBMANAGER, UPDATEFILE, INSTRUCCION: "+instruccion);
+        //System.out.print("DBMANAGER, UPDATEFILE, INSTRUCCION: "+instruccion);
         try{
             PreparedStatement pstmt = conn.prepareStatement(instruccion);
 
@@ -142,7 +142,7 @@ public class DBManager {
         }
     }
     public int updateFile2(byte[] file, int iAnioBoleta, int iNumBoleta, int iCveEstacion ) throws DBException,DAOException{
-        System.out.print("updateFile2");
+        //System.out.print("updateFile2");
 //    if (DBConn == null)
 //        throw new DBException("NO EXISTE CONEXION CON LA BASE DE DATOS");
       int iReturn = 0;
@@ -153,7 +153,7 @@ public class DBManager {
       query.append(" AND iNumBoleta = ? ");
       query.append(" AND iCveEstacion = ? ");
       String instruccion = query.toString();
-      System.out.print("DBMANAGER, UPDATEFILE, INSTRUCCION: "+instruccion);
+      //System.out.print("DBMANAGER, UPDATEFILE, INSTRUCCION: "+instruccion);
       try{
         pstmt = conn.prepareStatement(instruccion);
 
@@ -176,9 +176,9 @@ public class DBManager {
       return iReturn;
     }
     public int saveFile2(byte[] file, int iAnioBoleta, int iNumBoleta, int iCveEstacion ) throws DBException,DAOException{
-        System.out.print("saveFile2");
+        //System.out.print("saveFile2");
       if (DBConn == null)
-//        System.out.print("DBConn == null");
+//        //System.out.print("DBConn == null");
         throw new DBException("NO EXISTE CONEXION CON LA BASE DE DATOS");
       int iReturn = 0;
       PreparedStatement pstmt = null;
@@ -186,7 +186,7 @@ public class DBManager {
       query.append("(iAnioBoleta, iNumBoleta, iCveEstacion, blArchivo )");
       query.append("VALUES( ?, ?, ?, ? )");
       String instruccion = query.toString();
-      System.out.print("DBMANAGER, SAVEFILE, INSTRUCCION: "+instruccion);
+      //System.out.print("DBMANAGER, SAVEFILE, INSTRUCCION: "+instruccion);
 
         try{
           pstmt = conn.prepareStatement(instruccion);
@@ -218,7 +218,7 @@ public class DBManager {
 
         StringBuffer query = new StringBuffer("SELECT NAME from RESEARCH1");
         String instruccion = query.toString();
-        System.out.print("DBManager, getFile, instruccion: "+instruccion);
+        //System.out.print("DBManager, getFile, instruccion: "+instruccion);
         List nombres = new ArrayList();
         try{
             Statement stmt = conn.createStatement();
@@ -241,7 +241,7 @@ public class DBManager {
         query.append("   AND ICVECLASIFEXPED="+iCveClasifExped);
         query.append("   AND INUMDOCTO="+iNumDocto);
         String instruccion = query.toString();
-        System.out.print("DBMANAGER, GETFILE, INSTRUCCION: "+instruccion);
+        //System.out.print("DBMANAGER, GETFILE, INSTRUCCION: "+instruccion);
         byte[] archivo = null;
         try{
           Statement stmt = conn.createStatement();
@@ -263,7 +263,7 @@ public class DBManager {
         query.append(" AND iNumBoleta = "+iNumBoleta);
         query.append(" AND iCveEstacion = "+iCveEstacion);
         String instruccion = query.toString();
-        System.out.print("DBMANAGER, GETFILE, INSTRUCCION: "+instruccion);
+        //System.out.print("DBMANAGER, GETFILE, INSTRUCCION: "+instruccion);
         byte[] archivo = null;
         try{
           Statement stmt = conn.createStatement();

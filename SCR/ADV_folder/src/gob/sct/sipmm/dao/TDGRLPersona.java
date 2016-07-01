@@ -436,7 +436,7 @@ public class TDGRLPersona extends DAOBase {
 
 			Vector vcDataPrincipal = findByCustom("","SELECT COUNT(ICVEPERSONA) CCUENTA FROM GRLREPLEGAL WHERE ICVEEMPRESA = "+vData.getInt("iCveRepresentado")+" AND LPRINCIPAL = 1");
 			vData.put("lPrincipal",(vcDataPrincipal.size() > 0) ? ((TVDinRep) vcDataPrincipal.get(0)).getInt("CCUENTA") : 1);
-			System.out.println(vData.getInt("lPrincipal"));
+			//System.out.println(vData.getInt("lPrincipal"));
 			int lPrincipal=0;
 			lPrincipal=vData.getInt("lPrincipal")==1?0:1;
 						
@@ -499,7 +499,7 @@ public class TDGRLPersona extends DAOBase {
 
 			vData.addPK(vData.getString("iCvePersona"));
 
-			System.out.print(vData.getInt("hdiTipo"));
+			//System.out.print(vData.getInt("hdiTipo"));
 			
 			lPStmt = conn.prepareStatement(lSQL);
 			lPStmt.setString(1, vData.getString("cRFC"));

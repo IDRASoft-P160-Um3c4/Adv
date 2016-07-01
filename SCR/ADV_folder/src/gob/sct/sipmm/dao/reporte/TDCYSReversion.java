@@ -2118,7 +2118,7 @@ public class TDCYSReversion extends DAOBase{
 
             } 
 //            else            	
-            	System.out.print("Sin Valores en la base");
+            	//System.out.print("Sin Valores en la base");
             
 
             //return ;

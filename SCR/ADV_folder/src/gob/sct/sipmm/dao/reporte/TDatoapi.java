@@ -36,7 +36,7 @@ public class TDatoapi extends DAOBase {
 			rep.comRemplaza("[ObjetoAutTec]", OBJTITULO);
 		}else{
 			rep.comRemplaza("[ObjetoAutTec]", "");
-			System.out.print("[ObjetoAutTec]" + OBJTITULO);
+			//System.out.print("[ObjetoAutTec]" + OBJTITULO);
 		}
 		try {
 			vRegs = super
@@ -65,10 +65,10 @@ public class TDatoapi extends DAOBase {
 			CPUESTOOPINION = vDatos.getString("CPUESTOOPINION");
 			PERSONA = vDatos.getString("CDEPENDENCIAEXT");
 			
-			System.out.print("ICVEOPINIONENTIDAD" + ICVEOPINIONENTIDAD);
-			System.out.print("COPINIONDIRIGIDOA" + COPINIONDIRIGIDOA);
-			System.out.print("CPUESTOOPINION" + CPUESTOOPINION);
-			System.out.print("PERSONA" + PERSONA);
+			//System.out.print("ICVEOPINIONENTIDAD" + ICVEOPINIONENTIDAD);
+			//System.out.print("COPINIONDIRIGIDOA" + COPINIONDIRIGIDOA);
+			//System.out.print("CPUESTOOPINION" + CPUESTOOPINION);
+			//System.out.print("PERSONA" + PERSONA);
 			if (COPINIONDIRIGIDOA != "")
 				rep.comRemplaza("[cDirigidoa]", COPINIONDIRIGIDOA);
 			else
@@ -103,7 +103,7 @@ public class TDatoapi extends DAOBase {
 				rep.comRemplaza("[cAsuntoLargo]", ASUNTOLA);
 			else
 				rep.comRemplaza("[cAsuntoLargo]", "");
-			System.out.print("ASUNTOLA" + ASUNTOLA);
+			//System.out.print("ASUNTOLA" + ASUNTOLA);
 			
 			//FECHASOL = vDatos.getString("TSREGISTRO");
 			FECHASOL = fecha.getDateSPN(fecha.getDateSQL(vDatos.getTimeStamp("TSREGISTRO")));
@@ -111,7 +111,7 @@ public class TDatoapi extends DAOBase {
 				rep.comRemplaza("[cFechaSolicitud]", FECHASOL);
 			else
 				rep.comRemplaza("[cFechaSolicitud]", "");
-			System.out.print("FECHASOL" + FECHASOL);
+			//System.out.print("FECHASOL" + FECHASOL);
 		}
 		
 		try {
@@ -138,7 +138,7 @@ public class TDatoapi extends DAOBase {
 				rep.comRemplaza("[NumeroDePlanos]", NUMPLANOS);
 			else
 				rep.comRemplaza("[NumeroDePlanos]", "");
-			System.out.print("NUMPLANOS" + NUMPLANOS);
+			//System.out.print("NUMPLANOS" + NUMPLANOS);
 
 		}
 		

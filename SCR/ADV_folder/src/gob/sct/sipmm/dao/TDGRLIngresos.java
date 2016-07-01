@@ -24,7 +24,7 @@ public class TDGRLIngresos extends DAOBase{
     cError = "";
     try{
       String cSQL = cWhere;
-      vcRecords = this.FindByGeneric(cKey,cSQL,"INGRESOS_SCT");
+      vcRecords = this.FindByGeneric(cKey, cSQL, dataSourceName);
     } catch(Exception e){
       cError = e.toString();
     } finally{

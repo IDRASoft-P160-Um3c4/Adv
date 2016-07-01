@@ -347,7 +347,7 @@ public class UploadINTDocs extends HttpServlet {
 					FileItem item = (FileItem) iter.next();
 					if (item.isFormField()) {
 						
-						System.out.println(item.getFieldName());
+						//System.out.println(item.getFieldName());
 						
 						if (item.getFieldName().length() > 10
 								&& item.getFieldName().substring(0, 10)
@@ -375,8 +375,8 @@ public class UploadINTDocs extends HttpServlet {
 						nombre = nombre.substring(index);
 						
 						
-						System.out.println(item.getFieldName());
-						System.out.println(item.getFieldName().substring(0,prefijo.length()));
+						//System.out.println(item.getFieldName());
+						//System.out.println(item.getFieldName().substring(0,prefijo.length()));
 						
 						
 						if (item.getFieldName().substring(0,prefijo.length()).equals(prefijo)&&nombre.length() > 0) {
@@ -417,7 +417,7 @@ public class UploadINTDocs extends HttpServlet {
 									
 									String cSQLReq = "UPDATE TRARegReqXTram SET dtRecepcion = CURRENT_DATE WHERE iEjercicio="+iEjercicio+" AND iNumSolicitud="+iNumSol+" AND iCveRequisito="+cveReqAct;
 									
-									System.out.println(cSQLReq);
+									//System.out.println(cSQLReq);
 
 									lPStmt = connFiles.prepareStatement(cSQLReq);
 									

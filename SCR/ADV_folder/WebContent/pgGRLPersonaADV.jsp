@@ -29,7 +29,7 @@
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   else{
 	  
-  System.out.println(oAccion.getCAccion());
+  //System.out.println(oAccion.getCAccion());
 	  
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
@@ -88,18 +88,18 @@
   
   if(oAccion.getCAccion().equals("guardarRepresentanteEmergente")){
 	  vDinRep = oAccion.setInputs("iCveRepL,iCveRepresentado");
-	  System.out.println(vDinRep.getInt("iCveRepL"));
-	  System.out.println(vDinRep.getInt("iCveRepresentado"));
+	  //System.out.println(vDinRep.getInt("iCveRepL"));
+	  //System.out.println(vDinRep.getInt("iCveRepresentado"));
 	  dGRLPersona.guardaAsociacionPersonaRepL(vDinRep,null);
   }else if(oAccion.getCAccion().equals("eliminarAsociacionRepresentante")){
 	  vDinRep = oAccion.setInputs("iCveRepL,iCveRepresentado");
-	  System.out.println(vDinRep.getInt("iCveRepL"));
-	  System.out.println(vDinRep.getInt("iCveRepresentado"));
+	  //System.out.println(vDinRep.getInt("iCveRepL"));
+	  //System.out.println(vDinRep.getInt("iCveRepresentado"));
 	  dGRLPersona.borraAsociacionPersonaRepL(vDinRep,null);
   }else if(oAccion.getCAccion().equals("setearRepresentantePrincipal")){
 	  vDinRep = oAccion.setInputs("iCveRepL,iCveRepresentado");
-	  System.out.println(vDinRep.getInt("iCveRepL"));
-	  System.out.println(vDinRep.getInt("iCveRepresentado"));
+	  //System.out.println(vDinRep.getInt("iCveRepL"));
+	  //System.out.println(vDinRep.getInt("iCveRepresentado"));
 	  dGRLPersona.setPrincipal(vDinRep,null);
   }
   else if(oAccion.getCAccion().equals("getEntidades")){

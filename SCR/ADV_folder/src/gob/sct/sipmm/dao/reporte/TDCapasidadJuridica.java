@@ -69,7 +69,7 @@ public class TDCapasidadJuridica extends DAOBase{
   }catch(Exception ex2){
     ex2.printStackTrace();
   }
-  System.out.print("*****     dime que si entra!!");
+  //System.out.print("*****     dime que si entra!!");
   try{
     vRegs1 = super.FindByGeneric("",
         "SELECT do.CTITULAR FROM GRLDEPTOXOFIC do Join GRLOFICINA O on O.ICVEOFICINA = do.ICVEOFICINA join GRLDEPARTAMENTO d on d.ICVEDEPARTAMENTO = do.ICVEDEPARTAMENTO Where do.ICVEDEPARTAMENTO = 5 and do.ICVEOFICINA=1 ",dataSourceName);
@@ -105,14 +105,14 @@ if(vRegs1.size()>0){
     cPuertoResid=vDatos.getString("cPUERTORESID");
     dtReconosimiento=vDatos.getString("DTRECONOCIMIENTO");
     cRepresentante=vDatos.getString("CREPRESENTANTE");
-    System.out.print("*****     1");
+    //System.out.print("*****     1");
     if(!vDatos.getString("IFOLIORPMN").equals("null")){
-      System.out.print("*****     "+vDatos.getString("IFOLIORPMN"));
-      System.out.print("*****     "+vDatos.getInt("IFOLIORPMN"));
+      //System.out.print("*****     "+vDatos.getString("IFOLIORPMN"));
+      //System.out.print("*****     "+vDatos.getInt("IFOLIORPMN"));
       iFolioRPMN = vDatos.getInt("IFOLIORPMN");
       iPartida = vDatos.getInt("IPARTIDA");
     }
-    System.out.print("*****     2");
+    //System.out.print("*****     2");
     lNavAltura=vDatos.getInt("LNAVEGALTURA");
     lNavCabotaje=vDatos.getInt("LNAVEGCABOTAJE");
     cNumSolicitud=vDatos.getInt("iEjercicio") + "/" + vDatos.getInt("INUMSOLICITUD");
@@ -145,7 +145,7 @@ if(vRegs1.size()>0){
 */
     cMandante = vDatos.getString("cMandante");
 
-    System.out.print("*****     Mandantes:"+vDatos.getString("cMandante"));
+    //System.out.print("*****     Mandantes:"+vDatos.getString("cMandante"));
 
     rep.comRemplaza("[cNombreSol]",cRazonSolical);
     if(Integer.parseInt(cTipoPersona)==1){

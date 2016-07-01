@@ -108,9 +108,9 @@ public class TDSOC extends DAOBase{
              cComentario = "";
            else
              cComentario = vDatos.getString("cObsRegistrada");
-           System.out.print("***********Tema: "+vDatos.getInt("iCveTema")+" **********");
-           System.out.print("iRenglonInicia: "+iRenglonInicia+"  iRengTemp: "+iRengTemp);
-           System.out.print(cComentario);
+           //System.out.print("***********Tema: "+vDatos.getInt("iCveTema")+" **********");
+           //System.out.print("iRenglonInicia: "+iRenglonInicia+"  iRengTemp: "+iRengTemp);
+           //System.out.print(cComentario);
            rep.comDespliegaCombinado(cComentario,"F",iRenglonInicia,"K",iRengTemp,rep.getAT_COMBINA_IZQUIERDA(),
                                        rep.getAT_VSUPERIOR(),false,0,true,true,1,1);
 
@@ -127,9 +127,9 @@ public class TDSOC extends DAOBase{
              cComentario = "";
            else
              cComentario = vDatos.getString("cObsRegistrada");
-             System.out.print("--------mas de una obsrvacion del mismo tema "+vDatos.getInt("iCveTema")+" --------------");
-             System.out.print(cComentario);
-             System.out.print("iRenglonInicia: "+iRenglonInicia);
+             //System.out.print("--------mas de una obsrvacion del mismo tema "+vDatos.getInt("iCveTema")+" --------------");
+             //System.out.print(cComentario);
+             //System.out.print("iRenglonInicia: "+iRenglonInicia);
            rep.comDespliegaCombinado(cComentario,"F",iRenglonInicia,"K",iRenglonInicia,rep.getAT_COMBINA_IZQUIERDA(),
                                        rep.getAT_VSUPERIOR(),false,0,true,true,1,1);
 
@@ -141,8 +141,8 @@ public class TDSOC extends DAOBase{
          iAreaAnt = vDatos.getInt("iCveArea");
          iTemaAnt = vDatos.getInt("iCveTema");
          iRenglonInicia++;
-         System.out.print("iRenglonInicia del fianal del ciclo: "+iRenglonInicia);
-         System.out.print("--                                             --");
+         //System.out.print("iRenglonInicia del fianal del ciclo: "+iRenglonInicia);
+         //System.out.print("--                                             --");
        }
 
        iRenglonInicia++;

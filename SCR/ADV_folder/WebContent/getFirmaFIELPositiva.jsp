@@ -6,7 +6,7 @@ String cOutputPaths,cCadFirmada,cNombre,cCURP,cRFC,cFirmNum,cLocSerialNumber,cLo
 try{
 	
 	
-	System.out.println("++++++++++++++  Entra en el try");
+	//System.out.println("++++++++++++++  Entra en el try");
    cOutputPaths = ""+request.getParameter("cOutputPaths");
    cCadFirmada = ""+request.getParameter("cCadFirmada");
    cNombre = ""+request.getParameter("cNombre");
@@ -18,9 +18,9 @@ try{
    cLocIssuerDN = ""+request.getParameter("cLocIssuerDN");
    cLocSubjectDN = ""+request.getParameter("cLocSubjectDN");
    iCveCertificado = ""+request.getParameter("iCveCertificado");
-   System.out.println("++++++++++++++  sale del try");
+   //System.out.println("++++++++++++++  sale del try");
 }catch(Exception e){
-	System.out.println("------------------Cayo en el catch");
+	//System.out.println("------------------Cayo en el catch");
     cOutputPaths = "";
     cCadFirmada = "";
     cNombre = "";

@@ -28,7 +28,7 @@
   if(oAccion.getCAccion().equals("Guardar")){
     vDinRep = oAccion.setInputs("iCveTramite,iCveModalidad,dtIniVigencia,iNumDiasResol,lDiasNaturalesResol,iNumDiasCubrirReq,lDiasNaturalesReq,lRequierePago,iCveFormato,iCveTramiteCIS,cNotas,iDiasDespuesNotif,lActivo,iCveUsuario,lTramInt");
     try{
-    	System.out.println("**********************"+vDinRep.getInt("iCveUsuario"));
+    	//System.out.println("**********************"+vDinRep.getInt("iCveUsuario"));
       vDinRep = dTRAConfiguraTramite.insert(vDinRep,null);
     }catch(Exception e){
       cError="Guardar";

@@ -80,23 +80,23 @@ public class TDGRLPolizasSeguros extends DAOBase{
       lPStmt.setDate   (4,vData.getDate("dtInicioVigencia"));
       lPStmt.setDate   (5,vData.getDate("dtFinVigencia"));
       lPStmt.setString (6,vData.getString("cNomAsegurado"));
-      System.out.print("*****    Asegurado =>> " + vData.getString("cNomAsegurado"));
+      //System.out.print("*****    Asegurado =>> " + vData.getString("cNomAsegurado"));
       lPStmt.setInt    (7,vData.getInt("iCveTipoVehiculo"));
       lPStmt.setInt    (8,vData.getInt("iObjetoPoliza"));
       lPStmt.setInt    (9,vObses.getInt("IEjercicioObsLarga"));
       lPStmt.setInt    (10,vObses.getInt("iCveObsLarga"));
 
 
-     /* System.out.print("*****     Poliza:       "+vData.getInt("iCvePoliza"));
-      System.out.print("*****     Aseguradora:  "+vData.getInt("iCveAseguradora"));
-      System.out.print("*****     NumPoliza:    "+vData.getString("cNumPoliza"));
-      System.out.print("*****     dtInicio:     "+vData.getDate("dtInicioVigencia"));
-      System.out.print("*****     dtFin:        "+vData.getDate("dtFinVigencia"));
-      System.out.print("*****     Asegurado:    "+vData.getString("cNomAsegurado"));
-      System.out.print("*****     TipoVehiculo: "+vData.getInt("iCveTipoVehiculo"));
-      System.out.print("*****     ObjetoPoli:   "+vData.getInt("iObjetoPoliza"));
-      System.out.print("*****     Ejercicio:    "+vObses.getInt("IEjercicioObsLarga"));
-      System.out.print("*****     Observacion:  "+vObses.getInt("iCveObsLarga"));*/
+     /* //System.out.print("*****     Poliza:       "+vData.getInt("iCvePoliza"));
+      //System.out.print("*****     Aseguradora:  "+vData.getInt("iCveAseguradora"));
+      //System.out.print("*****     NumPoliza:    "+vData.getString("cNumPoliza"));
+      //System.out.print("*****     dtInicio:     "+vData.getDate("dtInicioVigencia"));
+      //System.out.print("*****     dtFin:        "+vData.getDate("dtFinVigencia"));
+      //System.out.print("*****     Asegurado:    "+vData.getString("cNomAsegurado"));
+      //System.out.print("*****     TipoVehiculo: "+vData.getInt("iCveTipoVehiculo"));
+      //System.out.print("*****     ObjetoPoli:   "+vData.getInt("iObjetoPoliza"));
+      //System.out.print("*****     Ejercicio:    "+vObses.getInt("IEjercicioObsLarga"));
+      //System.out.print("*****     Observacion:  "+vObses.getInt("iCveObsLarga"));*/
       lPStmt.executeUpdate();
       if(cnNested == null){
         conn.commit();

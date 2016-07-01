@@ -563,7 +563,7 @@ public class TDVentaGenSol
                 }
                 cTemp = (dtTemp == null) ? "NO ENTREGADO" : "'" + tFecha.getFechaDDMMMYYYY(dtTemp,"/");
                 if(cTemp.equals("NO ENTREGADO") && regRequisito.getInt("lRequerido") == 1){
-                  System.out.print("*****     Improcedente por Requisitos incompletos");
+                  //System.out.print("*****     Improcedente por Requisitos incompletos");
                   lImprocedente = true;
                   lRelacionadoImprocedente = true;
                 }
@@ -616,14 +616,14 @@ public class TDVentaGenSol
                     vConceptos = (TVDinRep)vAnticipadosPorPagar.get(inc);
                     if(vConceptos.getInt("ICVEGRUPO")==0 &&  vConceptos.getInt("CONCEPTOPAGADO")==0){
                       lImprocedente = true;
-                      System.out.print("*****     Improcedente por Conceptos no pagados.");
+                      //System.out.print("*****     Improcedente por Conceptos no pagados.");
                     }
                     if(iGpoPagado>=0){
                       if(vConceptos.getInt("ICVEGRUPO") != 0 &&
                          vConceptos.getInt("CONCEPTOPAGADO") != 1 &&
                          vConceptos.getInt("ICVEGRUPO") != iGpoPagado){
                            lImprocedente = true;
-                           System.out.print("*****     Improcedentes por grupos no pagados");
+                           //System.out.print("*****     Improcedentes por grupos no pagados");
                       }
                     }
                   }
@@ -638,7 +638,7 @@ public class TDVentaGenSol
                 Vector vSQLPNC = this.findByCustom("",cSQLPNC);
                 if(vSQLPNC.size() > 0){
                   lImprocedente = true;
-                  System.out.print("*****     Improcedente por PNC");
+                  //System.out.print("*****     Improcedente por PNC");
                 }
               }
               if(lImprocedente==true || lRelacionadoImprocedente==true){

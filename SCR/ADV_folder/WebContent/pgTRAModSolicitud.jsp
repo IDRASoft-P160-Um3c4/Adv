@@ -35,7 +35,7 @@
   if(!oAccion.unaSesion(vParametros,(CFGSesiones)application.getAttribute("Sesiones"),(TVUsuario)request.getSession(true).getAttribute("UsrID")))
     out.print(oAccion.getErrorSesion(vParametros.getPropEspecifica("RutaFuncs")));
   else{
-	  System.out.println("----->"+ request.getParameter("hdBoton"));
+	  //System.out.println("----->"+ request.getParameter("hdBoton"));
 	  
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
@@ -74,9 +74,9 @@
       dTRARegReqXTram.Cambia(vDinRep,null);
 
      }catch(Exception e){
-    	System.out.println("*************");
+    	//System.out.println("*************");
     	if(e.getMessage().substring(0,9).equals("El tiempo")){
-        	System.out.println(e.getMessage());
+        	//System.out.println(e.getMessage());
         	cError = e.getMessage();
     	}
     	else
@@ -108,9 +108,9 @@
 		  regCausa.resolver(vPNC,null);
 	      dTRARegReqXTram.FinalizaPNC(vPNC);
 	    }catch(Exception e){
-	    	System.out.println("*************");
+	    	//System.out.println("*************");
 	    	if(e.getMessage().substring(0,9).equals("El tiempo")){
-	        	System.out.println(e.getMessage());
+	        	//System.out.println(e.getMessage());
 	        	cError = e.getMessage();
 	    	}
 	    	else

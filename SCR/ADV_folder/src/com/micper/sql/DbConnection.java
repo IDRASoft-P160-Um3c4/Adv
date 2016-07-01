@@ -1,5 +1,7 @@
 package com.micper.sql;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.sql.*;
 import javax.naming.*;
 import javax.sql.*;
@@ -37,7 +39,13 @@ private DbConnection dbConnection;
    InitialContext iCtx = new InitialContext();
    this.dataSource = (javax.sql.DataSource) iCtx.lookup(dataSourceName);
  }catch(Exception e){
-   System.out.print("Error en constructor de DBConnection: ");
+   //System.out.print("Error en constructor de DBConnection: "+e.getMessage());
+   
+   StringWriter sw = new StringWriter();
+   e.printStackTrace(new PrintWriter(sw));
+   String msg  = sw.toString();
+   //System.out.print("Error en constructor de DBConnection: " + msg);
+   
    e.printStackTrace();
  }
   }
@@ -61,7 +69,7 @@ private DbConnection dbConnection;
       try {
         conn.close();
       } catch (Exception ex) {
-        System.out.print("no se pudo cerrar connection: "+dataSourceName);
+        //System.out.print("no se pudo cerrar connection: "+dataSourceName);
         ex.printStackTrace();
       }
 

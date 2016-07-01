@@ -60,7 +60,7 @@ public class TDTARServicioCuota extends DAOBase{
    * @throws Exception
    */
 	public StringBuffer fReportePilotaje(String cFiltro) throws Exception{
-		System.out.print("*************** fReporteServPortPilotaje");
+		//System.out.print("*************** fReporteServPortPilotaje");
 	    cError = "";
 	    TFechas dFechas = new TFechas();
 	    StringBuffer sbRetorno = new StringBuffer("");
@@ -180,7 +180,7 @@ public class TDTARServicioCuota extends DAOBase{
 	 * @throws Exception
 	 */
 	public StringBuffer fReporteLanchaje(String cFiltro) throws Exception{
-		System.out.print("*************** fReporteLanchaje");
+		//System.out.print("*************** fReporteLanchaje");
 	    cError = "";
 	    TFechas dFechas = new TFechas();
 	    StringBuffer sbRetorno = new StringBuffer("");
@@ -306,7 +306,7 @@ public class TDTARServicioCuota extends DAOBase{
 	 * @throws Exception
 	 */
 	public StringBuffer fReporteAmarre(String cFiltro) throws Exception{
-		System.out.print("*************** fReporteAmarre");
+		//System.out.print("*************** fReporteAmarre");
 	    cError = "";
 	    TFechas dFechas = new TFechas();
 	    StringBuffer sbRetorno = new StringBuffer("");
@@ -663,7 +663,7 @@ public class TDTARServicioCuota extends DAOBase{
 	 * @throws Exception
 	 */
 	public StringBuffer fReporteRemolque(String cFiltro) throws Exception{
-		System.out.print("*************** fReporteRemolque");
+		//System.out.print("*************** fReporteRemolque");
 	    cError = "";
 	    TFechas dFechas = new TFechas();
 	    StringBuffer sbRetorno = new StringBuffer("");
@@ -734,7 +734,7 @@ public class TDTARServicioCuota extends DAOBase{
         	            	mapFila = new TVDinRep();
         	            	iColumna = 1;
         	            	iFila = 1;    
-        	            	System.out.print("********* Nuevo Prestador ="+vDinRep.getString("CSOLICITANTE"));
+        	            	//System.out.print("********* Nuevo Prestador ="+vDinRep.getString("CSOLICITANTE"));
             			}
 
 	            		
@@ -769,16 +769,16 @@ public class TDTARServicioCuota extends DAOBase{
 	            	
 	            	//Log del aArray	            	
 	            	for (int x = 0; x < vcData.size(); x++) {
-	            		System.out.print("===========*** objeto="+x);
+	            		//System.out.print("===========*** objeto="+x);
 	            		
 	            		TVDinRep vDinRep = (TVDinRep) vcData.get(x);
 	            		String[][] aArray = (String[][])vDinRep.get("aArray");	            		
 	            		
 		            	for (int i = 0; i < aArray.length; i++) {
 							for (int j = 0; j < aArray[i].length; j++) {
-								System.out.print(aArray[i][j]+"\t");
+								//System.out.print(aArray[i][j]+"\t");
 							}
-//							System.out.print();
+//							//System.out.print();
 						}
 	            	}
 	            	
@@ -1013,7 +1013,7 @@ public class TDTARServicioCuota extends DAOBase{
 	 * @throws Exception
 	 */
 	private StringBuffer fReporteAlturaCabo(String cFiltro) throws Exception{
-		System.out.print("*************** fReporteAlturaCabo");
+		//System.out.print("*************** fReporteAlturaCabo");
 	    cError = "";
 	    TFechas dFechas = new TFechas();
 	    StringBuffer sbRetorno = new StringBuffer("");

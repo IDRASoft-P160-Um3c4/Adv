@@ -121,9 +121,9 @@ public class TDGRLModTipoDocumento extends DAOBase{
       }
       String lSQL =
           "insert into GRLModTipoDocumento(iCveSistema,iCveModulo,iCveTipoDocumento) values (?,?,?)";
-      System.out.print("*****  "+vData.getInt("iCveSistema"));
-      System.out.print("*****  "+vData.getInt("iCveModulo"));
-      System.out.print("*****  "+vData.getInt("iCveTipoDocumento1"));
+      //System.out.print("*****  "+vData.getInt("iCveSistema"));
+      //System.out.print("*****  "+vData.getInt("iCveModulo"));
+      //System.out.print("*****  "+vData.getInt("iCveTipoDocumento1"));
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iCveSistema"));
       lPStmt.setInt(2,vData.getInt("iCveModulo"));

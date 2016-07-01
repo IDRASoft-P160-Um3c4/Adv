@@ -236,14 +236,14 @@ public class UploadNotifica extends HttpServlet {
 									
 									//conn.commit();
 								}else{
-									System.out.println("el content regreso algo difernte de 0");
+									//System.out.println("el content regreso algo difernte de 0");
 									throw new Exception("el content regreso algo difernte de 0");
 								}
 							}else{
 								throw new Exception("error al obtener el ultimo id para el content manager");
 							}
 					}else{
-						System.out.println("no se pudo obtener la informacion del requisito");
+						//System.out.println("no se pudo obtener la informacion del requisito");
 						throw new Exception("no se pudo obtener la informacion del requisito");
 					}
 				}

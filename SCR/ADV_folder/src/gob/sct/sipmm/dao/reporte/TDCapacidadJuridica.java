@@ -31,7 +31,7 @@ public class TDCapacidadJuridica extends DAOBase{
   }
     
   public StringBuffer WordOficio(String cQuery){
-	  System.out.print("************** WORD OFICIO *******************");	  
+	  //System.out.print("************** WORD OFICIO *******************");	  
 	  IntegracionDOM4jDoc integracion = new IntegracionDOM4jDoc();
 	  String plantilla = "";
 
@@ -44,14 +44,14 @@ public class TDCapacidadJuridica extends DAOBase{
 	  String[] ficheros = dir.list();
 	  
 	  /*int i=ficheros.length;	  
-	  System.out.print("::::::Numero de Ficheros:::::" + i);
+	  //System.out.print("::::::Numero de Ficheros:::::" + i);
 	  String[] noticias = new String[i];	  
 	  if (ficheros == null){		  
-	   System.out.print("No hay ficheros en el directorio especificado");
+	   //System.out.print("No hay ficheros en el directorio especificado");
 	  }	  
 	  else {		  
 	   for (int x=0;x<ficheros.length;x++){
-	     System.out.print(":::::fich::::::" + ficheros[x]);
+	     //System.out.print(":::::fich::::::" + ficheros[x]);
 	     noticias[x]=ficheros[x];
 	   }
      }*/
@@ -59,7 +59,7 @@ public class TDCapacidadJuridica extends DAOBase{
 	  HashMap<String, String> param = new HashMap<String, String>();						  
 	  String cFirmante = "";
 	  
-	  System.out.print("*****     "+cFirmante);
+	  //System.out.print("*****     "+cFirmante);
 	  Vector vcCuerpo = new Vector();
 	  Vector vcCopiasPara = new Vector();
 	  Vector vRegs = new Vector();
@@ -164,11 +164,11 @@ public class TDCapacidadJuridica extends DAOBase{
 	  // imprimios parametros del arreglo cParametros
 	  for (int countx = 0; countx < cParametros.length; countx++) {		  
 			String valor = cParametros[countx];		
-			System.out.print(">>>>>>>>>>::::::::::Parametro:" + countx + ":: valor :: " + valor);
+			//System.out.print(">>>>>>>>>>::::::::::Parametro:" + countx + ":: valor :: " + valor);
 	  }
 	
 	  rep.iniciaReporte();
-	  System.out.print("*****  Tamaño del vector  "+vRegs.size());
+	  //System.out.print("*****  Tamaño del vector  "+vRegs.size());
 
 	  if (vRegs.size() > 0){
 
@@ -350,8 +350,8 @@ public class TDCapacidadJuridica extends DAOBase{
 	    	//rep.comRemplaza("[cTipoNavega]"," de altura y cabotaje ");
 		
 		try {
-			System.out.print(":::: Parametros Antes Reporte ::::" + "platilla " + rutaPlantilla + plantilla + "Archivo Final " + rutaArchivoFinal + archivoFinal);
-			System.out.print("::Resultado de llenado Plantilla Agente Naviero::" + integracion.generaDocSustText(plantilla, rutaPlantilla, archivoFinal, rutaArchivoFinal, param));			
+			//System.out.print(":::: Parametros Antes Reporte ::::" + "platilla " + rutaPlantilla + plantilla + "Archivo Final " + rutaArchivoFinal + archivoFinal);
+			//System.out.print("::Resultado de llenado Plantilla Agente Naviero::" + integracion.generaDocSustText(plantilla, rutaPlantilla, archivoFinal, rutaArchivoFinal, param));			
 		} catch (Exception e) {		
 			e.printStackTrace();
 		}		

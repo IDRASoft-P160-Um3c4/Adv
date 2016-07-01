@@ -55,31 +55,31 @@ public class ParserServlet extends HttpServlet {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int iNumDocto = 0;
         while((p=mp.readNextPart())!=null) {
-          System.out.print("p.getName()="+p.getName());
-          System.out.print("p.isFile()="+p.isFile());
+          //System.out.print("p.getName()="+p.getName());
+          //System.out.print("p.isFile()="+p.isFile());
             if(p.isFile()) {
                 FilePart fp = (FilePart)p;
-                System.out.print("fp.getFileName()="+fp.getFileName());
-                System.out.print("fp.getFilePath()="+fp.getFilePath());
+                //System.out.print("fp.getFileName()="+fp.getFileName());
+                //System.out.print("fp.getFilePath()="+fp.getFilePath());
                 fp.writeTo(baos);
                 baos.close();
                 request.setAttribute("cRutaArchDig",fp.getFilePath());
             } else if(p.isParam()) {
                 ParamPart pp = (ParamPart)p;
-                System.out.print("ELSE-p.getName()=="+p.getName());
-                System.out.print("ELSE-pp.getStringValue()=="+pp.getStringValue());
+                //System.out.print("ELSE-p.getName()=="+p.getName());
+                //System.out.print("ELSE-pp.getStringValue()=="+pp.getStringValue());
                 request.setAttribute(p.getName(), pp.getStringValue());
             } else {
                 throw new InternalError("PART DE TIPO DESCONOCIDO. INCAPAZ PARSEAR REQUEST.");
             }
         }
-        System.out.print("baos.size()="+baos.size());
+        //System.out.print("baos.size()="+baos.size());
         byte[] archivo = baos.toByteArray();
-        System.out.print("archivo.length="+archivo.length);
+        //System.out.print("archivo.length="+archivo.length);
         DBManager dbm = new DBManager();
         try{
            if (request.getAttribute("Accion").toString().compareToIgnoreCase("1")==0){
-              System.out.print("--SAVEFILE PARSERSERVELER--");
+              //System.out.print("--SAVEFILE PARSERSERVELER--");
               TFechas Fecha    = new TFechas();
 //              TDDoctosExp DDoctosExp = new TDDoctosExp();
 //              TVDoctosExp VDoctosExp = new TVDoctosExp();
@@ -88,17 +88,17 @@ public class ParserServlet extends HttpServlet {
 //              VDoctosExp.setiCveClasifExped(new Integer(request.getAttribute("iCveClasifExped").toString()));
 //              iNumDocto = DDoctosExp.findLast(VDoctosExp) + 1;
 
-              System.out.print("cExpediente--"+request.getAttribute("cExpediente").toString());
-              System.out.print("iCveClasifExped--"+request.getAttribute("iCveClasifExped").toString());
-              System.out.print("iNumDocto--"+iNumDocto);
-              System.out.print("iNumHojas--"+request.getAttribute("iNumHojas").toString());
-              System.out.print("dtArchivo--"+request.getAttribute("dtArchivo").toString());
-              System.out.print("dtGlosa--"+request.getAttribute("dtGlosa").toString());
-              System.out.print("iNoLegajo--"+request.getAttribute("iNoLegajo").toString());
-              System.out.print("cDscDocumento--"+request.getAttribute("cDscDocumento").toString());
-              System.out.print("iFolioSalida--"+request.getAttribute("iFolioSalida").toString());
-              System.out.print("iNumAnexo--"+request.getAttribute("iNumAnexo").toString());
-              System.out.print("iCveClasTrans--"+request.getAttribute("iCveClasTrans").toString());
+              //System.out.print("cExpediente--"+request.getAttribute("cExpediente").toString());
+              //System.out.print("iCveClasifExped--"+request.getAttribute("iCveClasifExped").toString());
+              //System.out.print("iNumDocto--"+iNumDocto);
+              //System.out.print("iNumHojas--"+request.getAttribute("iNumHojas").toString());
+              //System.out.print("dtArchivo--"+request.getAttribute("dtArchivo").toString());
+              //System.out.print("dtGlosa--"+request.getAttribute("dtGlosa").toString());
+              //System.out.print("iNoLegajo--"+request.getAttribute("iNoLegajo").toString());
+              //System.out.print("cDscDocumento--"+request.getAttribute("cDscDocumento").toString());
+              //System.out.print("iFolioSalida--"+request.getAttribute("iFolioSalida").toString());
+              //System.out.print("iNumAnexo--"+request.getAttribute("iNumAnexo").toString());
+              //System.out.print("iCveClasTrans--"+request.getAttribute("iCveClasTrans").toString());
 
               dbm.saveFile(archivo, (String)request.getAttribute("cExpediente"),
                                    new Integer(request.getAttribute("iCveClasifExped").toString()).intValue(),
@@ -115,18 +115,18 @@ public class ParserServlet extends HttpServlet {
            }
            else{
              if(request.getAttribute("iCveClasifExped") != null){
-               System.out.print("--UPDATEFILE PARSERSERVELER--");
-               System.out.print("cExpediente--"+request.getAttribute("cExpediente").toString());
-               System.out.print("iCveClasifExped--"+request.getAttribute("iCveClasifExped").toString());
-               System.out.print("iNumDocto--"+request.getAttribute("iNumDocto").toString());
-               System.out.print("iNumHojas--"+request.getAttribute("iNumHojas").toString());
-               System.out.print("dtArchivo--"+request.getAttribute("dtArchivo").toString());
-               System.out.print("dtGlosa--"+request.getAttribute("dtGlosa").toString());
-               System.out.print("iNoLegajo--"+request.getAttribute("iNoLegajo").toString());
-               System.out.print("cDscDocumento--"+request.getAttribute("cDscDocumento").toString());
-               System.out.print("iFolioSalida--"+request.getAttribute("iFolioSalida").toString());
-               System.out.print("iNumAnexo--"+request.getAttribute("iNumAnexo").toString());
-               System.out.print("iCveClasTrans--"+request.getAttribute("iCveClasTrans").toString());
+               //System.out.print("--UPDATEFILE PARSERSERVELER--");
+               //System.out.print("cExpediente--"+request.getAttribute("cExpediente").toString());
+               //System.out.print("iCveClasifExped--"+request.getAttribute("iCveClasifExped").toString());
+               //System.out.print("iNumDocto--"+request.getAttribute("iNumDocto").toString());
+               //System.out.print("iNumHojas--"+request.getAttribute("iNumHojas").toString());
+               //System.out.print("dtArchivo--"+request.getAttribute("dtArchivo").toString());
+               //System.out.print("dtGlosa--"+request.getAttribute("dtGlosa").toString());
+               //System.out.print("iNoLegajo--"+request.getAttribute("iNoLegajo").toString());
+               //System.out.print("cDscDocumento--"+request.getAttribute("cDscDocumento").toString());
+               //System.out.print("iFolioSalida--"+request.getAttribute("iFolioSalida").toString());
+               //System.out.print("iNumAnexo--"+request.getAttribute("iNumAnexo").toString());
+               //System.out.print("iCveClasTrans--"+request.getAttribute("iCveClasTrans").toString());
                TFechas Fecha    = new TFechas();
                dbm.updateFile(archivo, (String)request.getAttribute("cExpediente"),
                               new Integer(request.getAttribute("iCveClasifExped").toString()).intValue(),
@@ -144,9 +144,9 @@ public class ParserServlet extends HttpServlet {
              }
              else{
                int iConfirm = 0;
-               System.out.print("iAnioBoleta: "+request.getAttribute("iAnioBoleta").toString());
-               System.out.print("iNumBoleta: "+request.getAttribute("iNumBoleta").toString());
-               System.out.print("iCveEstacion: "+request.getAttribute("iCveEstacion").toString());
+               //System.out.print("iAnioBoleta: "+request.getAttribute("iAnioBoleta").toString());
+               //System.out.print("iNumBoleta: "+request.getAttribute("iNumBoleta").toString());
+               //System.out.print("iCveEstacion: "+request.getAttribute("iCveEstacion").toString());
                iConfirm = dbm.updateFile2(archivo,
                                Integer.parseInt(request.getAttribute("iAnioBoleta").toString()),
                                Integer.parseInt(request.getAttribute("iNumBoleta").toString()),
@@ -157,7 +157,7 @@ public class ParserServlet extends HttpServlet {
                                           Integer.parseInt(request.getAttribute("iNumBoleta").toString()),
                                           Integer.parseInt(request.getAttribute("iCveEstacion").toString()));
                }
-               System.out.print("Accion: "+iConfirm);
+               //System.out.print("Accion: "+iConfirm);
              }
            }
         }

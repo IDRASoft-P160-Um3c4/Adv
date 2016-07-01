@@ -49,13 +49,13 @@
     }
     catch(Exception e1){
       cError= e1.getMessage();
-      System.out.println("?????????????????     "+cError);
+      //System.out.println("?????????????????     "+cError);
     }
     
-    System.out.println("::: Siguiente Etapa ::: " + vDinRep.getInt("iCveEtapa"));
+    //System.out.println("::: Siguiente Etapa ::: " + vDinRep.getInt("iCveEtapa"));
    // if(vDinRep.getInt("iCveEtapa") == 7){
-   // 	 System.out.println("::: Entro Cambio de Etapa Conlcusion en el AREA - CIS     " + vDinRep.getInt("iCveEtapa"));
-   // 	 System.out.println("::: Parametros ::: " + vDinRep.toString());
+   // 	 //System.out.println("::: Entro Cambio de Etapa Conlcusion en el AREA - CIS     " + vDinRep.getInt("iCveEtapa"));
+   // 	 //System.out.println("::: Parametros ::: " + vDinRep.toString());
    // 	regEtapasXModTram.cambiaEtapaWSCIS(vDinRep,null);
    // }
             

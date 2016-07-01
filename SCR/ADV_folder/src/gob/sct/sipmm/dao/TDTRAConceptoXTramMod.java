@@ -191,7 +191,7 @@ public Vector calculaConceptosDeTramYMod(TVDinRep vData) throws DAOException{
         cEsTarifa = "", cEsPorcentaje = "", cImporteSinAjuste = "", cImporteAjustado = "", cDscConcepto = "",
         cRefNumerica = "", cAplicaFactorDirecto="";
 
- System.out.print("**************vData.getString(iCveGrupo):"+vData.getString("iCveGrupo")+"****");
+ //System.out.print("**************vData.getString(iCveGrupo):"+vData.getString("iCveGrupo")+"****");
   aCveGrupo         = vData.getString("iCveGrupo").split(",");
  aCveConcepto      = vData.getString("iCveConcepto").split(",");
  aUnidades         = vData.getString("iUnidades").split(",");
@@ -208,7 +208,7 @@ public Vector calculaConceptosDeTramYMod(TVDinRep vData) throws DAOException{
  int year = dtFecha.getIntYear(dtFecha.TodaySQL());
  try{
    for (int x=0;x<aCveGrupo.length;x++){
-	   System.out.print("--------------x:"+x+"-----");
+	   //System.out.print("--------------x:"+x+"-----");
      
 	   if(new Integer(aCveGrupo[x]).intValue()>0){
        cSQL = "SELECT " +

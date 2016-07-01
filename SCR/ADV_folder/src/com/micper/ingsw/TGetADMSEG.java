@@ -54,7 +54,7 @@ public class TGetADMSEG {
       cValor = vPropiedades.getProperty(cProp);
     }catch(Exception e){
       e.printStackTrace();
-//      System.out.println("TGetADMSEG.La Propiedad Específica: " + cProp + " No Fue Encontrada!");
+//      //System.out.println("TGetADMSEG.La Propiedad Específica: " + cProp + " No Fue Encontrada!");
     }
     return cValor;
   }
@@ -114,7 +114,7 @@ public HashMap getPropiedades(int iId, String cDataSource) throws DAOException{
         dbConn.closeConnection();
       }
       catch (Exception ex2) {
-//        System.out.print("TGetADMSEG.getPropiedades");
+//        //System.out.print("TGetADMSEG.getPropiedades");
         ex2.printStackTrace();
       }
       return hmPropiedades;

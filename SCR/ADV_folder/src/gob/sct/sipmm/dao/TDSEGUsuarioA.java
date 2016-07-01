@@ -96,7 +96,7 @@ public class TDSEGUsuarioA extends DAOBase {
       ex1.printStackTrace();
     }
     if(vcData.size()>0 && !lError){
-      System.out.print("*****    Tamaño del vector: "+vcData.size());
+      //System.out.print("*****    Tamaño del vector: "+vcData.size());
         for(int i=0;i<vcData.size();i++){
             TVDinRep vD = (TVDinRep) vcData.get(i);
             cSQL1 = "SELECT ICVEUSUARIO FROM SEGUSUARIO WHERE ICVEUSUARIO = " +
@@ -112,7 +112,7 @@ public class TDSEGUsuarioA extends DAOBase {
             }
        }
        //f(cErrores!="")
-         System.out.print("Errores presentados\n"+cErrores);
+         //System.out.print("Errores presentados\n"+cErrores);
     }
       return vData;
   }
@@ -148,7 +148,7 @@ public class TDSEGUsuarioA extends DAOBase {
       lPStmt.setInt(14,vD.getInt("ICVEUNIDADORG"));
       lPStmt.setInt(15,vD.getInt("LBLOQUEADO"));
       lPStmt.setInt(16,vD.getInt("ICVEUSUARIO"));
-      System.out.print("*****     Actualizando usuario: "+vD.getInt("ICVEUSUARIO")+": "+vD.getString("CUSUARIO"));
+      //System.out.print("*****     Actualizando usuario: "+vD.getInt("ICVEUSUARIO")+": "+vD.getString("CUSUARIO"));
       lPStmt.executeUpdate();
       lPStmt.close();
       if(cnNested == null){
@@ -214,7 +214,7 @@ public class TDSEGUsuarioA extends DAOBase {
       lPStmt.setString(14,vD.getString("CTELEFONO"));
       lPStmt.setInt(15,vD.getInt("ICVEUNIDADORG"));
       lPStmt.setInt(16,vD.getInt("LBLOQUEADO"));
-      System.out.print("*****     Insertando usuario: "+vD.getInt("ICVEUSUARIO")+": "+vD.getString("CUSUARIO"));
+      //System.out.print("*****     Insertando usuario: "+vD.getInt("ICVEUSUARIO")+": "+vD.getString("CUSUARIO"));
       lPStmt.executeUpdate();
       lPStmt.close();
       if(cnNested == null){

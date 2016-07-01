@@ -50,10 +50,10 @@ public class TDCYSSegProcedimiento extends DAOBase{
                         String cSQL = cWhere;
                         vcRecords = this.FindByGeneric(cKey,cSQL,dataSourceName);
                         if(vcRecords.size()>0)  {
-                          System.out.print("*****     "+vcRecords.size());
+                          //System.out.print("*****     "+vcRecords.size());
                           for(int i=0; i<vcRecords.size(); i++){
                             TVDinRep vUltimo = (TVDinRep) vcRecords.get(i);
-                            System.out.print("*****     \n"+vUltimo.toHashMap().toString());
+                            //System.out.print("*****     \n"+vUltimo.toHashMap().toString());
                             if(proceso !=  6){
                               String cInc = "";
                               String cInconformidades =

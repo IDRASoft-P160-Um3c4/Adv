@@ -714,10 +714,10 @@ public class TDINTSolicitud extends DAOBase {
 		    
 		    lPStmt = conn.prepareStatement(lSQL);
 		    
-		    System.out.print(vData.getInt("ICVEDOCHIST"));
-		    System.out.print(vData.getInt("ICVEUSUARIO"));
-		    System.out.print(vData.getString("fName"));
-		    System.out.print(vData.getInt("ICVEHISTADV"));
+		    //System.out.print(vData.getInt("ICVEDOCHIST"));
+		    //System.out.print(vData.getInt("ICVEUSUARIO"));
+		    //System.out.print(vData.getString("fName"));
+		    //System.out.print(vData.getInt("ICVEHISTADV"));
 		    
 		    
 			lPStmt.setInt(1,vData.getInt("ICVEDOCHIST"));

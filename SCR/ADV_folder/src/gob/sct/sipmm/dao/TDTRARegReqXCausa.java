@@ -60,15 +60,15 @@ public class TDTRARegReqXCausa extends DAOBase{
 
       lPStmt = conn.prepareStatement(lSQL);
       lPStmt.setInt(1,vData.getInt("iEjercicio"));
-//      System.out.print("\n\n\n------------iEjercicio: " + vData.getInt("iEjercicio"));
+//      //System.out.print("\n\n\n------------iEjercicio: " + vData.getInt("iEjercicio"));
       lPStmt.setInt(2,vData.getInt("iConsecutivoPNC"));
-//      System.out.print("------------iConsecutivoPNC: " + vData.getInt("iConsecutivoPNC"));
+//      //System.out.print("------------iConsecutivoPNC: " + vData.getInt("iConsecutivoPNC"));
       lPStmt.setInt(3,vData.getInt("iCveProducto"));
-//      System.out.print("------------iCveProducto: " + vData.getInt("iCveProducto"));
+//      //System.out.print("------------iCveProducto: " + vData.getInt("iCveProducto"));
       lPStmt.setInt(4,vData.getInt("iCveCausaPNC"));
-//      System.out.print("------------iCveCausaPNC: " + vData.getInt("iCveCausaPNC"));
+//      //System.out.print("------------iCveCausaPNC: " + vData.getInt("iCveCausaPNC"));
       lPStmt.setInt(5,vData.getInt("iCveRequisito"));
-//      System.out.print("iRequisito: " + vData.getInt("iCveRequisito"));
+//      //System.out.print("iRequisito: " + vData.getInt("iCveRequisito"));
       lPStmt.executeUpdate();
       if(cnNested == null){
         conn.commit();
@@ -105,7 +105,7 @@ public class TDTRARegReqXCausa extends DAOBase{
 
   public TVDinRep insertMult(TVDinRep vData,Connection cnNested) throws
       DAOException{
-//    System.out.print("\n\n\n>>>>>>>>>>>>>>>>>>>>>   En insert A");
+//    //System.out.print("\n\n\n>>>>>>>>>>>>>>>>>>>>>   En insert A");
     DbConnection dbConn = null;
     Connection conn = cnNested;
     PreparedStatement lPStmt2 = null;

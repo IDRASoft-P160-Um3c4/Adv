@@ -71,7 +71,7 @@
 <script language="JavaScript">
 <%
    out.print(oAccion.getArrayCD());
-   System.out.println(request.getParameter("cNombreFRM"));
+   //System.out.println(request.getParameter("cNombreFRM"));
 %>
   fEngResultado('<%=request.getParameter("cNombreFRM")%>',
                 '<%=request.getParameter("cId")%>',

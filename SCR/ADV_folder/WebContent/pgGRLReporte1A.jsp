@@ -27,7 +27,7 @@
   else{
   /** Verifica si la Acción a través de hdBotón es igual a "Guardar" */
   if(oAccion.getCAccion().equals("Guardar")){
-    System.out.println("Entro al jsp en guardar");
+    //System.out.println("Entro al jsp en guardar");
     vDinRep = oAccion.setInputs("iCveModulo,cNomReporte,lExcel,lWord,lPDF,lMultiPart,cPlantillaExcel,cPlantillaWord,cPlantillaPDF,cDAOEjecutar,cMetodoExcel,cMetodoWord,cMetodoPDF,iCveFormatoFiltro,lAutoImprimir,iNumCopias,lMostrarAplicacion,lParametroModificable,lRequiereFolio");
     try{
       vDinRep = dGRLReporte.insert(vDinRep,null);

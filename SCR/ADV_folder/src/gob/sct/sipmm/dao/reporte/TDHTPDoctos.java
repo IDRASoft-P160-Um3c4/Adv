@@ -29,7 +29,7 @@ public StringBuffer GenOpinionDecreto(String cQuery, String cFolio, String cCveO
     Vector vRegs = new Vector();
     Vector vRegsPtoTerminal = new Vector();
 
-System.out.print("GenOpiniones 1");
+//System.out.print("GenOpiniones 1");
      TWord rep = new TWord();
      rep.iniciaReporte();
 
@@ -43,10 +43,10 @@ System.out.print("GenOpiniones 1");
        ex2.printStackTrace();
        cMensaje += ex2.getMessage();
      }
-System.out.print("GenOpiniones 2");
+//System.out.print("GenOpiniones 2");
      if (vRegs.size() > 0){
           TVDinRep vDatos = (TVDinRep) vRegs.get(0);
-          System.out.print("GenOpiniones 3");
+          //System.out.print("GenOpiniones 3");
           int iCveHabilitacion = Integer.parseInt(vDatos.get("iCveHabilitacion").toString());
           int lEsOpinionInterna = Integer.parseInt(vDatos.get("lEsOpinionInterna").toString());
           int lEsContestacion = Integer.parseInt(vDatos.get("lEsContestacion").toString());
@@ -77,7 +77,7 @@ System.out.print("GenOpiniones 2");
             int iCuentaPuerto = 0;
             int iCuentaTerminal = 0;
             int iCuentaMarina = 0;
-            System.out.print("GenOpiniones 4");
+            //System.out.print("GenOpiniones 4");
             String cDscTipoPuerto = new String("");
             String cDenominacion = new String("");
 
@@ -140,7 +140,7 @@ System.out.print("GenOpiniones 2");
             cTextoPuertos = cTextoPuertos + cNombrePuertos;
             cTextoTerminales = cTextoTerminales + cNombreTerminales;
             cTextoMarinas = cTextoMarinas + cNombreMarinas;
-            System.out.print("GenOpiniones 4.1 --" + cTextoMarinas + "--");
+            //System.out.print("GenOpiniones 4.1 --" + cTextoMarinas + "--");
             if (cTextoPuertos.compareTo("") != 0){
                if (cTextoTerminales.compareTo("") != 0){
                   cTextoTerminales = "así como " + cTextoTerminales;
@@ -159,7 +159,7 @@ System.out.print("GenOpiniones 2");
             rep.comRemplaza("[cNombreTerminales]",(cTextoTerminales.compareTo("") != 0)?cTextoTerminales:"");
             rep.comRemplaza("[cNombreMarinas]",(cTextoMarinas.compareTo("") != 0)?cTextoMarinas:"");
 
-            System.out.print("GenOpiniones 5 -- " + cTextoPuertos + "--" + cTextoTerminales + "--" + cTextoMarinas);
+            //System.out.print("GenOpiniones 5 -- " + cTextoPuertos + "--" + cTextoTerminales + "--" + cTextoMarinas);
           }
 
           if (lEsOpinionInterna == 1) { //Es una Opinión Interna
@@ -170,14 +170,14 @@ System.out.print("GenOpiniones 2");
                 ;
           }
 
-          System.out.print("GenOpiniones 6");
+          //System.out.print("GenOpiniones 6");
      }else {
-       System.out.print("No Encontro Datos");
+       //System.out.print("No Encontro Datos");
      }
 
      if(!cMensaje.equals(""))
        throw new Exception(cMensaje);
-     System.out.print("GenOpiniones 7");
+     //System.out.print("GenOpiniones 7");
      return rep.getEtiquetas(true);
 
 }
@@ -188,7 +188,7 @@ System.out.print("GenOpiniones 2");
     Vector vRegs = new Vector();
     Vector vRegsPtoTerminal = new Vector();
 
-System.out.print("GenOpiniones 1");
+//System.out.print("GenOpiniones 1");
      TWord rep = new TWord();
      rep.iniciaReporte();
 
@@ -202,10 +202,10 @@ System.out.print("GenOpiniones 1");
        ex2.printStackTrace();
        cMensaje += ex2.getMessage();
      }
-System.out.print("GenOpiniones 2");
+//System.out.print("GenOpiniones 2");
      if (vRegs.size() > 0){
           TVDinRep vDatos = (TVDinRep) vRegs.get(0);
-          System.out.print("GenOpiniones 3");
+          //System.out.print("GenOpiniones 3");
           int iCveHabilitacion = Integer.parseInt(vDatos.get("iCveHabilitacion").toString());
           int lEsOpinionInterna = Integer.parseInt(vDatos.get("lEsOpinionInterna").toString());
 
@@ -235,7 +235,7 @@ System.out.print("GenOpiniones 2");
             int iCuentaPuerto = 0;
             int iCuentaTerminal = 0;
             int iCuentaMarina = 0;
-            System.out.print("GenOpiniones 4");
+            //System.out.print("GenOpiniones 4");
             String cDscTipoPuerto = new String("");
             String cDenominacion = new String("");
 
@@ -298,7 +298,7 @@ System.out.print("GenOpiniones 2");
             cTextoPuertos = cTextoPuertos + cNombrePuertos;
             cTextoTerminales = cTextoTerminales + cNombreTerminales;
             cTextoMarinas = cTextoMarinas + cNombreMarinas;
-            System.out.print("GenOpiniones 4.1 --" + cTextoMarinas + "--");
+            //System.out.print("GenOpiniones 4.1 --" + cTextoMarinas + "--");
             if (cTextoPuertos.compareTo("") != 0){
                if (cTextoTerminales.compareTo("") != 0){
                   cTextoTerminales = "así como " + cTextoTerminales;
@@ -317,7 +317,7 @@ System.out.print("GenOpiniones 2");
             rep.comRemplaza("[cNombreTerminales]",(cTextoTerminales.compareTo("") != 0)?cTextoTerminales:"");
             rep.comRemplaza("[cNombreMarinas]",(cTextoMarinas.compareTo("") != 0)?cTextoMarinas:"");
 
-            System.out.print("GenOpiniones 5 -- " + cTextoPuertos + "--" + cTextoTerminales + "--" + cTextoMarinas);
+            //System.out.print("GenOpiniones 5 -- " + cTextoPuertos + "--" + cTextoTerminales + "--" + cTextoMarinas);
           }
 
           if (lEsOpinionInterna == 1) { //Es una Opinión Interna
@@ -327,14 +327,14 @@ System.out.print("GenOpiniones 2");
 
           }
 
-          System.out.print("GenOpiniones 6");
+          //System.out.print("GenOpiniones 6");
      }else {
-       System.out.print("No Encontro Datos");
+       //System.out.print("No Encontro Datos");
      }
 
      if(!cMensaje.equals(""))
        throw new Exception(cMensaje);
-     System.out.print("GenOpiniones 7");
+     //System.out.print("GenOpiniones 7");
      return rep.getEtiquetas(true);
 
   }

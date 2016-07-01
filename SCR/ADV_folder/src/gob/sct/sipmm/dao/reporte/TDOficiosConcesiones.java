@@ -49,7 +49,7 @@ public class TDOficiosConcesiones extends DAOBase{
 		StringBuffer sbRemplazaAdicional = new StringBuffer();
 
 		try{
-			System.out.print("*******=========== 1 ===========**********");
+			//System.out.print("*******=========== 1 ===========**********");
 			vRegs = super.FindByGeneric("", "select RGCContrato.cNumContrato, " +
 					"RGCContrato.iCveTipoContrato, " +
 					"CPATitulo.cNumTitulo, " +
@@ -98,7 +98,7 @@ public class TDOficiosConcesiones extends DAOBase{
 
 		//Servicios Portuarios del Registro de Contratos.
 		try{
-			System.out.print("*******=========== 2 ===========**********");
+			//System.out.print("*******=========== 2 ===========**********");
 			vRegsSerCon = super.FindByGeneric("", "select RGCContrato.cNumContrato, " +
 					"TARServicioConexo.iCveServicioConexo, " +
 					"TARServicioConexo.cDscServConexo " +
@@ -115,7 +115,7 @@ public class TDOficiosConcesiones extends DAOBase{
 		rep.iniciaReporte();
 
 		if (vRegs.size() > 0){
-			System.out.print("*******=========== 3 ===========**********");
+			//System.out.print("*******=========== 3 ===========**********");
 			TVDinRep vDatos = (TVDinRep) vRegs.get(0);
 
 			//Datos de la API.
@@ -211,7 +211,7 @@ public class TDOficiosConcesiones extends DAOBase{
 			rep.comRemplaza("[cNumControl]",cNumControl != null && !cNumControl.equalsIgnoreCase("null")? cNumControl:" ");
 
 		} else {
-			System.out.print("*******=========== 4 ===========**********");
+			//System.out.print("*******=========== 4 ===========**********");
 			//Sin Valores en la Base.
 			rep.comRemplaza("[cNomCesionaria]","");
 			rep.comRemplaza("[cNumContrato]","");
@@ -219,13 +219,13 @@ public class TDOficiosConcesiones extends DAOBase{
 			rep.comRemplaza("[cSerCon]","");
 			rep.comRemplaza("[cNumControl]","");
 		}
-		System.out.print("*******=========== 5 ===========**********");
-//		System.out.print("==============cNumFolio:"+cNumFolio);
-//		System.out.print("==============iCveOficinaOrigen:"+iCveOficinaOrigen);
-//		System.out.print("==============iCveDeptoOrigen:"+iCveDeptoOrigen);
-		System.out.print("==============iCvePersona:"+iCvePersona);
-		System.out.print("==============iCveDomicilio:"+iCveDomicilio);
-		System.out.print("==============iCveRepLegal:"+iCveRepLegal);
+		//System.out.print("*******=========== 5 ===========**********");
+//		//System.out.print("==============cNumFolio:"+cNumFolio);
+//		//System.out.print("==============iCveOficinaOrigen:"+iCveOficinaOrigen);
+//		//System.out.print("==============iCveDeptoOrigen:"+iCveDeptoOrigen);
+		//System.out.print("==============iCvePersona:"+iCvePersona);
+		//System.out.print("==============iCveDomicilio:"+iCveDomicilio);
+		//System.out.print("==============iCveRepLegal:"+iCveRepLegal);
 		
 		
 		return rep.getVectorDatos(true); 
@@ -261,7 +261,7 @@ public class TDOficiosConcesiones extends DAOBase{
 		StringBuffer sbRemplazaAdicional = new StringBuffer();
 
 		try{
-			System.out.print("*******=========== 1 ===========**********");
+			//System.out.print("*******=========== 1 ===========**********");
 			vRegs = super.FindByGeneric("", "select RGCContrato.cNumContrato, " +
 					"RGCContrato.iCveTipoContrato, " +
 					"CPATitulo.cNumTitulo, " +
@@ -310,7 +310,7 @@ public class TDOficiosConcesiones extends DAOBase{
 
 		//Servicios Portuarios del Registro de Contratos.
 		try{
-			System.out.print("*******=========== 2 ===========**********");
+			//System.out.print("*******=========== 2 ===========**********");
 			vRegsSerCon = super.FindByGeneric("", "select RGCContrato.cNumContrato, " +
 					"TARServicioConexo.iCveServicioConexo, " +
 					"TARServicioConexo.cDscServConexo " +
@@ -327,7 +327,7 @@ public class TDOficiosConcesiones extends DAOBase{
 		rep.iniciaReporte();
 
 		if (vRegs.size() > 0){
-			System.out.print("*******=========== 3 ===========**********");
+			//System.out.print("*******=========== 3 ===========**********");
 			TVDinRep vDatos = (TVDinRep) vRegs.get(0);
 
 			//Datos de la API.
@@ -423,7 +423,7 @@ public class TDOficiosConcesiones extends DAOBase{
 			rep.comRemplaza("[cNumControl]",cNumControl != null && !cNumControl.equalsIgnoreCase("null")? cNumControl:" ");
 
 		} else {
-			System.out.print("*******=========== 4 ===========**********");
+			//System.out.print("*******=========== 4 ===========**********");
 			//Sin Valores en la Base.
 			rep.comRemplaza("[cNomCesionaria]","");
 			rep.comRemplaza("[cNumContrato]","");
@@ -431,13 +431,13 @@ public class TDOficiosConcesiones extends DAOBase{
 			rep.comRemplaza("[cSerCon]","");
 			rep.comRemplaza("[cNumControl]","");
 		}
-		System.out.print("*******=========== 5 ===========**********");
-		System.out.print("==============cNumFolio:"+cNumFolio);
-		System.out.print("==============iCveOficinaOrigen:"+iCveOficinaOrigen);
-		System.out.print("==============iCveDeptoOrigen:"+iCveDeptoOrigen);
-		System.out.print("==============iCvePersona:"+iCvePersona);
-		System.out.print("==============iCveDomicilio:"+iCveDomicilio);
-		System.out.print("==============iCveRepLegal:"+iCveRepLegal);
+		//System.out.print("*******=========== 5 ===========**********");
+		//System.out.print("==============cNumFolio:"+cNumFolio);
+		//System.out.print("==============iCveOficinaOrigen:"+iCveOficinaOrigen);
+		//System.out.print("==============iCveDeptoOrigen:"+iCveDeptoOrigen);
+		//System.out.print("==============iCvePersona:"+iCvePersona);
+		//System.out.print("==============iCveDomicilio:"+iCveDomicilio);
+		//System.out.print("==============iCveRepLegal:"+iCveRepLegal);
 		
 		
 		return rep.getVectorDatos(true);
@@ -1336,7 +1336,7 @@ public class TDOficiosConcesiones extends DAOBase{
 
 				//Ubicación de la Obra.
 				rep.comRemplaza("[uo]","X");
-				System.out.print("\n\n\n Dentro del Recinto portuario ??? :: --->  " + vDatosTitUbi.getInt("lDentroRecintoPort"));
+				//System.out.print("\n\n\n Dentro del Recinto portuario ??? :: --->  " + vDatosTitUbi.getInt("lDentroRecintoPort"));
 				if (vDatosTitUbi.getInt("lDentroRecintoPort") == 1){
 					rep.comRemplaza("[rp]","X");
 					rep.comRemplaza("[fr]","");
@@ -2222,7 +2222,7 @@ public class TDOficiosConcesiones extends DAOBase{
 	}
 
 	public Vector generaCesionDerechos(String cFiltro){
-		System.out.print("-------------------TDOficiosConcessiones-->cFiltro:"+cFiltro+"<-----");
+		//System.out.print("-------------------TDOficiosConcessiones-->cFiltro:"+cFiltro+"<-----");
 		TWord rep = new TWord();
 		Vector vDataContratos = new Vector(), vDataTitular = new Vector(), vDataUbicacion = new Vector(),
 		vDataSolicitud = new Vector();

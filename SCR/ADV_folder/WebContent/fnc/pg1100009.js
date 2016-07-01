@@ -127,9 +127,9 @@ function fDefPag() {
 		ITD("", 0, "", "", "center");// ITD(cEstilo,iColExtiende,cAncho,cAlto,cAlign,cValign)
 		Liga("Cambiar contraseña", "fCambiaContraADV()", "");
 		FTD();
-		ITD("", 0, "", "", "center");// ITD(cEstilo,iColExtiende,cAncho,cAlto,cAlign,cValign)
-		Liga("Descargar Formato Solicitud", "fFormatoSol()", "");
-		FTD();
+//		ITD("", 0, "", "", "center");// ITD(cEstilo,iColExtiende,cAncho,cAlto,cAlign,cValign)
+//		Liga("Descargar Formato Solicitud", "fFormatoSol()", "");
+//		FTD();
 		ITD("", 0, "", "", "center");// ITD(cEstilo,iColExtiende,cAncho,cAlto,cAlign,cValign)
 		Liga("Manual de CSCT", "fCSCT()", "");
 		FTD();

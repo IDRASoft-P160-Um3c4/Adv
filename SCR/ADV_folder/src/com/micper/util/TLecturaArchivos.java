@@ -189,7 +189,7 @@ public Vector getVectorFromList(List lineasArchivo){
     try{
       Vector vDatosArchivo = procesaArchivo.getVectorFromFile(new File(args[0]));
 //      for(int i=0; i<vDatosArchivo.size(); i++)
-//        System.out.print("Renglon " + i + " ==> " + vDatosArchivo.get(i));
+//        //System.out.print("Renglon " + i + " ==> " + vDatosArchivo.get(i));
     } catch(Exception e){
     }
   }
